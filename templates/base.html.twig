@@ -2,8 +2,9 @@
 <html lang="sv">
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <title>{% block title %}Välkommen!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+        <link rel="icon" href="{{ asset('img/favicon.png ')}}">
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
@@ -16,7 +17,9 @@
     <body>
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container">
-                <a class="navbar-brand" href="{{ path('home') }}">Start</a>
+                <a class="navbar-brand" href="{{ path('home') }}">
+                    Hem
+                </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
                 </button>
@@ -28,26 +31,29 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ path('lucky') }}">Lucky</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('api_quote') }}">Api</a>
+                    </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="{{ path('report') }}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Redovisning
                         </a>
                     <ul class="dropdown-menu">
-                        {# <li><a class="dropdown-item" href="{{ path('report#kmom01') }}">Kmom01</a></li>
-                        <li><a class="dropdown-item" href="{{ path('report#kmom02') }}>Kmom02</a></li>
-                        <li><a class="dropdown-item" href="{{ path('report#kmom03') }}>Kmom03</a></li>
-                        <li><a class="dropdown-item" href="{{ path('report#kmom04') }}>Kmom04</a></li>
-                        <li><a class="dropdown-item" href="{{ path('report#kmom05') }}>Kmom05</a></li>
-                        <li><a class="dropdown-item" href="{{ path('report#kmom06') }}>Kmom06</a></li>
-                        <li><a class="dropdown-item" href="{{ path('report#kmom07-10') }}">Kmom07-10</a></li> #}
+                        <li><a class="dropdown-item" href="{{ path('report') }}#kmom01">Kmom01</a></li>
+                        <li><a class="dropdown-item" href="{{ path('report') }}#kmom02">Kmom02</a></li>
+                        <li><a class="dropdown-item" href="{{ path('report') }}#kmom03">Kmom03</a></li>
+                        <li><a class="dropdown-item" href="{{ path('report') }}#kmom04">Kmom04</a></li>
+                        <li><a class="dropdown-item" href="{{ path('report') }}#kmom05">Kmom05</a></li>
+                        <li><a class="dropdown-item" href="{{ path('report') }}#kmom06">Kmom06</a></li>
+                        <li><a class="dropdown-item" href="{{ path('report') }}#kmom07-10">Kmom07-10</a></li>
                     </ul>
                     </li>
                 </ul>
                 </div>
             </div>
         </nav>
-        <header class="container d-flex flex-wrap justify-content-center py-3 mb-4">
-            <h1>{% block header %}{% endblock %}</h1>
+        <header class="container-fluid d-flex flex-wrap justify-content-center py-3 mb-4 site-header" style="background-image: url( {{asset('img/site-header.png') }})">
+            <h1 class="bg-transparent">{% block header %}{% endblock %}</h1>
         </header>
         <main>
             <div class="container-sm flex-grow-1">

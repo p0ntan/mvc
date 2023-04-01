@@ -9,8 +9,15 @@ use Symfony\Component\Routing\Annotation\Route;
 class LuckyControllerTwig extends AbstractController
 {
     #[Route("/lucky", name: "lucky")]
-    public function home(): Response
+
+    public function lucky(): Response
     {
-        return $this->render('lucky.html.twig');
+        $number = random_int(1, 4);
+
+        $data = [
+            'number' => $number
+        ];
+
+        return $this->render('lucky.html.twig', $data);
     }
 }

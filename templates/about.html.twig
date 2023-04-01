@@ -5,8 +5,28 @@
 {% block header %}Om kursen mvc{% endblock %}
 
 {% block main %}
-    <p>Kursen 'Objektorienterade webbteknologier' alias 'mvc', är en kurs på BTH som fokuserar på just objektorienterade progammeringstekniker för webben i språket PHP.</p>
-    <a href="https://github.com/dbwebb-se/mvc">Kursrepo på github</a>
-    <a href="https://github.com/p0ntan/mvc">Denna sidans repo</a>
-    
+    <div class="row">
+        <div class="col-2 border-end">
+            <ul>
+            <li>
+                <a href="https://github.com/dbwebb-se/mvc">Kursrepo på github</a>
+            </li>
+            <li>
+                <a href="https://github.com/p0ntan/mvc">Denna sidans repo</a>
+            </li>
+            </ul>
+        </div>
+        <div class="col">
+            <p>
+                Kursen 'Objektorienterade webbteknologier' alias 'mvc', är en kurs på BTH som fokuserar på just objektorienterade progammeringstekniker för webben i språket PHP.
+                Mvc är en avslutande kurs för första läsåret för bland annat webbprogrammerings-programmet. Mvc står för 'Model-view-controller' och är ett sätt att dela upp en större webbplats/applikation till mindre delar där varje del har sin egna plats/uppgift.
+            </p>
+            <p>
+                Syften med kursen är att få studenterna att med objektorienterad programmering och med hjälp av ramverk och databaser självständigt utveckla en webbplats/applikation. Applikationen ska även kunna utvecklas utifrån en given specifikation.
+            </p>
+            <div class="container-sm w-50">
+                <img src="{{ asset('img/about-php.jpg')}}" alt="Bild på mig över värmländska skogar" class="shadow-lg rounded img-fluid">
+            </div> 
+        </div>
+    </div>
 {% endblock %}

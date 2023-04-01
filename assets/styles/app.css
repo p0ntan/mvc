@@ -1,5 +1,19 @@
 @import "bootstrap.css";
+@import "lucky.css";
 
 main {
-    min-height: calc(100vh - 273px);
+    flex: 1;
+}
+
+.site-header {
+    height: 150px;
+    background-repeat: no-repeat;
+    background-position: center top;
+}
+
+@media (max-width: 767px) {
+    .site-header {
+        height: 100px;
+        background-position-y: -50px;
+    }
 }
