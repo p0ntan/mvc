@@ -1,8 +1,6 @@
 .lucky-grid {
     display: grid;
-    /* max-width: 960px;
-    max-height: 960px; */
-    max-width: 960px;
+    max-width: 720px;
     aspect-ratio: 1 / 1;
     margin: auto;
     grid-template-rows: repeat(3, 1fr);
