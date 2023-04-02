@@ -5,6 +5,7 @@ namespace App\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use DateTime;
 
 class ApiControllerJson
 {
@@ -19,9 +20,10 @@ class ApiControllerJson
             "Livet är som en kamera, fokusera på det positiva, utveckla från de negativa och om något inte fungerar, ta ett nytt kort."
         ];
         $number = random_int(0, 4);
+        $date = new DateTime();
         $data = [
-            'date' => date("Y-m-d"),
-            'timestamp' => time(),
+            'date' => $date->format("Y-m-d"),
+            'timestamp' => $date->getTimestamp(),
             'quote' => $quotes[$number]
         ];
         $response = new JsonResponse($data);
