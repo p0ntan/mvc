@@ -6,6 +6,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+/**
+ * Controller for main routes, like home/about/report.
+ */
 class MainControllerTwig extends AbstractController
 {
     #[Route("/", name: "home")]

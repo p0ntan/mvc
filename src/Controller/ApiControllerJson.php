@@ -7,6 +7,9 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use DateTime;
 
+/**
+ * Json controller
+ */
 class ApiControllerJson
 {
     #[Route("/api/quote", name: "api_quote")]
