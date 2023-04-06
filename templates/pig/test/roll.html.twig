@@ -1,0 +1,26 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Kasta tärning{% endblock %}
+
+{% block header %}Kasta tärning{% endblock %}
+
+{% block main %}
+<h1>Kasta tärning</h1>
+
+<p>Tärningarnas värde är:</p>
+
+<ul>
+    {% for dice in dices %}
+        <li class="dice-list">{{ dice.getAsString() }}</li>
+    {% endfor %}
+</ul>
+
+<p>Kasta fler tärningar
+    <a href="{{ path('test_roll_dice') }}">1</a>
+    eller
+    <a href="{{ path('test_roll_num_dice', {num: 5}) }}">5</a>
+    eller 
+    <a href="{{ path('test_roll_num_dice', {num: 10}) }}">10</a>
+    tärningar.
+</p>
+{% endblock %}
