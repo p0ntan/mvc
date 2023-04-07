@@ -2,16 +2,23 @@
 
 namespace App\Controller;
 
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use DateTime;
 
 /**
- * Json controller
+ * Api controller
  */
-class ApiControllerJson
+class ApiController extends AbstractController
 {
+    #[Route("/api", name: "api_start")]
+    public function start(): Response
+    {
+        return $this->render('api.html.twig');
+    }
+
     #[Route("/api/quote", name: "api_quote")]
     public function number(): Response
     {

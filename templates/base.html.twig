@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <title>{% block title %}Välkommen!{% endblock %}</title>
-        <link rel="icon" href="{{ asset('img/favicon.png ')}}">
+        <link rel="icon" href="{{ asset('image/favicon.png ')}}">
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
@@ -35,7 +35,7 @@
                         <a class="nav-link" href="{{ path('card_start') }}">Kort</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ path('api_quote') }}">Api</a>
+                        <a class="nav-link" href="{{ path('api_start') }}">Api</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="{{ path('report') }}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
