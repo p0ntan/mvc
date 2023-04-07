@@ -52,6 +52,6 @@ class Card
                 $value = $this->value;
                 break;
         }
-        return "[$value of $this->suit]";
+        return "$value of $this->suit";
     }
 }

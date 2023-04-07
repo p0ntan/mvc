@@ -18,7 +18,6 @@ class CardGameController extends AbstractController
 {
     #[Route("/card", name: "card_start")]
     public function home(
-        SessionInterface $session,
     ): Response
     {
         // Check if there is deck in session, if not create deck.
