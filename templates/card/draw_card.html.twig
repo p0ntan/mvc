@@ -1,0 +1,15 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Dra kort{% endblock %}
+
+{% block header %}{{ title }}{% endblock %}
+
+{% block main %}
+    <p>Antal kort kvar i kortleken är {{ size }} stycken.</p>
+    {% if drawnCard %}
+        <p>Dragna kort:</p>
+        {% for card in drawnCard %}
+            {{ card.getAsString() }}
+        {% endfor %}
+    {% endif %}
+{% endblock %}

@@ -7,6 +7,9 @@ namespace App\Card;
  */
 class Card
 {
+    const SUITS = ["spades", "hearts", "diamonds", "clubs"];
+    const VALUES = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
+
     protected ?string $suit;
     protected ?int $value;
 
@@ -24,5 +27,31 @@ class Card
     public function getSuit(): ?string
     {
         return $this->suit;
+    }
+
+    public function getAsString(): string
+    {
+        $value;
+        switch ($this->value) {
+            case (null):
+                $value = "Joker";
+                break;
+            case (1):
+                $value = "Ace";
+                break;
+            case (11):
+                $value = "Knight";
+                break;
+            case (12):
+                $value = "Qqueen";
+                break;
+            case (13):
+                $value = "King";
+                break;
+            default:
+                $value = $this->value;
+                break;
+        }
+        return "[$value of $this->suit]";
     }
 }

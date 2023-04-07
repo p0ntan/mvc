@@ -1,9 +1,10 @@
 {% extends "base.html.twig" %}
 
-{% block title %}Alla kort{% endblock %}
+{% block title %}En kortlek{% endblock %}
 
-{% block header %}Alla kort{% endblock %}
+{% block header %}{{ title }}{% endblock %}
 
 {% block main %}
-    <h2>Här ska man se alla kort sen</h2>
+    <p>Antal kort i kortleken är {{ size }} stycken.</p>
+    <h2>{{ cardDeck }}</h2>
 {% endblock %}

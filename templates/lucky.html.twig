@@ -7,19 +7,19 @@
 {% block main %}
     <div class="lucky-grid">
         <div class="lucky-top rounded shadow-lg" {{ (number not in [4]) ? 'hidden' : '' }}>
-            <img src="{{ asset('img/lucky/lucky-top.jpg') }}" alt="Skärmflygning vid Rörtången, Kungälv" class="img-fluid">
+            <img src="{{ asset('image/lucky/lucky-top.jpg') }}" alt="Skärmflygning vid Rörtången, Kungälv" class="img-fluid">
         </div>
         <div class="lucky-right rounded shadow-lg">
-            <img src="{{ asset('img/lucky/lucky-right.jpg') }}" alt="Skärmflygning i Arrabida, Portugal" class="img-fluid">
+            <img src="{{ asset('image/lucky/lucky-right.jpg') }}" alt="Skärmflygning i Arrabida, Portugal" class="img-fluid">
         </div>
         <div class="lucky-middle rounded shadow-lg">
-            <img src="{{ asset('img/lucky/hand-' ~ number ~ '.jpg') }}" alt="Bild på hand som håller upp fingrar."></p>
+            <img src="{{ asset('image/lucky/hand-' ~ number ~ '.jpg') }}" alt="Bild på hand som håller upp fingrar."></p>
         </div>
         <div class="lucky-left rounded shadow-lg" {{ (number not in [3, 4]) ? 'hidden' : '' }}>
-            <img src="{{ asset('img/lucky/lucky-left.jpg') }}" alt="Skärmflygning vid Tossebergsklätten, Sunne" class="img-fluid">
+            <img src="{{ asset('image/lucky/lucky-left.jpg') }}" alt="Skärmflygning vid Tossebergsklätten, Sunne" class="img-fluid">
         </div>
         <div class="lucky-bottom rounded shadow-lg" {{ (number in [1]) ? 'hidden' : '' }}>
-            <img src="{{ asset('img/lucky/lucky-bottom.jpg') }}" alt="Skärmflygning vid Harheia, Lofoten." class="img-fluid">
+            <img src="{{ asset('image/lucky/lucky-bottom.jpg') }}" alt="Skärmflygning vid Harheia, Lofoten." class="img-fluid">
         </div>
     </div>
 {% endblock %}
