@@ -1,0 +1,14 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Kort{% endblock %}
+
+{% block header %}Kort{% endblock %}
+
+{% block main %}
+    <ul>
+        <li><a href="{{ path('card_deck') }}">Se alla kort i sorterad ordning</a></li>
+        <li><a href="{{ path('card_deck_shuffle') }}">Blanda kortleken och se alla kort</a></li>
+        <li><a href="{{ path('card_deck_draw_one') }}">Blanda kortleken och se alla kort</a></li>
+        <li><a href="{{ path('card_deck_draw_multi', {num: 1}) }}">Blanda kortleken och se alla kort</a></li>
+    </ul>
+{% endblock %}
