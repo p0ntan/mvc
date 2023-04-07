@@ -73,7 +73,7 @@ class CardGameController extends AbstractController
         $data = [
             "title" => "En komplett blandad kortlek",
             "size" => $cardDeck->deckSize(),
-            "cardDeck" => $cardDeck->getAsString()
+            "cardDeck" => $cardDeck->getDeck()
         ];
         return $this->render('card/show_all_cards.html.twig', $data);
     }

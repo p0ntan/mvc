@@ -38,16 +38,12 @@ class DeckOfCards
         return $drawnCards;
     }
 
-    public function getAsString(): string
+    public function getDeck(): array
     {
-        $allCardsStr = "";
-        foreach ($this->allCards as $card) {
-            $allCardsStr .= $card->getAsString();
-        }
-        return $allCardsStr;
+        return $this->allCards;
     }
 
-    public function getSortedDeck(): string
+    public function getSortedDeck(): array
     {
         $sortedCards = $this->allCards;
 
@@ -60,11 +56,20 @@ class DeckOfCards
         });
     
         // Return an array of card strings
-        $sortedDeck = "";
+        $sortedDeck = [];
         foreach ($sortedCards as $card) {
-            $sortedDeck .= $card->getAsString();
+            $sortedDeck[] = $card;
         }
     
         return $sortedDeck;
+    }
+
+    public function getAsString(): string
+    {
+        $allCardsStr = "";
+        foreach ($this->allCards as $card) {
+            $allCardsStr .= $card->getAsString();
+        }
+        return $allCardsStr;
     }
 }

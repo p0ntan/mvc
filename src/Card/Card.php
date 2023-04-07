@@ -43,7 +43,7 @@ class Card
                 $value = "Knight";
                 break;
             case (12):
-                $value = "Qqueen";
+                $value = "Queen";
                 break;
             case (13):
                 $value = "King";

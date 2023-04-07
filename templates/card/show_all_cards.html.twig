@@ -5,6 +5,13 @@
 {% block header %}{{ title }}{% endblock %}
 
 {% block main %}
-    <p>Antal kort i kortleken är {{ size }} stycken.</p>
-    <h2>{{ cardDeck }}</h2>
+    <p class="text-center">Antal kort i kortleken är {{ size }} stycken.</p>
+    <div class="card-container">
+    {% for card in cardDeck %}
+    <i
+        class="shadow border card-sprite suit-{{ card.getSuit() }} card-value-{{ card.getValue() }} "
+        style="background-image:url({{ asset('image/cards-sprite.png')}});">
+    </i>
+    {% endfor %}
+    </div>
 {% endblock %}

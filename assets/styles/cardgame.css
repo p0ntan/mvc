@@ -1,7 +1,37 @@
+.card-container {
+    display: inline-flex;
+    flex-wrap: wrap;
+    margin: auto;
+    justify-content: center;
+    width: 100%;
+}
+
 .card-sprite {
     display: inline-block;
     padding: 0;
-    margin: 0 4px 0 0;
-    width: 32px;
-    height: 32px;
+    margin: 0.5rem;
+    width: 149px;
+    height: 224px;
+    border-radius: 14px;
 }
+
+/* Suits */
+.suit-spades { background-position-y: 0px; }
+.suit-hearts { background-position-y: 697px; }
+.suit-diamonds { background-position-y: 460px; }
+.suit-clubs { background-position-y: 223px; }
+
+/* Values */
+.card-value-1 { background-position-x: 0px; }
+.card-value-2 { background-position-x: -162px; }
+.card-value-3 { background-position-x: -324px; }
+.card-value-4 { background-position-x: -486px; }
+.card-value-5 { background-position-x: -648px; }
+.card-value-6 { background-position-x: -810px; }
+.card-value-7 { background-position-x: -972px; }
+.card-value-8 { background-position-x: -1134px; }
+.card-value-9 { background-position-x: -1296px; }
+.card-value-10 { background-position-x: -1458px; }
+.card-value-11 { background-position-x: -1620px; }
+.card-value-12 { background-position-x: -1783px; }
+.card-value-13 { background-position-x: -1945px; }
