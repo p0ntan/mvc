@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Card\Card;
+use App\Card\DeckOfCards;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
@@ -43,4 +45,67 @@ class ApiController extends AbstractController
 
         return $response;
     }
+
+    #[Route("/api/deck", name: "api_card_deck")]
+    public function cardDeck(): Response
+    {
+        $cardDeck = new DeckOfCards();
+        $allSuits = Card::SUITS;
+        $allValues = Card::VALUES;
+
+        foreach ($allSuits as $suit) {
+            foreach ($allValues as $value) {
+                $newCard = new Card($suit, $value);
+                $cardDeck->addCard($newCard);
+            }
+        }
+        $data = [];
+        $sortedDeck = $cardDeck->getSortedDeck();
+        foreach ($sortedDeck as $card) {
+            $data[] = [
+                "suit" => $card->getSuit(),
+                "value" => $card->getValue(),
+                "name" => $card->getAsString()
+            ];
+        }
+
+        $response = new JsonResponse($data);
+        $response->setEncodingOptions(
+            $response->getEncodingOptions() | JSON_PRETTY_PRINT
+        );
+
+        return $response;
+    }
+
+    #[Route("/api/deck/shuffle", name: "api_card_deck_shuffle")]
+    public function cardDeckShuffle(): Response
+    {
+        $cardDeck = new DeckOfCards();
+        $allSuits = Card::SUITS;
+        $allValues = Card::VALUES;
+
+        foreach ($allSuits as $suit) {
+            foreach ($allValues as $value) {
+                $newCard = new Card($suit, $value);
+                $cardDeck->addCard($newCard);
+            }
+        }
+        $cardDeck->shuffelDeck();
+        $data = [];
+        foreach ($cardDeck->getDeck() as $card) {
+            $data[] = [
+                "suit" => $card->getSuit(),
+                "value" => $card->getValue(),
+                "name" => $card->getAsString()
+            ];
+        }
+
+        $response = new JsonResponse($data);
+        $response->setEncodingOptions(
+            $response->getEncodingOptions() | JSON_PRETTY_PRINT
+        );
+
+        return $response;
+    }
+
 }
