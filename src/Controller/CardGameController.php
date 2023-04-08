@@ -35,7 +35,7 @@ class CardGameController extends AbstractController
             }
             $session->set('card_deck', $cardDeck);
         }
-        return $this->render('card/home.html.twig');
+        return $this->render('card/home.html.twig', $data);
     }
 
     #[Route("/card/deck", name: "card_deck")]

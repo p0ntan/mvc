@@ -7,7 +7,9 @@ use App\Card\DeckOfCards;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use DateTime;
 
 /**
@@ -16,8 +18,24 @@ use DateTime;
 class ApiController extends AbstractController
 {
     #[Route("/api", name: "api_start")]
-    public function start(): Response
+    public function start(
+        SessionInterface $session
+    ): Response
     {
+        // Check if there is deck in session, if not create deck.
+        if (!$session->has('card_deck_api')) {
+            $cardDeck = new DeckOfCards();
+            $allSuits = Card::SUITS;
+            $allValues = Card::VALUES;
+
+            foreach ($allSuits as $suit) {
+                foreach ($allValues as $value) {
+                    $newCard = new Card($suit, $value);
+                    $cardDeck->addCard($newCard);
+                }
+            }
+            $session->set('card_deck_api', $cardDeck);
+        }
         return $this->render('api.html.twig');
     }
 
@@ -46,19 +64,12 @@ class ApiController extends AbstractController
         return $response;
     }
 
-    #[Route("/api/deck", name: "api_card_deck")]
-    public function cardDeck(): Response
+    #[Route("/api/deck", name: "api_card_deck", methods: ["GET"])]
+    public function cardDeck(
+        SessionInterface $session
+    ): Response
     {
-        $cardDeck = new DeckOfCards();
-        $allSuits = Card::SUITS;
-        $allValues = Card::VALUES;
-
-        foreach ($allSuits as $suit) {
-            foreach ($allValues as $value) {
-                $newCard = new Card($suit, $value);
-                $cardDeck->addCard($newCard);
-            }
-        }
+        $cardDeck = $session->get('card_deck_api');
         $data = [];
         $sortedDeck = $cardDeck->getSortedDeck();
         foreach ($sortedDeck as $card) {
@@ -77,9 +88,12 @@ class ApiController extends AbstractController
         return $response;
     }
 
-    #[Route("/api/deck/shuffle", name: "api_card_deck_shuffle")]
-    public function cardDeckShuffle(): Response
+    #[Route("/api/deck/shuffle", name: "api_card_deck_shuffle", methods: ["POST"])]
+    public function cardDeckShuffle(
+        SessionInterface $session
+    ): Response
     {
+        // Makes a new deck an shuffles it every time
         $cardDeck = new DeckOfCards();
         $allSuits = Card::SUITS;
         $allValues = Card::VALUES;
@@ -91,6 +105,8 @@ class ApiController extends AbstractController
             }
         }
         $cardDeck->shuffelDeck();
+        $session->set('card_deck_api', $cardDeck);
+
         $data = [];
         foreach ($cardDeck->getDeck() as $card) {
             $data[] = [
@@ -108,4 +124,64 @@ class ApiController extends AbstractController
         return $response;
     }
 
+    #[Route("api/deck/draw", name: "api_card_deck_draw_one", methods: ["POST"])]
+    public function cardDeckDraw(
+        SessionInterface $session
+    ): Response
+    {
+        $noOfCards = 1;
+        $cardDeck = $session->get('card_deck_api');
+        if ($cardDeck->deckSize() < 1) {
+            $noOfCards = 0;
+        }
+        $drawnCard = $cardDeck->drawCards($noOfCards);
+        $data = [
+            "cardsLeft" => $cardDeck->deckSize(),
+            "drawnCard" => [
+                "suit" => $drawnCard[0]->getSuit(),
+                "value" => $drawnCard[0]->getValue(),
+                "name" => $drawnCard[0]->getAsString()
+            ]
+        ];
+
+        $response = new JsonResponse($data);
+        $response->setEncodingOptions(
+            $response->getEncodingOptions() | JSON_PRETTY_PRINT
+        );
+
+        return $response;
+    }
+
+    #[Route("api/deck/draw/{num<\d+>}", name: "api_card_deck_draw_multi", methods: ["POST"])]
+    public function cardDeckDrawMulti(
+        SessionInterface $session,
+        Request $request,
+        int $num
+    ): Response
+    {
+        $referer = $request->headers->get('referer');
+        $noOfCards = $num;
+        $cardDeck = $session->get('card_deck_api');
+        if ($noOfCards > $cardDeck->deckSize()) {
+            $noOfCards = $cardDeck->deckSize();
+        }
+        $drawnCards = $cardDeck->drawCards($noOfCards);
+        $data = [
+            "cardsLeft" => $cardDeck->deckSize(),
+            "ref" => $referer
+        ];
+        foreach ($drawnCards as $card) {
+            $data["drawnCards"] = [
+            "suit" => $card->getSuit(),
+            "value" => $card->getValue(),
+            "name" => $card->getAsString()
+            ];
+        }
+        $response = new JsonResponse($data);
+        $response->setEncodingOptions(
+            $response->getEncodingOptions() | JSON_PRETTY_PRINT
+        );
+
+        return $response;
+    }
 }
