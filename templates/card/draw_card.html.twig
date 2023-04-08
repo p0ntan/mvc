@@ -6,8 +6,11 @@
 
 {% block main %}
     <p class="text-center">Antal kort kvar i kortleken är {{ size }} stycken.</p>
+    {% if size == 0 %}
+        <p class="text-center">Det finns inga mer kort att dra ifrån kortleken.</p>        
+    {% endif %}
     {% if drawnCard %}
-        <p class="text-center">Dragna kort:</p>
+        <p class="text-center">{{ (drawnCard|length == 1) ? 'Draget' : 'Dragna' }} kort:</p>
         <div class="card-container">
             {% for card in drawnCard %}
             <i

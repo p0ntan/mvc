@@ -7,7 +7,8 @@ namespace App\Card;
  */
 class DeckOfCards
 {
-    protected array $allCards;
+    protected array $allCards = [];
+    protected array $drawnCards = [];
 
     public function addCard(Card $card): void
     {
@@ -35,6 +36,7 @@ class DeckOfCards
         foreach (range(1, $noOfCards) as $key => $value) {
             $drawnCards[] = array_pop($this->allCards);
         }
+        $this->drawnCards = array_merge($this->drawnCards, $drawnCards);
         return $drawnCards;
     }
 
@@ -45,7 +47,8 @@ class DeckOfCards
 
     public function getSortedDeck(): array
     {
-        $sortedCards = $this->allCards;
+        // Merge cards in deck with drawn cards
+        $sortedCards = array_merge($this->allCards, $this->drawnCards);
 
         // Sort the cards by suit and value
         usort($sortedCards, function($a, $b) {

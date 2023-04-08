@@ -18,6 +18,7 @@ class CardGameController extends AbstractController
 {
     #[Route("/card", name: "card_start")]
     public function home(
+        SessionInterface $session
     ): Response
     {
         // Check if there is deck in session, if not create deck.
@@ -42,9 +43,15 @@ class CardGameController extends AbstractController
         SessionInterface $session
     ): Response
     {
+        // Control if deck in session, redirect if not.
+        // This is if route is accessed before creating deck on route card_start
+        if (!$session->has('card_deck')) {
+            return $this->redirectToRoute('card_start');
+        }
+
         $cardDeck = $session->get('card_deck');
         $data = [
-            "title" => "En sorterad kortlek",
+            "title" => "En komplett sorterad kortlek",
             "size" => $cardDeck->deckSize(),
             "cardDeck" => $cardDeck->getSortedDeck()
         ];
@@ -56,6 +63,7 @@ class CardGameController extends AbstractController
         SessionInterface $session
     ): Response
     {
+        // Create new deck to "reset" the current deck in session
         $cardDeck = new DeckOfCards();
         $allSuits = Card::SUITS;
         $allValues = Card::VALUES;
@@ -82,10 +90,20 @@ class CardGameController extends AbstractController
         SessionInterface $session
     ): Response
     {
+        // Control if deck in session, redirect if not.
+        // This is if route is accessed before creating deck on route card_start
+        if (!$session->has('card_deck')) {
+            return $this->redirectToRoute('card_start');
+        }
+
         $cardDeck = $session->get('card_deck');
+        $noOfCards = 1;
+        if ($cardDeck->deckSize() < 1) {
+            $noOfCards = 0;
+        }
         $data = [
             "title" => "Dra ett kort",
-            "drawnCard" => $cardDeck->drawCards(),
+            "drawnCard" => $cardDeck->drawCards($noOfCards),
             "size" => $cardDeck->deckSize()
         ];
 
@@ -98,7 +116,16 @@ class CardGameController extends AbstractController
         int $num
     ): Response
     {
+        // Control if deck in session, redirect if not.
+        // This is if route is accessed before creating deck on route card_start
+        if (!$session->has('card_deck')) {
+            return $this->redirectToRoute('card_start');
+        }
+
         $cardDeck = $session->get('card_deck');
+        if ($num > $cardDeck->deckSize()) {
+            $num = $cardDeck->deckSize();
+        }
         $data = [
             "title" => "Dra flera kort",
             "drawnCard" => $cardDeck->drawCards($num),
