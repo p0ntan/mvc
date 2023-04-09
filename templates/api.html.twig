@@ -11,7 +11,7 @@
         <li><form action="{{ path('api_card_deck_shuffle')}}" method="POST"><input type="submit" value="Korlek i blandad ordning"></form></li>
         <li><form action="{{ path('api_card_deck_draw_one')}}" method="POST"><input type="submit" value="Dra ett kort från kortleken"></form></li>
         <li>
-            <form id="api-draw-multi" action="{{ path('api_card_deck_draw_multi', {"num": 0} )}}" method="POST">
+            <form id="api-draw-multi" action="{{ path('api_card_deck_draw_multi', {"num": 1} )}}" method="POST">
                 <input type="number" id="api-num-input" min="0" max="52" value="1">
                 <input type="submit" value="Dra flera kort från kortleken">
             </form>
@@ -22,9 +22,15 @@
     <script>
         const apiForm = document.getElementById("api-draw-multi");
         const apiNumber = document.getElementById("api-num-input");
+        const hostname = window.location.hostname;
+
         apiNumber.addEventListener("change", (e) => {
             let newNum = e.target.value;
-            apiForm.action = `/~poak22/dbwebb-kurser/mvc/me/report/public/api/deck/draw/${newNum}`;
+            if (hostname == "localhost") {
+                apiForm.action = `/api/deck/draw/${newNum}`;
+            } else {
+                apiForm.action = `/~poak22/dbwebb-kurser/mvc/me/report/public/api/deck/draw/${newNum}`;
+            }
         });
     </script>
 {% endblock %}
