@@ -31,7 +31,7 @@ class DeckOfCards
 
         if ($noOfCards <= 0 || $this->deckSize() == 0) {
             return $drawnCards;
-        } else if ($noOfCards > $this->deckSize()) {
+        } elseif ($noOfCards > $this->deckSize()) {
             $noOfCards = $this->deckSize();
         }
 
