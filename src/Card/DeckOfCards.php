@@ -51,19 +51,19 @@ class DeckOfCards
         $sortedCards = array_merge($this->allCards, $this->drawnCards);
 
         // Sort the cards by suit and value
-        usort($sortedCards, function($a, $b) {
+        usort($sortedCards, function ($a, $b) {
             if ($a->getSuit() === $b->getSuit()) {
                 return $a->getValue() <=> $b->getValue();
             }
             return array_search($a->getSuit(), Card::SUITS) <=> array_search($b->getSuit(), Card::SUITS);
         });
-    
+
         // Return an array of card strings
         $sortedDeck = [];
         foreach ($sortedCards as $card) {
             $sortedDeck[] = $card;
         }
-    
+
         return $sortedDeck;
     }
 

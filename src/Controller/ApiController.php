@@ -20,8 +20,7 @@ class ApiController extends AbstractController
     #[Route("/api", name: "api_start")]
     public function start(
         SessionInterface $session
-    ): Response
-    {
+    ): Response {
         // Check if there is deck in session, if not create deck.
         if (!$session->has('card_deck_api')) {
             $cardDeck = new DeckOfCards();
@@ -67,8 +66,7 @@ class ApiController extends AbstractController
     #[Route("/api/deck", name: "api_card_deck", methods: ["GET"])]
     public function cardDeck(
         SessionInterface $session
-    ): Response
-    {
+    ): Response {
         $cardDeck = $session->get('card_deck_api');
         $data = [];
         $sortedDeck = $cardDeck->getSortedDeck();
@@ -91,8 +89,7 @@ class ApiController extends AbstractController
     #[Route("/api/deck/shuffle", name: "api_card_deck_shuffle", methods: ["POST"])]
     public function cardDeckShuffle(
         SessionInterface $session
-    ): Response
-    {
+    ): Response {
         // Makes a new deck an shuffles it every time
         $cardDeck = new DeckOfCards();
         $allSuits = Card::SUITS;
@@ -127,10 +124,27 @@ class ApiController extends AbstractController
     #[Route("api/deck/draw", name: "api_card_deck_draw_one", methods: ["POST"])]
     public function cardDeckDraw(
         SessionInterface $session
-    ): Response
-    {
+    ): Response {
+        // Check if there is deck in session, if not create deck.
+        // Should use some rerouting to an init-rout
+        // but can't figure out how to do it with post.
+        if (!$session->has('card_deck_api')) {
+            $cardDeck = new DeckOfCards();
+            $allSuits = Card::SUITS;
+            $allValues = Card::VALUES;
+
+            foreach ($allSuits as $suit) {
+                foreach ($allValues as $value) {
+                    $newCard = new Card($suit, $value);
+                    $cardDeck->addCard($newCard);
+                }
+            }
+            $cardDeck->shuffle();
+            $session->set('card_deck_api', $cardDeck);
+        }
         $noOfCards = 1;
         $cardDeck = $session->get('card_deck_api');
+        // Control to not draw more cards than in deck
         if ($cardDeck->deckSize() < 1) {
             $noOfCards = 0;
         }
@@ -157,21 +171,36 @@ class ApiController extends AbstractController
         SessionInterface $session,
         Request $request,
         int $num
-    ): Response
-    {
-        $referer = $request->headers->get('referer');
+    ): Response {
+        // Check if there is deck in session, if not create deck.
+        // Should use some rerouting to an init-rout
+        // but can't figure out how to do it with post.
+        if (!$session->has('card_deck_api')) {
+            $cardDeck = new DeckOfCards();
+            $allSuits = Card::SUITS;
+            $allValues = Card::VALUES;
+
+            foreach ($allSuits as $suit) {
+                foreach ($allValues as $value) {
+                    $newCard = new Card($suit, $value);
+                    $cardDeck->addCard($newCard);
+                }
+            }
+            $cardDeck->shuffle();
+            $session->set('card_deck_api', $cardDeck);
+        }
         $noOfCards = $num;
         $cardDeck = $session->get('card_deck_api');
+        // Control to not draw more cards than in deck
         if ($noOfCards > $cardDeck->deckSize()) {
             $noOfCards = $cardDeck->deckSize();
         }
         $drawnCards = $cardDeck->drawCards($noOfCards);
         $data = [
-            "cardsLeft" => $cardDeck->deckSize(),
-            "ref" => $referer
+            "cardsLeft" => $cardDeck->deckSize()
         ];
         foreach ($drawnCards as $card) {
-            $data["drawnCards"] = [
+            $data["drawnCards"][] = [
             "suit" => $card->getSuit(),
             "value" => $card->getValue(),
             "name" => $card->getAsString()

@@ -19,8 +19,7 @@ class CardGameController extends AbstractController
     #[Route("/card", name: "card_start")]
     public function home(
         SessionInterface $session
-    ): Response
-    {
+    ): Response {
         // Check if there is deck in session, if not create deck.
         if (!$session->has('card_deck')) {
             $cardDeck = new DeckOfCards();
@@ -41,8 +40,7 @@ class CardGameController extends AbstractController
     #[Route("/card/deck", name: "card_deck")]
     public function cardDeck(
         SessionInterface $session
-    ): Response
-    {
+    ): Response {
         // Control if deck in session, redirect if not.
         // This is if route is accessed before creating deck on route card_start
         if (!$session->has('card_deck')) {
@@ -61,8 +59,7 @@ class CardGameController extends AbstractController
     #[Route("/card/deck/shuffle", name: "card_deck_shuffle")]
     public function cardDeckShuffle(
         SessionInterface $session
-    ): Response
-    {
+    ): Response {
         // Create new deck to "reset" the current deck in session
         $cardDeck = new DeckOfCards();
         $allSuits = Card::SUITS;
@@ -88,8 +85,7 @@ class CardGameController extends AbstractController
     #[Route("/card/deck/draw", name: "card_deck_draw_one")]
     public function cardDeckDraw(
         SessionInterface $session
-    ): Response
-    {
+    ): Response {
         // Control if deck in session, redirect if not.
         // This is if route is accessed before creating deck on route card_start
         if (!$session->has('card_deck')) {
@@ -114,8 +110,7 @@ class CardGameController extends AbstractController
     public function cardDeckDrawMulti(
         SessionInterface $session,
         int $num
-    ): Response
-    {
+    ): Response {
         // Control if deck in session, redirect if not.
         // This is if route is accessed before creating deck on route card_start
         if (!$session->has('card_deck')) {
