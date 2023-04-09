@@ -30,7 +30,7 @@ class CardGameController extends AbstractController
                 $cardDeck->addCard($newCard);
             }
         }
-        $cardDeck->shuffelDeck();
+        $cardDeck->shuffleDeck();
         $session->set('card_deck', $cardDeck);
         // If request coming from 'card_deck_draw_multi', the route-parameter is needed
         if ($request->attributes->get('_route') == 'card_deck_draw_multi') {
@@ -102,13 +102,9 @@ class CardGameController extends AbstractController
             ]);
         }
         $cardDeck = $session->get('card_deck');
-        $noOfCards = 1;
-        if ($cardDeck->deckSize() < 1) {
-            $noOfCards = 0;
-        }
         $data = [
             "title" => "Dra ett kort",
-            "drawnCard" => $cardDeck->drawCards($noOfCards),
+            "drawnCards" => $cardDeck->drawCards(),
             "size" => $cardDeck->deckSize()
         ];
 
@@ -128,12 +124,9 @@ class CardGameController extends AbstractController
             ]);
         }
         $cardDeck = $session->get('card_deck');
-        if ($num > $cardDeck->deckSize()) {
-            $num = $cardDeck->deckSize();
-        }
         $data = [
             "title" => "Dra flera kort",
-            "drawnCard" => $cardDeck->drawCards($num),
+            "drawnCards" => $cardDeck->drawCards($num),
             "size" => $cardDeck->deckSize()
         ];
         return $this->render('card/draw_card.html.twig', $data);

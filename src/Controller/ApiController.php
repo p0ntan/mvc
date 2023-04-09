@@ -18,7 +18,8 @@ use DateTime;
 class ApiController extends AbstractController
 {
     #[Route("/api", name: "api_start")]
-    public function start(): Response {
+    public function start(): Response
+    {
         return $this->render('api.html.twig');
     }
 
@@ -61,7 +62,7 @@ class ApiController extends AbstractController
                 $cardDeck->addCard($newCard);
             }
         }
-        $cardDeck->shuffelDeck();
+        $cardDeck->shuffleDeck();
         $session->set('card_deck_api', $cardDeck);
         // Control to reroute the init in the right way
         $method = $request->getMethod();
@@ -121,6 +122,7 @@ class ApiController extends AbstractController
             ]);
         }
         $cardDeck = $session->get('card_deck_api');
+        $cardDeck->shuffleDeck();
         $data = [];
         foreach ($cardDeck->getDeck() as $card) {
             $data[] = [
@@ -150,12 +152,7 @@ class ApiController extends AbstractController
             ]);
         }
         $cardDeck = $session->get('card_deck_api');
-        // Control to not draw more cards than in deck
-        $noOfCards = 1;
-        if ($cardDeck->deckSize() < 1) {
-            $noOfCards = 0;
-        }
-        $drawnCard = $cardDeck->drawCards($noOfCards);
+        $drawnCard = $cardDeck->drawCards();
         $data = [
             "cardsLeft" => $cardDeck->deckSize()
         ];
@@ -187,10 +184,6 @@ class ApiController extends AbstractController
             ]);
         }
         $cardDeck = $session->get('card_deck_api');
-        // Control to not draw more cards than in deck
-        if ($num > $cardDeck->deckSize()) {
-            $num = $cardDeck->deckSize();
-        }
         $drawnCards = $cardDeck->drawCards($num);
         $data = [
             "cardsLeft" => $cardDeck->deckSize()

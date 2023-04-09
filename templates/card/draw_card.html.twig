@@ -9,10 +9,10 @@
     {% if size == 0 %}
         <p class="text-center">Det finns inga mer kort att dra ifrån kortleken.</p>        
     {% endif %}
-    {% if drawnCard %}
-        <p class="text-center">{{ (drawnCard|length == 1) ? 'Draget' : 'Dragna' }} kort:</p>
+    {% if drawnCards %}
+        <p class="text-center">{{ (drawnCards|length == 1) ? 'Draget' : 'Dragna' }} kort:</p>
         <div class="card-container">
-            {% for card in drawnCard %}
+            {% for card in drawnCards %}
             <i
                 class="shadow border card-sprite suit-{{ card.getSuit() }} card-value-{{ card.getValue() }} "
                 style="background-image:url({{ asset('image/cards-sprite.png')}});">

@@ -20,7 +20,7 @@ class DeckOfCards
         return count($this->allCards);
     }
 
-    public function shuffelDeck(): void
+    public function shuffleDeck(): void
     {
         shuffle($this->allCards);
     }
@@ -29,8 +29,10 @@ class DeckOfCards
     {
         $drawnCards = [];
 
-        if ($noOfCards <= 0) {
+        if ($noOfCards <= 0 || $this->deckSize() == 0) {
             return $drawnCards;
+        } else if ($noOfCards > $this->deckSize()) {
+            $noOfCards = $this->deckSize();
         }
 
         foreach (range(1, $noOfCards) as $key => $value) {
