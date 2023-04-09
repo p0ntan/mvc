@@ -67,7 +67,22 @@ class ApiController extends AbstractController
     public function cardDeck(
         SessionInterface $session
     ): Response {
-        $cardDeck = $session->get('card_deck_api');
+        // Check if there is deck in session, if not create deck.
+        if (!$session->has('card_deck_api')) {
+            $cardDeck = new DeckOfCards();
+            $allSuits = Card::SUITS;
+            $allValues = Card::VALUES;
+
+            foreach ($allSuits as $suit) {
+                foreach ($allValues as $value) {
+                    $newCard = new Card($suit, $value);
+                    $cardDeck->addCard($newCard);
+                }
+            }
+            $session->set('card_deck_api', $cardDeck);
+        } else {
+            $cardDeck = $session->get('card_deck_api'); 
+        }
         $data = [];
         $sortedDeck = $cardDeck->getSortedDeck();
         foreach ($sortedDeck as $card) {
