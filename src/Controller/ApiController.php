@@ -64,20 +64,14 @@ class ApiController extends AbstractController
         }
         $cardDeck->shuffleDeck();
         $session->set('card_deck_api', $cardDeck);
-        // Control to reroute the init in the right way
-        $method = $request->getMethod();
-        if ($method == 'POST') {
-            // If post then the it needs forwarding instead of redirect
-            $controller = $request->attributes->get('_controller');
-            [$className, $methodName] = explode('::', $controller);
-            $num = $request->attributes->get('num');
-            return $this->forward("App\Controller\ApiController::$methodName", [
-                'request' => $request,
-                'num' => $num
-            ]);
-        }
-        // Else redirects back to the route the request first came from
-        return $this->redirectToRoute($request->attributes->get('_route'));
+        // Since some routes are post then it needs forwarding instead of a redirect
+        $controller = $request->attributes->get('_controller');
+        [$className, $methodName] = explode('::', $controller);
+        $num = $request->attributes->get('num');
+        return $this->forward("App\Controller\ApiController::$methodName", [
+            'request' => $request,
+            'num' => $num
+        ]);
     }
 
     #[Route("/api/deck", name: "api_card_deck", methods: ["GET"])]
