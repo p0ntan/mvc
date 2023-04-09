@@ -16,37 +16,50 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
  */
 class CardGameController extends AbstractController
 {
+    #[Route("/card/init", name: "card_init", methods: ["POST"])]
+    public function cardInit(
+        SessionInterface $session,
+        Request $request
+    ): Response {
+        $cardDeck = new DeckOfCards();
+        $allSuits = Card::SUITS;
+        $allValues = Card::VALUES;
+        foreach ($allSuits as $suit) {
+            foreach ($allValues as $value) {
+                $newCard = new CardGraphic($suit, $value);
+                $cardDeck->addCard($newCard);
+            }
+        }
+        $cardDeck->shuffelDeck();
+        $session->set('card_deck', $cardDeck);
+        // If request coming from 'card_deck_draw_multi', the route-parameter is needed
+        if ($request->attributes->get('_route') == 'card_deck_draw_multi') {
+            $num = $request->attributes->get('num');
+            return $this->redirectToRoute('card_deck_draw_multi', ['num' => $num]);
+        }
+        // Else redirects back to the route the request first came from
+        return $this->redirectToRoute($request->attributes->get('_route'));
+    }
+
     #[Route("/card", name: "card_start")]
     public function home(
-        SessionInterface $session
+        SessionInterface $session,
+        Request $request
     ): Response {
-        // Check if there is deck in session, if not create deck.
-        if (!$session->has('card_deck')) {
-            $cardDeck = new DeckOfCards();
-            $allSuits = Card::SUITS;
-            $allValues = Card::VALUES;
-
-            foreach ($allSuits as $suit) {
-                foreach ($allValues as $value) {
-                    $newCard = new CardGraphic($suit, $value);
-                    $cardDeck->addCard($newCard);
-                }
-            }
-            $session->set('card_deck', $cardDeck);
-        }
         return $this->render('card/home.html.twig');
     }
 
     #[Route("/card/deck", name: "card_deck")]
     public function cardDeck(
-        SessionInterface $session
+        SessionInterface $session,
+        Request $request
     ): Response {
-        // Control if deck in session, redirect if not.
-        // This is if route is accessed before creating deck on route card_start
+        // Check if there is deck in session, forward to card_init if not
         if (!$session->has('card_deck')) {
-            return $this->redirectToRoute('card_start');
+            return $this->forward('App\Controller\CardGameController::cardInit', [
+                'request' => $request
+            ]);
         }
-
         $cardDeck = $session->get('card_deck');
         $data = [
             "title" => "En komplett sorterad kortlek",
@@ -58,21 +71,16 @@ class CardGameController extends AbstractController
 
     #[Route("/card/deck/shuffle", name: "card_deck_shuffle")]
     public function cardDeckShuffle(
-        SessionInterface $session
+        SessionInterface $session,
+        Request $request
     ): Response {
-        // Create new deck to "reset" the current deck in session
-        $cardDeck = new DeckOfCards();
-        $allSuits = Card::SUITS;
-        $allValues = Card::VALUES;
-
-        foreach ($allSuits as $suit) {
-            foreach ($allValues as $value) {
-                $newCard = new CardGraphic($suit, $value);
-                $cardDeck->addCard($newCard);
-            }
+        // Check if there is deck in session or the deck is "full", forward to card_init if not
+        if (!$session->has('card_deck') || $session->get('card_deck')->deckSize() < 52) {
+            return $this->forward('App\Controller\CardGameController::cardInit', [
+                'request' => $request
+            ]);
         }
-        $cardDeck->shuffelDeck();
-        $session->set('card_deck', $cardDeck);
+        $cardDeck = $session->get('card_deck');
 
         $data = [
             "title" => "En komplett blandad kortlek",
@@ -84,14 +92,15 @@ class CardGameController extends AbstractController
 
     #[Route("/card/deck/draw", name: "card_deck_draw_one")]
     public function cardDeckDraw(
-        SessionInterface $session
+        SessionInterface $session,
+        Request $request
     ): Response {
-        // Control if deck in session, redirect if not.
-        // This is if route is accessed before creating deck on route card_start
+        // Check if there is deck in session, forward to card_init if not
         if (!$session->has('card_deck')) {
-            return $this->redirectToRoute('card_start');
+            return $this->forward('App\Controller\CardGameController::cardInit', [
+                'request' => $request
+            ]);
         }
-
         $cardDeck = $session->get('card_deck');
         $noOfCards = 1;
         if ($cardDeck->deckSize() < 1) {
@@ -109,14 +118,15 @@ class CardGameController extends AbstractController
     #[Route("/card/deck/draw/{num<\d+>}", name: "card_deck_draw_multi")]
     public function cardDeckDrawMulti(
         SessionInterface $session,
+        Request $request,
         int $num
     ): Response {
-        // Control if deck in session, redirect if not.
-        // This is if route is accessed before creating deck on route card_start
+        // Check if there is deck in session, forward to card_init if not
         if (!$session->has('card_deck')) {
-            return $this->redirectToRoute('card_start');
+            return $this->forward('App\Controller\CardGameController::cardInit', [
+                'request' => $request
+            ]);
         }
-
         $cardDeck = $session->get('card_deck');
         if ($num > $cardDeck->deckSize()) {
             $num = $cardDeck->deckSize();
