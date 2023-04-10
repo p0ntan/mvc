@@ -6,10 +6,10 @@
 
 {% block main %}
     <h2>Om upplägget</h2>
-    <p>De klasser som skapats för denna delen av sidan är Card, CardGraphic och DeckOfCards. Card är en klass som bl a innehåller två klassvariabler bestående av arrayer som i sin tur har vilka värdem (1-13) och vilka färger (hjärter, ruter etc.) som korten kan ha. CardGraphic är en subklass till Card som har ärvt alla dess egenskaper, men som också överlagarar metoden getAsString som ger en mer grafisk representation av varje kort jämfört med Card. Metoden användes under utveckling för den grafiska delen, men ersattes sedan med en card-sprite för att få lite snyggare kort.</p>
+    <p>De klasser som skapats för denna delen av sidan är Card, CardGraphic och DeckOfCards. Card är en klass som bl a innehåller två klassvariabler bestående av arrayer som i sin tur har vilka värdem (1-13) och vilka färger (hjärter, ruter etc.) som korten kan ha. CardGraphic är en subklass till Card som har ärvt alla dess egenskaper, men som också överlagrar metoden getAsString som ger en mer grafisk representation av varje kort jämfört med Card. Metoden användes under utveckling för den grafiska delen, men ersattes sedan med en card-sprite för att få lite snyggare kort.</p>
     <p>DeckOfCards i sin tur kan innehålla allt från 0 till många kort, då tanken är att denna ska vara en mer öppen klass och inte låst till just en "vanlig" kortlek. Varje Card skapas och "injectas" in i DeckOfCards, och på så sätt kan man ha allt från 0 till många kort i en DeckOfCards. Här skulle man kunna vidareutveckla DeckOfCards till att istället lägga till kort baserat på ett "interface", vilket hade gjort klassen ännu mer flexibel. Men det är inget jag gjorde för denna uppgiften.</p>
     <p>DeckOfCards har två medlemsvariabler, där båda är arrayer som tillsammans innehåller alla korten som är i kortleken. När man drar ett eller flera kort flyttas de från ena arrayen till den andra, så att man alltid har alla kort tillgängliga men samtidigt separerar vilka kort som är så att säga "oanvända".</p>
-    <p>Så som jag då har lagt upp koden så då korten "injectas" så blir sambandet mellan Card/CardGraphic och DeckOfCards av typen aggregation som visas i diagrammet nedan. Ett kort kan då va med i 0 eller 1 kortlek, men inte i flera olika kortlekar som ger ett 0 -> 1 förhållande. Och samtidigt så kan en kortlek bestå av 0 eller fler än 52 kort (t ex jokrar), och får därmed ett 0 -> * (många) förhållande.</p>
+    <p>Så som jag då har lagt upp koden så då korten "injectas" Card/CardGraphic i DeckOfCards, och även om ett kort kan skapas utan att ha ett nödvändigt beroende till en kortlek så är det ju trots allt hela syftet att en kortlek innehåller kort. Därmed har jag då en komposition mellan Card/CardGrapich och DeckOfCards, där varje enskilt kort endast kan tillhöra en kortlek. Däremot kan en kortlek bestå av flera kort än 52 (t ex jokrar) och har därför satt ett 0 -> * (många) förhållande, där jag tänker att man skulle kunna dra eller “tappa bort” alla kort men ändå ha själva asken till en kortlek kvar som då får representeras av DeckOfCards.</p>
     <div class="container d-flex justify-content-center mb-4">
         <a href="{{ asset('image/kmom02_uml.png')}}">
             <img class="rounded img-fluid shadow-sm" src="{{ asset('image/kmom02_uml.png')}}" alt="Bild på UML-diagram">
@@ -42,7 +42,7 @@
                 <h4>Dra flera kort</h4>
                 <p>Dra ett eller flera kort ifrån kortleken, du väljer antal kort i nästa steg.</p>    
             </div>
-            <a class="btn btn-primary"  href="{{ path('card_deck_draw_multi', {num: 0}) }}">Klicka här</a>
+            <a class="btn btn-primary"  href="{{ path('card_deck_draw_multi', {number: 0}) }}">Klicka här</a>
         </div>
     </div>
 {% endblock %}

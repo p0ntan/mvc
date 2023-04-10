@@ -45,7 +45,7 @@
                 <h4>Dra flera kort</h4>
                 <p>Ett api för att dra ett eller flera kort från kortleken. Kortlekens "state" sparas och man kan återställa genom att blanda kortleken igen.</p>    
             </div>
-            <form id="api-draw-multi" action="{{ path('api_card_deck_draw_multi', {"num": 1} )}}" method="POST">
+            <form id="api-draw-multi" action="{{ path('api_card_deck_draw_multi', {"number": 1} )}}" method="POST">
                 <div class="mb-3">
                     <label class="form-label">Välj antal:</label>
                     <input class="form-control" type="number" id="api-num-input" min="0" max="52" value="1">    

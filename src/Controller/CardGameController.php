@@ -32,8 +32,8 @@ class CardGameController extends AbstractController
         }
         $cardDeck->shuffleDeck();
         $session->set('card_deck', $cardDeck);
-        $num = $request->attributes->get('num');
-        return $this->redirectToRoute($request->attributes->get('_route'), ['num' => $num]);
+        $number = $request->attributes->get('number');
+        return $this->redirectToRoute($request->attributes->get('_route'), ['number' => $number]);
     }
 
     #[Route("/card", name: "card_start")]
@@ -107,11 +107,11 @@ class CardGameController extends AbstractController
         return $this->render('card/draw_card.html.twig', $data);
     }
 
-    #[Route("/card/deck/draw/{num<\d+>}", name: "card_deck_draw_multi")]
+    #[Route("/card/deck/draw/{number<\d+>}", name: "card_deck_draw_multi")]
     public function cardDeckDrawMulti(
         SessionInterface $session,
         Request $request,
-        int $num
+        int $number
     ): Response {
         // Check if there is deck in session, forward to card_init if not
         if (!$session->has('card_deck')) {
@@ -122,7 +122,7 @@ class CardGameController extends AbstractController
         $cardDeck = $session->get('card_deck');
         $data = [
             "title" => "Dra flera kort",
-            "drawnCards" => $cardDeck->drawCards($num),
+            "drawnCards" => $cardDeck->drawCards($number),
             "size" => $cardDeck->deckSize(),
             "multi" => true
         ];

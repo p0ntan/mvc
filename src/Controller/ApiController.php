@@ -24,7 +24,7 @@ class ApiController extends AbstractController
     }
 
     #[Route("/api/quote", name: "api_quote")]
-    public function number(): Response
+    public function apiQuote(): Response
     {
         $quotes = [
             "Vad du än kan göra eller drömmer om att kunna göra, börja med det. Dristighet har begåvning, kraft och magi i sig.",
@@ -67,10 +67,10 @@ class ApiController extends AbstractController
         // Since some routes are post then it needs forwarding instead of a redirect
         $controller = $request->attributes->get('_controller');
         [$className, $methodName] = explode('::', $controller);
-        $num = $request->attributes->get('num');
+        $number = $request->attributes->get('number');
         return $this->forward("App\Controller\ApiController::$methodName", [
             'request' => $request,
-            'num' => $num
+            'number' => $number
         ]);
     }
 
@@ -165,11 +165,11 @@ class ApiController extends AbstractController
         return $response;
     }
 
-    #[Route("api/deck/draw/{num<\d+>}", name: "api_card_deck_draw_multi", methods: ["POST"])]
+    #[Route("api/deck/draw/{number<\d+>}", name: "api_card_deck_draw_multi", methods: ["POST"])]
     public function cardDeckDrawMulti(
         SessionInterface $session,
         Request $request,
-        int $num
+        int $number
     ): Response {
         // Check if there is deck in session, forward to card_init if not
         if (!$session->has('card_deck_api')) {
@@ -178,7 +178,7 @@ class ApiController extends AbstractController
             ]);
         }
         $cardDeck = $session->get('card_deck_api');
-        $drawnCards = $cardDeck->drawCards($num);
+        $drawnCards = $cardDeck->drawCards($number);
         $data = [
             "cardsLeft" => $cardDeck->deckSize()
         ];

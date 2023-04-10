@@ -14,7 +14,7 @@
         <div class="d-flex flex-column justify-content-between shadow-sm form-control gap-2 m-auto mb-4 o-mw-200">
             <p>Välj antal kort att dra</p>
             <input id="card-draw-input" class="form-control text-center" type="number" min="0" max="52" value="1">
-            <a id="card-draw-link" class="btn btn-primary" href="{{ path('card_deck_draw_multi', {"num": 1} )}}">Dra kort</a>
+            <a id="card-draw-link" class="btn btn-primary" href="{{ path('card_deck_draw_multi', {"number": 1} )}}">Dra kort</a>
         </div>
     {% endif %}
 
