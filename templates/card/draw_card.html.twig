@@ -9,6 +9,15 @@
     {% if size == 0 %}
         <p class="text-center">Det finns inga mer kort att dra ifrån kortleken.</p>        
     {% endif %}
+
+    {% if multi %}
+        <div class="d-flex flex-column justify-content-between shadow-sm form-control gap-2 m-auto mb-4 o-mw-200">
+            <p>Välj antal kort att dra</p>
+            <input id="card-draw-input" class="form-control text-center" type="number" min="0" max="52" value="1">
+            <a id="card-draw-link" class="btn btn-primary" href="{{ path('card_deck_draw_multi', {"num": 1} )}}">Dra kort</a>
+        </div>
+    {% endif %}
+
     {% if drawnCards %}
         <p class="text-center">{{ (drawnCards|length == 1) ? 'Draget' : 'Dragna' }} kort:</p>
         <div class="card-container">
@@ -19,5 +28,23 @@
             </i>
             {% endfor %}
         </div>
+    {% endif %}
+
+    {% if multi %}
+        {# Just a small script to update the form to make the POST route work #}
+        <script>
+            const drawLink = document.getElementById("card-draw-link");
+            const inputNumber = document.getElementById("card-draw-input");
+            const hostname = window.location.hostname;
+    
+            inputNumber.addEventListener("change", (e) => {
+                let newNum = e.target.value;
+                if (hostname == "localhost") {
+                    drawLink.href = `/card/deck/draw/${newNum}`;
+                } else {
+                    drawLink.href = `/~poak22/dbwebb-kurser/mvc/me/report/public/card/deck/draw/${newNum}`;
+                }
+            });
+        </script>
     {% endif %}
 {% endblock %}

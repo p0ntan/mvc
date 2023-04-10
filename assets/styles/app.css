@@ -13,12 +13,24 @@ main {
     background-position: center top;
 }
 
-/* Api */
+/* Some own settings*/
 
-.api-container .col {
+.o-mw-200 {
+    max-width: 200px;
+}
+
+/* Col-links */
+
+.col-link-container .col {
     min-width: 250px;
     max-width: 250px;
     min-height: 310px;
+}
+
+.col-link-container .col:hover {
+    scale: 1.02;
+    box-shadow: 0px 0px 10px 2px #cacaca !important;
+    transition: all 100ms ease-in-out;
 }
 
 @media (max-width: 767px) {

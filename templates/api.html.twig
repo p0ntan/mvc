@@ -5,15 +5,15 @@
 {% block header %}Några API:er{% endblock %}
 
 {% block main %}
-    <div class="row gap-3 text-center api-container">
-        <div class="col mx-auto form-control d-flex flex-column justify-content-between">
+    <div class="row gap-3 text-center col-link-container">
+        <div class="col mx-auto form-control d-flex flex-column justify-content-between shadow">
             <div>
                 <h4>Quote</h4>
                 <p>Ett api som genererar ett slumpmässigt citat tillsammans med dagens datum och en tidstämpel när svaret genererades.</p>
             </div>
             <a class="btn btn-primary w-100" href="{{ path('api_quote')}}">Testa här</a>
         </div>
-        <div class="col mx  -auto form-control d-flex flex-column justify-content-between">
+        <div class="col mx-auto form-control d-flex flex-column justify-content-between shadow">
             <div>
                 <h4>Sorterad kortlek</h4>
                 <p>Ett api för att generera en kortlek och få den i en sorterad ordning.</p>    
@@ -22,7 +22,7 @@
                 <input class="btn btn-primary w-100" type="submit" value="Testa här">
             </form>
         </div>
-        <div class="col mx  -auto form-control d-flex flex-column justify-content-between">
+        <div class="col mx-auto form-control d-flex flex-column justify-content-between shadow">
             <div>
                 <h4>Blandad kortlek</h4>
                 <p>Ett api för att generea och få en kortlek i blandad ordning.</p>    
@@ -31,7 +31,7 @@
                 <input class="btn btn-primary w-100" type="submit" value="Testa här">
             </form>
         </div>
-        <div class="col mx  -auto form-control d-flex flex-column justify-content-between">
+        <div class="col mx-auto form-control d-flex flex-column justify-content-between shadow">
             <div>
                 <h4>Dra ett kort</h4>
                 <p>Ett api för att dra ett kort från kortleken. Kortlekens "state" sparas och man kan återställa genom att blanda kortleken igen.</p>    
@@ -40,7 +40,7 @@
                 <input class="btn btn-primary w-100" type="submit" value="Testa här">
             </form>
         </div>
-        <div class="col mx  -auto form-control d-flex flex-column justify-content-between">
+        <div class="col mx-auto form-control d-flex flex-column justify-content-between shadow">
             <div>
                 <h4>Dra flera kort</h4>
                 <p>Ett api för att dra ett eller flera kort från kortleken. Kortlekens "state" sparas och man kan återställa genom att blanda kortleken igen.</p>    

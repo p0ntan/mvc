@@ -100,7 +100,8 @@ class CardGameController extends AbstractController
         $data = [
             "title" => "Dra ett kort",
             "drawnCards" => $cardDeck->drawCards(),
-            "size" => $cardDeck->deckSize()
+            "size" => $cardDeck->deckSize(),
+            "multi" => false
         ];
 
         return $this->render('card/draw_card.html.twig', $data);
@@ -122,7 +123,8 @@ class CardGameController extends AbstractController
         $data = [
             "title" => "Dra flera kort",
             "drawnCards" => $cardDeck->drawCards($num),
-            "size" => $cardDeck->deckSize()
+            "size" => $cardDeck->deckSize(),
+            "multi" => true
         ];
         return $this->render('card/draw_card.html.twig', $data);
     }
