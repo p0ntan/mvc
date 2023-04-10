@@ -13,6 +13,14 @@ main {
     background-position: center top;
 }
 
+/* Api */
+
+.api-container .col {
+    min-width: 250px;
+    max-width: 250px;
+    min-height: 310px;
+}
+
 @media (max-width: 767px) {
     .site-header {
         height: 100px;

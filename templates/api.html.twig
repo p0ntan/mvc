@@ -5,18 +5,55 @@
 {% block header %}Några API:er{% endblock %}
 
 {% block main %}
-    <ul>
-        <li><a href="{{ path('api_quote')}}">Här dras ett slumpmässigt citat som visas tillsammans med dagens datum och en tidstämpel.</a></li>
-        <li><form action="{{ path('api_card_deck')}}" method="GET"><input type="submit" value="En hel kortlek i sorterad ordning"></form></li>
-        <li><form action="{{ path('api_card_deck_shuffle')}}" method="POST"><input type="submit" value="Korlek i blandad ordning"></form></li>
-        <li><form action="{{ path('api_card_deck_draw_one')}}" method="POST"><input type="submit" value="Dra ett kort från kortleken"></form></li>
-        <li>
-            <form id="api-draw-multi" action="{{ path('api_card_deck_draw_multi', {"num": 1} )}}" method="POST">
-                <input type="number" id="api-num-input" min="0" max="52" value="1">
-                <input type="submit" value="Dra flera kort från kortleken">
+    <div class="row gap-3 text-center api-container">
+        <div class="col mx-auto form-control d-flex flex-column justify-content-between">
+            <div>
+                <h4>Quote</h4>
+                <p>Ett api som genererar ett slumpmässigt citat tillsammans med dagens datum och en tidstämpel när svaret genererades.</p>
+            </div>
+            <a class="btn btn-primary w-100" href="{{ path('api_quote')}}">Testa här</a>
+        </div>
+        <div class="col mx  -auto form-control d-flex flex-column justify-content-between">
+            <div>
+                <h4>Sorterad kortlek</h4>
+                <p>Ett api för att generera en kortlek och få den i en sorterad ordning.</p>    
+            </div>
+            <form action="{{ path('api_card_deck')}}" method="GET">
+                <input class="btn btn-primary w-100" type="submit" value="Testa här">
             </form>
-        </li>
-    </ul>
+        </div>
+        <div class="col mx  -auto form-control d-flex flex-column justify-content-between">
+            <div>
+                <h4>Blandad kortlek</h4>
+                <p>Ett api för att generea och få en kortlek i blandad ordning.</p>    
+            </div>
+            <form action="{{ path('api_card_deck_shuffle')}}" method="POST">
+                <input class="btn btn-primary w-100" type="submit" value="Testa här">
+            </form>
+        </div>
+        <div class="col mx  -auto form-control d-flex flex-column justify-content-between">
+            <div>
+                <h4>Dra ett kort</h4>
+                <p>Ett api för att dra ett kort från kortleken. Kortlekens "state" sparas och man kan återställa genom att blanda kortleken igen.</p>    
+            </div>
+            <form action="{{ path('api_card_deck_draw_one')}}" method="POST">
+                <input class="btn btn-primary w-100" type="submit" value="Testa här">
+            </form>
+        </div>
+        <div class="col mx  -auto form-control d-flex flex-column justify-content-between">
+            <div>
+                <h4>Dra flera kort</h4>
+                <p>Ett api för att dra ett eller flera kort från kortleken. Kortlekens "state" sparas och man kan återställa genom att blanda kortleken igen.</p>    
+            </div>
+            <form id="api-draw-multi" action="{{ path('api_card_deck_draw_multi', {"num": 1} )}}" method="POST">
+                <div class="mb-3">
+                    <label class="form-label">Välj antal:</label>
+                    <input class="form-control" type="number" id="api-num-input" min="0" max="52" value="1">    
+                </div>
+                <input class="btn btn-primary w-100" type="submit" value="Testa här">
+            </form>
+        </div>
+    </div>
 
     {# Just a small script to update the form to make the POST route work #}
     <script>
