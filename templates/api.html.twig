@@ -45,10 +45,25 @@
                 <h4>Dra flera kort</h4>
                 <p>Ett api för att dra ett eller flera kort från kortleken. Kortlekens "state" sparas och man kan återställa genom att blanda kortleken igen.</p>    
             </div>
-            <form id="api-draw-multi" action="{{ path('api_card_deck_draw_multi', {"number": 1} )}}" method="POST">
+            <form id="api-draw-form" action="{{ path('api_card_deck_draw_multi', {number: 1} )}}" method="POST">
                 <div class="mb-3">
-                    <label class="form-label">Välj antal:</label>
-                    <input class="form-control" type="number" id="api-num-input" min="0" max="52" value="1">    
+                    <label class="form-label">Antal antal:</label>
+                    <input class="form-control" type="number" id="api-deck-cards" min="0" max="52" value="1">    
+                </div>
+                <input class="btn btn-primary w-100" type="submit" value="Testa här">
+            </form>
+        </div>
+        <div class="col mx-auto form-control d-flex flex-column justify-content-between shadow">
+            <div>
+                <h4>Dra kort till spelare</h4>
+                <p>Ett api för att dra ett eller flera kort från kortleken. Kortlekens "state" sparas och man kan återställa genom att blanda kortleken igen.</p>    
+            </div>
+            <form id="api-deal-form" action="{{ path('api_card_deal', {players: 1, cards: 1} )}}" method="POST">
+                <div class="mb-3">
+                    <label class="form-label">Antal spelare:</label>
+                    <input class="form-control" type="number" id="api-deal-players" min="0" max="52" value="1">
+                    <label class="form-label">Antal kort:</label>
+                    <input class="form-control" type="number" id="api-deal-cards" min="0" max="52" value="1"> 
                 </div>
                 <input class="btn btn-primary w-100" type="submit" value="Testa här">
             </form>
@@ -57,16 +72,40 @@
 
     {# Just a small script to update the form to make the POST route work #}
     <script>
-        const apiForm = document.getElementById("api-draw-multi");
-        const apiNumber = document.getElementById("api-num-input");
+        const drawForm = document.getElementById("api-draw-form");
+        const drawInput = document.getElementById("api-deck-cards");
         const hostname = window.location.hostname;
 
-        apiNumber.addEventListener("change", (e) => {
+        drawInput.addEventListener("change", (e) => {
             let newNum = e.target.value;
             if (hostname == "localhost") {
-                apiForm.action = `/api/deck/draw/${newNum}`;
+                drawForm.action = `/api/deck/draw/${newNum}`;
             } else {
-                apiForm.action = `/~poak22/dbwebb-kurser/mvc/me/report/public/api/deck/draw/${newNum}`;
+                drawForm.action = `/~poak22/dbwebb-kurser/mvc/me/report/public/api/deck/draw/${newNum}`;
+            }
+        });
+
+        const dealForm = document.getElementById("api-deal-form");
+        const inputCards = document.getElementById("api-deal-cards");
+        const inputPlayers = document.getElementById("api-deal-players");
+        let cards = 1;
+        let players = 1;
+
+        inputCards.addEventListener("change", (e) => {
+            cards = e.target.value;
+            if (hostname == "localhost") {
+                dealForm.action = `/api/deck/deal/${players}/${cards}`;
+            } else {
+                dealForm.action = `/~poak22/dbwebb-kurser/mvc/me/report/public/api/deck/deal/${players}/${cards}`;
+            }
+        });
+
+        inputPlayers.addEventListener("change", (e) => {
+            players = e.target.value;
+            if (hostname == "localhost") {
+                dealForm.action = `/api/deck/deal/${players}/${cards}`;
+            } else {
+                dealForm.action = `/~poak22/dbwebb-kurser/mvc/me/report/public/api/deck/deal/${players}/${cards}`;
             }
         });
     </script>

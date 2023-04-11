@@ -44,5 +44,12 @@
             </div>
             <a class="btn btn-primary"  href="{{ path('card_deck_draw_multi', {number: 0}) }}">Klicka här</a>
         </div>
+        <div class="col mx-auto form-control d-flex flex-column justify-content-between shadow">
+            <div>
+                <h4>Dela ut kort</h4>
+                <p>Dra ett eller flera kort ifrån kortleken till en eller flera spelare, du väljer antal kort i nästa steg.</p>    
+            </div>
+            <a class="btn btn-primary"  href="{{ path('card_deck_deal', {players: 0, cards: 0}) }}">Klicka här</a>
+        </div>
     </div>
 {% endblock %}

@@ -1,0 +1,62 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Dra kort{% endblock %}
+
+{% block header %}{{ title }}{% endblock %}
+
+{% block main %}
+    <p class="text-center">Antal kort kvar i kortleken är {{ size }} stycken.</p>
+    {% if size == 0 %}
+        <p class="text-center">Det finns inga mer kort eller att dra ifrån kortleken.</p>        
+    {% endif %}
+
+    <div class="d-flex flex-column justify-content-between shadow-sm form-control gap-2 m-auto mb-4 o-mw-200">
+        <p>Välj antal spelare:</p>
+        <input id="card-deal-players" class="form-control text-center" type="number" min="0" max="52" value="1">
+        <p>Välj antal kort:</p>
+        <input id="card-deal-cards" class="form-control text-center" type="number" min="0" max="52" value="1">
+        <a id="card-deal-link" class="btn btn-primary" href="{{ path('card_deck_deal', {players: 1, cards: 1} )}}">Dra kort</a>
+    </div>
+
+    {% if players %}
+        {% for player in players %}
+            <h2 class="text-center">Spelare {{ loop.index }}</h2>
+            <p class="text-center">{{ (player.getCards()|length <= 1) ? 'Draget' : 'Dragna' }} kort:</p>
+            <div class="card-container">
+                {% for card in player.getCards() %}
+                <i
+                    class="shadow border card-sprite suit-{{ card.getSuit() }} card-value-{{ card.getValue() }} "
+                    style="background-image:url({{ asset('image/cards-sprite.png')}});">
+                </i>
+                {% endfor %}
+            </div>
+        {% endfor %}
+    {% endif %}
+    {# Just a smaller script to update the form to make the POST route work #}
+    <script>
+        const dealLink = document.getElementById("card-deal-link");
+        const inputCards = document.getElementById("card-deal-cards");
+        const inputPlayers = document.getElementById("card-deal-players");
+        const hostname = window.location.hostname;
+        let cards = 1;
+        let players = 1;
+
+        inputCards.addEventListener("change", (e) => {
+            cards = e.target.value;
+            if (hostname == "localhost") {
+                dealLink.href = `/card/deck/deal/${players}/${cards}`;
+            } else {
+                dealLink.href = `/~poak22/dbwebb-kurser/mvc/me/report/public/card/deck/deal/${players}/${cards}`;
+            }
+        });
+
+        inputPlayers.addEventListener("change", (e) => {
+            players = e.target.value;
+            if (hostname == "localhost") {
+                dealLink.href = `/card/deck/deal/${players}/${cards}`;
+            } else {
+                dealLink.href = `/~poak22/dbwebb-kurser/mvc/me/report/public/card/deck/deal/${players}/${cards}`;
+            }
+        });
+    </script>
+{% endblock %}

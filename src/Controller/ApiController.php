@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Card\Card;
+use App\Card\CardHand;
 use App\Card\DeckOfCards;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -188,6 +189,51 @@ class ApiController extends AbstractController
             "value" => $card->getValue(),
             "name" => $card->getAsString()
             ];
+        }
+        $response = new JsonResponse($data);
+        $response->setEncodingOptions(
+            $response->getEncodingOptions() | JSON_PRETTY_PRINT
+        );
+
+        return $response;
+    }
+
+    #[Route("api/deck/deal/{players<\d+>}/{cards<\d+>}", name: "api_card_deal", methods: ["POST"])]
+    public function cardDeal(
+        SessionInterface $session,
+        Request $request,
+        int $players,
+        int $cards
+    ): Response {
+        // Check if there is deck in session, forward to card_init if not
+        if (!$session->has('card_deck_api')) {
+            return $this->forward('App\Controller\ApiController::cardInitApi', [
+                'request' => $request
+            ]);
+        }
+        $cardDeck = $session->get('card_deck_api');
+        $playerHands = [];
+        if (!$players <= 0) {
+            foreach (range(1, $players) as $player) {
+                $cardHand = new CardHand();
+                $cardsToHand = $cardDeck->giveCards($cards);
+                foreach ($cardsToHand as $card) {
+                    $cardHand->addCard($card);
+                }
+                $playerHands[] = $cardHand;
+            }
+        }
+        $data = [
+            "cardsLeft" => $cardDeck->deckSize()
+        ];
+        for ($i = 0; $i < sizeof($playerHands); $i++) {
+            foreach ($playerHands[$i]->getCards() as $card) {
+                $data["players"][$i][] = [
+                    "suit" => $card->getSuit(),
+                    "value" => $card->getValue(),
+                    "name" => $card->getAsString()
+                    ];
+            }
         }
         $response = new JsonResponse($data);
         $response->setEncodingOptions(

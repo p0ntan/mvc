@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Card\Card;
 use App\Card\CardGraphic;
+use App\Card\CardHand;
 use App\Card\DeckOfCards;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -127,5 +128,39 @@ class CardGameController extends AbstractController
             "multi" => true
         ];
         return $this->render('card/draw_card.html.twig', $data);
+    }
+
+    #[Route("/card/deck/deal/{players<\d+>}/{cards<\d+>}", name: "card_deck_deal")]
+    public function cardDeckDeal(
+        SessionInterface $session,
+        Request $request,
+        int $players,
+        int $cards
+    ): Response {
+        // Check if there is deck in session, forward to card_init if not
+        if (!$session->has('card_deck')) {
+            return $this->forward('App\Controller\CardGameController::cardInit', [
+                'request' => $request
+            ]);
+        }
+        $cardDeck = $session->get('card_deck');
+        $playerHands = [];
+        if (!$players <= 0) {
+            foreach (range(1, $players) as $player) {
+                $cardHand = new CardHand();
+                $cardsToHand = $cardDeck->giveCards($cards);
+                foreach ($cardsToHand as $card) {
+                    $cardHand->addCard($card);
+                }
+                $playerHands[] = $cardHand;
+            }
+        }
+
+        $data = [
+            "title" => "Dra kort till spelare",
+            "players" => $playerHands,
+            "size" => $cardDeck->deckSize(),
+        ];
+        return $this->render('card/deal_card.html.twig', $data);
     }
 }

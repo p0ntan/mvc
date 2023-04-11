@@ -7,22 +7,23 @@ namespace App\Card;
  */
 class DeckOfCards
 {
-    protected array $allCards = [];
+    protected array $unusedCards = [];
+    protected array $cardsInUse = [];
     protected array $drawnCards = [];
 
     public function addCard(Card $card): void
     {
-        $this->allCards[] = $card;
+        $this->unusedCards[] = $card;
     }
 
     public function deckSize(): int
     {
-        return count($this->allCards);
+        return count($this->unusedCards);
     }
 
     public function shuffleDeck(): void
     {
-        shuffle($this->allCards);
+        shuffle($this->unusedCards);
     }
 
     public function drawCards(int $noOfCards = 1): array
@@ -36,35 +37,46 @@ class DeckOfCards
         }
 
         foreach (range(1, $noOfCards) as $key => $value) {
-            $drawnCards[] = array_pop($this->allCards);
+            $drawnCards[] = array_pop($this->unusedCards);
         }
         $this->drawnCards = array_merge($this->drawnCards, $drawnCards);
         return $drawnCards;
     }
 
+    public function giveCards(int $noOfCards): array
+    {
+        $usedCards = [];
+
+        if ($noOfCards <= 0 || $this->deckSize() == 0) {
+            return $usedCards;
+        } elseif ($noOfCards > $this->deckSize()) {
+            $noOfCards = $this->deckSize();
+        }
+
+        foreach (range(1, $noOfCards) as $key => $value) {
+            $usedCards[] = array_pop($this->unusedCards);
+        }
+        $this->cardsInUse = array_merge($this->cardsInUse, $usedCards);
+        return $usedCards;
+    }
+
     public function getDeck(): array
     {
-        return $this->allCards;
+        return $this->unusedCards;
     }
 
     public function getSortedDeck(): array
     {
-        // Merge cards in deck with drawn cards
-        $sortedCards = array_merge($this->allCards, $this->drawnCards);
+        // Merge unusedCards with drawnCards and cardsInUse
+        $sortedDeck = array_merge($this->unusedCards, $this->drawnCards, $this->cardsInUse);
 
         // Sort the cards by suit and value
-        usort($sortedCards, function ($a, $b) {
+        usort($sortedDeck, function ($a, $b) {
             if ($a->getSuit() === $b->getSuit()) {
                 return $a->getValue() <=> $b->getValue();
             }
             return array_search($a->getSuit(), Card::SUITS) <=> array_search($b->getSuit(), Card::SUITS);
         });
-
-        // Return an array of card strings
-        $sortedDeck = [];
-        foreach ($sortedCards as $card) {
-            $sortedDeck[] = $card;
-        }
 
         return $sortedDeck;
     }
@@ -72,7 +84,7 @@ class DeckOfCards
     public function getAsString(): string
     {
         $allCardsStr = "";
-        foreach ($this->allCards as $card) {
+        foreach ($this->unusedCards as $card) {
             $allCardsStr .= $card->getAsString();
         }
         return $allCardsStr;
