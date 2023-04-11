@@ -69,9 +69,13 @@ class ApiController extends AbstractController
         $controller = $request->attributes->get('_controller');
         [$className, $methodName] = explode('::', $controller);
         $number = $request->attributes->get('number');
+        $players = $request->attributes->get('players');
+        $cards = $request->attributes->get('cards');
         return $this->forward("App\Controller\ApiController::$methodName", [
             'request' => $request,
-            'number' => $number
+            'number' => $number,
+            'players' => $players,
+            'cards' => $cards
         ]);
     }
 
