@@ -81,6 +81,7 @@ class CardGameController extends AbstractController
             ]);
         }
         $cardDeck = $session->get('card_deck');
+        $cardDeck->shuffleDeck();
 
         $data = [
             "title" => "En komplett blandad kortlek",
