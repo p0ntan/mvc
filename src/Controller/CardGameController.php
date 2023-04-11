@@ -33,12 +33,18 @@ class CardGameController extends AbstractController
         }
         $cardDeck->shuffleDeck();
         $session->set('card_deck', $cardDeck);
-        $number = $request->attributes->get('number');
-        return $this->redirectToRoute($request->attributes->get('_route'), [
-            'number' => $number,
-            'players' => 0,
-            'cards' => 0
-        ]);
+        $data = [];
+        $routeName = $request->attributes->get('_route');
+        if ($routeName == "card_deck_draw_multi") {
+            $number = $request->attributes->get('number');
+            $data = [ 'number' => $number ];
+        } elseif ($routeName == "card_deck_deal") {
+            $players = $request->attributes->get('players');
+            $cards = $request->attributes->get('cards');
+            $data = [ 'players' => $players, 'cards' => $cards ];
+        }
+
+        return $this->redirectToRoute($request->attributes->get('_route'), $data);
     }
 
     #[Route("/card", name: "card_start")]
