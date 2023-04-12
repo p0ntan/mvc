@@ -31,7 +31,6 @@ class Card
 
     public function getAsString(): string
     {
-        $value;
         switch ($this->value) {
             case (null):
                 $value = "Joker";

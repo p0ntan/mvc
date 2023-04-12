@@ -7,46 +7,35 @@ namespace App\Card;
  */
 class CardGraphic extends Card
 {
+    /**
+     * @var array<string>
+     */
+    protected array $graphicSuits = [
+        null => "🂿",
+        "spades" => "♠",
+        "diamonds" => "♦",
+        "hearts" => "♥",
+        "clubs" => "♣"
+    ];
+
+    /**
+     * @var array<string>
+     */
+    protected array $graphicValues = [
+        1 => " A",
+        11 => " J",
+        12 => " Q",
+        13 => " K"
+    ];
+
     public function getAsString(): string
     {
         $cardString = "[";
-        switch ($this->suit) {
-            case (null):
-                $cardString .= "🂿";
-                break;
-            case "spades":
-                $cardString .= "♠";
-                break;
-            case "diamonds":
-                $cardString .= "♦";
-                break;
-            case "hearts":
-                $cardString .= "♥";
-                break;
-            case "clubs":
-                $cardString .= "♣";
-                break;
-        }
-        switch ($this->value) {
-            case (null):
-                $cardString .= " J]";
-                break;
-            case (1):
-                $cardString .= " A]";
-                break;
-            case (11):
-                $cardString .= " J]";
-                break;
-            case (12):
-                $cardString .= " Q]";
-                break;
-            case (13):
-                $cardString .= " K]";
-                break;
-            default:
-                $cardString .= " $this->value]";
-                break;
-        }
+        $cardString .= $this->graphicSuits[$this->suit];
+        $cardString .= array_key_exists($this->value, $this->graphicValues)
+            ? $this->graphicValues[$this->value]
+            : " $this->value";
+        $cardString .= "]";
         return $cardString;
     }
 }

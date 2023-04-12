@@ -67,7 +67,7 @@ class ApiController extends AbstractController
         $session->set('card_deck_api', $cardDeck);
         // Since some routes are post then it needs forwarding instead of a redirect
         $controller = $request->attributes->get('_controller');
-        [$className, $methodName] = explode('::', $controller);
+        $methodName = explode('::', $controller)[1];
         $number = $request->attributes->get('number');
         $players = $request->attributes->get('players');
         $cards = $request->attributes->get('cards');
@@ -218,7 +218,7 @@ class ApiController extends AbstractController
         $cardDeck = $session->get('card_deck_api');
         $playerHands = [];
         if (!$players <= 0) {
-            foreach (range(1, $players) as $player) {
+            for ($i = 0; $i < $players; $i++) {
                 $cardHand = new CardHand();
                 $cardsToHand = $cardDeck->giveCards($cards);
                 foreach ($cardsToHand as $card) {
@@ -230,7 +230,7 @@ class ApiController extends AbstractController
         $data = [
             "cardsLeft" => $cardDeck->deckSize()
         ];
-        for ($i = 0; $i < sizeof($playerHands); $i++) {
+        for ($i = 0; $i < $players; $i++) {
             foreach ($playerHands[$i]->getCards() as $card) {
                 $data["players"][$i][] = [
                     "suit" => $card->getSuit(),

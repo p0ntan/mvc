@@ -48,10 +48,8 @@ class CardGameController extends AbstractController
     }
 
     #[Route("/card", name: "card_start")]
-    public function home(
-        SessionInterface $session,
-        Request $request
-    ): Response {
+    public function home(): Response
+    {
         return $this->render('card/home.html.twig');
     }
 
@@ -157,7 +155,7 @@ class CardGameController extends AbstractController
         $cardDeck = $session->get('card_deck');
         $playerHands = [];
         if (!$players <= 0) {
-            foreach (range(1, $players) as $player) {
+            for ($i = 0;$i < $players; $i++) {
                 $cardHand = new CardHand();
                 $cardsToHand = $cardDeck->giveCards($cards);
                 foreach ($cardsToHand as $card) {
