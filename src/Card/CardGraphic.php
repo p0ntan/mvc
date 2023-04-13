@@ -31,10 +31,10 @@ class CardGraphic extends Card
     public function getAsString(): string
     {
         $cardString = "[";
-        $cardString .= $this->graphicSuits[$this->suit];
+        $cardString .= $this->graphicSuits[$this->suit] . " ";
         $cardString .= array_key_exists($this->value, $this->graphicValues)
-            ? " $this->graphicValues[$this->value]"
-            : " $this->value";
+            ? $this->graphicValues[$this->value]
+            : "$this->value";
         $cardString .= "]";
         return $cardString;
     }
