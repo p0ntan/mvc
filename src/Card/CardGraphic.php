@@ -33,7 +33,7 @@ class CardGraphic extends Card
         $cardString = "[";
         $cardString .= $this->graphicSuits[$this->suit];
         $cardString .= array_key_exists($this->value, $this->graphicValues)
-            ? $this->graphicValues[$this->value]
+            ? " $this->graphicValues[$this->value]"
             : " $this->value";
         $cardString .= "]";
         return $cardString;
