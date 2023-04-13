@@ -11,7 +11,7 @@ class CardGraphic extends Card
      * @var array<string>
      */
     protected array $graphicSuits = [
-        null => "🂿",
+        "joker" => "🂿",
         "spades" => "♠",
         "diamonds" => "♦",
         "hearts" => "♥",

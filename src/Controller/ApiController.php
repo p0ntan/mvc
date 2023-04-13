@@ -66,7 +66,7 @@ class ApiController extends AbstractController
         $cardDeck->shuffleDeck();
         $session->set('card_deck_api', $cardDeck);
         // Since some routes are post then it needs forwarding instead of a redirect
-        $controller = $request->attributes->get('_controller');
+        $controller = strval($request->attributes->get('_controller'));
         $methodName = explode('::', $controller)[1];
         $number = $request->attributes->get('number');
         $players = $request->attributes->get('players');
@@ -90,6 +90,7 @@ class ApiController extends AbstractController
                 'request' => $request
             ]);
         }
+        /** @var DeckOfCards $cardDeck */
         $cardDeck = $session->get('card_deck_api');
         $data = [];
         $sortedDeck = $cardDeck->getSortedDeck();
@@ -115,11 +116,12 @@ class ApiController extends AbstractController
         Request $request
     ): Response {
         // Check if there is deck in session, forward to card_init if not
-        if (!$session->has('card_deck_api') || $session->get('card_deck_api')->deckSize() < 52) {
+        if (!$session->has('card_deck_api')) {
             return $this->forward('App\Controller\ApiController::cardInitApi', [
                 'request' => $request
             ]);
         }
+        /** @var DeckOfCards $cardDeck */
         $cardDeck = $session->get('card_deck_api');
         $cardDeck->shuffleDeck();
         $data = [];
@@ -150,6 +152,7 @@ class ApiController extends AbstractController
                 'request' => $request
             ]);
         }
+        /** @var DeckOfCards $cardDeck */
         $cardDeck = $session->get('card_deck_api');
         $drawnCard = $cardDeck->drawCards();
         $data = [
@@ -182,6 +185,7 @@ class ApiController extends AbstractController
                 'request' => $request
             ]);
         }
+        /** @var DeckOfCards $cardDeck */
         $cardDeck = $session->get('card_deck_api');
         $drawnCards = $cardDeck->drawCards($number);
         $data = [
@@ -215,6 +219,7 @@ class ApiController extends AbstractController
                 'request' => $request
             ]);
         }
+        /** @var DeckOfCards $cardDeck */
         $cardDeck = $session->get('card_deck_api');
         $playerHands = [];
         if (!$players <= 0) {

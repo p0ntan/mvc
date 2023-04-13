@@ -9,9 +9,7 @@ use App\Dice\Dice;
  */
 class DiceHand
 {
-    /**
-     * @var array<Dice>
-     */
+    /** @var array<Dice> */
     private array $hand = [];
 
     /**
@@ -43,7 +41,7 @@ class DiceHand
 
     /**
      * Get values for each dice
-     * @return array<int>
+     * @return array<?int>
      */
     public function getValues(): array
     {

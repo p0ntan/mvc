@@ -34,7 +34,7 @@ class CardGameController extends AbstractController
         $cardDeck->shuffleDeck();
         $session->set('card_deck', $cardDeck);
         $data = [];
-        $routeName = $request->attributes->get('_route');
+        $routeName = strval($request->attributes->get('_route'));
         if ($routeName == "card_deck_draw_multi") {
             $number = $request->attributes->get('number');
             $data = [ 'number' => $number ];
@@ -44,7 +44,7 @@ class CardGameController extends AbstractController
             $data = [ 'players' => $players, 'cards' => $cards ];
         }
 
-        return $this->redirectToRoute($request->attributes->get('_route'), $data);
+        return $this->redirectToRoute($routeName, $data);
     }
 
     #[Route("/card", name: "card_start")]
@@ -64,6 +64,7 @@ class CardGameController extends AbstractController
                 'request' => $request
             ]);
         }
+        /** @var DeckOfCards $cardDeck */
         $cardDeck = $session->get('card_deck');
         $data = [
             "title" => "En komplett sorterad kortlek",
@@ -79,14 +80,14 @@ class CardGameController extends AbstractController
         Request $request
     ): Response {
         // Check if there is deck in session or the deck is "full", forward to card_init if not
-        if (!$session->has('card_deck') || $session->get('card_deck')->deckSize() < 52) {
+        if (!$session->has('card_deck')) {
             return $this->forward('App\Controller\CardGameController::cardInit', [
                 'request' => $request
             ]);
         }
+        /** @var DeckOfCards $cardDeck */
         $cardDeck = $session->get('card_deck');
         $cardDeck->shuffleDeck();
-
         $data = [
             "title" => "En komplett blandad kortlek",
             "size" => $cardDeck->deckSize(),
@@ -106,6 +107,7 @@ class CardGameController extends AbstractController
                 'request' => $request
             ]);
         }
+        /** @var DeckOfCards $cardDeck */
         $cardDeck = $session->get('card_deck');
         $data = [
             "title" => "Dra ett kort",
@@ -129,6 +131,7 @@ class CardGameController extends AbstractController
                 'request' => $request
             ]);
         }
+        /** @var DeckOfCards $cardDeck */
         $cardDeck = $session->get('card_deck');
         $data = [
             "title" => "Dra flera kort",
@@ -152,6 +155,7 @@ class CardGameController extends AbstractController
                 'request' => $request
             ]);
         }
+        /** @var DeckOfCards $cardDeck */
         $cardDeck = $session->get('card_deck');
         $playerHands = [];
         if (!$players <= 0) {

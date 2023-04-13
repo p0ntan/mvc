@@ -7,19 +7,13 @@ namespace App\Card;
  */
 class DeckOfCards
 {
-    /**
-     * @var array<Card> $unusedCards
-     */
+    /** @var array<Card> $unusedCards  */
     protected array $unusedCards = [];
 
-    /**
-     * @var array<Card> $cardsInUse
-     */
+    /** @var array<Card> $cardsInUse */
     protected array $cardsInUse = [];
 
-    /**
-     * @var array<Card> $drawnCards
-     */
+    /** @var array<Card> $drawnCards */
     protected array $drawnCards = [];
 
     /**
@@ -43,6 +37,9 @@ class DeckOfCards
      */
     public function shuffleDeck(): void
     {
+        $this->unusedCards = array_merge($this->unusedCards, $this->drawnCards, $this->cardsInUse);
+        $this->drawnCards = [];
+        $this->cardsInUse = [];
         shuffle($this->unusedCards);
     }
 

@@ -20,7 +20,7 @@ class Dice
         return $this->value;
     }
 
-    public function getValue(): int
+    public function getValue(): ?int
     {
         return $this->value;
     }
