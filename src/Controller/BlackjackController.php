@@ -26,21 +26,13 @@ class BlackjackController extends AbstractController
     }
 
     #[Route("/game/init", name: "blackjack_init", methods: ["POST"])]
-    public function cardInit(
+    public function gameInit(
         SessionInterface $session
     ): Response {
         $blackjackGame = new GameBlackjack();
         $emptyDeck = new DeckOfCards();
         $deckFactory = new DeckFactory();
         $cardDeck = $deckFactory->createDeck($emptyDeck, "CardGraphic");
-        // // remove this
-        // $cardDeck->addCard(new CardGraphic("hearts", 11));
-        // $cardDeck->addCard(new CardGraphic("spades", 1));
-
-        // $cardDeck->addCard(new CardGraphic("hearts", 11));
-        // $cardDeck->addCard(new CardGraphic("spades", 7));
-        // $cardDeck->addCard(new CardGraphic("spades", 4));
-
         $blackjackGame->initGame($cardDeck);
         $session->set('blackjack_game', $blackjackGame);
 
@@ -59,9 +51,7 @@ class BlackjackController extends AbstractController
             "player" => $player->getCards(),
             "computer" => $computer->getCards(),
             "optionsPlayer" => $blackjackGame->checkOptions($player),
-            "optionsComputer" => $blackjackGame->checkOptions($computer),
-            // "fullPlayer" => var_dump($blackjackGame->checkOptions($player)),
-            // "fullComputer" => var_dump($blackjackGame->checkOptions($computer))
+            "optionsComputer" => $blackjackGame->checkOptions($computer)
         ];
         return $this->render('game/play.html.twig', $data);
     }
@@ -71,34 +61,32 @@ class BlackjackController extends AbstractController
         SessionInterface $session
     ): Response {
         $blackjackGame = $session->get('blackjack_game');
-        // Players
         $player = $blackjackGame->getPlayer();
         $computer = $blackjackGame->getComputer();
         $data = [
             "player" => $player->getCards(),
             "computer" => $computer->getCards(),
             "optionsPlayer" => $blackjackGame->checkOptions($player),
-            "optionsComputer" => $blackjackGame->checkOptions($computer),
-            // "fullPlayer" => var_dump($blackjackGame->checkOptions($player)),
-            // "fullComputer" => var_dump($blackjackGame->checkOptions($computer))
+            "optionsComputer" => $blackjackGame->checkOptions($computer)
         ];
+        $this->addFlash(
+            'notice',
+            $blackjackGame->getWinner()
+        );
         return $this->render('game/roundover.html.twig', $data);
     }
 
     #[Route("/game/addcard", name: "blackjack_add_card", methods: ["POST"])]
     public function addCard(
-        SessionInterface $session,
-        Request $request
+        SessionInterface $session
     ): Response {
         $blackjackGame = $session->get('blackjack_game');
         $player = $blackjackGame->getPlayer();
         $blackjackGame->playPlayer($player);
         $playerBust = $blackjackGame->checkOptions($player)["bust"];
         if ($playerBust) {
-            return $this->forward(
-                'App\Controller\BlackjackController::playerStay',
-                ['request' => $request]
-            );
+            $blackjackGame->playComputer();
+            return $this->redirectToRoute('blackjack_round_over');
         }
         return $this->redirectToRoute('blackjack_play');
     }
@@ -110,5 +98,14 @@ class BlackjackController extends AbstractController
         $blackjackGame = $session->get('blackjack_game');
         $blackjackGame->playComputer();
         return $this->redirectToRoute('blackjack_round_over');
+    }
+
+    #[Route("/game/new-round", name: "blackjack_new_round", methods: ["POST"])]
+    public function newRound(
+        SessionInterface $session
+    ): Response {
+        $blackjackGame = $session->get('blackjack_game');
+        $blackjackGame->newRound();
+        return $this->redirectToRoute('blackjack_play');
     }
 }

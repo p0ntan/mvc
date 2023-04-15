@@ -37,6 +37,22 @@ class GameBlackjack
     }
 
     /**
+     * Method for setting up blackjack
+     */
+    public function newRound(): void
+    {
+        $this->cardDeck->shuffleDeck();
+        $this->player->resetHand();
+        $this->computer->resetHand();
+
+        $cardsToDeal = 2;
+        $cards = $this->cardDeck->giveCards($cardsToDeal);
+        $this->player->addCards($cards);
+        $cards = $this->cardDeck->giveCards($cardsToDeal);
+        $this->computer->addCards($cards);
+    }
+
+    /**
      * Function to check what options the hand has
      * @return array<mixed>
      */
@@ -85,5 +101,16 @@ class GameBlackjack
     public function gameOver(): bool
     {
         return $this->gameDone;
+    }
+
+    public function getWinner(): string
+    {
+        $playerBool = $this->player->isWinner();
+        $computerBool = $this->computer->isWinner();
+        if ($playerBool !== $computerBool) {
+            $winner = $playerBool ? "Du vann!" : "Banken vann.";
+            return $winner;
+        }
+        return "Det blev oavgjort.";
     }
 }

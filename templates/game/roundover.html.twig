@@ -2,19 +2,44 @@
 
 {% block title %}Blackjack{% endblock %}
 
-{% block header %}Spela Blackjack{% endblock %}
+{% block header %}Runda över{% endblock %}
 
 {% block main %}
-     <h2>Dator</h2>
-     <p>Poäng {{ optionsComputer.bestValue }}</p>
-     {% for card in computer %}
-          {{ card.getAsString() }}
-     {% endfor %}
+    {% for label, messages in app.flashes %}
+        {% for message in messages %}
+            <div class="flash-{{ label }} text-center w-50 mx-auto rounded shadow-sm mb-4">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endfor %}
+    <div class="mb-4">
+        <div>
+            <h4 class="text-center">Dator</h4>
+            <p class="text-center">Poäng {{ optionsComputer.bestValue }}</p>
+            <div class="card-container">
+                {% for card in computer %}
+                <i
+                class="shadow border {{ card.getClassName() }}"
+                style="background-image:url({{ asset('image/cards-sprite.png')}});">
+                </i>
+            {% endfor %}  
+            </div>
+        </div>
 
-     <h2>Spelare</h2>
-     <p>Poäng {{ optionsPlayer.bestValue }}</p>
-     {% for card in player %}
-          {{ card.getAsString() }}
-     {% endfor %}
-    <a href="{{ path('blackjack_start')}}">Börja om</a>
+        <div>
+            <h4 class="text-center">Spelare</h4>
+            <p class="text-center">Poäng {{ optionsPlayer.bestValue }}</p>
+            <div class="card-container">
+            {% for card in player %}
+            <i
+                class="shadow border {{ card.getClassName() }}"
+                style="background-image:url({{ asset('image/cards-sprite.png')}});">
+            </i>
+            {% endfor %}  
+            </div>
+        </div>
+    </div>
+    <form class="mx-auto o-mw-250 d-flex justify-content-around" action="{{ path('blackjack_new_round')}}" method="post">
+        <input class="btn btn-primary" type="submit" value="Ny omgång">
+    </form>
 {% endblock %}

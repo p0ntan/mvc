@@ -25,7 +25,7 @@
             <div class="card-container">
                 {% for card in player.getCards() %}
                 <i
-                    class="shadow border card-sprite suit-{{ card.getSuit() }} card-value-{{ card.getValue() }} "
+                    class="shadow border {{ card.getClassName() }}"
                     style="background-image:url({{ asset('image/cards-sprite.png')}});">
                 </i>
                 {% endfor %}

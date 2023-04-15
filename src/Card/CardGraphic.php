@@ -28,6 +28,17 @@ class CardGraphic extends Card
         13 => " K"
     ];
 
+    /**
+     * Get card as a class sprite
+     */
+    public function getClassName(): string
+    {
+        return "card-sprite suit-$this->suit card-value-$this->value";
+    }
+
+    /**
+     * Get card as a graphic string
+     */
     public function getAsString(): string
     {
         $cardString = "[";

@@ -17,12 +17,6 @@ class CardHand
     protected bool $winner = false;
 
     /**
-     * If hand is a bust
-     * @var bool
-     */
-    protected bool $bust = false;
-
-    /**
      * Add card to CardHand
      */
     public function addCard(Card $card): void
@@ -56,6 +50,15 @@ class CardHand
     public function cardsInHand(): int
     {
         return count($this->cards);
+    }
+
+    /**
+     * Function to drop all cards,
+     */
+    public function resetHand(): void
+    {
+        $this->cards = [];
+        $this->winner = false;
     }
 
     /**

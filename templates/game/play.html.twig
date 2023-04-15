@@ -5,29 +5,42 @@
 {% block header %}Spela Blackjack{% endblock %}
 
 {% block main %}
-    <h2>Dator</h2>
-    [uk]
-    {{ computer[0].getAsString() }}
-
-    <h2>Spelare</h2>
-    <p>Poäng {{ optionsPlayer.bestValue }}</p>
-    {% for card in player %}
-         {{ card.getAsString() }}
-    {% endfor %}
-
-    <form action="" method="post">
-        {% if optionsPlayer.softBlackjack %}
-            <input type="submit" value="{{ optionsPlayer.blackjack ? 'Blackjack!' : '21!'}}"
-                onClick="this.form.action='{{ path('blackjack_stay') }}';"
-            >
-        {% elseif not optionsPlayer.bust %}
-            <input type="submit" value="Hit"
-                onClick="this.form.action='{{ path('blackjack_add_card') }}';"
-            >
-            <input type="submit" value="Stay"
-                onClick="this.form.action='{{ path('blackjack_stay') }}';"
-            >
-        {% endif %}
-    </form>
-    <a href="{{ path('blackjack_start')}}">Börja om</a>
+    <div class="row">
+        <div class="col">
+            <h2 class="text-center">Dator</h2>
+            <div class="card-container">
+                <i
+                class="shadow border {{ computer[0].getClassName() }}"
+                style="background-image:url({{ asset('image/cards-sprite.png')}});">
+                </i>
+                <img src="{{ asset('image/card-back.png') }}" class="shadow border card-sprite">
+            </div>
+        </div>
+        <div class="col">
+            <h2 class="text-center">Spelare</h2>
+            <div class="card-container">
+                {% for card in player %}
+                    <i
+                        class="shadow border {{ card.getClassName() }}"
+                        style="background-image:url({{ asset('image/cards-sprite.png')}});">
+                    </i>
+                {% endfor %}
+            </div>
+            <p class="text-center">Poäng: {{ optionsPlayer.bestValue }}</p>
+            <form action="" method="post" class="mx-auto o-mw-250 d-flex justify-content-around">
+                {% if optionsPlayer.softBlackjack %}
+                    <input class="btn btn-primary w-25" type="submit" value="{{ optionsPlayer.blackjack ? 'Blackjack!' : '21!'}}"
+                        onClick="this.form.action='{{ path('blackjack_stay') }}';"
+                    >
+                {% elseif not optionsPlayer.bust %}
+                    <input class="btn btn-primary w-25" type="submit" value="Hit"
+                        onClick="this.form.action='{{ path('blackjack_add_card') }}';"
+                    >
+                    <input class="btn btn-primary w-25" type="submit" value="Stay"
+                        onClick="this.form.action='{{ path('blackjack_stay') }}';"
+                    >
+                {% endif %}
+            </form>
+        </div>
+    </div>
 {% endblock %}

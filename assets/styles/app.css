@@ -19,6 +19,14 @@ main {
     max-width: 200px;
 }
 
+.o-mw-250 {
+    max-width: 250px !important;
+}
+
+.o-miw-55 {
+    min-width: 55px;
+}
+
 /* Col-links */
 
 .col-link-container .col {
