@@ -7,13 +7,19 @@ namespace App\Card;
  */
 class DeckOfCards
 {
-    /** @var array<Card> $unusedCards  */
+    /** @var array<Card> $unusedCards */
     protected array $unusedCards = [];
 
-    /** @var array<Card> $cardsInUse */
+    /**
+     * Contains cards that are in use by players
+     * @var array<mixed> $cardsInUse
+     */
     protected array $cardsInUse = [];
 
-    /** @var array<Card> $drawnCards */
+    /**
+     * Contains cards that are drawn but not handed out
+     *  @var array<mixed> $drawnCards
+     */
     protected array $drawnCards = [];
 
     /**
@@ -44,7 +50,23 @@ class DeckOfCards
     }
 
     /**
-     * @return array<Card>
+     * @return array<mixed>
+     */
+    public function shuffleDeckJson(): array
+    {
+        $data = [];
+        foreach ($this->getDeck() as $card) {
+            $data[] = [
+                "suit" => $card->getSuit(),
+                "value" => $card->getValue(),
+                "name" => $card->getAsString()
+            ];
+        }
+        return $data;
+    }
+
+    /**
+     * @return array<mixed>
      */
     public function drawCards(int $noOfCards = 1): array
     {
@@ -65,7 +87,26 @@ class DeckOfCards
     }
 
     /**
-     * @return array<Card>
+     * @return array<mixed>
+     */
+    public function drawCardsJson(int $noOfCards = 1): array
+    {
+        $drawnCard = $this->drawCards($noOfCards);
+        $data = [
+            "cardsLeft" => $this->deckSize()
+        ];
+        foreach ($drawnCard as $card) {
+            $data["drawnCards"][] = [
+            "suit" => $card->getSuit(),
+            "value" => $card->getValue(),
+            "name" => $card->getAsString()
+            ];
+        }
+        return $data;
+    }
+
+    /**
+     * @return array<mixed>
      */
     public function giveCards(int $noOfCards): array
     {
@@ -110,6 +151,23 @@ class DeckOfCards
         });
 
         return $sortedDeck;
+    }
+
+    /**
+     * @return array<mixed>
+     */
+    public function getSortedDeckJson(): array
+    {
+        $data = [];
+        $sortedDeck = $this->getSortedDeck();
+        foreach ($sortedDeck as $card) {
+            $data[] = [
+                "suit" => $card->getSuit(),
+                "value" => $card->getValue(),
+                "name" => $card->getAsString()
+            ];
+        }
+        return $data;
     }
 
     /**

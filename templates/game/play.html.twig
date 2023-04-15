@@ -1,0 +1,33 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Blackjack{% endblock %}
+
+{% block header %}Spela Blackjack{% endblock %}
+
+{% block main %}
+    <h2>Dator</h2>
+    [uk]
+    {{ computer[0].getAsString() }}
+
+    <h2>Spelare</h2>
+    <p>Poäng {{ optionsPlayer.bestValue }}</p>
+    {% for card in player %}
+         {{ card.getAsString() }}
+    {% endfor %}
+
+    <form action="" method="post">
+        {% if optionsPlayer.softBlackjack %}
+            <input type="submit" value="{{ optionsPlayer.blackjack ? 'Blackjack!' : '21!'}}"
+                onClick="this.form.action='{{ path('blackjack_stay') }}';"
+            >
+        {% elseif not optionsPlayer.bust %}
+            <input type="submit" value="Hit"
+                onClick="this.form.action='{{ path('blackjack_add_card') }}';"
+            >
+            <input type="submit" value="Stay"
+                onClick="this.form.action='{{ path('blackjack_stay') }}';"
+            >
+        {% endif %}
+    </form>
+    <a href="{{ path('blackjack_start')}}">Börja om</a>
+{% endblock %}

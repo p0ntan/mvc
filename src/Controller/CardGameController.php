@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Card\Card;
 use App\Card\CardGraphic;
 use App\Card\CardHand;
+use App\Card\DeckFactory;
 use App\Card\DeckOfCards;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,34 +18,18 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
  */
 class CardGameController extends AbstractController
 {
-    #[Route("/card/init", name: "card_init", methods: ["POST"])]
-    public function cardInit(
-        SessionInterface $session,
-        Request $request
-    ): Response {
-        $cardDeck = new DeckOfCards();
-        $allSuits = Card::SUITS;
-        $allValues = Card::VALUES;
-        foreach ($allSuits as $suit) {
-            foreach ($allValues as $value) {
-                $newCard = new CardGraphic($suit, $value);
-                $cardDeck->addCard($newCard);
-            }
+    /**
+     * Helper function to initiate and inject cards into carddeck if no deck in session
+     * Helps to stop site from crashing if accessing some routes before others
+     */
+    private function controlDeckSession(SessionInterface $session): void
+    {
+        if (!$session->has('card_deck')) {
+            $emtpyDeck = new DeckOfCards();
+            $deckFactory = new DeckFactory();
+            $cardDeck = $deckFactory->createDeck($emtpyDeck, "CardGraphic");
+            $session->set('card_deck', $cardDeck);
         }
-        $cardDeck->shuffleDeck();
-        $session->set('card_deck', $cardDeck);
-        $data = [];
-        $routeName = strval($request->attributes->get('_route'));
-        if ($routeName == "card_deck_draw_multi") {
-            $number = $request->attributes->get('number');
-            $data = [ 'number' => $number ];
-        } elseif ($routeName == "card_deck_deal") {
-            $players = $request->attributes->get('players');
-            $cards = $request->attributes->get('cards');
-            $data = [ 'players' => $players, 'cards' => $cards ];
-        }
-
-        return $this->redirectToRoute($routeName, $data);
     }
 
     #[Route("/card", name: "card_start")]
@@ -55,15 +40,9 @@ class CardGameController extends AbstractController
 
     #[Route("/card/deck", name: "card_deck")]
     public function cardDeck(
-        SessionInterface $session,
-        Request $request
+        SessionInterface $session
     ): Response {
-        // Check if there is deck in session, forward to card_init if not
-        if (!$session->has('card_deck')) {
-            return $this->forward('App\Controller\CardGameController::cardInit', [
-                'request' => $request
-            ]);
-        }
+        $this->controlDeckSession($session);
         /** @var DeckOfCards $cardDeck */
         $cardDeck = $session->get('card_deck');
         $data = [
@@ -76,15 +55,9 @@ class CardGameController extends AbstractController
 
     #[Route("/card/deck/shuffle", name: "card_deck_shuffle")]
     public function cardDeckShuffle(
-        SessionInterface $session,
-        Request $request
+        SessionInterface $session
     ): Response {
-        // Check if there is deck in session or the deck is "full", forward to card_init if not
-        if (!$session->has('card_deck')) {
-            return $this->forward('App\Controller\CardGameController::cardInit', [
-                'request' => $request
-            ]);
-        }
+        $this->controlDeckSession($session);
         /** @var DeckOfCards $cardDeck */
         $cardDeck = $session->get('card_deck');
         $cardDeck->shuffleDeck();
@@ -98,15 +71,9 @@ class CardGameController extends AbstractController
 
     #[Route("/card/deck/draw", name: "card_deck_draw_one")]
     public function cardDeckDraw(
-        SessionInterface $session,
-        Request $request
+        SessionInterface $session
     ): Response {
-        // Check if there is deck in session, forward to card_init if not
-        if (!$session->has('card_deck')) {
-            return $this->forward('App\Controller\CardGameController::cardInit', [
-                'request' => $request
-            ]);
-        }
+        $this->controlDeckSession($session);
         /** @var DeckOfCards $cardDeck */
         $cardDeck = $session->get('card_deck');
         $data = [
@@ -122,15 +89,9 @@ class CardGameController extends AbstractController
     #[Route("/card/deck/draw/{number<\d+>}", name: "card_deck_draw_multi")]
     public function cardDeckDrawMulti(
         SessionInterface $session,
-        Request $request,
         int $number
     ): Response {
-        // Check if there is deck in session, forward to card_init if not
-        if (!$session->has('card_deck')) {
-            return $this->forward('App\Controller\CardGameController::cardInit', [
-                'request' => $request
-            ]);
-        }
+        $this->controlDeckSession($session);
         /** @var DeckOfCards $cardDeck */
         $cardDeck = $session->get('card_deck');
         $data = [
@@ -145,16 +106,10 @@ class CardGameController extends AbstractController
     #[Route("/card/deck/deal/{players<\d+>}/{cards<\d+>}", name: "card_deck_deal")]
     public function cardDeckDeal(
         SessionInterface $session,
-        Request $request,
         int $players,
         int $cards
     ): Response {
-        // Check if there is deck in session, forward to card_init if not
-        if (!$session->has('card_deck')) {
-            return $this->forward('App\Controller\CardGameController::cardInit', [
-                'request' => $request
-            ]);
-        }
+        $this->controlDeckSession($session);
         /** @var DeckOfCards $cardDeck */
         $cardDeck = $session->get('card_deck');
         $playerHands = [];

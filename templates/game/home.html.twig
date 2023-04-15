@@ -1,0 +1,12 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Blackjack{% endblock %}
+
+{% block header %}Blackjack{% endblock %}
+
+{% block main %}
+    <h2>Spela lite kort</h2>
+    <form action="{{ path('blackjack_init' )}}" method="POST">
+        <input type="submit" value="Spela!">
+    </form>
+{% endblock %}
