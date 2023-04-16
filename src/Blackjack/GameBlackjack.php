@@ -104,7 +104,7 @@ class GameBlackjack
         $playerBool = $this->player->isWinner();
         $computerBool = $this->computer->isWinner();
         if ($playerBool !== $computerBool) {
-            $winner = $playerBool ? "Du vann!" : "Datorn vann.";
+            $winner = $playerBool ? "Du vann!" : "Banken vann.";
             return $winner;
         }
         return "Det blev oavgjort.";
