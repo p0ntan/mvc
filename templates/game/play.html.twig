@@ -29,7 +29,7 @@
             <p class="text-center">Poäng: {{ optionsPlayer.bestValue }}</p>
             <form action="" method="post" class="mx-auto o-mw-250 d-flex justify-content-around">
                 {% if optionsPlayer.softBlackjack %}
-                    <input class="btn btn-primary w-25" type="submit" value="{{ optionsPlayer.blackjack ? 'Blackjack!' : '21!'}}"
+                    <input class="btn btn-primary" type="submit" value="{{ optionsPlayer.blackjack ? 'Blackjack!' : '21!'}}"
                         onClick="this.form.action='{{ path('blackjack_stay') }}';"
                     >
                 {% elseif not optionsPlayer.bust %}

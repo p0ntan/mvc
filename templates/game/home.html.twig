@@ -5,8 +5,9 @@
 {% block header %}Blackjack{% endblock %}
 
 {% block main %}
-    <h2>Spela lite kort</h2>
+    <h2>Spela blackjack</h2>
+    <p>Här kan man spela blackjack om man nu vill. Regler kommer senare, men syftet är ju att få 21. Ess är värd 1 eller 11, klädda kort är värda 10. Har man ett ess i handen visas endast den högst giltiga poängen, t ex ett ess och en 2a visar 13 poäng, men kan också vara värd 3.</p>
     <form action="{{ path('blackjack_init' )}}" method="POST">
-        <input type="submit" value="Spela!">
+        <input class="btn btn-primary mx-auto w-25" type="submit" value="Spela!">
     </form>
 {% endblock %}

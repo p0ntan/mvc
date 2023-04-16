@@ -33,7 +33,6 @@ class BlackjackController extends AbstractController
         $emptyDeck = new DeckOfCards();
         $deckFactory = new DeckFactory();
         $cardDeck = $deckFactory->createDeck($emptyDeck, "CardGraphic");
-        // // remove this
         $blackjackGame->initGame($cardDeck);
         $session->set('blackjack_game', $blackjackGame);
 

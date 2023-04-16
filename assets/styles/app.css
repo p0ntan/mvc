@@ -1,7 +1,6 @@
 @import "bootstrap.css";
 @import "lucky.css";
 @import "cardgame.css";
-@import "pig.css";
 
 main {
     flex: 1;
