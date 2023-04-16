@@ -41,7 +41,9 @@ class GameBlackjack
      */
     public function newRound(): void
     {
-        $this->cardDeck->shuffleDeck();
+        if ($this->cardDeck->deckSize() < 10) {
+            $this->cardDeck->shuffleDeck();
+        }
         $this->player->resetHand();
         $this->computer->resetHand();
 
@@ -78,21 +80,15 @@ class GameBlackjack
         $player->addCards($drawnCard);
     }
 
-    public function playPlayer(CardHand $player): void
-    {
-        $this->addCard($player);
-        $rules = $this->rules->checkAllRules($player);
-        if ($rules["bust"]) {
-            $this->playComputer();
-        }
-    }
-
     public function playComputer(): void
     {
-        $computerFinished = $this->rules->computerRules($this->computer);
-        while (!$computerFinished) {
-            $this->addCard($this->computer);
-            $computerFinished = $this->rules->computerRules($this->computer);
+        $options = $this->checkOptions($this->player);
+        if (!$options["blackjack"] && !$options["bust"]) {
+            $computerFinished = false;
+            while (!$computerFinished) {
+                $this->addCard($this->computer);
+                $computerFinished = $this->rules->computerRules($this->computer);
+            }
         }
         $this->gameDone = true;
         $this->rules->findWinner($this->player, $this->computer);
@@ -108,7 +104,7 @@ class GameBlackjack
         $playerBool = $this->player->isWinner();
         $computerBool = $this->computer->isWinner();
         if ($playerBool !== $computerBool) {
-            $winner = $playerBool ? "Du vann!" : "Banken vann.";
+            $winner = $playerBool ? "Du vann!" : "Datorn vann.";
             return $winner;
         }
         return "Det blev oavgjort.";

@@ -7,18 +7,18 @@
 {% block main %}
     <div class="row">
         <div class="col">
-            <h2 class="text-center">Dator</h2>
-            <div class="card-container">
+            <h2 class="text-center">Banken</h2>
+            <div class="blackjack-card-container mx-auto my-4">
+                <img src="{{ asset('image/card-back.png') }}" class="shadow border card-sprite">
                 <i
-                class="shadow border {{ computer[0].getClassName() }}"
+                class="shadow border {{ computer[1].getClassName() }}"
                 style="background-image:url({{ asset('image/cards-sprite.png')}});">
                 </i>
-                <img src="{{ asset('image/card-back.png') }}" class="shadow border card-sprite">
             </div>
         </div>
         <div class="col">
             <h2 class="text-center">Spelare</h2>
-            <div class="card-container">
+            <div class="blackjack-card-container mx-auto my-4">
                 {% for card in player %}
                     <i
                         class="shadow border {{ card.getClassName() }}"

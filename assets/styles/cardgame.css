@@ -35,3 +35,17 @@
 .card-value-11 { background-position-x: -1620px; }
 .card-value-12 { background-position-x: -1783px; }
 .card-value-13 { background-position-x: -1945px; }
+
+/* Blackjack */
+.blackjack-card-container {
+    position: relative;
+    width: 300px;
+    height: 224px;
+    margin: auto;
+}
+
+.blackjack-card-container > .card-sprite {
+    position: absolute;
+    transform-origin: center left;
+    margin: 0;
+}

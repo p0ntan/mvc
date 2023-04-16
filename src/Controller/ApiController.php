@@ -28,7 +28,7 @@ class ApiController extends AbstractController
         if (!$session->has('card_deck_api')) {
             $emtpyDeck = new DeckOfCards();
             $deckFactory = new DeckFactory();
-            $cardDeck = $deckFactory->createDeck($emtpyDeck, "CardGraphic");
+            $cardDeck = $deckFactory->createDeck($emtpyDeck, "Card");
             $session->set('card_deck_api', $cardDeck);
         }
     }

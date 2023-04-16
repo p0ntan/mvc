@@ -13,3 +13,6 @@ import './bootstrap';
 
 // import bootstrap js
 import './js/bootstrap.bundle';
+
+// import own js
+import './js/blackjack';

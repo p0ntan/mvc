@@ -5,31 +5,24 @@
 {% block header %}Runda över{% endblock %}
 
 {% block main %}
-    {% for label, messages in app.flashes %}
-        {% for message in messages %}
-            <div class="flash-{{ label }} text-center w-50 mx-auto rounded shadow-sm mb-4">
-                {{ message }}
-            </div>
-        {% endfor %}
-    {% endfor %}
-    <div class="mb-4">
-        <div>
-            <h4 class="text-center">Dator</h4>
+    <div class="row mb-4">
+        <div class="col">
+            <h4 class="text-center">Banken</h4>
             <p class="text-center">Poäng {{ optionsComputer.bestValue }}</p>
-            <div class="card-container">
+            <div class="blackjack-card-container mx-auto my-4">
                 {% for card in computer %}
                 <i
                 class="shadow border {{ card.getClassName() }}"
                 style="background-image:url({{ asset('image/cards-sprite.png')}});">
                 </i>
-            {% endfor %}  
+            {% endfor %}
             </div>
         </div>
 
-        <div>
+        <div class="col">
             <h4 class="text-center">Spelare</h4>
             <p class="text-center">Poäng {{ optionsPlayer.bestValue }}</p>
-            <div class="card-container">
+            <div class="blackjack-card-container mx-auto my-4">
             {% for card in player %}
             <i
                 class="shadow border {{ card.getClassName() }}"
@@ -39,6 +32,13 @@
             </div>
         </div>
     </div>
+    {% for label, messages in app.flashes %}
+        {% for message in messages %}
+            <div class="flash-{{ label }} text-center w-50 mx-auto rounded shadow-sm mb-4">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endfor %}
     <form class="mx-auto o-mw-250 d-flex justify-content-around" action="{{ path('blackjack_new_round')}}" method="post">
         <input class="btn btn-primary" type="submit" value="Ny omgång">
     </form>

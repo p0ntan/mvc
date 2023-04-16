@@ -33,6 +33,7 @@ class BlackjackController extends AbstractController
         $emptyDeck = new DeckOfCards();
         $deckFactory = new DeckFactory();
         $cardDeck = $deckFactory->createDeck($emptyDeck, "CardGraphic");
+        // // remove this
         $blackjackGame->initGame($cardDeck);
         $session->set('blackjack_game', $blackjackGame);
 
@@ -82,7 +83,7 @@ class BlackjackController extends AbstractController
     ): Response {
         $blackjackGame = $session->get('blackjack_game');
         $player = $blackjackGame->getPlayer();
-        $blackjackGame->playPlayer($player);
+        $blackjackGame->addCard($player);
         $playerBust = $blackjackGame->checkOptions($player)["bust"];
         if ($playerBust) {
             $blackjackGame->playComputer();
