@@ -84,7 +84,7 @@ class GameBlackjack
     {
         $options = $this->checkOptions($this->player);
         if (!$options["blackjack"] && !$options["bust"]) {
-            $computerFinished = false;
+            $computerFinished = $this->rules->computerRules($this->computer);
             while (!$computerFinished) {
                 $this->addCard($this->computer);
                 $computerFinished = $this->rules->computerRules($this->computer);
