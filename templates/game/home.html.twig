@@ -6,7 +6,31 @@
 
 {% block main %}
     <h2>Spela blackjack</h2>
-    <p>Här kan man spela blackjack om man nu vill. Regler kommer senare, men syftet är ju att få 21. Ess är värd 1 eller 11, klädda kort är värda 10. Har man ett ess i handen visas endast den högst giltiga poängen, t ex ett ess och en 2a visar 13 poäng, men kan också vara värd 3.</p>
+    <p>Dags att prova lyckan i det klassiska casinospelet Blackjack! Spelet går ut på att man ska få 21 poäng med korten man har i handen. Här kan du läsa lite mer om reglerna.</p>
+    <h4>Kort och kortens värde:</h4>
+    <ul>
+        <li>Korten 2 till och med 10 är värda det poängtal som står angivet på spelkorten.</li>
+        <li>Kung, dam och knekt är värda tio poäng.</li>
+        <li>Ess är värt antingen ett poäng eller elva (endast den högst giltiga poängen visas).</li>
+        <li>Kortleken blandas inte om mellan varje omgång. Är det mindre än 10 kort kvar efter en omgång kommer kortleken blandas om.</li>
+    </ul>
+    <h4>Regler</h4>
+    <ul>
+        <li>Den som är närmast utan att överstiga 21 poäng vinner. Vid samma poäng blir det oavgjort.</li>
+        <li>
+            Blackjack får man när man får 21 poäng på sin första hand, alltså med endast två kort (med ett kort värt tio poäng tillsammans med ett ess som då är värt 11).
+            Får både spelare och bank blackjack blir det oavgjort, annars vinner den som har blackjack.
+        </li>
+        <li>Blackjack är den bästa handen, den är alltså mer värd än att 21 poäng på fler än två kort.</li>
+        <li>Överstiger spelaren 21 blir hen "tjock", då vinner banken.</li>
+        <li>Blir banken "tjock" vinner spelaren.</li>
+    </ul>
+    <h4>Spelomgång</h4>
+    <ul>
+        <li>Två kort delas ut i början av varje omgång till både spelare och bank, spelaren kan endast se ett av bankens kort.</li>
+        <li>Spelaren väljer om den vill få flera kort eller stanna med nuvarande hand.</li>
+        <li>Om spelaren väljer att stanna så är det bankens tur, banken måste ta ett nytt kort så länge dess poäng är under 17. Det gäller dock inte om spelaren har blivit "tjock".</li>
+    </ul>
     <form action="{{ path('blackjack_init' )}}" method="POST">
         <input class="btn btn-primary mx-auto w-25" type="submit" value="Spela!">
     </form>
