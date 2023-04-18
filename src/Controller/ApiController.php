@@ -140,9 +140,8 @@ class ApiController extends AbstractController
     public function apiGame(
         SessionInterface $session
     ): Response {
-        if (!$session->has('blackjack_game')) {
-            $data = [];
-        } else {
+        $data = ["There is no game initialized."];
+        if ($session->has('blackjack_game')) {
             $blackjackGame = $session->get('blackjack_game');
             $data = $blackjackGame->getAsJson();
         }

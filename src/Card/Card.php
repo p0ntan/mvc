@@ -53,6 +53,10 @@ class Card
         return "$value of $this->suit";
     }
 
+    /**
+     * Function to get card as json-objekt
+     * @return array<mixed>
+     */
     public function getAsJson(): array
     {
         return [

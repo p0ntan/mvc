@@ -46,6 +46,7 @@ class GameBlackjack
         }
         $this->player->resetHand();
         $this->computer->resetHand();
+        $this->gameDone = false;
 
         $cardsToDeal = 2;
         $cards = $this->cardDeck->giveCards($cardsToDeal);
@@ -110,12 +111,25 @@ class GameBlackjack
         return "Det blev oavgjort.";
     }
 
+    /**
+     * Function to get game-status as json
+     * @return array<mixed>
+     */
     public function getAsJson(): array
     {
-        return [
-            "pointsComputer" => $this->rules->checkAllRules($this->computer)["bestValue"],
-            "pointsPlayer" => $this->rules->checkAllRules($this->player)["bestValue"],
-            "gameDone" => $this->gameDone
+        $data = [
+            "gameDone" => $this->gameDone,
+            "player" => [
+                "bestPoint" => $this->rules->checkAllRules($this->player)["bestValue"],
+                "cardHand" => $this->player->getHandAsJson(),
+                "winner" => $this->player->isWinner()
+            ],
+            "computer" => [
+                "bestPoint" => $this->rules->checkAllRules($this->computer)["bestValue"],
+                "cardHand" => $this->computer->getHandAsJson(),
+                "winner" => $this->computer->isWinner()
+            ]
         ];
+        return $data;
     }
 }
