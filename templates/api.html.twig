@@ -68,6 +68,15 @@
                 <input class="btn btn-primary w-100" type="submit" value="Testa här">
             </form>
         </div>
+        <div class="col mx-auto form-control d-flex flex-column justify-content-between shadow">
+            <div>
+                <h4>Game api</h4>
+                <p>Ett api för att hämta Blackjack-spelets aktuella ställning.</p>    
+            </div>
+            <form action="{{ path('api_game') }}" method="POST">
+                <input class="btn btn-primary w-100" type="submit" value="Testa här">
+            </form>
+        </div>
     </div>
 
     {# Just a small script to update the form to make the POST route work #}

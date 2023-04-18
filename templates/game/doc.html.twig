@@ -1,0 +1,82 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Blackjack{% endblock %}
+
+{% block header %}Blackjack{% endblock %}
+
+{% block main %}
+    <h2>Dokumentation</h2>
+    <h4>Klasser</h4>
+    <p class="mb-0"><strong>Card</strong></p>
+    <p>Kommer ej användas direkt i spelet, men är en basklass</p>
+
+    <p class="mb-0"><strong>CardGraphic</strong></p>
+    <p>Är själva spelkortet med värden och färg, subklass till Card.</p>
+
+    <p class="mb-0"><strong>DeckOfCard</strong></p>
+    <p>Innehåller alla CardGraphic som används till spelet, från DeckOfCards kan man dela ut kort till spelare.</p> 
+
+    <p class="mb-0"><strong>DeckFactory</strong></p>
+    <p>En klass för att injecta Card/CardGraphic in i DeckOfCards.</p>
+
+    <p class="mb-0"><strong>PlayerBlackjack</strong></p>
+    <p>Representerar varje spelare, innehåller en CardHand.</p>
+
+    <p class="mb-0"><strong>RulesBlackJack</strong></p>
+    <p>Innehåller alla spelregler.</p>
+
+    <p class="mb-0"><strong>GameBlackJack</strong></p>
+    <p>Innehåller spelets struktur, det är främst mot denna klassen som man jobbar mot i controllern.</p>
+    <h2>Psudeokod</h2>
+    <pre>
+    INIT game
+
+    DEAL two cards to player and computer
+
+    IF players hand = 21 (blackjack) THEN
+        DISPLAY computer cards
+        IF computers cards = 21 (blackjack) THEN
+            GAME OVER draw
+        ELSE
+            GAME OVER player wins
+    ENDIF
+    ENDIF
+
+    WHILE players hand < 21
+        DISPLAY options HIT or STAY
+        IF player chooses HIT THEN
+            DEAL card to player
+        ELSEIF player chooses STAY THEN
+            BREAK while-loop
+        ENDIF
+    ENDWHILE
+
+    DISPLAY computer cards
+
+    IF computers hand = 21 (blackjack) THEN
+        GAME OVER players loses
+    ELSE IF players hand > 21 THEN
+        GAME OVER player loses
+    ELSE IF players hand <= 21
+        WHILE computer hand < 17
+            DEAL card to computer
+        ENDWHILE
+    ENDIF
+
+    IF computers hand > 21 THEN
+        GAME OVER players wins
+    ELSE IF players hand > computers hand THEN
+        GAME OVER player wins
+    ELSE IF players hand < computers hand THEN
+        GAME OVER player loses
+    ELSE
+        GAME OVER draw
+    ENDIF
+    </pre>
+    <h2 class="mb-4">Flödesschema</h2>
+    <div class="container d-flex justify-content-center mb-4 o-mw-650">
+        <a href="{{ asset('image/kmom03_flow.png')}}">
+            <img class="rounded img-fluid shadow-sm" src="{{ asset('image/kmom03_flow.png')}}" alt="Bild på blackjack flödesschema.">
+        </a>
+    </div>
+{% endblock %}

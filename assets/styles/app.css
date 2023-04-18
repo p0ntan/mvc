@@ -22,6 +22,14 @@ main {
     max-width: 250px !important;
 }
 
+.o-mw-650 {
+    max-width: 650px !important;
+}
+
+.o-mw-1080 {
+    max-width: 1080px !important;
+}
+
 .o-miw-55 {
     min-width: 55px;
 }

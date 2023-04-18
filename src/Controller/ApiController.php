@@ -136,6 +136,24 @@ class ApiController extends AbstractController
         return $response;
     }
 
+    #[Route("api/game", name: "api_game", methods: ["POST"])]
+    public function apiGame(
+        SessionInterface $session
+    ): Response {
+        if (!$session->has('blackjack_game')) {
+            $data = [];
+        } else {
+            $blackjackGame = $session->get('blackjack_game');
+            $data = $blackjackGame->getAsJson();
+        }
+        $response = new JsonResponse($data);
+        $response->setEncodingOptions(
+            $response->getEncodingOptions() | JSON_PRETTY_PRINT
+        );
+
+        return $response;
+    }
+
     #[Route("api/deck/deal/{players<\d+>}/{cards<\d+>}", name: "api_card_deal", methods: ["POST"])]
     public function cardDeal(
         SessionInterface $session,
