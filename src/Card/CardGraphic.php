@@ -39,7 +39,7 @@ class CardGraphic extends Card
     /**
      * Get card as a graphic string
      */
-    public function getAsString(): string
+    public function getAsGraphicString(): string
     {
         $cardString = "[";
         $cardString .= $this->graphicSuits[$this->suit] . " ";

@@ -52,4 +52,13 @@ class Card
         }
         return "$value of $this->suit";
     }
+
+    public function getAsJson(): array
+    {
+        return [
+            "suit" => $this->getSuit(),
+            "value" => $this->getValue(),
+            "name" => $this->getAsString()
+        ];
+    }
 }

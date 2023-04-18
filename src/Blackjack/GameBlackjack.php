@@ -109,4 +109,13 @@ class GameBlackjack
         }
         return "Det blev oavgjort.";
     }
+
+    public function getAsJson(): array
+    {
+        return [
+            "pointsComputer" => $this->rules->checkAllRules($this->computer)["bestValue"],
+            "pointsPlayer" => $this->rules->checkAllRules($this->player)["bestValue"],
+            "gameDone" => $this->gameDone
+        ];
+    }
 }

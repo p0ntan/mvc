@@ -84,11 +84,7 @@ class CardHand
     {
         $data = [];
         foreach ($this->getCards() as $card) {
-            $data[] = [
-                "suit" => $card->getSuit(),
-                "value" => $card->getValue(),
-                "name" => $card->getAsString()
-                ];
+            $data[] = $card->getAsJson();
         }
         return $data;
     }
