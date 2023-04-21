@@ -8,39 +8,40 @@
     <div class="row">
         <div class="col">
             <h2 class="text-center">Banken</h2>
+            <p class="text-center">Poäng:</p>
             <div class="blackjack-card-container mx-auto my-4">
                 <img src="{{ asset('image/card-back.png') }}" class="shadow border card-sprite">
                 <i
-                class="shadow border {{ computer[1].getClassName() }}"
+                class="shadow border {{ computer.getCards()[1].getClassName() }}"
                 style="background-image:url({{ asset('image/cards-sprite.png')}});">
                 </i>
             </div>
         </div>
+
         <div class="col">
             <h2 class="text-center">Spelare</h2>
+            <p class="text-center">Poäng: {{ player.currentHand().getPoints() }}</p>
             <div class="blackjack-card-container mx-auto my-4">
-                {% for card in player %}
+                {% for card in player.currentHand().getCards() %}
                     <i
                         class="shadow border {{ card.getClassName() }}"
                         style="background-image:url({{ asset('image/cards-sprite.png')}});">
                     </i>
                 {% endfor %}
             </div>
-            <p class="text-center">Poäng: {{ optionsPlayer.bestValue }}</p>
-            <form action="" method="post" class="mx-auto o-mw-250 d-flex justify-content-around">
-                {% if optionsPlayer.softBlackjack %}
-                    <input class="btn btn-primary" type="submit" value="{{ optionsPlayer.blackjack ? 'Blackjack!' : '21!'}}"
-                        onClick="this.form.action='{{ path('blackjack_stay') }}';"
-                    >
-                {% elseif not optionsPlayer.bust %}
-                    <input class="btn btn-primary w-25" type="submit" value="Hit"
-                        onClick="this.form.action='{{ path('blackjack_add_card') }}';"
-                    >
-                    <input class="btn btn-primary w-25" type="submit" value="Stay"
-                        onClick="this.form.action='{{ path('blackjack_stay') }}';"
-                    >
+            {% for hand in player.getHands() %}
+                {% if hand != player.currentHand() %}
+                <div class="blackjack-card-container-mini mx-auto my-4">
+                    {% for card in hand.getCards() %}
+                        <i
+                            class="shadow border {{ card.getClassName() }}"
+                            style="background-image:url({{ asset('image/cards-sprite.png')}});">
+                        </i>
+                    {% endfor %}
+                </div>
                 {% endif %}
-            </form>
+            {% endfor %}
+            {% include '/game/options-form.html.twig' %}
         </div>
     </div>
 {% endblock %}

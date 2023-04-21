@@ -8,13 +8,32 @@ namespace App\Card;
 class CardHand
 {
     /** @var array<Card> */
-    protected array $cards = [];
+    protected array $cards;
 
     /**
-     * To compare different hands at end of a game
+     * To compare different hands at end of a game.
+     * Setting "draw" as default
+     * @var string
+     */
+    protected string $handOutcome = "draw";
+
+    /**
+     * To see if a hand is "done", if a player can have multiple hands in a game
      * @var bool
      */
-    protected bool $winner = false;
+    protected bool $handDone = false;
+
+    /**
+     * How much money to bet on this hand
+     * @var int
+     */
+    protected int $bet = 0;
+
+    /**
+     * Highest value for game
+     * @var int
+     */
+    protected int $bestValue = 0;
 
     /**
      * Add card to CardHand
@@ -53,28 +72,75 @@ class CardHand
     }
 
     /**
-     * Function to drop all cards,
+     * @return mixed
      */
-    public function resetHand(): void
+    public function removeLast(): mixed
     {
-        $this->cards = [];
-        $this->winner = false;
+        return array_pop($this->cards);
+    }
+
+    /**
+     * @return string
+     */
+    public function getOutcome(): string
+    {
+        return $this->handOutcome;
+    }
+
+    /**
+     * Function to set property handOutcome
+     */
+    public function setOutcome(string $outcome): void
+    {
+        $this->handOutcome = $outcome;
     }
 
     /**
      * @return bool
      */
-    public function isWinner(): bool
+    public function isDone(): bool
     {
-        return $this->winner;
+        return $this->handDone;
     }
 
     /**
-     * Function to set property winner
+     * Function to set property handDone
      */
-    public function setWinner(bool $boolean): void
+    public function setDone(bool $boolean): void
     {
-        $this->winner = $boolean;
+        $this->handDone = $boolean;
+    }
+
+    /**
+     * @return int
+     */
+    public function getPoints(): int
+    {
+        return $this->bestValue;
+    }
+
+    /**
+     * Function to set property handDone
+     */
+    public function setPoints(int $value): void
+    {
+        $this->bestValue = $value;
+    }
+
+    /**
+     * Function to get property bet
+     */
+    public function getBet(): int
+    {
+        return $this->bet;
+    }
+
+    /**
+     * Function to set property bet
+     */
+    public function setBet(int $value): void
+    {
+        $this->bet = $value;
     }
 
     /**

@@ -800,6 +800,7 @@ progress {
 }
 
 .col {
+  position: relative;
   flex: 1 0 0%;
 }
 

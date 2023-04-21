@@ -8,9 +8,9 @@
     <div class="row mb-4">
         <div class="col">
             <h4 class="text-center">Banken</h4>
-            <p class="text-center">Poäng {{ optionsComputer.bestValue }}</p>
+            <p class="text-center">Poäng {{ computer.getPoints() }}</p>
             <div class="blackjack-card-container mx-auto my-4">
-                {% for card in computer %}
+                {% for card in computer.getCards() %}
                 <i
                 class="shadow border {{ card.getClassName() }}"
                 style="background-image:url({{ asset('image/cards-sprite.png')}});">
@@ -18,27 +18,32 @@
             {% endfor %}
             </div>
         </div>
-
         <div class="col">
             <h4 class="text-center">Spelare</h4>
-            <p class="text-center">Poäng {{ optionsPlayer.bestValue }}</p>
-            <div class="blackjack-card-container mx-auto my-4">
-            {% for card in player %}
-            <i
-                class="shadow border {{ card.getClassName() }}"
-                style="background-image:url({{ asset('image/cards-sprite.png')}});">
-            </i>
-            {% endfor %}  
+            {% for hand in player.getHands() %}
+            <div class="position-relative">
+                <p class="text-center">Poäng {{ hand.getPoints() }}</p>
+                <div class="blackjack-card-container mx-auto my-4">
+                    {% for card in hand.getCards() %}
+                    <i
+                        class="shadow border {{ card.getClassName() }}"
+                        style="background-image:url({{ asset('image/cards-sprite.png')}});">
+                    </i>
+                    {% endfor %}
+                </div>
+                <div class="position-absolute top-50 start-50 translate-middle shadow border rounded outcome">
+                    {% if hand.getOutcome() == "win" %}
+                        Vinst! &#128176;
+                    {% elseif hand.getOutcome() == "lose" %}
+                        Förlust
+                    {% else %}
+                        Det blev oavgjort.
+                    {% endif %}
+                </div>
             </div>
+            {% endfor %}
         </div>
     </div>
-    {% for label, messages in app.flashes %}
-        {% for message in messages %}
-            <div class="flash-{{ label }} text-center w-50 mx-auto rounded shadow-sm mb-4">
-                {{ message }}
-            </div>
-        {% endfor %}
-    {% endfor %}
     <form class="mx-auto o-mw-250 d-flex justify-content-around" action="{{ path('blackjack_new_round')}}" method="post">
         <input class="btn btn-primary" type="submit" value="Ny omgång">
     </form>

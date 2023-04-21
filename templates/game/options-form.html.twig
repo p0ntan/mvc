@@ -1,0 +1,19 @@
+<form action="" method="post" class="mx-auto o-mw-250 d-flex justify-content-around">
+    {% if optionsPlayer.softBlackjack %}
+        <input class="btn btn-primary" type="submit" value="{{ optionsPlayer.blackjack ? 'Blackjack!' : '21!'}}"
+            onClick="this.form.action='{{ path('blackjack_stay') }}';"
+        >
+    {% elseif not optionsPlayer.bust %}
+        <input class="btn btn-primary w-25" type="submit" value="Hit"
+            onClick="this.form.action='{{ path('blackjack_add_card') }}';"
+        >
+        <input class="btn btn-primary w-25" type="submit" value="Stay"
+            onClick="this.form.action='{{ path('blackjack_stay') }}';"
+        >
+        {% if optionsPlayer.split %}
+            <input class="btn btn-primary w-25" type="submit" value="Split"
+                onClick="this.form.action='{{ path('blackjack_split') }}';"
+            >
+        {% endif %}
+    {% endif %}
+</form>

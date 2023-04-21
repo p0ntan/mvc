@@ -1,0 +1,16 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Blackjack{% endblock %}
+
+{% block header %}Satsa pengar{% endblock %}
+
+{% block main %}
+    <div class="o-mw-250 mx-auto">
+        <p>Tillgänglig summa: {{ player.getMoney() }}</p>
+        <form class="form-control" action="{{ path('blackjack_bet') }}" method="POST">
+            <label class="form-label">Välj summa att satsa:</label>
+            <input type="number" name="playerbet" class="text-center form-control mb-2" min="0" max="{{ player.getMoney() }}" placeholder="0">
+            <input type="submit" class="btn btn-primary w-100" value="Satsa">
+        </form>
+    </div>
+{% endblock %}

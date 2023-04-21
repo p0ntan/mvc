@@ -20,29 +20,28 @@ class RulesBlackjack
     public function checkAllRules(CardHand $cardHand): array
     {
         // Check all rules, give back array with rules to use
-        $handValue = $this->countHand($cardHand);
         $rules = [
-            "blackjack" => $this->blackjack($cardHand, $handValue),
-            "softBlackjack" => $this->softBlackjack($handValue),
-            "bust" => $this->bust($handValue),
-            "values" => $handValue,
-            "bestValue" => $this->getHighestValue($handValue),
-            "winner" => $cardHand->isWinner()
+            "blackjack" => $this->blackjack($cardHand),
+            "softBlackjack" => $this->softBlackjack($cardHand),
+            "bust" => $this->bust($cardHand),
+            "split" => $this->split($cardHand)
         ];
+        $bestValue = $this->getHighestValue($cardHand);
+        $cardHand->setPoints($bestValue);
         return $rules;
     }
 
     /**
      * Function to see if hand has blackjack (21 on first give)
      * @param CardHand $cardHand
-     * @param array<int> $handValue
      * @return bool
      */
-    private function blackjack(CardHand $cardHand, array $handValue): bool
+    private function blackjack(CardHand $cardHand): bool
     {
         $noOfCards = $cardHand->cardsInHand();
+        $handValues = $this->countHand($cardHand);
         if ($noOfCards == 2) {
-            if ($handValue[0] == 21 or $handValue[1] == 21) {
+            if ($handValues[0] == 21 or $handValues[1] == 21) {
                 return true;
             }
         }
@@ -51,12 +50,13 @@ class RulesBlackjack
 
     /**
      * Function to see if there is a bust (over 21)
-     * @param array<int> $handValue
+     * @param CardHand $cardHand
      * @return bool
      */
-    private function bust(array $handValue): bool
+    private function bust(CardHand $cardHand): bool
     {
-        if ($handValue[0] > 21 && $handValue[1] > 21) {
+        $handValues = $this->countHand($cardHand);
+        if ($handValues[0] > 21 && $handValues[1] > 21) {
             return true;
         }
         return false;
@@ -64,20 +64,32 @@ class RulesBlackjack
 
     /**
      * Function to see if hand is 21
-     * @param array<int> $handValue
+     * @param CardHand $cardHand
      * @return bool
      */
-    private function softBlackjack(array $handValue): bool
+    private function softBlackjack(CardHand $cardHand): bool
     {
-        if ($handValue[0] == 21 or $handValue[1] == 21) {
+        $handValues = $this->countHand($cardHand);
+        if ($handValues[0] == 21 or $handValues[1] == 21) {
             return true;
         }
         return false;
     }
 
-    // More rules to add here:
-    // Double down
-    // Split
+    /**
+     * Function to see if it's possible to split hands
+     */
+    private function split(CardHand $cardHand): bool
+    {
+        $noOfCards = $cardHand->cardsInHand();
+        $cards = $cardHand->getCards();
+        if ($noOfCards == 2) {
+            if ($cards[0]->getValue() == $cards[01]->getValue()) {
+                return true;
+            }
+        }
+        return false;
+    }
 
     /**
      * Function for computer rule (always play if handvalue < 17)
@@ -85,10 +97,14 @@ class RulesBlackjack
      */
     public function computerRules(CardHand $cardHand): bool
     {
-        $handValue = $this->countHand($cardHand);
-        if ($this->softBlackjack($handValue)) {
+        // Add best value to cardhand
+        $bestValue = $this->getHighestValue($cardHand);
+        $cardHand->setPoints($bestValue);
+        // Return bool if computer is finished or not
+        $handValues = $this->countHand($cardHand);
+        if ($this->softBlackjack($cardHand)) {
             return true;
-        } elseif ($handValue[0] < 17 or $handValue[1] < 17) {
+        } elseif ($handValues[0] < 17 or $handValues[1] < 17) {
             return false;
         }
         return true;
@@ -144,36 +160,40 @@ class RulesBlackjack
     /**
      * Function to get highets "valid" value (<= 21)
      * Will return the lowest if both are over 21
-     * @param array<int> $handValue
+     * @param CardHand $cardHand
+     * @return int
      */
-    private function getHighestValue(array $handValue): int
+    public function getHighestValue(CardHand $cardHand): int
     {
-        $maxValue = $handValue[0];
-        if($handValue[1] <= 21 && $handValue[1] > $maxValue) {
-            $maxValue = $handValue[1];
+        $handValues = $this->countHand($cardHand);
+        $maxValue = $handValues[0];
+        if($handValues[1] <= 21 && $handValues[1] > $maxValue) {
+            $maxValue = $handValues[1];
         }
         return $maxValue;
     }
 
     /**
      * Function to calculate who is the winner
-     * @param CardHand $player
+     * @param PlayerBlackjack $player
      * @param CardHand $computer
      */
-    public function findWinner(CardHand $player, CardHand $computer): void
+    public function findWinner(PlayerBlackjack $player, CardHand $computer): void
     {
-        $playerOptions = $this->checkAllRules($player);
+        $playerHands = $player->getHands();
         $computerOptions = $this->checkAllRules($computer);
-
-        if ($playerOptions["blackjack"] !== $computerOptions["blackjack"]) {
-            $winner = $playerOptions["blackjack"] ? $player : $computer;
-            $winner->setWinner(true);
-        } elseif ($playerOptions["bust"] !== $computerOptions["bust"]) {
-            $winner = $playerOptions["bust"] ? $computer : $player;
-            $winner->setWinner(true);
-        } elseif ($playerOptions["bestValue"] !== $computerOptions["bestValue"]) {
-            $winner = $playerOptions["bestValue"] > $computerOptions["bestValue"] ? $player : $computer;
-            $winner->setWinner(true);
+        foreach ($playerHands as $hand) {
+            $playerOptions = $this->checkAllRules($hand);
+            if ($playerOptions["blackjack"] !== $computerOptions["blackjack"]) {
+                $outcome = $playerOptions["blackjack"] ? "win" : "lose";
+                $hand->setOutcome($outcome);
+            } elseif ($playerOptions["bust"] !== $computerOptions["bust"]) {
+                $outcome = $playerOptions["bust"] ? "lose" : "win";
+                $hand->setOutcome($outcome);
+            } elseif ($hand->getPoints() !== $computer->getPoints()) {
+                $outcome = $hand->getPoints() > $computer->getPoints() ? "win" : "lose";
+                $hand->setOutcome($outcome);
+            }
         }
     }
 }
