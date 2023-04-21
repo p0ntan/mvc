@@ -92,7 +92,12 @@ class GameBlackjack
      */
     public function checkOptions(CardHand $cardHand): array
     {
+        $playerMoney = $this->player->getMoney();
+        $cardBet = $cardHand->getBet();
         $options = $this->rules->checkAllRules($cardHand);
+        if ($playerMoney < $cardBet) {
+            $options["split"] = false;
+        }
         return $options;
     }
 
@@ -123,21 +128,15 @@ class GameBlackjack
     public function playComputer(): void
     {
         $allPlayerHands = $this->player->getHands();
-        $allBust = true;
-        $allBlackjack = true;
+        $computerFinished = true;
         foreach ($allPlayerHands as $hand) {
             $options = $this->checkOptions($hand);
             if (!$options["bust"] && !$options["blackjack"]) {
-                $allBust = false;
-                $allBlackjack = false;
+                $computerFinished = false;
                 break;
-            } elseif (!$options["bust"]) {
-                $allBust = false;
-            } elseif (!$options["blackjack"]) {
-                $allBlackjack = false;
             }
         }
-        if (!$allBlackjack && !$allBust) {
+        if (!$computerFinished) {
             $computerFinished = $this->rules->computerRules($this->computer);
             while (!$computerFinished) {
                 $this->addCard($this->computer);
@@ -173,9 +172,11 @@ class GameBlackjack
             $result = $hand->getOutcome();
             $bet = $hand->getBet();
             $totMoney = $this->player->getMoney();
+            $blackjack = $this->checkOptions($hand)["blackjack"];
             switch ($result) {
                 case "win":
-                    $this->player->setMoney($totMoney + ($bet * 2));
+                    $odds = $blackjack ? 2.5 : 2;
+                    $this->player->setMoney($totMoney + ($bet * $odds));
                     break;
                 case "draw":
                     $this->player->setMoney($totMoney + $bet);

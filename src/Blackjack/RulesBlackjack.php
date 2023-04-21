@@ -1,7 +1,5 @@
 <?php
 
-namespace App\Card;
-
 namespace App\Blackjack;
 
 use App\Card\Card;
@@ -104,7 +102,7 @@ class RulesBlackjack
         $handValues = $this->countHand($cardHand);
         if ($this->softBlackjack($cardHand)) {
             return true;
-        } elseif ($handValues[0] < 17 or $handValues[1] < 17) {
+        } elseif ($handValues[0] < 17 && $handValues[1] < 17) {
             return false;
         }
         return true;
@@ -187,9 +185,10 @@ class RulesBlackjack
             if ($playerOptions["blackjack"] !== $computerOptions["blackjack"]) {
                 $outcome = $playerOptions["blackjack"] ? "win" : "lose";
                 $hand->setOutcome($outcome);
-            } elseif ($playerOptions["bust"] !== $computerOptions["bust"]) {
-                $outcome = $playerOptions["bust"] ? "lose" : "win";
-                $hand->setOutcome($outcome);
+            } elseif ($playerOptions["bust"]) {
+                $hand->setOutcome("lose");
+            } elseif ($computerOptions["bust"]) {
+                $hand->setOutcome("win");
             } elseif ($hand->getPoints() !== $computer->getPoints()) {
                 $outcome = $hand->getPoints() > $computer->getPoints() ? "win" : "lose";
                 $hand->setOutcome($outcome);

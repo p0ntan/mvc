@@ -19,6 +19,9 @@
     <p class="mb-0"><strong>DeckFactory</strong></p>
     <p>En klass för att injecta Card/CardGraphic in i DeckOfCards.</p>
 
+    <p class="mb-0"><strong>GameExceptions</strong></p>
+    <p>En klass som håller exceptions.</p>
+
     <p class="mb-0"><strong>PlayerBlackjack</strong></p>
     <p>Representerar varje spelare, innehåller en CardHand.</p>
 
@@ -27,7 +30,16 @@
 
     <p class="mb-0"><strong>GameBlackJack</strong></p>
     <p>Innehåller spelets struktur, det är främst mot denna klassen som man jobbar mot i controllern.</p>
+    
+    <h2 class="mb-4">Flödesschema</h2>
+    <div class="container d-flex justify-content-center mb-4 o-mw-650">
+        <a href="{{ asset('image/kmom03_flow.png')}}">
+            <img class="rounded img-fluid shadow-sm" src="{{ asset('image/kmom03_flow.png')}}" alt="Bild på blackjack flödesschema.">
+        </a>
+    </div>
+    
     <h2>Psudeokod</h2>
+    <h4>Hela spelets struktur</h4>
     <pre>
     INIT game
 
@@ -39,17 +51,17 @@
             GAME OVER draw
         ELSE
             GAME OVER player wins
-    ENDIF
+        ENDIF
     ENDIF
 
-    WHILE players hand < 21
+    REPEAT 
         DISPLAY options HIT or STAY
         IF player chooses HIT THEN
             DEAL card to player
         ELSEIF player chooses STAY THEN
-            BREAK while-loop
+            SET hand = done
         ENDIF
-    ENDWHILE
+    UNTIL hand >= 21 OR hand = done
 
     DISPLAY computer cards
 
@@ -73,10 +85,65 @@
         GAME OVER draw
     ENDIF
     </pre>
-    <h2 class="mb-4">Flödesschema</h2>
-    <div class="container d-flex justify-content-center mb-4 o-mw-650">
-        <a href="{{ asset('image/kmom03_flow.png')}}">
-            <img class="rounded img-fluid shadow-sm" src="{{ asset('image/kmom03_flow.png')}}" alt="Bild på blackjack flödesschema.">
-        </a>
-    </div>
+
+    <h4>Split av kort och utbetalning</h4>
+    <pre>
+    IF player chooses SPLIT
+
+    CALL splitHand on Player
+    
+    FOR hand in Player->Hands
+        IF cards in hand < 2 THEN
+            CALL addCard
+        ELSE
+            REPEAT 
+                DISPLAY options
+                IF player chooses HIT THEN
+                    DEAL card to player
+                ELSEIF player chooses STAY THEN
+                    SET hand to done
+                ELSEIF player chooses SPLIT THEN
+                    START OVER from the beginning/top
+                ENDIF
+            UNTIL hand >= 21 OR hand = done
+        END IF
+    ENDFOR
+    
+    DISPLAY computer cards
+    
+    FOR hand in Player->Hands
+        IF hand = blackjack AND computerHand = blackjack THEN
+            SET hand = draw
+        ELSEIF hand = blackjack AND computerHand != blackjack THEN
+            SET hand = win
+        ELSEIF hand != blackjack AND computerHand = blackjack THEN
+            SET hand = lose
+        ELSEIF hand = bust THEN
+            SET hand = lose
+        ELSEIF computerHand = bust THEN
+            SET hand = win
+        ELSEIF hand = computerHand THEN
+            SET hand = draw
+        ELSEIF hand > computerHand = THEN
+            SET hand = win
+        ELSEIF hand < computerHand = THEN
+            SET hand = lose
+        ENDIF
+    ENDFOR
+    
+    SET gameDone = true
+    
+    CALL payOut
+    FOR hand in Player->Hands
+        IF hand is winner AND hand = blackjack
+            RETURN bet x 3/2
+        ELSEIF hand is winner
+            RETURN bet x 2
+        ELSEIF hand is not winner and computerHand is not winner
+            RETURN bet
+        ELSE
+            RETURN 0
+        ENDIF
+    ENDFOR
+    </pre>
 {% endblock %}

@@ -29,8 +29,18 @@
     <h4>Spelomgång</h4>
     <ul>
         <li>Två kort delas ut i början av varje omgång till både spelare och bank, spelaren kan endast se ett av bankens kort.</li>
+        <li>Får spelaren två kort med samma värde kan välja att "splitta" sin korthand. De två korten delas då upp och bildar två separata korthänder som spelaren kan spela vidare med var för sig.</li>
         <li>Spelaren väljer om den vill få flera kort eller stanna med nuvarande hand.</li>
-        <li>Om spelaren väljer att stanna så är det bankens tur, banken måste ta ett nytt kort så länge dess poäng är under 17. Det gäller dock inte om spelaren har blivit "tjock".</li>
+        <li>Om spelaren väljer att stanna så är det bankens tur, banken måste ta ett nytt kort så länge dess poäng är under 17. Det gäller dock inte om spelaren har blivit "tjock" eller fått blackjack.</li>
+    </ul>
+    <h4>Betta</h4>
+    <ul>
+        <li>Före varje runda kan du bestämma hur mycket du vill satsa på nästa hand som delas ut.</li>
+        <li>Vid blackjack får man 3/2 av satsat belopp.</li>
+        <li>Skulle vinsten bli ett halvt belopp, t ex 7.5 rundas summan nedåt til 7.</li>
+        <li>Vid vinst vinner man satsat belopp.</li>
+        <li>Vid förlust blir man av med satsat belopp.</li>
+        <li>Vid splittning måste spelaren betala ytterligare en insats som är lika stor som satsat belopp.</li>
     </ul>
     <form action="{{ path('blackjack_init' )}}" method="POST">
         <input class="btn btn-primary mx-auto w-25" type="submit" value="Spela!">
