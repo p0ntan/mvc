@@ -2,10 +2,10 @@
 
 namespace App\Blackjack;
 
-use App\Card\CardGraphic;
 use App\Card\CardHand;
 use App\Card\DeckFactory;
 use App\Card\DeckOfCards;
+use App\Card\NotEnoughCardsException;
 
 /**
  * Class for blackjack game
@@ -19,7 +19,8 @@ class GameBlackjack
     protected CardHand $computer;
     protected DeckOfCards $cardDeck;
     protected RulesBlackjack $rules;
-    protected bool $gameDone = false;
+    protected bool $roundDone = false;
+    public bool $gameOver = false;
 
     /**
      * Method for setting up blackjack
@@ -32,6 +33,8 @@ class GameBlackjack
         $this->cardDeck = $cardDeck;
         $this->rules = new RulesBlackjack();
         $this->player = new PlayerBlackjack();
+        $this->gameOver = false;
+        $this->roundDone = false;
     }
 
     public function placeBet(int $bet): void
@@ -46,31 +49,27 @@ class GameBlackjack
      */
     public function newRound(): void
     {
-        if ($this->cardDeck->deckSize() < 10) {
-            $this->cardDeck->shuffleDeck();
-        }
         $this->player->resetHands();
         $this->computer = new CardHand();
         $playerCardHand = new CardHand();
-        $this->gameDone = false;
+        $this->roundDone = false;
 
         $cardsToDeal = 2;
-        // Player
-        $cards = $this->cardDeck->giveCards($cardsToDeal);
-        $playerCardHand->addCards($cards);
+        for ($i = 0; $i < $cardsToDeal; $i++) {
+            $this->addCard($playerCardHand);
+            $this->addCard($this->computer);
+        }
         $this->player->addCardHand($playerCardHand);
-        // Computer
-        $cards = $this->cardDeck->giveCards($cardsToDeal);
-        $this->computer->addCards($cards);
+        $this->updateHands();
     }
 
     /**
-     * Method for setting up blackjack
+     * Method for setting up next round
      */
-    public function nextRound(): void
+    public function updateHands(): void
     {
         $currentHand = $this->player->currentHand();
-        // First control that
+        // First control that there are two cards in hand (after split)
         if ($currentHand->cardsInHand() < 2) {
             $this->addCard($currentHand);
         }
@@ -103,15 +102,19 @@ class GameBlackjack
         return [$this->player, $this->computer];
     }
 
-    public function getPlayer(): PlayerBlackjack
+    /**
+     * Adds one card to the the cardhand
+     * @param CardHand $cardHand, the hand to give cards to
+     */
+    private function addCard(CardHand $cardHand): void
     {
-        return $this->player;
-    }
-
-    private function addCard(CardHand $player): void
-    {
-        $drawnCard = $this->cardDeck->drawCards();
-        $player->addCards($drawnCard);
+        try {
+            $drawnCard = $this->cardDeck->giveCards();
+            $cardHand->addCards($drawnCard);
+        } catch (NotEnoughCardsException) {
+            $this->cardDeck->shuffleDeck();
+            $this->addCard($cardHand);
+        }
     }
 
     public function doubleDown(): void
@@ -148,7 +151,7 @@ class GameBlackjack
                 $computerFinished = $this->rules->computerRules($this->computer);
             }
         }
-        $this->gameDone = true;
+        $this->roundDone = true;
         $this->rules->findWinner($this->player, $this->computer);
         $this->payOut();
     }
@@ -181,12 +184,17 @@ class GameBlackjack
             switch ($result) {
                 case "win":
                     $odds = $blackjack ? 2.5 : 2;
-                    $this->player->setMoney($totMoney + ($bet * $odds));
+                    $win = intval($bet * $odds);
+                    $this->player->setMoney($totMoney + $win);
                     break;
                 case "draw":
                     $this->player->setMoney($totMoney + $bet);
                     break;
             }
+        }
+        $playerMoney = $this->player->getMoney();
+        if ($playerMoney == 0) {
+            $this->gameOver = true;
         }
     }
 
@@ -201,17 +209,22 @@ class GameBlackjack
         foreach ($allPlayerHands as $hand) {
             $playerData["hands"][] = [
                 "bestPoint" => $hand->getPoints(),
+                "placedBet" => $hand->getBet(),
                 "cardHand" => $hand->getHandAsJson(),
-                "handOutcome" => $this->gameDone ? $hand->getOutcome() : "game not done"
+                "handOutcome" => $this->roundDone ? $hand->getOutcome() : "round not done"
             ];
         }
-        $data = [
-            "gameDone" => $this->gameDone,
-            "player" => $playerData,
-            "computer" => [
+        $computerHand = [
+            "hands" => [
                 "bestPoint" => $this->computer->getPoints(),
                 "cardHand" => $this->computer->getHandAsJson()
             ]
+        ];
+        $data = [
+            "gameOver" => $this->gameOver,
+            "roundOver" => $this->roundDone,
+            "player" => $playerData,
+            "computer" => $computerHand
         ];
         return $data;
     }

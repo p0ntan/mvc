@@ -5,6 +5,9 @@
 {% block header %}Runda över{% endblock %}
 
 {% block main %}
+    <div class="row">
+        <p class="text-center">Pengar kvar: {{ player.getMoney() }}<br>Totalt satsat belopp: {{ player.getTotalBet() }}</p>
+    </div>
     <div class="row mb-4">
         <div class="col">
             <h4 class="text-center">Banken</h4>
@@ -44,7 +47,12 @@
             {% endfor %}
         </div>
     </div>
-    <form class="mx-auto o-mw-250 d-flex justify-content-around" action="{{ path('blackjack_new_round')}}" method="post">
-        <input class="btn btn-primary" type="submit" value="Ny omgång">
-    </form>
+    {% if not gameOver %}
+        <form class="mx-auto o-mw-250 d-flex justify-content-around" action="{{ path('blackjack_new_round')}}" method="post">
+            <input class="btn btn-primary" type="submit" value="Ny omgång">
+        </form>
+    {% else %}
+        <p class="text-center fw-bold fs-5">Du har förlorat alla pengar, spelet är slut.</p>
+    {% endif %}
+
 {% endblock %}

@@ -13,7 +13,7 @@
         <li>Korten 2 till och med 10 är värda det poängtal som står angivet på spelkorten.</li>
         <li>Kung, dam och knekt är värda tio poäng.</li>
         <li>Ess är värt antingen ett poäng eller elva (endast den högst giltiga poängen visas).</li>
-        <li>Kortleken blandas inte om mellan varje omgång. Är det mindre än 10 kort kvar efter en omgång kommer kortleken blandas om.</li>
+        <li>Kortleken blandas inte om mellan varje omgång, utan det är först när korten i kortleken tar slut som korten blandas om.</li>
     </ul>
     <h4>Regler</h4>
     <ul>
@@ -30,7 +30,9 @@
     <ul>
         <li>Två kort delas ut i början av varje omgång till både spelare och bank, spelaren kan endast se ett av bankens kort.</li>
         <li>Får spelaren två kort med samma värde kan välja att "splitta" sin korthand. De två korten delas då upp och bildar två separata korthänder som spelaren kan spela vidare med var för sig.</li>
-        <li>Spelaren väljer om den vill få flera kort eller stanna med nuvarande hand.</li>
+        <li>När du har delats dina första två kort så kan man göra en "double down". Man dubblar då sin insats och får endast ett kort till.</li>
+        <li>Split och double-down kan endast göras om man har tillräckligt med pengar.</li>
+        <li>Spelaren väljer sen om den vill få flera kort eller stanna med nuvarande hand.</li>
         <li>Om spelaren väljer att stanna så är det bankens tur, banken måste ta ett nytt kort så länge dess poäng är under 17. Det gäller dock inte om spelaren har blivit "tjock" eller fått blackjack.</li>
     </ul>
     <h4>Betta</h4>
@@ -40,11 +42,11 @@
         <li>Skulle vinsten bli ett halvt belopp, t ex 7.5 rundas summan nedåt til 7.</li>
         <li>Vid vinst vinner man satsat belopp.</li>
         <li>Vid förlust blir man av med satsat belopp.</li>
-        <li>Vid splittning måste spelaren betala ytterligare en insats som är lika stor som satsat belopp.</li>
+        <li>Vid splittning och double-down måste spelaren betala ytterligare en insats som är lika stor som satsat belopp.</li>
+        <li>Banken har oändligt med resurser, men som spelare börjar man med 100 pengar.</li>
     </ul>
     <form action="{{ path('blackjack_new_round' )}}" method="POST">
         <button class="btn btn-primary mx-auto w-25" name="submit" value="init"
         onClick="this.form.action">Spela!</button>
-        {# <input class="btn btn-primary mx-auto w-25" type="submit" value="Spela!"> #}
     </form>
 {% endblock %}

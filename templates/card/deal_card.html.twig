@@ -19,18 +19,23 @@
     </div>
 
     {% if players %}
-        {% for player in players %}
-            <h2 class="text-center">Spelare {{ loop.index }}</h2>
-            <p class="text-center">{{ (player.getCards()|length <= 1) ? 'Draget' : 'Dragna' }} kort:</p>
-            <div class="card-container">
-                {% for card in player.getCards() %}
-                <i
-                    class="shadow border {{ card.getClassName() }}"
-                    style="background-image:url({{ asset('image/cards-sprite.png')}});">
-                </i>
-                {% endfor %}
-            </div>
-        {% endfor %}
+        {% if enoughInDeck %}
+            {% for player in players %}
+                <h2 class="text-center">Spelare {{ loop.index }}</h2>
+                <p class="text-center">{{ (player.getCards()|length <= 1) ? 'Draget' : 'Dragna' }} kort:</p>
+                <div class="card-container">
+                    {% for card in player.getCards() %}
+                    <i
+                        class="shadow border {{ card.getClassName() }}"
+                        style="background-image:url({{ asset('image/cards-sprite.png')}});">
+                    </i>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+        {% else %}
+            <p class="text-center fs-5 fw-bold">Inte tillräckligt med kort i kortleken.</p>            
+        {% endif %}
+
     {% endif %}
     {# Just a smaller script to update the form to make the POST route work #}
     <script>

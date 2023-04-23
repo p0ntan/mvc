@@ -55,7 +55,7 @@ class BlackjackController extends AbstractController
             return $this->redirectToRoute('blackjack_play');
         }
         $data = [
-            "playerMoney" => $blackjackGame->getPlayer()->getMoney()
+            "playerMoney" => $blackjackGame->getPlayers()[0]->getMoney()
         ];
         return $this->render('game/bet.html.twig', $data);
     }
@@ -66,7 +66,7 @@ class BlackjackController extends AbstractController
     ): Response {
         $blackjackGame = $session->get('blackjack_game');
         try {
-            $blackjackGame->nextRound();
+            $blackjackGame->updateHands();
             [$player, $computer] = $blackjackGame->getPlayers();
             $playerOptions = $blackjackGame->checkOptions($player->currentHand());
             $data = [
@@ -91,6 +91,7 @@ class BlackjackController extends AbstractController
         $data = [
             "player" => $player,
             "computer" => $computer,
+            "gameOver" => $blackjackGame->gameOver
         ];
         return $this->render('game/roundover.html.twig', $data);
     }

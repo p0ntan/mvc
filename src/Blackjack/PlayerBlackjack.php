@@ -73,14 +73,12 @@ class PlayerBlackjack
         $this->totMoney = $money;
     }
 
-    /** Function to change when all hands are done */
-    public function isDone(): bool
+    public function getTotalBet(): int
     {
+        $totalBet = 0;
         foreach ($this->hands as $hand) {
-            if (!$hand->isDone()) {
-                return false;
-            }
+            $totalBet += $hand->getBet();
         }
-        return true;
+        return $totalBet;
     }
 }

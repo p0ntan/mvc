@@ -54,6 +54,7 @@ class DeckOfCards
      */
     public function shuffleDeckJson(): array
     {
+        $this->shuffleDeck();
         $data = [];
         foreach ($this->getDeck() as $card) {
             $data[] = [
@@ -108,14 +109,12 @@ class DeckOfCards
     /**
      * @return array<mixed>
      */
-    public function giveCards(int $noOfCards): array
+    public function giveCards(int $noOfCards = 1): array
     {
         $usedCards = [];
 
-        if ($this->deckSize() == 0) {
-            return $usedCards;
-        } elseif ($noOfCards > $this->deckSize()) {
-            $noOfCards = $this->deckSize();
+        if ($noOfCards > $this->deckSize()) {
+            throw new NotEnoughCardsException();
         }
 
         for ($i = 0; $i < $noOfCards; $i ++) {
@@ -124,6 +123,27 @@ class DeckOfCards
 
         $this->cardsInUse = array_merge($this->cardsInUse, $usedCards);
         return $usedCards;
+    }
+
+    /**
+     * @return array<mixed>
+     */
+    public function giveCardsToHands(int $noOfPlayers, int $noOfCards): array
+    {
+        if ($this->deckSize() < ($noOfPlayers * $noOfCards)) {
+            return ["Not enough cards to deal as requested."];
+        }
+
+        $playerHands = [];
+        for ($i = 0; $i < $noOfPlayers; $i++) {
+            $cardHand = new CardHand();
+            $cardsToHand = $this->giveCards($noOfCards);
+            foreach ($cardsToHand as $card) {
+                $cardHand->addCard($card);
+            }
+            $playerHands[] = $cardHand;
+        }
+        return $playerHands;
     }
 
     /**
