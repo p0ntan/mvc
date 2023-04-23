@@ -3,7 +3,6 @@
 namespace App\Blackjack;
 
 use App\Card\Card;
-use App\Card\CardGraphic;
 use App\Card\CardHand;
 
 /**
@@ -22,6 +21,7 @@ class RulesBlackjack
             "blackjack" => $this->blackjack($cardHand),
             "softBlackjack" => $this->softBlackjack($cardHand),
             "bust" => $this->bust($cardHand),
+            "doubleDown" => $this->doubleDown($cardHand),
             "split" => $this->split($cardHand)
         ];
         $bestValue = $this->getHighestValue($cardHand);
@@ -90,6 +90,18 @@ class RulesBlackjack
     }
 
     /**
+     * Function to see if it's possible to split hands
+     */
+    private function doubleDown(CardHand $cardHand): bool
+    {
+        $noOfCards = $cardHand->cardsInHand();
+        if ($noOfCards == 2) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
      * Function for computer rule (always play if handvalue < 17)
      * @return bool
      */
@@ -100,8 +112,8 @@ class RulesBlackjack
         $cardHand->setPoints($bestValue);
         // Return bool if computer is finished or not
         $handValues = $this->countHand($cardHand);
-        if ($this->softBlackjack($cardHand)) {
-            return true;
+        if ($handValues[0] < 17 && $handValues[1] > 21) {
+            return false;
         } elseif ($handValues[0] < 17 && $handValues[1] < 17) {
             return false;
         }

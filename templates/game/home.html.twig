@@ -42,7 +42,9 @@
         <li>Vid förlust blir man av med satsat belopp.</li>
         <li>Vid splittning måste spelaren betala ytterligare en insats som är lika stor som satsat belopp.</li>
     </ul>
-    <form action="{{ path('blackjack_init' )}}" method="POST">
-        <input class="btn btn-primary mx-auto w-25" type="submit" value="Spela!">
+    <form action="{{ path('blackjack_new_round' )}}" method="POST">
+        <button class="btn btn-primary mx-auto w-25" name="submit" value="init"
+        onClick="this.form.action">Spela!</button>
+        {# <input class="btn btn-primary mx-auto w-25" type="submit" value="Spela!"> #}
     </form>
 {% endblock %}

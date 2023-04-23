@@ -2,7 +2,9 @@
 
 namespace App\Blackjack;
 
+use App\Card\CardGraphic;
 use App\Card\CardHand;
+use App\Card\DeckFactory;
 use App\Card\DeckOfCards;
 
 /**
@@ -22,21 +24,14 @@ class GameBlackjack
     /**
      * Method for setting up blackjack
      */
-    public function initGame(DeckOfCards $aCardDeck): void
+    public function initGame(): void
     {
-        $cardsToDeal = 2;
-        $this->cardDeck = $aCardDeck;
-        $this->player = new PlayerBlackjack();
-        $this->computer = new CardHand();
+        $emptyDeck = new DeckOfCards();
+        $deckFactory = new DeckFactory();
+        $cardDeck = $deckFactory->createDeck($emptyDeck, "CardGraphic");
+        $this->cardDeck = $cardDeck;
         $this->rules = new RulesBlackjack();
-        $playerCardHand = new CardHand();
-        // Player
-        $cards = $this->cardDeck->giveCards($cardsToDeal);
-        $playerCardHand->addCards($cards);
-        $this->player->addCardHand($playerCardHand);
-        // Computer
-        $cards = $this->cardDeck->giveCards($cardsToDeal);
-        $this->computer->addCards($cards);
+        $this->player = new PlayerBlackjack();
     }
 
     public function placeBet(int $bet): void
@@ -95,9 +90,8 @@ class GameBlackjack
         $playerMoney = $this->player->getMoney();
         $cardBet = $cardHand->getBet();
         $options = $this->rules->checkAllRules($cardHand);
-        if ($playerMoney < $cardBet) {
-            $options["split"] = false;
-        }
+        $options["split"] = $playerMoney < $cardBet ? false : $options["split"];
+        $options["doubleDown"] = $playerMoney < $cardBet ? false : $options["doubleDown"];
         return $options;
     }
 
@@ -118,6 +112,17 @@ class GameBlackjack
     {
         $drawnCard = $this->cardDeck->drawCards();
         $player->addCards($drawnCard);
+    }
+
+    public function doubleDown(): void
+    {
+        $currentHand = $this->player->currentHand();
+        $currentTotal = $this->player->getMoney();
+        $currentBet = $currentHand->getBet();
+        $currentHand->setBet($currentBet * 2);
+        $this->player->setMoney($currentTotal - $currentBet);
+        $this->addCard($currentHand);
+        $this->playerStay();
     }
 
     public function splitHand(): void
