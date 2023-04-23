@@ -163,20 +163,15 @@ class ApiController extends AbstractController
         $this->controlDeckSession($session);
         /** @var DeckOfCards $cardDeck */
         $cardDeck = $session->get('card_deck_api');
-        $playerHands = [];
-        if (!$players <= 0) {
-            for ($i = 0; $i < $players; $i++) {
-                $cardHand = new CardHand();
-                $cardsToHand = $cardDeck->giveCards($cards);
-                foreach ($cardsToHand as $card) {
-                    $cardHand->addCard($card);
-                }
-                $playerHands[] = $cardHand;
-            }
-        }
+        $allHands = $cardDeck->giveCardsToHands($players, $cards);
         $data = ["cardsLeft" => $cardDeck->deckSize()];
-        for ($i = 0; $i < $players; $i++) {
-            $data["players"][$i] = $playerHands[$i]->getHandAsJson();
+        $noOfHands = sizeof($allHands);
+        for ($i = 0; $i < $noOfHands; $i++) {
+            if ($allHands[$i] instanceof CardHand) {
+                $data["players"][$i] = $allHands[$i]->getHandAsJson();
+                continue;
+            }
+            $data["message"] = $allHands[$i];
         }
         $response = new JsonResponse($data);
         $response->setEncodingOptions(

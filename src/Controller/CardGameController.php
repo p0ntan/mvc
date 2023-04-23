@@ -112,22 +112,17 @@ class CardGameController extends AbstractController
         $this->controlDeckSession($session);
         /** @var DeckOfCards $cardDeck */
         $cardDeck = $session->get('card_deck');
-        $playerHands = [];
-        if (!$players <= 0) {
-            for ($i = 0;$i < $players; $i++) {
-                $cardHand = new CardHand();
-                $cardsToHand = $cardDeck->giveCards($cards);
-                foreach ($cardsToHand as $card) {
-                    $cardHand->addCard($card);
-                }
-                $playerHands[] = $cardHand;
-            }
+        $allHands = $cardDeck->giveCardsToHands($players, $cards);
+        $enoughInDeck = false;
+        if (sizeOf($allHands) > 0) {
+            $enoughInDeck = $allHands[0] instanceof CardHand;
         }
 
         $data = [
             "title" => "Dra kort till spelare",
-            "players" => $playerHands,
+            "players" => $allHands,
             "size" => $cardDeck->deckSize(),
+            "enoughInDeck" => $enoughInDeck
         ];
         return $this->render('card/deal_card.html.twig', $data);
     }
