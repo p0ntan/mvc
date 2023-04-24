@@ -21,7 +21,3 @@
 
 ### tools and cs-fixer
 /tools/
-/.php-cs-fixer.cache
-/.php-cs-fixer.dist.php
-/phpmd.xml
-/phpstan.neon
