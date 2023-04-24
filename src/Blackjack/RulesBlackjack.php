@@ -130,10 +130,12 @@ class RulesBlackjack
         // Two sums to control if an ace is in the hand
         $totalValue = 0;
         $totalValue2 = 0;
+        $aceCount = 0; // To keep track of nr of aces in hand
         $allCards = $cardHand->getCards();
         foreach ($allCards as $card) {
             $cardValue = $this->updateValue($card);
             if ($cardValue == 1) {
+                $aceCount += 1;
                 $totalValue += 1;
                 $totalValue2 += 11;
                 continue;
@@ -141,11 +143,12 @@ class RulesBlackjack
             $totalValue += $cardValue;
             $totalValue2 += $cardValue;
         }
-        // Meaning there are two cards in hand, both aces
-        if ($totalValue == 2 && $totalValue2 == 22) {
-            $totalValue = 1;
-            $totalValue2 = 12;
+        // Adjusting highest hand if there are multiple aces in hand
+        while ($aceCount > 1 && $totalValue2 > 21) {
+            $totalValue2 -= 10;
+            $aceCount -= 1;
         }
+
         return [$totalValue, $totalValue2];
     }
 
