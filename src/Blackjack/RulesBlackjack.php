@@ -82,7 +82,7 @@ class RulesBlackjack
         $noOfCards = $cardHand->cardsInHand();
         $cards = $cardHand->getCards();
         if ($noOfCards == 2) {
-            if ($cards[0]->getValue() == $cards[01]->getValue()) {
+            if ($cards[0]->getValue() == $cards[1]->getValue()) {
                 return true;
             }
         }
