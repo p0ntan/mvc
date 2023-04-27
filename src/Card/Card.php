@@ -12,6 +12,13 @@ class Card
 
     protected string $suit;
     protected int $value;
+    private array $valueNames = [
+        0 => "Joker",
+        1 => "Ace",
+        11 => "Knight",
+        12 => "Queen",
+        13 => "King"
+    ];
 
     public function __construct(string $suit = null, int $value = null)
     {
@@ -31,25 +38,9 @@ class Card
 
     public function getAsString(): string
     {
-        switch ($this->value) {
-            case (0):
-                return "Joker";
-            case (1):
-                $value = "Ace";
-                break;
-            case (11):
-                $value = "Knight";
-                break;
-            case (12):
-                $value = "Queen";
-                break;
-            case (13):
-                $value = "King";
-                break;
-            default:
-                $value = $this->value;
-                break;
-        }
+        $value = array_key_exists($this->value, $this->valueNames)
+            ? $this->valueNames[$this->value]
+            : $this->value;
         return "$value of $this->suit";
     }
 
