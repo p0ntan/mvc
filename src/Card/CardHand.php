@@ -8,7 +8,7 @@ namespace App\Card;
 class CardHand
 {
     /** @var array<Card> */
-    protected array $cards;
+    protected array $cards = [];
 
     /**
      * To compare different hands at end of a game.
