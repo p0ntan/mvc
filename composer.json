@@ -101,6 +101,8 @@
             "@phpmd",
             "@phpstan"
         ],
+        "phpdoc": "tools/phpdoc/phpdoc",
+        "phpunit": "XDEBUG_MODE=coverage vendor/bin/phpunit",
         "post-install-cmd": [
             "@auto-scripts"
         ],
