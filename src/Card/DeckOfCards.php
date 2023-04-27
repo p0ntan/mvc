@@ -52,16 +52,11 @@ class DeckOfCards
     /**
      * @return array<mixed>
      */
-    public function shuffleDeckJson(): array
+    public function getAsJson(): array
     {
-        $this->shuffleDeck();
         $data = [];
         foreach ($this->getDeck() as $card) {
-            $data[] = [
-                "suit" => $card->getSuit(),
-                "value" => $card->getValue(),
-                "name" => $card->getAsString()
-            ];
+            $data[] = $card->getAsJson();
         }
         return $data;
     }
@@ -97,11 +92,7 @@ class DeckOfCards
             "cardsLeft" => $this->deckSize()
         ];
         foreach ($drawnCard as $card) {
-            $data["drawnCards"][] = [
-            "suit" => $card->getSuit(),
-            "value" => $card->getValue(),
-            "name" => $card->getAsString()
-            ];
+            $data["drawnCards"][] = $card->getAsJson();
         }
         return $data;
     }
@@ -181,11 +172,7 @@ class DeckOfCards
         $data = [];
         $sortedDeck = $this->getSortedDeck();
         foreach ($sortedDeck as $card) {
-            $data[] = [
-                "suit" => $card->getSuit(),
-                "value" => $card->getValue(),
-                "name" => $card->getAsString()
-            ];
+            $data[] = $card->getAsJson();
         }
         return $data;
     }
@@ -201,4 +188,6 @@ class DeckOfCards
         }
         return $allCardsStr;
     }
+
+
 }

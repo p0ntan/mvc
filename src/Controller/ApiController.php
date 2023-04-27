@@ -91,7 +91,7 @@ class ApiController extends AbstractController
         /** @var DeckOfCards $cardDeck */
         $cardDeck = $session->get('card_deck_api');
         $cardDeck->shuffleDeck();
-        $data = $cardDeck->shuffleDeckJson();
+        $data = $cardDeck->getAsJson();
 
         $response = new JsonResponse($data);
         $response->setEncodingOptions(
