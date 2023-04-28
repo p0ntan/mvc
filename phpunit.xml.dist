@@ -20,6 +20,9 @@
     <testsuites>
         <testsuite name="Project Test Suite">
             <directory>tests</directory>
+            <file>tests/Card/DeckOfCardsTest2.php</file>
+            <file>tests/Blackjack/GameBlackjackTest2.php</file>
+            <file>tests/Blackjack/RulesBlackjackTest2.php</file>
         </testsuite>
     </testsuites>
 
