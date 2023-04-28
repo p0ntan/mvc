@@ -12,6 +12,7 @@ class Card
 
     protected string $suit;
     protected int $value;
+    /** @var array<string> $valueNames */
     private array $valueNames = [
         0 => "Joker",
         1 => "Ace",
