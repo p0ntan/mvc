@@ -119,12 +119,14 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Blackjack/GameBlackjack.php"><a href="files/src-blackjack-gameblackjack.html"><abbr title="src/Blackjack/GameBlackjack.php">GameBlackjack.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">13</span>
+    <span class="phpdocumentor-element-found-in__line">17</span>
 
     </aside>
 
-            <p class="phpdocumentor-summary">Class for blackjack game</p>
+            <p class="phpdocumentor-summary">GameBlackjack class</p>
 
+    <section class="phpdocumentor-description"><p>A class to play the game of blackjack. Contains everything needed for game.</p>
+</section>
 
 
 
@@ -165,7 +167,7 @@
     <span>
                         &nbsp;: <a href="classes/App-Blackjack-PlayerBlackjack.html"><abbr title="\App\Blackjack\PlayerBlackjack">PlayerBlackjack</abbr></a>            </span>
 </dt>
-<dd>Variables to hold parts of the game</dd>
+<dd></dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -protected">
     <a href="classes/App-Blackjack-GameBlackjack.html#property_roundDone">$roundDone</a>
@@ -186,35 +188,35 @@
     <span>
                                 &nbsp;: array&lt;string|int, mixed&gt;    </span>
 </dt>
-<dd>Function to check what options the hand has</dd>
+<dd>Method to check what options a certain hand has</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/App-Blackjack-GameBlackjack.html#method_doubleDown">doubleDown()</a>
     <span>
                                 &nbsp;: void    </span>
 </dt>
-<dd></dd>
+<dd>Doubles the bet for the player and gives one last card to players current hand.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/App-Blackjack-GameBlackjack.html#method_getAsJson">getAsJson()</a>
     <span>
                                 &nbsp;: array&lt;string|int, mixed&gt;    </span>
 </dt>
-<dd>Function to get game-status as json</dd>
+<dd>Get current state in a JSON-structure</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/App-Blackjack-GameBlackjack.html#method_getPlayers">getPlayers()</a>
     <span>
                                 &nbsp;: array&lt;string|int, mixed&gt;    </span>
 </dt>
-<dd></dd>
+<dd>Method to get both players</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/App-Blackjack-GameBlackjack.html#method_initGame">initGame()</a>
     <span>
                                 &nbsp;: void    </span>
 </dt>
-<dd>Method for setting up blackjack</dd>
+<dd>Method to init the game. Needs injection of a carddeck</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/App-Blackjack-GameBlackjack.html#method_newRound">newRound()</a>
@@ -228,56 +230,56 @@
     <span>
                                 &nbsp;: void    </span>
 </dt>
-<dd></dd>
+<dd>Method to place a bet for the player</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/App-Blackjack-GameBlackjack.html#method_playComputer">playComputer()</a>
     <span>
                                 &nbsp;: void    </span>
 </dt>
-<dd></dd>
+<dd>Plays computers hand</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/App-Blackjack-GameBlackjack.html#method_playerAddCard">playerAddCard()</a>
     <span>
                                 &nbsp;: bool    </span>
 </dt>
-<dd></dd>
+<dd>Add cards to players hand</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/App-Blackjack-GameBlackjack.html#method_playerStay">playerStay()</a>
     <span>
                                 &nbsp;: void    </span>
 </dt>
-<dd></dd>
+<dd>Sets the currenthand for the player to done</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/App-Blackjack-GameBlackjack.html#method_splitHand">splitHand()</a>
     <span>
                                 &nbsp;: void    </span>
 </dt>
-<dd></dd>
+<dd>Splits the hand for the player</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/App-Blackjack-GameBlackjack.html#method_updateHands">updateHands()</a>
     <span>
                                 &nbsp;: void    </span>
 </dt>
-<dd>Method for setting up next round</dd>
+<dd>Updates hands points and hand</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -private">
     <a href="classes/App-Blackjack-GameBlackjack.html#method_addCard">addCard()</a>
     <span>
                                 &nbsp;: void    </span>
 </dt>
-<dd>Adds one card to the the cardhand</dd>
+<dd>Adds card to a hand</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -private">
     <a href="classes/App-Blackjack-GameBlackjack.html#method_payOut">payOut()</a>
     <span>
                                 &nbsp;: void    </span>
 </dt>
-<dd></dd>
+<dd>Checks if player has won and pays out bet</dd>
 
         </dl>
 
@@ -307,7 +309,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Blackjack/GameBlackjack.php"><a href="files/src-blackjack-gameblackjack.html"><abbr title="src/Blackjack/GameBlackjack.php">GameBlackjack.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">23</span>
+    <span class="phpdocumentor-element-found-in__line">35</span>
 
     </aside>
 
@@ -318,9 +320,9 @@
     <span class="phpdocumentor-signature__name">$gameOver</span>
      = <span class="phpdocumentor-signature__default-value">false</span></code>
 
-        <section class="phpdocumentor-description"></section>
-
-        <section class="phpdocumentor-description"></section>
+    
+        <section class="phpdocumentor-description"><p>Tells if the game is over</p>
+</section>
 
     
 
@@ -341,7 +343,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Blackjack/GameBlackjack.php"><a href="files/src-blackjack-gameblackjack.html"><abbr title="src/Blackjack/GameBlackjack.php">GameBlackjack.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">20</span>
+    <span class="phpdocumentor-element-found-in__line">26</span>
 
     </aside>
 
@@ -352,9 +354,9 @@
     <span class="phpdocumentor-signature__name">$cardDeck</span>
     </code>
 
-        <section class="phpdocumentor-description"></section>
-
-        <section class="phpdocumentor-description"></section>
+    
+        <section class="phpdocumentor-description"><p>Is the carddeck used in game</p>
+</section>
 
     
 
@@ -375,7 +377,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Blackjack/GameBlackjack.php"><a href="files/src-blackjack-gameblackjack.html"><abbr title="src/Blackjack/GameBlackjack.php">GameBlackjack.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">19</span>
+    <span class="phpdocumentor-element-found-in__line">23</span>
 
     </aside>
 
@@ -386,9 +388,9 @@
     <span class="phpdocumentor-signature__name">$computer</span>
     </code>
 
-        <section class="phpdocumentor-description"></section>
-
-        <section class="phpdocumentor-description"></section>
+    
+        <section class="phpdocumentor-description"><p>Holds the computers hand</p>
+</section>
 
     
 
@@ -409,12 +411,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Blackjack/GameBlackjack.php"><a href="files/src-blackjack-gameblackjack.html"><abbr title="src/Blackjack/GameBlackjack.php">GameBlackjack.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">18</span>
+    <span class="phpdocumentor-element-found-in__line">20</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Variables to hold parts of the game</p>
-
+    
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
         <span class="phpdocumentor-signature__type"><a href="classes/App-Blackjack-PlayerBlackjack.html"><abbr title="\App\Blackjack\PlayerBlackjack">PlayerBlackjack</abbr></a></span>
@@ -422,7 +423,8 @@
     </code>
 
     
-        <section class="phpdocumentor-description"></section>
+        <section class="phpdocumentor-description"><p>Holds the player with all hands and info</p>
+</section>
 
     
 
@@ -443,7 +445,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Blackjack/GameBlackjack.php"><a href="files/src-blackjack-gameblackjack.html"><abbr title="src/Blackjack/GameBlackjack.php">GameBlackjack.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">22</span>
+    <span class="phpdocumentor-element-found-in__line">32</span>
 
     </aside>
 
@@ -454,9 +456,9 @@
     <span class="phpdocumentor-signature__name">$roundDone</span>
      = <span class="phpdocumentor-signature__default-value">false</span></code>
 
-        <section class="phpdocumentor-description"></section>
-
-        <section class="phpdocumentor-description"></section>
+    
+        <section class="phpdocumentor-description"><p>Tells if the round is over</p>
+</section>
 
     
 
@@ -477,7 +479,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Blackjack/GameBlackjack.php"><a href="files/src-blackjack-gameblackjack.html"><abbr title="src/Blackjack/GameBlackjack.php">GameBlackjack.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">21</span>
+    <span class="phpdocumentor-element-found-in__line">29</span>
 
     </aside>
 
@@ -488,9 +490,9 @@
     <span class="phpdocumentor-signature__name">$rules</span>
     </code>
 
-        <section class="phpdocumentor-description"></section>
-
-        <section class="phpdocumentor-description"></section>
+    
+        <section class="phpdocumentor-description"><p>Is the rules of the game</p>
+</section>
 
     
 
@@ -515,11 +517,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Blackjack/GameBlackjack.php"><a href="files/src-blackjack-gameblackjack.html"><abbr title="src/Blackjack/GameBlackjack.php">GameBlackjack.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">87</span>
+    <span class="phpdocumentor-element-found-in__line">110</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Function to check what options the hand has</p>
+        <p class="phpdocumentor-summary">Method to check what options a certain hand has</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -533,7 +535,8 @@
                 : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/App-Card-CardHand.html"><abbr title="\App\Card\CardHand">CardHand</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
+                    <section class="phpdocumentor-description"><p>The hand to check</p>
+</section>
 
             </dd>
             </dl>
@@ -559,17 +562,17 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Blackjack/GameBlackjack.php"><a href="files/src-blackjack-gameblackjack.html"><abbr title="src/Blackjack/GameBlackjack.php">GameBlackjack.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">120</span>
+    <span class="phpdocumentor-element-found-in__line">155</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Doubles the bet for the player and gives one last card to players current hand.</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                     <span class="phpdocumentor-signature__name">doubleDown</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
-        <section class="phpdocumentor-description"></section>
-
+    
     
     
 
@@ -592,17 +595,19 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Blackjack/GameBlackjack.php"><a href="files/src-blackjack-gameblackjack.html"><abbr title="src/Blackjack/GameBlackjack.php">GameBlackjack.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">205</span>
+    <span class="phpdocumentor-element-found-in__line">268</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Function to get game-status as json</p>
+        <p class="phpdocumentor-summary">Get current state in a JSON-structure</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                     <span class="phpdocumentor-signature__name">getAsJson</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>Method to get the status of the game as an array that can be used as a JSON object.</p>
+</section>
+
     
     
 
@@ -625,16 +630,19 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Blackjack/GameBlackjack.php"><a href="files/src-blackjack-gameblackjack.html"><abbr title="src/Blackjack/GameBlackjack.php">GameBlackjack.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">100</span>
+    <span class="phpdocumentor-element-found-in__line">127</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Method to get both players</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                     <span class="phpdocumentor-signature__name">getPlayers</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>Returns an array with the players in game which would be the player and the computer</p>
+</section>
+
     
     
 
@@ -657,18 +665,28 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Blackjack/GameBlackjack.php"><a href="files/src-blackjack-gameblackjack.html"><abbr title="src/Blackjack/GameBlackjack.php">GameBlackjack.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">28</span>
+    <span class="phpdocumentor-element-found-in__line">42</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Method for setting up blackjack</p>
+        <p class="phpdocumentor-summary">Method to init the game. Needs injection of a carddeck</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">initGame</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+                    <span class="phpdocumentor-signature__name">initGame</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/App-Card-DeckOfCards.html"><abbr title="\App\Card\DeckOfCards">DeckOfCards</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$cardDeck</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
     
-    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$cardDeck</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/App-Card-DeckOfCards.html"><abbr title="\App\Card\DeckOfCards">DeckOfCards</abbr></a></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+            </dl>
+
     
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
@@ -690,7 +708,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Blackjack/GameBlackjack.php"><a href="files/src-blackjack-gameblackjack.html"><abbr title="src/Blackjack/GameBlackjack.php">GameBlackjack.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">50</span>
+    <span class="phpdocumentor-element-found-in__line">67</span>
 
     </aside>
 
@@ -723,17 +741,17 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Blackjack/GameBlackjack.php"><a href="files/src-blackjack-gameblackjack.html"><abbr title="src/Blackjack/GameBlackjack.php">GameBlackjack.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">40</span>
+    <span class="phpdocumentor-element-found-in__line">57</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Method to place a bet for the player</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                     <span class="phpdocumentor-signature__name">placeBet</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$bet</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
-        <section class="phpdocumentor-description"></section>
-
+    
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -741,7 +759,8 @@
                 : <span class="phpdocumentor-signature__argument__return-type">int</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
+                    <section class="phpdocumentor-description"><p>The players bet</p>
+</section>
 
             </dd>
             </dl>
@@ -767,16 +786,19 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Blackjack/GameBlackjack.php"><a href="files/src-blackjack-gameblackjack.html"><abbr title="src/Blackjack/GameBlackjack.php">GameBlackjack.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">136</span>
+    <span class="phpdocumentor-element-found-in__line">180</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Plays computers hand</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                     <span class="phpdocumentor-signature__name">playComputer</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
-        <section class="phpdocumentor-description"></section>
+        <section class="phpdocumentor-description"><p>Method to finish the game for the computer when the player is done.
+Some game logic is in method aswell for when a computer can stop or keep ask for cards.</p>
+</section>
 
     
     
@@ -800,16 +822,18 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Blackjack/GameBlackjack.php"><a href="files/src-blackjack-gameblackjack.html"><abbr title="src/Blackjack/GameBlackjack.php">GameBlackjack.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">165</span>
+    <span class="phpdocumentor-element-found-in__line">219</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Add cards to players hand</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                     <span class="phpdocumentor-signature__name">playerAddCard</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
 
-        <section class="phpdocumentor-description"></section>
+        <section class="phpdocumentor-description"><p>Adds a card to the players current hand. Returns a boolean if hand bust or not</p>
+</section>
 
     
     
@@ -817,7 +841,9 @@
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">bool</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>If currenthand gets busted or not</p>
+</section>
+
     
 </article>
                     <article
@@ -833,17 +859,17 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Blackjack/GameBlackjack.php"><a href="files/src-blackjack-gameblackjack.html"><abbr title="src/Blackjack/GameBlackjack.php">GameBlackjack.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">159</span>
+    <span class="phpdocumentor-element-found-in__line">206</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Sets the currenthand for the player to done</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                     <span class="phpdocumentor-signature__name">playerStay</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
-        <section class="phpdocumentor-description"></section>
-
+    
     
     
 
@@ -866,17 +892,17 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Blackjack/GameBlackjack.php"><a href="files/src-blackjack-gameblackjack.html"><abbr title="src/Blackjack/GameBlackjack.php">GameBlackjack.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">131</span>
+    <span class="phpdocumentor-element-found-in__line">169</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Splits the hand for the player</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                     <span class="phpdocumentor-signature__name">splitHand</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
-        <section class="phpdocumentor-description"></section>
-
+    
     
     
 
@@ -899,17 +925,20 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Blackjack/GameBlackjack.php"><a href="files/src-blackjack-gameblackjack.html"><abbr title="src/Blackjack/GameBlackjack.php">GameBlackjack.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">69</span>
+    <span class="phpdocumentor-element-found-in__line">89</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Method for setting up next round</p>
+        <p class="phpdocumentor-summary">Updates hands points and hand</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                     <span class="phpdocumentor-signature__name">updateHands</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>Method for updating hands when the state of the game is changed.
+Example when a hand is split och new cards are handed out.</p>
+</section>
+
     
     
 
@@ -932,17 +961,21 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Blackjack/GameBlackjack.php"><a href="files/src-blackjack-gameblackjack.html"><abbr title="src/Blackjack/GameBlackjack.php">GameBlackjack.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">109</span>
+    <span class="phpdocumentor-element-found-in__line">141</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Adds one card to the the cardhand</p>
+        <p class="phpdocumentor-summary">Adds card to a hand</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
                     <span class="phpdocumentor-signature__name">addCard</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/App-Card-CardHand.html"><abbr title="\App\Card\CardHand">CardHand</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$cardHand</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>Adds one card to the cardhand used as a parameter.
+If the deck runs out of cards then the deck is shuffled and then a card is given.
+For the player it will look like a whole new carddeck was added to the game.</p>
+</section>
+
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -976,16 +1009,19 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Blackjack/GameBlackjack.php"><a href="files/src-blackjack-gameblackjack.html"><abbr title="src/Blackjack/GameBlackjack.php">GameBlackjack.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">176</span>
+    <span class="phpdocumentor-element-found-in__line">236</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Checks if player has won and pays out bet</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
                     <span class="phpdocumentor-signature__name">payOut</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
-        <section class="phpdocumentor-description"></section>
+        <section class="phpdocumentor-description"><p>Method that compares each playerhand to computer and pays out money if player wins.
+Sets property $gameOver to done if player runs out of money</p>
+</section>
 
     
     

@@ -1,4 +1,7 @@
 <?php
+/**
+ * GameBlackjack.php contains the class GameBlackjack.
+ */
 
 namespace App\Blackjack;
 
@@ -7,22 +10,34 @@ use App\Card\DeckOfCards;
 use App\Card\NotEnoughCardsException;
 
 /**
- * Class for blackjack game
+ * GameBlackjack class
+ *
+ * A class to play the game of blackjack. Contains everything needed for game.
  */
 class GameBlackjack
 {
-    /**
-     * Variables to hold parts of the game
-     */
+    /** @var PlayerBlackjack $player Holds the player with all hands and info */
     protected PlayerBlackjack $player;
+
+    /** @var CardHand $computer Holds the computers hand */
     protected CardHand $computer;
+
+    /** @var DeckOfCards $cardDeck Is the carddeck used in game */
     protected DeckOfCards $cardDeck;
+
+    /** @var RulesBlackjack $rules Is the rules of the game */
     protected RulesBlackjack $rules;
+
+    /** @var bool $roundDone Tells if the round is over */
     protected bool $roundDone = false;
+
+    /** @var bool $gameOver Tells if the game is over */
     public bool $gameOver = false;
 
     /**
-     * Method for setting up blackjack
+     * Method to init the game. Needs injection of a carddeck
+     *
+     * @param DeckOfCards $cardDeck
      */
     public function initGame(
         DeckOfCards $cardDeck
@@ -34,6 +49,11 @@ class GameBlackjack
         $this->roundDone = false;
     }
 
+    /**
+     * Method to place a bet for the player
+     *
+     * @param int $bet The players bet
+     */
     public function placeBet(int $bet): void
     {
         $currentTotal = $this->player->getMoney();
@@ -61,7 +81,10 @@ class GameBlackjack
     }
 
     /**
-     * Method for setting up next round
+     * Updates hands points and hand
+     *
+     * Method for updating hands when the state of the game is changed.
+     * Example when a hand is split och new cards are handed out.
      */
     public function updateHands(): void
     {
@@ -78,7 +101,10 @@ class GameBlackjack
     }
 
     /**
-     * Function to check what options the hand has
+     * Method to check what options a certain hand has
+     *
+     * @param CardHand $cardHand The hand to check
+     *
      * @return array<mixed>
      */
     public function checkOptions(CardHand $cardHand): array
@@ -92,6 +118,10 @@ class GameBlackjack
     }
 
     /**
+     * Method to get both players
+     *
+     * Returns an array with the players in game which would be the player and the computer
+     *
      * @return array<mixed>
      */
     public function getPlayers(): array
@@ -100,7 +130,12 @@ class GameBlackjack
     }
 
     /**
-     * Adds one card to the the cardhand
+     * Adds card to a hand
+     *
+     * Adds one card to the cardhand used as a parameter.
+     * If the deck runs out of cards then the deck is shuffled and then a card is given.
+     * For the player it will look like a whole new carddeck was added to the game.
+     *
      * @param CardHand $cardHand, the hand to give cards to
      */
     private function addCard(CardHand $cardHand): void
@@ -114,6 +149,9 @@ class GameBlackjack
         }
     }
 
+    /**
+     * Doubles the bet for the player and gives one last card to players current hand.
+     */
     public function doubleDown(): void
     {
         $currentHand = $this->player->currentHand();
@@ -125,11 +163,20 @@ class GameBlackjack
         $this->playerStay();
     }
 
+    /**
+     * Splits the hand for the player
+     */
     public function splitHand(): void
     {
         $this->player->splitHand();
     }
 
+    /**
+     * Plays computers hand
+     *
+     * Method to finish the game for the computer when the player is done.
+     * Some game logic is in method aswell for when a computer can stop or keep ask for cards.
+     */
     public function playComputer(): void
     {
         $allPlayerHands = $this->player->getHands();
@@ -153,12 +200,22 @@ class GameBlackjack
         $this->payOut();
     }
 
+    /**
+     * Sets the currenthand for the player to done
+     */
     public function playerStay(): void
     {
         $currentHand = $this->player->currentHand();
         $currentHand->setDone(true);
     }
 
+    /**
+     * Add cards to players hand
+     *
+     * Adds a card to the players current hand. Returns a boolean if hand bust or not
+     *
+     * @return bool If currenthand gets busted or not
+     */
     public function playerAddCard(): bool
     {
         $currentHand = $this->player->currentHand();
@@ -170,6 +227,12 @@ class GameBlackjack
         return false;
     }
 
+    /**
+     * Checks if player has won and pays out bet
+     *
+     * Method that compares each playerhand to computer and pays out money if player wins.
+     * Sets property $gameOver to done if player runs out of money
+     */
     private function payOut(): void
     {
         $allHands = $this->player->getHands();
@@ -196,7 +259,10 @@ class GameBlackjack
     }
 
     /**
-     * Function to get game-status as json
+     * Get current state in a JSON-structure
+     *
+     * Method to get the status of the game as an array that can be used as a JSON object.
+     *
      * @return array<mixed>
      */
     public function getAsJson(): array
