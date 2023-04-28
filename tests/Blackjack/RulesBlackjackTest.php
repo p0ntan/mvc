@@ -133,10 +133,8 @@ class RulesBlackjackTest extends TestCase
         // Set up stubs for card and cardhand
         $stubAce = $this->createStub(Card::class);
         $stubAce->method("getValue")->willReturn(1); // acevalue = 1
-        $stubAceTwo = $this->createStub(Card::class);
-        $stubAceTwo->method("getValue")->willReturn(1); // acevalue = 1
         $cardHand = $this->createStub(CardHand::class);
-        $cardHand->method("getCards")->willReturn([$stubAce, $stubAceTwo]);
+        $cardHand->method("getCards")->willReturn([$stubAce, $stubAce]);
         $cardHand->method("cardsInHand")->willReturn(2); // 2 cards in hand
 
         $rulesBlackjack = new RulesBlackjack();
@@ -203,12 +201,10 @@ class RulesBlackjackTest extends TestCase
         // Set up stubs for card and cardhand
         $stubAce = $this->createStub(Card::class);
         $stubAce->method("getValue")->willReturn(1); // acevalue = 1
-        $stubAceTwo = $this->createStub(Card::class);
-        $stubAceTwo->method("getValue")->willReturn(1); // acevalue = 1
         $stubKing = $this->createStub(Card::class);
         $stubKing->method("getValue")->willReturn(13); // king = 13
         $cardHand = $this->createStub(CardHand::class);
-        $cardHand->method("getCards")->willReturn([$stubAce, $stubAceTwo, $stubKing]);
+        $cardHand->method("getCards")->willReturn([$stubAce, $stubAce, $stubKing]);
         $cardHand->method("cardsInHand")->willReturn(3); // 3 cards in hand
 
         $rulesBlackjack = new RulesBlackjack();
@@ -227,10 +223,8 @@ class RulesBlackjackTest extends TestCase
         $stubSix->method("getValue")->willReturn(6); // six = 6
         $stubKing = $this->createStub(Card::class);
         $stubKing->method("getValue")->willReturn(13); // king = 13
-        $stubKingTwo = $this->createStub(Card::class);
-        $stubKingTwo->method("getValue")->willReturn(13); // king = 13
         $cardHand = $this->createStub(CardHand::class);
-        $cardHand->method("getCards")->willReturn([$stubSix, $stubKing, $stubKingTwo]);
+        $cardHand->method("getCards")->willReturn([$stubSix, $stubKing, $stubKing]);
         $cardHand->method("cardsInHand")->willReturn(3); // 3 cards in hand
 
         $rulesBlackjack = new RulesBlackjack();

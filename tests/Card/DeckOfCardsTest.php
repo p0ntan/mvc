@@ -240,7 +240,7 @@ class DeckOfCardsTest extends TestCase
         $this->assertIsArray($res);
         $this->assertEquals($cards, $res);
 
-        // // Control to see if deck is empty
+        // Control to see if deck is empty
         $cardsInDeck = $deckOfCards->deckSize();
         $this->assertEquals(0, $cardsInDeck); // Expecting empty deck
     }
