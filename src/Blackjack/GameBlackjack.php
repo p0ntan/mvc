@@ -3,7 +3,6 @@
 namespace App\Blackjack;
 
 use App\Card\CardHand;
-use App\Card\DeckFactory;
 use App\Card\DeckOfCards;
 use App\Card\NotEnoughCardsException;
 
@@ -25,14 +24,12 @@ class GameBlackjack
     /**
      * Method for setting up blackjack
      */
-    public function initGame(): void
-    {
-        $emptyDeck = new DeckOfCards();
-        $deckFactory = new DeckFactory();
-        $cardDeck = $deckFactory->createDeck($emptyDeck, "CardGraphic");
+    public function initGame(
+        DeckOfCards $cardDeck
+    ): void {
         $this->cardDeck = $cardDeck;
-        $this->rules = new RulesBlackjack();
         $this->player = new PlayerBlackjack();
+        $this->rules = new RulesBlackjack();
         $this->gameOver = false;
         $this->roundDone = false;
     }
