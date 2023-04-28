@@ -3,7 +3,12 @@
 namespace App\Controller;
 
 use App\Blackjack\GameBlackjack;
+use App\Blackjack\PlayerBlackjack;
+use App\Blackjack\RulesBlackjack;
 use App\Blackjack\NoHandsLeftException;
+use App\Card\CardHand;
+use App\Card\DeckFactory;
+use App\Card\DeckOfCards;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
@@ -35,7 +40,10 @@ class BlackjackController extends AbstractController
         $formInput = $request->get("submit");
         if ($formInput == "init") {
             $blackjackGame = new GameBlackjack();
-            $blackjackGame->initGame();
+            $emptyDeck = new DeckOfCards();
+            $deckFactory = new DeckFactory();
+            $cardDeck = $deckFactory->createDeck($emptyDeck, "CardGraphic");
+            $blackjackGame->initGame($cardDeck);
             $session->set('blackjack_game', $blackjackGame);
         }
         $blackjackGame = $session->get('blackjack_game');

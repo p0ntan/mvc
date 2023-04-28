@@ -14,7 +14,7 @@ class RulesBlackjackTest extends TestCase
     /**
      * Test to get the higest value from a cardhand
      */
-    public function testGetHighestValue()
+    public function testGetHighestValue(): void
     {
         // Set up stubs for card and cardhand
         $stubAce = $this->createStub(Card::class);
@@ -34,7 +34,7 @@ class RulesBlackjackTest extends TestCase
     /**
      * Test rules with a blackjack hand
      */
-    public function testRuleBlackjack()
+    public function testRuleBlackjack(): void
     {
         // Set up stubs for card and cardhand
         $stubAce = $this->createStub(Card::class);
@@ -64,7 +64,7 @@ class RulesBlackjackTest extends TestCase
     /**
      * Test rules with a blackjack hand
      */
-    public function testRuleSoftBlackjack()
+    public function testRuleSoftBlackjack(): void
     {
         // Set up stubs for card and cardhand
         $stubFive = $this->createStub(Card::class);
@@ -96,7 +96,7 @@ class RulesBlackjackTest extends TestCase
     /**
      * Test rules with a hand that is a bust
      */
-    public function testRuleBust()
+    public function testRuleBust(): void
     {
         // Set up stubs for card and cardhand
         $stubQueen = $this->createStub(Card::class);
@@ -128,7 +128,7 @@ class RulesBlackjackTest extends TestCase
     /**
      * Test all rules method with a hand with two aces
      */
-    public function testRuleSplit()
+    public function testRuleSplit(): void
     {
         // Set up stubs for card and cardhand
         $stubAce = $this->createStub(Card::class);
@@ -158,7 +158,7 @@ class RulesBlackjackTest extends TestCase
     /**
      * Test for checking computerrules, having 16 in hand
      */
-    public function testComputerRules16()
+    public function testComputerRules16(): void
     {
         // Set up stubs for card and cardhand
         $stubKing = $this->createStub(Card::class);
@@ -178,7 +178,7 @@ class RulesBlackjackTest extends TestCase
     /**
      * Test for checking computerrules, having 18 in hand
      */
-    public function testComputerRules18()
+    public function testComputerRules18(): void
     {
         // Set up stubs for card and cardhand
         $stubKing = $this->createStub(Card::class);
@@ -198,7 +198,7 @@ class RulesBlackjackTest extends TestCase
     /**
      * Test for checking computerrules, having aces to make hand worth < 17 and > 21
      */
-    public function testComputerRulesAces()
+    public function testComputerRulesAces(): void
     {
         // Set up stubs for card and cardhand
         $stubAce = $this->createStub(Card::class);
@@ -220,7 +220,7 @@ class RulesBlackjackTest extends TestCase
     /**
      * Test for checking computerrules, having a hand > 21
      */
-    public function testComputerRulesBust()
+    public function testComputerRulesBust(): void
     {
         // Set up stubs for card and cardhand
         $stubSix = $this->createStub(Card::class);
@@ -242,7 +242,7 @@ class RulesBlackjackTest extends TestCase
     /**
      * Test for finding winner when computer wins
      */
-    public function testFindWinner()
+    public function testFindWinner(): void
     {
         // Set up for player
         // Cards (total 16)
@@ -277,7 +277,7 @@ class RulesBlackjackTest extends TestCase
     /**
      * Test for finding winner, player has two hands one that wins and one that loses
      */
-    public function testFindWinnerTwoHands()
+    public function testFindWinnerTwoHands(): void
     {
         // Stub cards setup
         $stubFive = $this->createStub(Card::class);
@@ -319,7 +319,7 @@ class RulesBlackjackTest extends TestCase
     /**
      * Test for finding winner when player has two hand and one is blackjack
      */
-    public function testFindWinnerTwoHandsBlackjack()
+    public function testFindWinnerTwoHandsBlackjack(): void
     {
         // Stub cards setup
         $stubAce = $this->createStub(Card::class);
@@ -360,7 +360,7 @@ class RulesBlackjackTest extends TestCase
     /**
      * Test for finding winner when computer busts
      */
-    public function testFindWinnerComputerBust()
+    public function testFindWinnerComputerBust(): void
     {
         // Stub cards setup
         $stubFive = $this->createStub(Card::class);

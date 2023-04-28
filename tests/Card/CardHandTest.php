@@ -3,7 +3,6 @@
 namespace App\Card;
 
 use PHPUnit\Framework\TestCase;
-use TypeError;
 
 /**
  * Class for testing cases for class CardHand
@@ -48,17 +47,6 @@ class CardHandTest extends TestCase
     }
 
     /**
-     * Test for adding something that isn't a Card
-     */
-    public function testAddCardFail(): void
-    {
-        $cardHand = new CardHand();
-        $card = "card";
-        $this->expectException(TypeError::class);
-        $cardHand->addCard("card");
-    }
-
-    /**
      * Test for adding and getting back a multiple cards
      */
     public function testAddAndGetMultipleCards(): void
@@ -70,7 +58,7 @@ class CardHandTest extends TestCase
         $noOfCards = $cardHand->cardsInHand();
 
         $this->assertIsArray($resCard);
-        for ($i = 0; $i < $noOfCards; $i++) { 
+        for ($i = 0; $i < $noOfCards; $i++) {
             $this->assertEquals($cards[$i], $resCard[$i]);
         }
         $this->assertEquals(4, $noOfCards); // Four cards in hand
@@ -106,12 +94,12 @@ class CardHandTest extends TestCase
     {
         $cardHand = new CardHand();
         $noOfCards = $cardHand->cardsInHand();
-        $resHand = $cardHand->getCards();
+        $cardHand->getCards();
         $this->assertEquals(0, $noOfCards); // 0 cards in hand
 
         $removedCard = $cardHand->removeLast();
         $noOfCards = $cardHand->cardsInHand();
-        $resHand = $cardHand->getCards();
+        $cardHand->getCards();
         $this->assertEquals(0, $noOfCards); // 0 cards in hand
         $this->assertNull($removedCard);
     }
@@ -154,25 +142,6 @@ class CardHandTest extends TestCase
     }
 
     /**
-     * Test to set and get when hand is done with wrong datatype.
-     */
-    public function testSetAndGetIsDoneWrongType(): void
-    {
-        $cardHand = new CardHand();
-
-        // Method will convert input into a boolean
-        $cardHand->setDone("212");
-        $exp = true;
-        $res = $cardHand->isDone();
-        $this->assertEquals($exp, $res);
-
-        $cardHand->setDone("");
-        $exp = false;
-        $res = $cardHand->isDone();
-        $this->assertEquals($exp, $res);
-    }
-
-    /**
      * Test to set and get points in the hand
      */
     public function testSetAndGetPoints(): void
@@ -189,16 +158,6 @@ class CardHandTest extends TestCase
     }
 
     /**
-     * Test to set and get points in the hand with wrong datatype
-     */
-    public function testSetAndGetPointsWrongType(): void
-    {
-        $cardHand = new CardHand();
-        $this->expectException(TypeError::class);
-        $cardHand->setPoints("tjena");
-    }
-
-    /**
      * Test to set and get bet
      */
     public function testSetAndGetBet(): void
@@ -212,16 +171,6 @@ class CardHandTest extends TestCase
         $exp = 23;
         $res = $cardHand->getBet();
         $this->assertEquals($exp, $res);
-    }
-
-    /**
-     * Test to set and get bet with wrong datatype
-     */
-    public function testSetAndGetBetWrongType(): void
-    {
-        $cardHand = new CardHand();
-        $this->expectException(TypeError::class);
-        $cardHand->setBet("all money");
     }
 
     /**

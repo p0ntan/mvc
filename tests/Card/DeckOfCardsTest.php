@@ -42,7 +42,7 @@ class DeckOfCardsTest extends TestCase
         $cardsInDeck = $deckOfCards->deckSize(); // Expecting 4
 
         $this->assertIsArray($res);
-        for ($i = 0; $i < $cardsInDeck; $i++) { 
+        for ($i = 0; $i < $cardsInDeck; $i++) {
             $this->assertInstanceOf("\App\Card\Card", $res[$i]);
             $this->assertEquals($cards[$i], $res[$i]);
         }
@@ -58,12 +58,11 @@ class DeckOfCardsTest extends TestCase
         $cards = [
             new Card("hearts", 2),
             new Card("diamonds", 6),
-            new Card("clubs", 5), 
+            new Card("clubs", 5),
             new Card("spades", 12),
             new Card(),
             new Card("spades", 1)
         ];
-        $noOfCards = count($cards);
         foreach ($cards as $card) {
             $deckOfCards->addCard($card);
         }
@@ -71,7 +70,7 @@ class DeckOfCardsTest extends TestCase
         $res = $deckOfCards->getDeck();
         $this->assertEquals($cards, $res);
 
-        // Shuffle deck, than compare arrays again. There is a chance that the deck is 
+        // Shuffle deck, than compare arrays again. There is a chance that the deck is
         // same as before after shuffling but very small chance for that to happen.
         $deckOfCards->shuffleDeck();
         $res = $deckOfCards->getDeck();
@@ -85,7 +84,7 @@ class DeckOfCardsTest extends TestCase
     public function testGetAsJson(): void
     {
         $deckOfCards = new DeckOfCards();
-   
+
         // Add mock cards that returns the same array when using cardmethod
         $stubReturn = [
             "suit" => "mock",
@@ -99,7 +98,7 @@ class DeckOfCardsTest extends TestCase
             $mockCard->method("getAsJson")->willReturn($card);
             $deckOfCards->addCard($mockCard);
         }
-    
+
         $exp = [$stubReturn, $stubReturn, $stubReturn];
         $res = $deckOfCards->getAsJson();
         $this->assertIsArray($res);
@@ -115,7 +114,7 @@ class DeckOfCardsTest extends TestCase
         $cards = [
             new Card("hearts", 2),
             new Card("diamonds", 6),
-            new Card("clubs", 5), 
+            new Card("clubs", 5),
             new Card("spades", 12),
             new Card(),
             new Card("spades", 1)
@@ -178,7 +177,7 @@ class DeckOfCardsTest extends TestCase
     public function testDrawAndGetAsJson(): void
     {
         $deckOfCards = new DeckOfCards();
-   
+
         // Add mock cards that returns the same array when using cardmethod
         $stubReturn = [
             "suit" => "mock",
@@ -191,7 +190,7 @@ class DeckOfCardsTest extends TestCase
             "name" => "test"
         ];
         $cards = [$stubReturn, $stubReturn, $stubReturnThree];
-        
+
         foreach ($cards as $card) {
             $mockCard = $this->createStub(Card::class);
             $mockCard->method("getAsJson")->willReturn($card);
@@ -217,7 +216,7 @@ class DeckOfCardsTest extends TestCase
         $cards = [
             new Card("hearts", 2),
             new Card("diamonds", 6),
-            new Card("clubs", 5), 
+            new Card("clubs", 5),
             new Card("spades", 12),
             new Card(),
             new Card("spades", 1)
@@ -237,7 +236,7 @@ class DeckOfCardsTest extends TestCase
         // Give five cards
         $num = 5;
         $res = $deckOfCards->giveCards($num);
-        $cards = array_reverse($cards); 
+        $cards = array_reverse($cards);
         $this->assertIsArray($res);
         $this->assertEquals($cards, $res);
 
@@ -253,7 +252,7 @@ class DeckOfCardsTest extends TestCase
     {
         $deckOfCards = new DeckOfCards();
         $this->expectException(NotEnoughCardsException::class);
-        $res = $deckOfCards->giveCards();
+        $deckOfCards->giveCards();
 
         // Adding two cards, then trying to draw three
         $deckOfCards->addCard(new Card());
@@ -261,7 +260,7 @@ class DeckOfCardsTest extends TestCase
 
         $num = 3;
         $this->expectException(NotEnoughCardsException::class);
-        $res = $deckOfCards->giveCards($num);
+        $deckOfCards->giveCards($num);
     }
 
     /**
@@ -274,7 +273,7 @@ class DeckOfCardsTest extends TestCase
         $deckOfCards = new DeckOfCards();
         $expValue = "cardTest";
         $expValueThree = "cardTestThree";
-    
+
         $cards = [$expValue, $expValue, $expValueThree];
         foreach ($cards as $card) {
             $mockCard = $this->createStub(Card::class);
@@ -290,7 +289,7 @@ class DeckOfCardsTest extends TestCase
     /**
      * Test add some cards and get a sorted deck
      */
-    public function testGetSortedDeck()
+    public function testGetSortedDeck(): void
     {
         $card1 = new Card("spades", 5);
         $card2 = new Card("hearts", 10);
@@ -313,7 +312,7 @@ class DeckOfCardsTest extends TestCase
     /**
      * Test add some cards and get a sorted deck as json
      */
-    public function testGetSortedDeckJson()
+    public function testGetSortedDeckJson(): void
     {
         $card1 = new Card("spades", 5);
         $card2 = new Card("hearts", 10);
@@ -369,7 +368,7 @@ class DeckOfCardsTest extends TestCase
             new Card("clubs", 7),
             new Card("diamonds", 2),
             new Card("hearts", 5),
-            new Card("hearts", 10), 
+            new Card("hearts", 10),
             new Card("spades", 5)
         ];
         foreach ($cards as $card) {
@@ -395,7 +394,7 @@ class DeckOfCardsTest extends TestCase
             new Card("clubs", 7),
             new Card("diamonds", 2),
             new Card("hearts", 5),
-            new Card("hearts", 10), 
+            new Card("hearts", 10),
             new Card("spades", 5)
         ];
         foreach ($cards as $card) {

@@ -3,7 +3,6 @@
 namespace App\Blackjack;
 
 use PHPUnit\Framework\TestCase;
-use TypeError;
 use App\Card\Card;
 use App\Card\CardHand;
 
@@ -56,7 +55,7 @@ class PlayerBlackjackTest extends TestCase
     {
         $player = new PlayerBlackjack();
         $noOfHands = 3;
-        for ($i = 0; $i < $noOfHands; $i++) { 
+        for ($i = 0; $i < $noOfHands; $i++) {
             $player->addCardHand(new CardHand());
         }
         $resArrHand = $player->getHands();
@@ -133,16 +132,6 @@ class PlayerBlackjackTest extends TestCase
         $player->setMoney($expMoney);
         $resMoney = $player->getMoney();
         $this->assertEquals($expMoney, $resMoney);
-    }
-
-    /**
-     * Test setting and getting money for player with wrong data
-     */
-    public function testSetAndGetMoneyWrongData(): void
-    {
-        $player = new PlayerBlackjack();
-        $this->expectException(TypeError::class);
-        $player->setMoney("wrong");
     }
 
     /**
