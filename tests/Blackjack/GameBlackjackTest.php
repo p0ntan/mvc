@@ -8,7 +8,7 @@ use App\Card\CardHand;
 use App\Card\DeckOfCards;
 
 /**
- * Test cases for class GameBlackjack
+ * Test cases for class GameBlackjack.
  */
 class GameBlackjackTest extends TestCase
 {
