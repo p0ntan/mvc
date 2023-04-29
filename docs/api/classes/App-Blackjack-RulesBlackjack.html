@@ -144,78 +144,77 @@
     <span>
                                 &nbsp;: array&lt;string|int, mixed&gt;    </span>
 </dt>
-<dd>Function to check the rules for each hand</dd>
+<dd>Method to check the rules for each hand</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/App-Blackjack-RulesBlackjack.html#method_computerRules">computerRules()</a>
     <span>
                                 &nbsp;: bool    </span>
 </dt>
-<dd>Function for computer rule (always play if handvalue &lt; 17)</dd>
+<dd>Method for computer rule (always play if handvalue &lt; 17)</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/App-Blackjack-RulesBlackjack.html#method_findWinner">findWinner()</a>
     <span>
                                 &nbsp;: void    </span>
 </dt>
-<dd>Function to calculate who is the winner</dd>
+<dd>Method to calculate who is the winner</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/App-Blackjack-RulesBlackjack.html#method_getHighestValue">getHighestValue()</a>
     <span>
                                 &nbsp;: int    </span>
 </dt>
-<dd>Function to get highets &quot;valid&quot; value (&lt;= 21)
-Will return the lowest if both are over 21</dd>
+<dd>Method to get highets &quot;valid&quot; value (&lt;= 21)</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -private">
     <a href="classes/App-Blackjack-RulesBlackjack.html#method_blackjack">blackjack()</a>
     <span>
                                 &nbsp;: bool    </span>
 </dt>
-<dd>Function to see if hand has blackjack (21 on first give)</dd>
+<dd>Method to see if hand has blackjack (21 on first give)</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -private">
     <a href="classes/App-Blackjack-RulesBlackjack.html#method_bust">bust()</a>
     <span>
                                 &nbsp;: bool    </span>
 </dt>
-<dd>Function to see if there is a bust (over 21)</dd>
+<dd>Method to see if there is a bust (over 21)</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -private">
     <a href="classes/App-Blackjack-RulesBlackjack.html#method_countHand">countHand()</a>
     <span>
                                 &nbsp;: array&lt;string|int, int&gt;    </span>
 </dt>
-<dd>Function to count value for a blackjack-hand</dd>
+<dd>Method to count value for a blackjack-hand</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -private">
     <a href="classes/App-Blackjack-RulesBlackjack.html#method_doubleDown">doubleDown()</a>
     <span>
                                 &nbsp;: bool    </span>
 </dt>
-<dd>Function to see if it&#039;s possible to split hands</dd>
+<dd>Method to see if it&#039;s possible to split hands</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -private">
     <a href="classes/App-Blackjack-RulesBlackjack.html#method_softBlackjack">softBlackjack()</a>
     <span>
                                 &nbsp;: bool    </span>
 </dt>
-<dd>Function to see if hand is 21</dd>
+<dd>Method to see if hand is 21 (soft blackjack)</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -private">
     <a href="classes/App-Blackjack-RulesBlackjack.html#method_split">split()</a>
     <span>
                                 &nbsp;: bool    </span>
 </dt>
-<dd>Function to see if it&#039;s possible to split hands</dd>
+<dd>Method to see if it&#039;s possible to split hands</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -private">
     <a href="classes/App-Blackjack-RulesBlackjack.html#method_updateValue">updateValue()</a>
     <span>
                                 &nbsp;: int    </span>
 </dt>
-<dd>Function to give the correct &quot;blackjack&quot;-value for each card</dd>
+<dd>Method to give the correct &quot;blackjack&quot;-value for a card.</dd>
 
         </dl>
 
@@ -243,11 +242,11 @@ Will return the lowest if both are over 21</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Blackjack/RulesBlackjack.php"><a href="files/src-blackjack-rulesblackjack.html"><abbr title="src/Blackjack/RulesBlackjack.php">RulesBlackjack.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">17</span>
+    <span class="phpdocumentor-element-found-in__line">20</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Function to check the rules for each hand</p>
+        <p class="phpdocumentor-summary">Method to check the rules for each hand</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -261,7 +260,8 @@ Will return the lowest if both are over 21</dd>
                 : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/App-Card-CardHand.html"><abbr title="\App\Card\CardHand">CardHand</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
+                    <section class="phpdocumentor-description"><p>The hand to check rules for</p>
+</section>
 
             </dd>
             </dl>
@@ -271,7 +271,7 @@ Will return the lowest if both are over 21</dd>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
             &mdash;
-            <section class="phpdocumentor-description"><p>with rules(bools) and values</p>
+            <section class="phpdocumentor-description"><p>with rules and booleans for certain rules</p>
 </section>
 
     
@@ -289,11 +289,11 @@ Will return the lowest if both are over 21</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Blackjack/RulesBlackjack.php"><a href="files/src-blackjack-rulesblackjack.html"><abbr title="src/Blackjack/RulesBlackjack.php">RulesBlackjack.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">108</span>
+    <span class="phpdocumentor-element-found-in__line">128</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Function for computer rule (always play if handvalue &lt; 17)</p>
+        <p class="phpdocumentor-summary">Method for computer rule (always play if handvalue &lt; 17)</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -307,7 +307,8 @@ Will return the lowest if both are over 21</dd>
                 : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/App-Card-CardHand.html"><abbr title="\App\Card\CardHand">CardHand</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
+                    <section class="phpdocumentor-description"><p>The hand to check rules for</p>
+</section>
 
             </dd>
             </dl>
@@ -317,7 +318,9 @@ Will return the lowest if both are over 21</dd>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">bool</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>True if computer is finished (hand &gt;= 17)</p>
+</section>
+
     
 </article>
                     <article
@@ -333,11 +336,11 @@ Will return the lowest if both are over 21</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Blackjack/RulesBlackjack.php"><a href="files/src-blackjack-rulesblackjack.html"><abbr title="src/Blackjack/RulesBlackjack.php">RulesBlackjack.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">194</span>
+    <span class="phpdocumentor-element-found-in__line">227</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Function to calculate who is the winner</p>
+        <p class="phpdocumentor-summary">Method to calculate who is the winner</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -383,18 +386,20 @@ Will return the lowest if both are over 21</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Blackjack/RulesBlackjack.php"><a href="files/src-blackjack-rulesblackjack.html"><abbr title="src/Blackjack/RulesBlackjack.php">RulesBlackjack.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">179</span>
+    <span class="phpdocumentor-element-found-in__line">211</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Function to get highets &quot;valid&quot; value (&lt;= 21)
-Will return the lowest if both are over 21</p>
+        <p class="phpdocumentor-summary">Method to get highets &quot;valid&quot; value (&lt;= 21)</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                     <span class="phpdocumentor-signature__name">getHighestValue</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/App-Card-CardHand.html"><abbr title="\App\Card\CardHand">CardHand</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$cardHand</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">int</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>If there are two different values, the highets under 21 will be returned.
+If both values are over 21 then the lowest value will be returned.</p>
+</section>
+
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -402,7 +407,9 @@ Will return the lowest if both are over 21</p>
                 : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/App-Card-CardHand.html"><abbr title="\App\Card\CardHand">CardHand</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>Hand to get value from</p>
+</section>
+
             </dd>
             </dl>
 
@@ -411,7 +418,9 @@ Will return the lowest if both are over 21</p>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">int</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>With the highest value</p>
+</section>
+
     
 </article>
                     <article
@@ -427,11 +436,11 @@ Will return the lowest if both are over 21</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Blackjack/RulesBlackjack.php"><a href="files/src-blackjack-rulesblackjack.html"><abbr title="src/Blackjack/RulesBlackjack.php">RulesBlackjack.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">37</span>
+    <span class="phpdocumentor-element-found-in__line">42</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Function to see if hand has blackjack (21 on first give)</p>
+        <p class="phpdocumentor-summary">Method to see if hand has blackjack (21 on first give)</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
@@ -445,7 +454,9 @@ Will return the lowest if both are over 21</p>
                 : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/App-Card-CardHand.html"><abbr title="\App\Card\CardHand">CardHand</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The hand to check rules for</p>
+</section>
+
             </dd>
             </dl>
 
@@ -454,7 +465,9 @@ Will return the lowest if both are over 21</p>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">bool</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>True if blackjack</p>
+</section>
+
     
 </article>
                     <article
@@ -470,11 +483,11 @@ Will return the lowest if both are over 21</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Blackjack/RulesBlackjack.php"><a href="files/src-blackjack-rulesblackjack.html"><abbr title="src/Blackjack/RulesBlackjack.php">RulesBlackjack.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">54</span>
+    <span class="phpdocumentor-element-found-in__line">61</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Function to see if there is a bust (over 21)</p>
+        <p class="phpdocumentor-summary">Method to see if there is a bust (over 21)</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
@@ -488,7 +501,9 @@ Will return the lowest if both are over 21</p>
                 : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/App-Card-CardHand.html"><abbr title="\App\Card\CardHand">CardHand</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The hand to check rules for</p>
+</section>
+
             </dd>
             </dl>
 
@@ -497,7 +512,9 @@ Will return the lowest if both are over 21</p>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">bool</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>True if bust</p>
+</section>
+
     
 </article>
                     <article
@@ -513,17 +530,20 @@ Will return the lowest if both are over 21</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Blackjack/RulesBlackjack.php"><a href="files/src-blackjack-rulesblackjack.html"><abbr title="src/Blackjack/RulesBlackjack.php">RulesBlackjack.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">128</span>
+    <span class="phpdocumentor-element-found-in__line">153</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Function to count value for a blackjack-hand</p>
+        <p class="phpdocumentor-summary">Method to count value for a blackjack-hand</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
                     <span class="phpdocumentor-signature__name">countHand</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/App-Card-CardHand.html"><abbr title="\App\Card\CardHand">CardHand</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$cardHand</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, int&gt;</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>A cardHand can have two different values if there is an ace or more in the hand.
+This method returns an array that can show the two different values.</p>
+</section>
+
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -531,7 +551,9 @@ Will return the lowest if both are over 21</p>
                 : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/App-Card-CardHand.html"><abbr title="\App\Card\CardHand">CardHand</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The hand to count</p>
+</section>
+
             </dd>
             </dl>
 
@@ -540,7 +562,9 @@ Will return the lowest if both are over 21</p>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">array&lt;string|int, int&gt;</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>With the possible points</p>
+</section>
+
     
 </article>
                     <article
@@ -556,11 +580,11 @@ Will return the lowest if both are over 21</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Blackjack/RulesBlackjack.php"><a href="files/src-blackjack-rulesblackjack.html"><abbr title="src/Blackjack/RulesBlackjack.php">RulesBlackjack.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">95</span>
+    <span class="phpdocumentor-element-found-in__line">112</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Function to see if it&#039;s possible to split hands</p>
+        <p class="phpdocumentor-summary">Method to see if it&#039;s possible to split hands</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
@@ -574,7 +598,8 @@ Will return the lowest if both are over 21</p>
                 : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/App-Card-CardHand.html"><abbr title="\App\Card\CardHand">CardHand</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
+                    <section class="phpdocumentor-description"><p>The hand to check rules for</p>
+</section>
 
             </dd>
             </dl>
@@ -584,7 +609,9 @@ Will return the lowest if both are over 21</p>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">bool</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>True if possible to doubledown</p>
+</section>
+
     
 </article>
                     <article
@@ -600,11 +627,11 @@ Will return the lowest if both are over 21</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Blackjack/RulesBlackjack.php"><a href="files/src-blackjack-rulesblackjack.html"><abbr title="src/Blackjack/RulesBlackjack.php">RulesBlackjack.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">68</span>
+    <span class="phpdocumentor-element-found-in__line">77</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Function to see if hand is 21</p>
+        <p class="phpdocumentor-summary">Method to see if hand is 21 (soft blackjack)</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
@@ -618,7 +645,9 @@ Will return the lowest if both are over 21</p>
                 : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/App-Card-CardHand.html"><abbr title="\App\Card\CardHand">CardHand</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The hand to check rules for</p>
+</section>
+
             </dd>
             </dl>
 
@@ -627,7 +656,9 @@ Will return the lowest if both are over 21</p>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">bool</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>True if hand is 21</p>
+</section>
+
     
 </article>
                     <article
@@ -643,11 +674,11 @@ Will return the lowest if both are over 21</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Blackjack/RulesBlackjack.php"><a href="files/src-blackjack-rulesblackjack.html"><abbr title="src/Blackjack/RulesBlackjack.php">RulesBlackjack.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">80</span>
+    <span class="phpdocumentor-element-found-in__line">93</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Function to see if it&#039;s possible to split hands</p>
+        <p class="phpdocumentor-summary">Method to see if it&#039;s possible to split hands</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
@@ -661,7 +692,8 @@ Will return the lowest if both are over 21</p>
                 : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/App-Card-CardHand.html"><abbr title="\App\Card\CardHand">CardHand</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
+                    <section class="phpdocumentor-description"><p>The hand to check rules for</p>
+</section>
 
             </dd>
             </dl>
@@ -671,7 +703,9 @@ Will return the lowest if both are over 21</p>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">bool</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>True if it's possible to split</p>
+</section>
+
     
 </article>
                     <article
@@ -687,11 +721,11 @@ Will return the lowest if both are over 21</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Blackjack/RulesBlackjack.php"><a href="files/src-blackjack-rulesblackjack.html"><abbr title="src/Blackjack/RulesBlackjack.php">RulesBlackjack.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">159</span>
+    <span class="phpdocumentor-element-found-in__line">187</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Function to give the correct &quot;blackjack&quot;-value for each card</p>
+        <p class="phpdocumentor-summary">Method to give the correct &quot;blackjack&quot;-value for a card.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
@@ -705,7 +739,8 @@ Will return the lowest if both are over 21</p>
                 : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/App-Card-Card.html"><abbr title="\App\Card\Card">Card</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
+                    <section class="phpdocumentor-description"><p>Card to check value of</p>
+</section>
 
             </dd>
             </dl>
@@ -715,7 +750,9 @@ Will return the lowest if both are over 21</p>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">int</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>With the correct blackjack-value</p>
+</section>
+
     
 </article>
             </section>

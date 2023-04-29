@@ -11,8 +11,11 @@ use App\Card\CardHand;
 class RulesBlackjack
 {
     /**
-     * Function to check the rules for each hand
-     * @return array<mixed> with rules(bools) and values
+     * Method to check the rules for each hand
+     *
+     * @param CardHand $cardHand The hand to check rules for
+     *
+     * @return array<mixed> with rules and booleans for certain rules
      */
     public function checkAllRules(CardHand $cardHand): array
     {
@@ -30,9 +33,11 @@ class RulesBlackjack
     }
 
     /**
-     * Function to see if hand has blackjack (21 on first give)
-     * @param CardHand $cardHand
-     * @return bool
+     * Method to see if hand has blackjack (21 on first give)
+     *
+     * @param CardHand $cardHand The hand to check rules for
+     *
+     * @return bool True if blackjack
      */
     private function blackjack(CardHand $cardHand): bool
     {
@@ -47,9 +52,11 @@ class RulesBlackjack
     }
 
     /**
-     * Function to see if there is a bust (over 21)
-     * @param CardHand $cardHand
-     * @return bool
+     * Method to see if there is a bust (over 21)
+     *
+     * @param CardHand $cardHand The hand to check rules for
+     *
+     * @return bool True if bust
      */
     private function bust(CardHand $cardHand): bool
     {
@@ -61,9 +68,11 @@ class RulesBlackjack
     }
 
     /**
-     * Function to see if hand is 21
-     * @param CardHand $cardHand
-     * @return bool
+     * Method to see if hand is 21 (soft blackjack)
+     *
+     * @param CardHand $cardHand The hand to check rules for
+     *
+     * @return bool True if hand is 21
      */
     private function softBlackjack(CardHand $cardHand): bool
     {
@@ -75,7 +84,11 @@ class RulesBlackjack
     }
 
     /**
-     * Function to see if it's possible to split hands
+     * Method to see if it's possible to split hands
+     *
+     * @param CardHand $cardHand The hand to check rules for
+     *
+     * @return bool True if it's possible to split
      */
     private function split(CardHand $cardHand): bool
     {
@@ -90,7 +103,11 @@ class RulesBlackjack
     }
 
     /**
-     * Function to see if it's possible to split hands
+     * Method to see if it's possible to split hands
+     *
+     * @param CardHand $cardHand The hand to check rules for
+     *
+     * @return bool True if possible to doubledown
      */
     private function doubleDown(CardHand $cardHand): bool
     {
@@ -102,8 +119,11 @@ class RulesBlackjack
     }
 
     /**
-     * Function for computer rule (always play if handvalue < 17)
-     * @return bool
+     * Method for computer rule (always play if handvalue < 17)
+     *
+     * @param CardHand $cardHand The hand to check rules for
+     *
+     * @return bool True if computer is finished (hand >= 17)
      */
     public function computerRules(CardHand $cardHand): bool
     {
@@ -121,9 +141,14 @@ class RulesBlackjack
     }
 
     /**
-     * Function to count value for a blackjack-hand
-     * @param CardHand $cardHand
-     * @return array<int>
+     * Method to count value for a blackjack-hand
+     *
+     * A cardHand can have two different values if there is an ace or more in the hand.
+     * This method returns an array that can show the two different values.
+     *
+     * @param CardHand $cardHand The hand to count
+     *
+     * @return array<int> With the possible points
      */
     private function countHand(CardHand $cardHand): array
     {
@@ -153,8 +178,11 @@ class RulesBlackjack
     }
 
     /**
-     * Function to give the correct "blackjack"-value for each card
-     * @return int
+     * Method to give the correct "blackjack"-value for a card.
+     *
+     * @param Card $card Card to check value of
+     *
+     * @return int With the correct blackjack-value
      */
     private function updateValue(Card $card): int
     {
@@ -171,10 +199,14 @@ class RulesBlackjack
     }
 
     /**
-     * Function to get highets "valid" value (<= 21)
-     * Will return the lowest if both are over 21
-     * @param CardHand $cardHand
-     * @return int
+     * Method to get highets "valid" value (<= 21)
+     *
+     * If there are two different values, the highets under 21 will be returned.
+     * If both values are over 21 then the lowest value will be returned.
+     *
+     * @param CardHand $cardHand Hand to get value from
+     *
+     * @return int With the highest value
      */
     public function getHighestValue(CardHand $cardHand): int
     {
@@ -187,7 +219,8 @@ class RulesBlackjack
     }
 
     /**
-     * Function to calculate who is the winner
+     * Method to calculate who is the winner
+     *
      * @param PlayerBlackjack $player
      * @param CardHand $computer
      */

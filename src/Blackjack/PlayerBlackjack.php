@@ -9,17 +9,25 @@ use App\Card\CardHand;
  */
 class PlayerBlackjack
 {
-    /** @var array<CardHand> $hands, hold all hands possible for player */
+    /** @var array<CardHand> $hands Hold all hands possible for player */
     private array $hands = [];
+
+    /** @var int $totMoney Is the amount a player has to bet, starts with 100 */
     private int $totMoney = 100;
 
-    /** Function to add a cardHand to a player */
+    /**
+     * Method to add a cardHand to the player
+     *
+     * @param CardHand $cardHand Hand to add to player
+     */
     public function addCardHand(CardHand $cardHand): void
     {
         $this->hands[] = $cardHand;
     }
 
-    /** Function to get all cardHands for player
+    /**
+     * Method to get all cardHands for player
+     *
      * @return array<CardHand>
      */
     public function getHands(): array
@@ -27,13 +35,18 @@ class PlayerBlackjack
         return $this->hands;
     }
 
-    /** Function to "reset" a players hands */
+    /**
+     * Method to "reset" a players hands, making it to an empty array.
+     *
+     */
     public function resetHands(): void
     {
         $this->hands = [];
     }
 
-    /** Function to split a hand */
+    /**
+     * Method to split the players hand
+     */
     public function splitHand(): void
     {
         $bet = $this->currentHand()->getBet();
@@ -48,7 +61,10 @@ class PlayerBlackjack
     }
 
     /**
-     * @throws NoHandsLeftException when all hands are done
+     * Method to get the current hand for the player
+     *
+     * @throws NoHandsLeftException when there are no hands or no hands left to play
+     *
      * @return CardHand
      */
     public function currentHand(): CardHand
@@ -63,16 +79,34 @@ class PlayerBlackjack
         throw new NoHandsLeftException();
     }
 
+    /**
+     * Method to get property totMoney
+     *
+     * @return int
+     */
     public function getMoney(): int
     {
         return $this->totMoney;
     }
 
+    /**
+     * Method to set property totMoney
+     *
+     * @param int $money The value to set property to
+     */
     public function setMoney(int $money): void
     {
         $this->totMoney = $money;
     }
 
+    /**
+     * Method to get total bet for player
+     *
+     * Method goes through all playerhands and sums up all the bets.
+     * Since a player can have serveral hands, the betting is on each hand.
+     *
+     * @return int
+     */
     public function getTotalBet(): int
     {
         $totalBet = 0;

@@ -118,42 +118,42 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Blackjack\\PlayerBlackjack\u003A\u003AaddCardHand\u0028\u0029",
             "name": "addCardHand",
-            "summary": "Function\u0020to\u0020add\u0020a\u0020cardHand\u0020to\u0020a\u0020player",
+            "summary": "Method\u0020to\u0020add\u0020a\u0020cardHand\u0020to\u0020the\u0020player",
             "url": "classes/App-Blackjack-PlayerBlackjack.html#method_addCardHand"
         },                {
             "fqsen": "\\App\\Blackjack\\PlayerBlackjack\u003A\u003AgetHands\u0028\u0029",
             "name": "getHands",
-            "summary": "Function\u0020to\u0020get\u0020all\u0020cardHands\u0020for\u0020player",
+            "summary": "Method\u0020to\u0020get\u0020all\u0020cardHands\u0020for\u0020player",
             "url": "classes/App-Blackjack-PlayerBlackjack.html#method_getHands"
         },                {
             "fqsen": "\\App\\Blackjack\\PlayerBlackjack\u003A\u003AresetHands\u0028\u0029",
             "name": "resetHands",
-            "summary": "Function\u0020to\u0020\u0022reset\u0022\u0020a\u0020players\u0020hands",
+            "summary": "Method\u0020to\u0020\u0022reset\u0022\u0020a\u0020players\u0020hands,\u0020making\u0020it\u0020to\u0020an\u0020empty\u0020array.",
             "url": "classes/App-Blackjack-PlayerBlackjack.html#method_resetHands"
         },                {
             "fqsen": "\\App\\Blackjack\\PlayerBlackjack\u003A\u003AsplitHand\u0028\u0029",
             "name": "splitHand",
-            "summary": "Function\u0020to\u0020split\u0020a\u0020hand",
+            "summary": "Method\u0020to\u0020split\u0020the\u0020players\u0020hand",
             "url": "classes/App-Blackjack-PlayerBlackjack.html#method_splitHand"
         },                {
             "fqsen": "\\App\\Blackjack\\PlayerBlackjack\u003A\u003AcurrentHand\u0028\u0029",
             "name": "currentHand",
-            "summary": "",
+            "summary": "Method\u0020to\u0020get\u0020the\u0020current\u0020hand\u0020for\u0020the\u0020player",
             "url": "classes/App-Blackjack-PlayerBlackjack.html#method_currentHand"
         },                {
             "fqsen": "\\App\\Blackjack\\PlayerBlackjack\u003A\u003AgetMoney\u0028\u0029",
             "name": "getMoney",
-            "summary": "",
+            "summary": "Method\u0020to\u0020get\u0020property\u0020totMoney",
             "url": "classes/App-Blackjack-PlayerBlackjack.html#method_getMoney"
         },                {
             "fqsen": "\\App\\Blackjack\\PlayerBlackjack\u003A\u003AsetMoney\u0028\u0029",
             "name": "setMoney",
-            "summary": "",
+            "summary": "Method\u0020to\u0020set\u0020property\u0020totMoney",
             "url": "classes/App-Blackjack-PlayerBlackjack.html#method_setMoney"
         },                {
             "fqsen": "\\App\\Blackjack\\PlayerBlackjack\u003A\u003AgetTotalBet\u0028\u0029",
             "name": "getTotalBet",
-            "summary": "",
+            "summary": "Method\u0020to\u0020get\u0020total\u0020bet\u0020for\u0020player",
             "url": "classes/App-Blackjack-PlayerBlackjack.html#method_getTotalBet"
         },                {
             "fqsen": "\\App\\Blackjack\\PlayerBlackjack\u003A\u003A\u0024hands",
@@ -173,57 +173,57 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Blackjack\\RulesBlackjack\u003A\u003AcheckAllRules\u0028\u0029",
             "name": "checkAllRules",
-            "summary": "Function\u0020to\u0020check\u0020the\u0020rules\u0020for\u0020each\u0020hand",
+            "summary": "Method\u0020to\u0020check\u0020the\u0020rules\u0020for\u0020each\u0020hand",
             "url": "classes/App-Blackjack-RulesBlackjack.html#method_checkAllRules"
         },                {
             "fqsen": "\\App\\Blackjack\\RulesBlackjack\u003A\u003Ablackjack\u0028\u0029",
             "name": "blackjack",
-            "summary": "Function\u0020to\u0020see\u0020if\u0020hand\u0020has\u0020blackjack\u0020\u002821\u0020on\u0020first\u0020give\u0029",
+            "summary": "Method\u0020to\u0020see\u0020if\u0020hand\u0020has\u0020blackjack\u0020\u002821\u0020on\u0020first\u0020give\u0029",
             "url": "classes/App-Blackjack-RulesBlackjack.html#method_blackjack"
         },                {
             "fqsen": "\\App\\Blackjack\\RulesBlackjack\u003A\u003Abust\u0028\u0029",
             "name": "bust",
-            "summary": "Function\u0020to\u0020see\u0020if\u0020there\u0020is\u0020a\u0020bust\u0020\u0028over\u002021\u0029",
+            "summary": "Method\u0020to\u0020see\u0020if\u0020there\u0020is\u0020a\u0020bust\u0020\u0028over\u002021\u0029",
             "url": "classes/App-Blackjack-RulesBlackjack.html#method_bust"
         },                {
             "fqsen": "\\App\\Blackjack\\RulesBlackjack\u003A\u003AsoftBlackjack\u0028\u0029",
             "name": "softBlackjack",
-            "summary": "Function\u0020to\u0020see\u0020if\u0020hand\u0020is\u002021",
+            "summary": "Method\u0020to\u0020see\u0020if\u0020hand\u0020is\u002021\u0020\u0028soft\u0020blackjack\u0029",
             "url": "classes/App-Blackjack-RulesBlackjack.html#method_softBlackjack"
         },                {
             "fqsen": "\\App\\Blackjack\\RulesBlackjack\u003A\u003Asplit\u0028\u0029",
             "name": "split",
-            "summary": "Function\u0020to\u0020see\u0020if\u0020it\u0027s\u0020possible\u0020to\u0020split\u0020hands",
+            "summary": "Method\u0020to\u0020see\u0020if\u0020it\u0027s\u0020possible\u0020to\u0020split\u0020hands",
             "url": "classes/App-Blackjack-RulesBlackjack.html#method_split"
         },                {
             "fqsen": "\\App\\Blackjack\\RulesBlackjack\u003A\u003AdoubleDown\u0028\u0029",
             "name": "doubleDown",
-            "summary": "Function\u0020to\u0020see\u0020if\u0020it\u0027s\u0020possible\u0020to\u0020split\u0020hands",
+            "summary": "Method\u0020to\u0020see\u0020if\u0020it\u0027s\u0020possible\u0020to\u0020split\u0020hands",
             "url": "classes/App-Blackjack-RulesBlackjack.html#method_doubleDown"
         },                {
             "fqsen": "\\App\\Blackjack\\RulesBlackjack\u003A\u003AcomputerRules\u0028\u0029",
             "name": "computerRules",
-            "summary": "Function\u0020for\u0020computer\u0020rule\u0020\u0028always\u0020play\u0020if\u0020handvalue\u0020\u003C\u002017\u0029",
+            "summary": "Method\u0020for\u0020computer\u0020rule\u0020\u0028always\u0020play\u0020if\u0020handvalue\u0020\u003C\u002017\u0029",
             "url": "classes/App-Blackjack-RulesBlackjack.html#method_computerRules"
         },                {
             "fqsen": "\\App\\Blackjack\\RulesBlackjack\u003A\u003AcountHand\u0028\u0029",
             "name": "countHand",
-            "summary": "Function\u0020to\u0020count\u0020value\u0020for\u0020a\u0020blackjack\u002Dhand",
+            "summary": "Method\u0020to\u0020count\u0020value\u0020for\u0020a\u0020blackjack\u002Dhand",
             "url": "classes/App-Blackjack-RulesBlackjack.html#method_countHand"
         },                {
             "fqsen": "\\App\\Blackjack\\RulesBlackjack\u003A\u003AupdateValue\u0028\u0029",
             "name": "updateValue",
-            "summary": "Function\u0020to\u0020give\u0020the\u0020correct\u0020\u0022blackjack\u0022\u002Dvalue\u0020for\u0020each\u0020card",
+            "summary": "Method\u0020to\u0020give\u0020the\u0020correct\u0020\u0022blackjack\u0022\u002Dvalue\u0020for\u0020a\u0020card.",
             "url": "classes/App-Blackjack-RulesBlackjack.html#method_updateValue"
         },                {
             "fqsen": "\\App\\Blackjack\\RulesBlackjack\u003A\u003AgetHighestValue\u0028\u0029",
             "name": "getHighestValue",
-            "summary": "Function\u0020to\u0020get\u0020highets\u0020\u0022valid\u0022\u0020value\u0020\u0028\u003C\u003D\u002021\u0029\nWill\u0020return\u0020the\u0020lowest\u0020if\u0020both\u0020are\u0020over\u002021",
+            "summary": "Method\u0020to\u0020get\u0020highets\u0020\u0022valid\u0022\u0020value\u0020\u0028\u003C\u003D\u002021\u0029",
             "url": "classes/App-Blackjack-RulesBlackjack.html#method_getHighestValue"
         },                {
             "fqsen": "\\App\\Blackjack\\RulesBlackjack\u003A\u003AfindWinner\u0028\u0029",
             "name": "findWinner",
-            "summary": "Function\u0020to\u0020calculate\u0020who\u0020is\u0020the\u0020winner",
+            "summary": "Method\u0020to\u0020calculate\u0020who\u0020is\u0020the\u0020winner",
             "url": "classes/App-Blackjack-RulesBlackjack.html#method_findWinner"
         },                {
             "fqsen": "\\App\\Card\\Card",
