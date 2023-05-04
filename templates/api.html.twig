@@ -77,6 +77,20 @@
                 <input class="btn btn-primary w-100" type="submit" value="Testa här">
             </form>
         </div>
+        <div class="col mx-auto form-control d-flex flex-column justify-content-between shadow">
+            <div>
+                <h4>Bibliotek</h4>
+                <p>Ett api där man kan se alla böcker i ett Biblioteks databas.</p>
+            </div>
+            <a class="btn btn-primary w-100" href="{{ path('api_library')}}">Testa här</a>
+        </div>
+        <div class="col mx-auto form-control d-flex flex-column justify-content-between shadow">
+            <div>
+                <h4>Bok</h4>
+                <p>Ett api där man kan se en bok baserat på bokens ISBN. Du kan testa på knappen under, det visar boken med ISBN 978-1-234567-89-0.</p>
+            </div>
+            <a class="btn btn-primary w-100" href="{{ path('api_library_single_book', { isbn: '978-1-234567-89-0' })}}">Testa här</a>
+        </div>
     </div>
 
     {# Just a small script to update the form to make the POST route work #}

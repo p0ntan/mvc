@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bibliotek{% endblock %}
+
+{% block header %}Bibliotek{% endblock %}
+
+{% block main %}
+<h2>Välj något av alternativen nedan</h2>
+<a href="{{ path('library_show_all')}}" class="href btn btn-light">Se alla böcker</a>
+<a href="{{ path('library_add_book')}}" class="href btn btn-light">Lägg till en bok</a>
+{% endblock %}

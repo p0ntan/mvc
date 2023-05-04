@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bibliotek{% endblock %}
+
+{% block header %}Uppdatera bok{% endblock %}
+
+{% block main %}
+<h2 class="text-center">Uppdatera {{ book.title }}</h2>
+<form action="{{ path('library_update_book_post', { idNum: book.id } )}}" method="POST" class="form-control mx-auto form-control d-flex flex-column justify-content-between shadow o-mw-650 mb-4">
+    <label for="create-title">Titel</label>
+    <input type="text" name="title" id="create-title" class="form-control mb-2" require="required" value="{{ book.title }}">
+    <label for="create-author">Författare</label>
+    <input type="text" name="author" id="create-author" class="form-control mb-2" require="required" value="{{ book.author }}">
+    <label for="create-isbn">ISBN</label>
+    <input type="text" name="isbn" id="create-isbn" max="20" class="form-control mb-2" value="{{ book.isbn }}">
+    <label for="create-img">Bild</label>
+    <input type="text" name="img" id="create-img" class="form-control mb-4" value="{{ book.img }}">
+    <input type="submit" class="btn btn-primary">
+</form>
+<a href="{{ path('library_book_by_id', { idNum: book.id } )}}" class="btn btn-light mx-auto d-block o-mw-650">Tillbaka</a>
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bibliotek{% endblock %}
+
+{% block header %}{{ book.title }}{% endblock %}
+
+{% block main %}
+    <h2 class="text-center mb-4">{{ book.title }}</h2>
+    <div class="mx-auto o-mw-250 d-flex flex-column">
+        <img src="{{ asset('image/books/') ~ book.img }}" class="img-fluid rounded shadow mb-3" alt="Bild på omslag till {{ book.title }}.">
+        <p class="mb-0 text-center">Författare: {{ book.author }}</p>
+        <p class="mb-2 text-center">ISBN: {{ book.isbn }}</p>
+        <a href="{{ path('library_update_book', { idNum: book.id} )}}" class="btn btn-primary mb-2">Uppdatera bok</a>
+        <form action="{{ path('library_delete_book', { idNum: book.id} )}}" method="POST">
+            <input type="submit" class="btn btn-danger w-100 mb-2" value="Ta bort bok">
+        </form>
+        <a href="{{ path('library_show_all' )}}" class="btn btn-light">Se alla böcker</a>
+    </div>
+{% endblock %}
