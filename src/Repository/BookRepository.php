@@ -9,7 +9,7 @@ use Doctrine\Persistence\ManagerRegistry;
 /**
  * @extends ServiceEntityRepository<Book>
  * @SuppressWarnings(PHPMD)
- * 
+ *
  * @method Book|null find($id, $lockMode = null, $lockVersion = null)
  * @method Book|null findOneBy(array $criteria, array $orderBy = null)
  * @method Book[]    findAll()
