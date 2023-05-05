@@ -13,9 +13,12 @@ use Symfony\Component\Routing\Annotation\Route;
 class LibraryController extends AbstractController
 {
     #[Route('/library', name: 'library')]
-    public function home(): Response
-    {
-        return $this->render('library/index.html.twig');
+    public function showAllBooks(
+        BookRepository $bookRepository
+    ): Response {
+        $books = $bookRepository->findAll();
+        $data = [ "books" => $books ];
+        return $this->render('library/index.html.twig', $data);
     }
 
     #[Route('/library/create', name: 'library_add_book', methods: ["GET"])]
@@ -49,19 +52,10 @@ class LibraryController extends AbstractController
         // actually executes the queries (i.e. the INSERT query)
         $entityManager->flush();
 
-        return $this->redirectToRoute('library_show_all');
+        return $this->redirectToRoute('library');
     }
 
-    #[Route('/library/show', name: 'library_show_all')]
-    public function showAllBooks(
-        BookRepository $bookRepository
-    ): Response {
-        $books = $bookRepository->findAll();
-        $data = [ "books" => $books ];
-        return $this->render('library/show-all.html.twig', $data);
-    }
-
-    #[Route('/library/show/{idNum}', name: 'library_book_by_id')]
+    #[Route('/library/{idNum}', name: 'library_book_by_id')]
     public function showBookById(
         BookRepository $bookRepository,
         int $idNum
@@ -129,6 +123,6 @@ class LibraryController extends AbstractController
         }
         $bookRepository->remove($book, true);
 
-        return $this->redirectToRoute('library_show_all');
+        return $this->redirectToRoute('library');
     }
 }

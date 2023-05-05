@@ -5,8 +5,8 @@
 {% block header %}Lägg till bok{% endblock %}
 
 {% block main %}
-<h2>Lägg till en bok i biblioteket</h2>
-<form action="{{ path('library_add_book_post')}}" method="POST" class="form-control mx-auto form-control d-flex flex-column justify-content-between shadow">
+<h2 class="text-center mb-4">Lägg till en bok i biblioteket</h2>
+<form action="{{ path('library_add_book_post')}}" method="POST" class="form-control mx-auto form-control d-flex flex-column justify-content-between shadow o-mw-650 mb-4">
     <label for="create-title">Titel</label>
     <input type="text" name="title" id="create-title" class="form-control mb-2" required="required">
     <label for="create-author">Författare</label>
@@ -17,4 +17,5 @@
     <input type="text" name="img" id="create-img" class="form-control mb-4">
     <input type="submit" class="btn btn-primary">
 </form>
+<a href="{{ path('library' )}}" class="btn btn-light mx-auto d-block o-mw-650">Tillbaka</a>
 {% endblock %}

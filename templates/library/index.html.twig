@@ -5,7 +5,24 @@
 {% block header %}Bibliotek{% endblock %}
 
 {% block main %}
-<h2>Välj något av alternativen nedan</h2>
-<a href="{{ path('library_show_all')}}" class="href btn btn-light">Se alla böcker</a>
-<a href="{{ path('library_add_book')}}" class="href btn btn-light">Lägg till en bok</a>
+<h2 class="text-center">Alla böcker i biblioteket</h2>
+<a href="{{ path('library_add_book')}}" class="btn btn-light">Lägg till ny bok</a> 
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Titel</th>
+            <th scope="col">Författare</th>
+            <th scope="col">ISBN</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for book in books %}
+            <tr>
+                <td><a href="{{ path('library_book_by_id', {idNum: book.id }) }}">{{ book.title }}</a></td>
+                <td>{{ book.author }}</td>
+                <td>{{ book.isbn }}</td>
+            </tr>
+        {% endfor %}    
+    </tbody>
+</table>
 {% endblock %}
