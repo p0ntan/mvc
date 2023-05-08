@@ -1,0 +1,23 @@
+.book-container {
+    position: relative;
+}
+
+.book-container:hover {
+    scale: 1.05;
+
+    transition: scale 0.2s ease-in-out;
+}
+
+.book-info {
+    position: absolute;
+    color: #fff;
+    width: 100%;
+    bottom: 0;
+    right: -250px;
+}
+
+.book-container:hover .book-info {
+    right: 0px;
+
+    transition: right 0.2s ease-in-out;
+}

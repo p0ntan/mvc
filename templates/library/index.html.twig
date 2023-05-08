@@ -7,22 +7,18 @@
 {% block main %}
 <h2 class="text-center">Alla böcker i biblioteket</h2>
 <a href="{{ path('library_add_book')}}" class="btn btn-light align-self-center o-miw-250 border">Lägg till ny bok</a> 
-<table class="table">
-    <thead>
-        <tr>
-            <th scope="col">Titel</th>
-            <th scope="col">Författare</th>
-            <th scope="col">ISBN</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for book in books %}
-            <tr>
-                <td><a href="{{ path('library_book_by_id', {idNum: book.id }) }}">{{ book.title }}</a></td>
-                <td>{{ book.author }}</td>
-                <td>{{ book.isbn }}</td>
-            </tr>
-        {% endfor %}    
-    </tbody>
-</table>
+<div class="d-flex flex-wrap justify-content-center">
+{% for book in books %}
+    <div class="shadow o-w-250 o-h-350 overflow-hidden m-2 rounded book book-container">
+        <h3 class="text-center position-absolute text-white w-100 bg-dark p-2">{{ book.title }}</h3>
+        <a href="{{ path('library_book_by_id', {idNum: book.id }) }}">
+            <img src="{{ asset('image/books/') ~ book.img }}" class="image w-100" alt="">
+        </a>
+        <div class="book-info d-flex flex-column bg-dark">
+            <p class="text-center m-1">Skriven av <i>{{ book.author }}</i></p>
+            <a href="{{ path('library_book_by_id', {idNum: book.id }) }}" class="btn btn-info mx-auto align-self-center m-2">Mer info</a>
+        </div>
+    </div>
+{% endfor %}
+</div>
 {% endblock %}
