@@ -97,7 +97,6 @@
         "phpmd": "tools/phpmd/vendor/bin/phpmd . text phpmd.xml || true",
         "phpstan": "tools/phpstan/vendor/bin/phpstan || true",
         "phpmetrics": "tools/phpmetrics/vendor/bin/phpmetrics --config=phpmetrics.json",
-        "test": "echo 'tjena'",
         "lint": [
             "@csfix",
             "@phpmd",
