@@ -9,7 +9,7 @@ build:
         my-tests:
             environment:
                 php:
-                    version: 8.1.2
+                    version: 8.1
         analysis:
             tests:
                 override:
