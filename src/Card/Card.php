@@ -23,8 +23,8 @@ class Card
 
     public function __construct(string $suit = null, int $value = null)
     {
-        $this->suit = $suit == null ? "joker" : $suit;
-        $this->value = $value == null ? 0 : $value;
+        $this->suit = $suit === null ? "joker" : $suit;
+        $this->value = $value === null ? 0 : $value;
     }
 
     public function getValue(): int
