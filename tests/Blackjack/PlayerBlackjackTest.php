@@ -114,7 +114,7 @@ class PlayerBlackjackTest extends TestCase
         // Setting second hand to done
         $handTwo->setDone(true);
         $this->expectException(NoHandsLeftException::class);
-        $currentHand = $player->currentHand();
+        $player->currentHand();
     }
 
     /**
