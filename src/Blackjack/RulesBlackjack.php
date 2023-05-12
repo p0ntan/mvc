@@ -228,19 +228,41 @@ class RulesBlackjack
     {
         $playerHands = $player->getHands();
         $computerOptions = $this->checkAllRules($computer);
+
         foreach ($playerHands as $hand) {
             $playerOptions = $this->checkAllRules($hand);
-            if ($playerOptions["blackjack"] !== $computerOptions["blackjack"]) {
-                $outcome = $playerOptions["blackjack"] ? "win" : "lose";
-                $hand->setOutcome($outcome);
-            } elseif ($playerOptions["bust"]) {
-                $hand->setOutcome("lose");
-            } elseif ($computerOptions["bust"]) {
-                $hand->setOutcome("win");
-            } elseif ($hand->getPoints() !== $computer->getPoints()) {
-                $outcome = $hand->getPoints() > $computer->getPoints() ? "win" : "lose";
-                $hand->setOutcome($outcome);
-            }
+            $outcome = $this->decideOutcome($hand, $computer, $playerOptions, $computerOptions);
+            $hand->setOutcome($outcome);
         }
+        // $playerHands = $player->getHands();
+        // $computerOptions = $this->checkAllRules($computer);
+        // foreach ($playerHands as $hand) {
+        //     $playerOptions = $this->checkAllRules($hand);
+        //     if ($playerOptions["blackjack"] !== $computerOptions["blackjack"]) {
+        //         $outcome = $playerOptions["blackjack"] ? "win" : "lose";
+        //         $hand->setOutcome($outcome);
+        //     } elseif ($playerOptions["bust"]) {
+        //         $hand->setOutcome("lose");
+        //     } elseif ($computerOptions["bust"]) {
+        //         $hand->setOutcome("win");
+        //     } elseif ($hand->getPoints() !== $computer->getPoints()) {
+        //         $outcome = $hand->getPoints() > $computer->getPoints() ? "win" : "lose";
+        //         $hand->setOutcome($outcome);
+        //     }
+        // }
+    }
+
+    private function decideOutcome(CardHand $hand, CardHand $computer, array $playerOptions, array $computerOptions): string
+    {
+        if ($playerOptions["blackjack"] !== $computerOptions["blackjack"]) {
+            return $playerOptions["blackjack"] ? "win" : "lose";
+        } elseif ($playerOptions["bust"]) {
+            return "lose";
+        } elseif ($computerOptions["bust"]) {
+            return "win";
+        } elseif ($hand->getPoints() !== $computer->getPoints()) {
+            return $hand->getPoints() > $computer->getPoints() ? "win" : "lose";
+        }
+        return "draw";
     }
 }
