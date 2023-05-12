@@ -227,38 +227,29 @@ class RulesBlackjack
     public function findWinner(PlayerBlackjack $player, CardHand $computer): void
     {
         $playerHands = $player->getHands();
-        $computerOptions = $this->checkAllRules($computer);
 
         foreach ($playerHands as $hand) {
             $playerOptions = $this->checkAllRules($hand);
-            $outcome = $this->decideOutcome($hand, $computer, $playerOptions, $computerOptions);
+            $outcome = $this->decideOutcome($hand, $computer);
             $hand->setOutcome($outcome);
         }
-        // $playerHands = $player->getHands();
-        // $computerOptions = $this->checkAllRules($computer);
-        // foreach ($playerHands as $hand) {
-        //     $playerOptions = $this->checkAllRules($hand);
-        //     if ($playerOptions["blackjack"] !== $computerOptions["blackjack"]) {
-        //         $outcome = $playerOptions["blackjack"] ? "win" : "lose";
-        //         $hand->setOutcome($outcome);
-        //     } elseif ($playerOptions["bust"]) {
-        //         $hand->setOutcome("lose");
-        //     } elseif ($computerOptions["bust"]) {
-        //         $hand->setOutcome("win");
-        //     } elseif ($hand->getPoints() !== $computer->getPoints()) {
-        //         $outcome = $hand->getPoints() > $computer->getPoints() ? "win" : "lose";
-        //         $hand->setOutcome($outcome);
-        //     }
-        // }
     }
 
+    /**
+     * Private helper method to calculate who is the winner
+     *
+     * @param CardHand $hand
+     * @param CardHand $computer
+     * @return string with the result for the hand
+     */
     private function decideOutcome(
         CardHand $hand,
-        CardHand $computer,
-        array $playerOptions,
-        array $computerOptions
+        CardHand $computer
     ): string
     {
+        $playerOptions = $this->checkAllRules($hand);
+        $computerOptions = $this->checkAllRules($computer);
+    
         if ($playerOptions["blackjack"] !== $computerOptions["blackjack"]) {
             return $playerOptions["blackjack"] ? "win" : "lose";
         } elseif ($playerOptions["bust"]) {
