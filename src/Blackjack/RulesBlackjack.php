@@ -229,7 +229,6 @@ class RulesBlackjack
         $playerHands = $player->getHands();
 
         foreach ($playerHands as $hand) {
-            $playerOptions = $this->checkAllRules($hand);
             $outcome = $this->decideOutcome($hand, $computer);
             $hand->setOutcome($outcome);
         }
