@@ -252,7 +252,12 @@ class RulesBlackjack
         // }
     }
 
-    private function decideOutcome(CardHand $hand, CardHand $computer, array $playerOptions, array $computerOptions): string
+    private function decideOutcome(
+        CardHand $hand,
+        CardHand $computer,
+        array $playerOptions,
+        array $computerOptions
+    ): string
     {
         if ($playerOptions["blackjack"] !== $computerOptions["blackjack"]) {
             return $playerOptions["blackjack"] ? "win" : "lose";
