@@ -100,7 +100,6 @@ class PlayerBlackjackTest extends TestCase
     {
         $player = new PlayerBlackjack();
         $this->expectException(NoHandsLeftException::class);
-        $currentHand = $player->currentHand();
 
         $handOne = new CardHand();
         $handTwo = new CardHand();

@@ -268,7 +268,6 @@ class DeckOfCardsTest extends TestCase
      */
     public function testGetAsString(): void
     {
-        $deckOfCards = new DeckOfCards();
         // Add mock cards that returns the same array when using cardmethod
         $deckOfCards = new DeckOfCards();
         $expValue = "cardTest";

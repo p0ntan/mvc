@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1683881058">
-  <project timestamp="1683881058">
+<coverage generated="1683903627">
+  <project timestamp="1683903627">
     <file name="/home/p0ntan/dbwebb-kurser/mvc/me/report/src/Blackjack/GameBlackjack.php">
       <class name="App\Blackjack\GameBlackjack" namespace="global">
         <metrics complexity="33" methods="14" coveredmethods="14" conditionals="0" coveredconditionals="0" statements="106" coveredstatements="106" elements="120" coveredelements="120"/>
@@ -137,8 +137,8 @@
       <class name="App\Blackjack\PlayerBlackjack" namespace="global">
         <metrics complexity="11" methods="8" coveredmethods="8" conditionals="0" coveredconditionals="0" statements="23" coveredstatements="23" elements="31" coveredelements="31"/>
       </class>
-      <line num="23" type="method" name="addCardHand" visibility="public" complexity="1" crap="1" count="14"/>
-      <line num="25" type="stmt" count="14"/>
+      <line num="23" type="method" name="addCardHand" visibility="public" complexity="1" crap="1" count="15"/>
+      <line num="25" type="stmt" count="15"/>
       <line num="33" type="method" name="getHands" visibility="public" complexity="1" crap="1" count="13"/>
       <line num="35" type="stmt" count="13"/>
       <line num="42" type="method" name="resetHands" visibility="public" complexity="1" crap="1" count="11"/>
@@ -155,9 +155,9 @@
       <line num="70" type="method" name="currentHand" visibility="public" complexity="3" crap="3" count="13"/>
       <line num="72" type="stmt" count="13"/>
       <line num="73" type="stmt" count="13"/>
-      <line num="74" type="stmt" count="11"/>
-      <line num="75" type="stmt" count="11"/>
-      <line num="76" type="stmt" count="11"/>
+      <line num="74" type="stmt" count="12"/>
+      <line num="75" type="stmt" count="12"/>
+      <line num="76" type="stmt" count="12"/>
       <line num="79" type="stmt" count="2"/>
       <line num="87" type="method" name="getMoney" visibility="public" complexity="1" crap="1" count="14"/>
       <line num="89" type="stmt" count="14"/>
@@ -331,10 +331,10 @@
       <line num="87" type="stmt" count="8"/>
       <line num="93" type="method" name="setOutcome" visibility="public" complexity="1" crap="1" count="7"/>
       <line num="95" type="stmt" count="7"/>
-      <line num="101" type="method" name="isDone" visibility="public" complexity="1" crap="1" count="13"/>
-      <line num="103" type="stmt" count="13"/>
-      <line num="109" type="method" name="setDone" visibility="public" complexity="1" crap="1" count="6"/>
-      <line num="111" type="stmt" count="6"/>
+      <line num="101" type="method" name="isDone" visibility="public" complexity="1" crap="1" count="14"/>
+      <line num="103" type="stmt" count="14"/>
+      <line num="109" type="method" name="setDone" visibility="public" complexity="1" crap="1" count="7"/>
+      <line num="111" type="stmt" count="7"/>
       <line num="117" type="method" name="getPoints" visibility="public" complexity="1" crap="1" count="9"/>
       <line num="119" type="stmt" count="9"/>
       <line num="125" type="method" name="setPoints" visibility="public" complexity="1" crap="1" count="17"/>
