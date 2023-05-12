@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1683903627">
-  <project timestamp="1683903627">
+<coverage generated="1683904090">
+  <project timestamp="1683904090">
     <file name="/home/p0ntan/dbwebb-kurser/mvc/me/report/src/Blackjack/GameBlackjack.php">
       <class name="App\Blackjack\GameBlackjack" namespace="global">
         <metrics complexity="33" methods="14" coveredmethods="14" conditionals="0" coveredconditionals="0" statements="106" coveredstatements="106" elements="120" coveredelements="120"/>
