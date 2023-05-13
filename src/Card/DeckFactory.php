@@ -20,7 +20,8 @@ class DeckFactory
         return $cardDeck;
     }
 
-    private function card(DeckOfCards $cardDeck) {
+    private function card(DeckOfCards $cardDeck): DeckOfCards
+    {
         $allSuits = Card::SUITS;
         $allValues = Card::VALUES;
 
@@ -33,7 +34,8 @@ class DeckFactory
         return $cardDeck;
     }
 
-    private function cardGraphic(DeckOfCards $cardDeck) {
+    private function cardGraphic(DeckOfCards $cardDeck): DeckOfCards
+    {
         $allSuits = Card::SUITS;
         $allValues = Card::VALUES;
 

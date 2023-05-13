@@ -244,11 +244,10 @@ class RulesBlackjack
     private function decideOutcome(
         CardHand $hand,
         CardHand $computer
-    ): string
-    {
+    ): string {
         $playerOptions = $this->checkAllRules($hand);
         $computerOptions = $this->checkAllRules($computer);
-    
+
         if ($playerOptions["blackjack"] !== $computerOptions["blackjack"]) {
             return $playerOptions["blackjack"] ? "win" : "lose";
         } elseif ($playerOptions["bust"]) {
