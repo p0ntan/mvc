@@ -91,7 +91,7 @@ class CardGameControllerTest extends WebTestCase
         $this->assertEquals($exp, $noOfImages);
     }
 
-    public function tesDealAndDraw(): void
+    public function testDealAndDraw(): void
     {
         $client = static::createClient();
         $client->request('GET', '/card/deck/deal/2/4');
