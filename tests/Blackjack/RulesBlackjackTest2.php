@@ -163,4 +163,37 @@ class RulesBlackjackTest2 extends TestCase
         $res = $hand->getOutcome();
         $this->assertEquals($exp, $res);
     }
+
+    /**
+     * Test to find the winner when it's a draw
+     */
+    public function testFindWinnerDraw(): void
+    {
+        // Stub cards setup
+        $stubSeven = $this->createStub(Card::class);
+        $stubSeven->method("getValue")->willReturn(7); // seven = 7
+        $stubTen = $this->createStub(Card::class);
+        $stubTen->method("getValue")->willReturn(10); // ten = 10
+
+        // Set up for player
+        // Hand, need an actual instance to control outcome
+        $hand = new CardHand();
+        $hand->addCards([$stubSeven, $stubTen]); // 19
+        // Player
+        $player = $this->createStub(PlayerBlackjack::class);
+        $player->method("getHands")->willReturn([$hand]);
+
+        // Set up for computer
+        $computer = $this->createStub(CardHand::class);
+        $computer->method("cardsInHand")->willReturn(2); // 2 cards in hand
+        $computer->method("getCards")->willReturn([$stubSeven, $stubTen]);
+        $computer->method("getPoints")->willReturn(17);
+
+        $rulesBlackjack = new RulesBlackjack();
+        $rulesBlackjack->findWinner($player, $computer);
+
+        $exp = "draw";
+        $res = $hand->getOutcome();
+        $this->assertEquals($exp, $res);
+    }
 }
