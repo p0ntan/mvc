@@ -24,14 +24,17 @@
     <p>Även om man inte via PhpMetrics får fram den exakta kodtäckningen, så tolkar jag de mätvärden som uppmätts att det skulle behövas mer testning av koden. Då flera violations är "probably bugged" tillsammans med att många klasser är helt otestade, så skulle mer tester kunna både förbättra kodtäckningen samt bli av med varningar.</p>
     <p>Det "Blob/God-object" error som min ApiController vill troligen uppstå på grund av att de api:er som finns på sidan har olika syften. Att dessa då samlas och presenteras via endast en controller gör det rimligt att den då får ett för brett/stort ansvarsområde. Klassen kan skrivas om, t ex antingen genom att dela upp den i mindre controllers.</p>
     <p>Kodens komplexitet och förmåga att underhålla/utveckla kan förbättras. Även om snittvärden kan hamna under riktvärdet 10 så är det några få klasser som drar upp snittet. Dessa klasser är även antingen markerade med gult eller rött i förhållande till "maintainability index", vilket jag ser som rimligt med tanke på deras utstickande komplexitet. Förbättring av dessa tre klasser skulle troligen kunna förbättra koden som helhet, speciellt i avseende på underhåll och utveckling.</p>
-    <img src="{{ asset('image/metrics-circles.png')}}" alt="Diagram som visar olika klassers komplexitet och underhållsindex.">
+    <img src="{{ asset('image/metrics-circles.png')}}" alt="Diagram som visar olika klassers komplexitet och underhållsindex." class="image o-mw-250 mx-auto">
 
     <h3>Scrutinizer</h3>
-    <img src="https://scrutinizer-ci.com/g/p0ntan/mvc/badges/quality-score.png?b=main" alt="Bild på scrutinizer badge, kvalitéetsbetyg." class="h-auto">
-    <img src="https://scrutinizer-ci.com/g/p0ntan/mvc/badges/coverage.png?b=main" alt="Bild på scrutinizer badge, kodtäckning.">
-    <img src="https://scrutinizer-ci.com/g/p0ntan/mvc/badges/build.png?b=main" alt="Bild på scrutinizer badge, build.">
-    <img src="https://scrutinizer-ci.com/g/p0ntan/mvc/badges/code-intelligence.svg?b=main" alt="Bild på scrutinizer badge, code intelligence.">
-    <p>Scrutinizer ger ett helhetsbetygt på 9.95, där alla badges är gröna förutom coverage som är gul. Koden har 7 issues. Alla klasser får betyget A, vilket även gäller alla metoder förutom två stycker som har fått betyget B. Rapporten kan ses i sin helhet <a href="https://scrutinizer-ci.com/g/p0ntan/mvc/">här</a>.</p>
+    <div class="d-flex gap-2">
+        <a href="https://scrutinizer-ci.com/g/p0ntan/mvc/?branch=main"><img src="https://scrutinizer-ci.com/g/p0ntan/mvc/badges/quality-score.png?b=main" alt="Bild på scrutinizer badge, kvalitéetsbetyg." class="h-auto"></a>
+        <a href="https://scrutinizer-ci.com/g/p0ntan/mvc/code-structure/main/code-coverage"><img src="https://scrutinizer-ci.com/g/p0ntan/mvc/badges/coverage.png?b=main" alt="Bild på scrutinizer badge, kodtäckning."></a>
+        <a href="https://scrutinizer-ci.com/g/p0ntan/mvc/inspections/17eaaff6-229f-4019-9b38-32146c503d3a/log"><img src="https://scrutinizer-ci.com/g/p0ntan/mvc/badges/build.png?b=main" alt="Bild på scrutinizer badge, build."></a>
+    </div>
+        <p><i>Badgesen ovan uppdateras automatiskt, och visar endast de senaste värdena från scrutinizer.</i></p>
+
+    <p>Scrutinizer ger vid första mätningen ett helhetsbetygt på 9.95, där alla badges är gröna förutom coverage som är gul. Koden har 7 issues. Alla klasser får betyget A, vilket även gäller alla metoder förutom två stycker som har fått betyget B. Rapporten kan ses i sin helhet <a href="https://scrutinizer-ci.com/g/p0ntan/mvc/">här</a>.</p>
     <p><strong>Codestyle</strong> - som ovan, inte mycket att säga om kodstilen då csfixer används.</p>
     <p><strong>Coverage</strong> - den totala kodtäckningen är 54 %, där alla klasser som har skapats för Blackjack-spelet har däremot 100 % kodtäckning.</p>
     <p><strong>Complexity</strong> - mätningarna ger högre värden på komplexitet jämfört med PhpMetrics. PhpMetrics mäter komplexiteten på fler sätt, där scrutinizers mätvärden delvis stämmer överens med metrics WMC-värden. Här hamnar totalt tolv klasser över riktvärdet 10 med scrutinizers mätvärden, men endast sex om man tittar på PhpMetrics WMC-värde. Det högst uppmätta värdet har en komplixtet på 39. Kollar man istället på komplexitet på metod-nivå är mätvärdena liknande de från PhpMetrics, där det högsta uppmätta värdet på en enskild metod är 8. En stor marjoritet av alla metoder har en komplexitet på 3 eller lägre.</p> 
@@ -48,4 +51,53 @@
     <p>Den andra förbättringen är att se över och skriva om min ApiController, där jag i ett första steg delar upp den i flera mindre controllers, eller ev flyttar över en route till en annan controller som behandlar liknande data. Förväntar mig efter förbättringen att det error som finns på min controller försvinner.</p>
     <p>Den tredje förbättringen är att skriva mer tester för att testa mer delar av koden. Detta gör jag för att först och främst få upp den totala kodtäckningen till en högre nivå, men också för att kunna förbättra CRAP-värden samt att få bort några av de varningar som gavs av PhpMetrics. Efter denna förbättring förväntar jag mig att de nya mätvärdena ger en högre kodtäckning, samt att flera varningar försvinner i tillägg till ett lägre CRAP-score.</p>
     <p>Kommer även att göra en fjärde förbättring där jag tänkt se över och skriva om de metoder som fick betyget B av scrutinizer. Det gör jag för att försöka få ett högre betyg och som tillsammans med de andra förbättringarna ska kunna höja betyget på kodkvaliteten till en 10a.</p>
+
+    <h3>Förändring av mätvärden</h3>
+    <table class="table table-dark table-striped text-center o-mw-650 mx-auto">
+        <thead>
+            <tr>
+                <th scope="col"></th>
+                <th scope="col">Före</th>
+                <th scope="col">Efter</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Violations</td>
+                <td>7</td>
+                <td>5</td>
+            </tr>
+            <tr>
+                <td>Complexity</td>
+                <td>5.7</td>
+                <td>5.48</td>
+            </tr>
+            <tr>
+                <td>Assertions</td>
+                <td>202</td>
+                <td>311</td>
+            </tr>
+
+            <tr>
+                <td>Issues</td>
+                <td>7</td>
+                <td>3</td>
+            </tr>
+            <tr>
+                <td>Scrutinizer</td>
+                <td>9.95</td>
+                <td>9.98</td>
+            </tr>
+            <tr>
+                <td>Coverage</td>
+                <td>54%</td>
+                <td>82%</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>Diskussion</h3>
+    <p>Att jobba med och förbättra sin kod upplever jag som något tydligare/enklare när man använder sig av verktyg som phpmetrics och scrutinizer, då det kan bli lite enklare när man får lite mer hårda mätvärden på koden. Jag ser det som ett bra sätt att kunna jobba med sin kodkvalitet och ger möjligheten för mer “clean code”, men att det är bra om man har med sig dessa verktyg tidigare i utvecklingen av sin applikation.</p>
+    <p>En av fördelarna med att ta med det tidigare under utvecklingen är, som jag ser på det, att man tidigare kan fånga upp eventuella brister och ställen i sin kod där man börjar göra koden mer komplex än nödvändigt. Det skulle leda till att man just inte “målar in sig” i ett hörn med sin kod om man tidigt får några mätvärden på att så kan vara fallet. En stor fördel med scrutinizer är att den ju är just automatisk, vilket jag tycker underlättar och även kan fungera som en påminnelse att faktiskt kontrollera sin kod under utveckling. En nackdel som jag kan se på det sättet jag har jobbat mot min applikation i detta kursmomentet, är att även om man förstår att koden kan och ev bör skrivas om för ev underhåll och utveckling, så är motivationen inte så hög för att göra stora förändringar när man har något som fungerar samt och som inte ska utvecklas mer. Det har egentligen ingenting med hur verktygen fungerar eller vad de föreslår utan helt och hållet när man börjar använda dem, vilket jag anser att man bör börja med tidigare under utvecklingen för att kunna utnyttja verktygen ännu mer. En annan nackdel med verktygen är ju att de ju har många mätvärden, och att man som oerfaren har svårare att tyda de olika värdena man får och hur man borde förhålla sig till dem.</p>
+    <p>Min egen kod har efter förändringarna bättre mätvärden än innan, även om jag skulle säga de är rätt så marginella. Den slutsats jag drar av den rapport jag gjort, är att koden var helt ok från början, och att de mindre ändringar man kunde göra skapade en bättre rapport men att det inte nödvändigtvis förändrade kodkvalitén speciellt mycket. Det som jag hade tänkt att skriva mer tester på vissa metoder var lite svårare än jag trodde för mitt kortspel, och nöjde mig därmed med att skriva lite fler tester till flera controllers. Det i sin tur har ju dragit upp kodtäckningen, men att det egentligen inte säger så mycket för den koden är bland annat på statiska sidor som t ex startsidan.</p>
 {% endblock %}
