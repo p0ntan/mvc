@@ -72,7 +72,7 @@ class BlackjackControllerTest extends WebTestCase
         $client->submit($form);
         $this->assertResponseRedirects('/game/play');
         // Play
-        $crawler = $client->followRedirect();
+        $client->followRedirect();
         $this->assertResponseIsSuccessful();
         $this->assertSelectorTextContains('h1', 'Spela Blackjack');
         $this->assertSelectorTextContains('p', 'Totalt satsat belopp: 10');
