@@ -17,25 +17,25 @@ class ApiControllerTest extends WebTestCase
         $this->assertSelectorTextContains('h1', 'Några API:er');
     }
 
-    public function testApiQuote()
+    public function testApiQuote(): void
     {
         $client = static::createClient();
         $client->request('GET', '/api/quote');
         $this->assertResponseIsSuccessful();
 
-        $response = $client->getResponse()->getContent();
+        $response = strval($client->getResponse()->getContent());
         $this->assertJson($response);
 
         $this->assertStringContainsString('timestamp', $response);
     }
 
-    public function testApiGameUninitialized()
+    public function testApiGameUninitialized(): void
     {
         $client = static::createClient();
         $client->request('POST', '/api/game');
         $this->assertResponseIsSuccessful();
 
-        $response = $client->getResponse()->getContent();
+        $response = strval($client->getResponse()->getContent());
         $this->assertJson($response);
         $this->assertStringContainsString('no game', $response);
     }
