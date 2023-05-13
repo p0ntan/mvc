@@ -226,6 +226,11 @@ Search.appendIndex(
             "summary": "Method\u0020to\u0020calculate\u0020who\u0020is\u0020the\u0020winner",
             "url": "classes/App-Blackjack-RulesBlackjack.html#method_findWinner"
         },                {
+            "fqsen": "\\App\\Blackjack\\RulesBlackjack\u003A\u003AdecideOutcome\u0028\u0029",
+            "name": "decideOutcome",
+            "summary": "Private\u0020helper\u0020method\u0020to\u0020calculate\u0020who\u0020is\u0020the\u0020winner",
+            "url": "classes/App-Blackjack-RulesBlackjack.html#method_decideOutcome"
+        },                {
             "fqsen": "\\App\\Card\\Card",
             "name": "Card",
             "summary": "Card\u0020class\u0020for\u0020playing\u0020cards",
@@ -416,6 +421,16 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/App-Card-DeckFactory.html#method_createDeck"
         },                {
+            "fqsen": "\\App\\Card\\DeckFactory\u003A\u003Acard\u0028\u0029",
+            "name": "card",
+            "summary": "",
+            "url": "classes/App-Card-DeckFactory.html#method_card"
+        },                {
+            "fqsen": "\\App\\Card\\DeckFactory\u003A\u003AcardGraphic\u0028\u0029",
+            "name": "cardGraphic",
+            "summary": "",
+            "url": "classes/App-Card-DeckFactory.html#method_cardGraphic"
+        },                {
             "fqsen": "\\App\\Card\\DeckOfCards",
             "name": "DeckOfCards",
             "summary": "Class\u0020for\u0020a\u0020deck\u0020of\u0020cards",
@@ -506,11 +521,6 @@ Search.appendIndex(
             "summary": "Api\u0020controller",
             "url": "classes/App-Controller-ApiController.html"
         },                {
-            "fqsen": "\\App\\Controller\\ApiController\u003A\u003AcontrolDeckSession\u0028\u0029",
-            "name": "controlDeckSession",
-            "summary": "Helper\u0020function\u0020to\u0020initiate\u0020and\u0020inject\u0020cards\u0020into\u0020carddeck\u0020if\u0020no\u0020deck\u0020in\u0020session\nHelps\u0020to\u0020stop\u0020site\u0020from\u0020crashing\u0020if\u0020accessing\u0020some\u0020routes\u0020before\u0020others",
-            "url": "classes/App-Controller-ApiController.html#method_controlDeckSession"
-        },                {
             "fqsen": "\\App\\Controller\\ApiController\u003A\u003Astart\u0028\u0029",
             "name": "start",
             "summary": "",
@@ -521,35 +531,10 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/App-Controller-ApiController.html#method_apiQuote"
         },                {
-            "fqsen": "\\App\\Controller\\ApiController\u003A\u003AcardDeck\u0028\u0029",
-            "name": "cardDeck",
-            "summary": "",
-            "url": "classes/App-Controller-ApiController.html#method_cardDeck"
-        },                {
-            "fqsen": "\\App\\Controller\\ApiController\u003A\u003AcardDeckShuffle\u0028\u0029",
-            "name": "cardDeckShuffle",
-            "summary": "",
-            "url": "classes/App-Controller-ApiController.html#method_cardDeckShuffle"
-        },                {
-            "fqsen": "\\App\\Controller\\ApiController\u003A\u003AcardDeckDraw\u0028\u0029",
-            "name": "cardDeckDraw",
-            "summary": "",
-            "url": "classes/App-Controller-ApiController.html#method_cardDeckDraw"
-        },                {
-            "fqsen": "\\App\\Controller\\ApiController\u003A\u003AcardDeckDrawMulti\u0028\u0029",
-            "name": "cardDeckDrawMulti",
-            "summary": "",
-            "url": "classes/App-Controller-ApiController.html#method_cardDeckDrawMulti"
-        },                {
             "fqsen": "\\App\\Controller\\ApiController\u003A\u003AapiGame\u0028\u0029",
             "name": "apiGame",
             "summary": "",
             "url": "classes/App-Controller-ApiController.html#method_apiGame"
-        },                {
-            "fqsen": "\\App\\Controller\\ApiController\u003A\u003AcardDeal\u0028\u0029",
-            "name": "cardDeal",
-            "summary": "",
-            "url": "classes/App-Controller-ApiController.html#method_cardDeal"
         },                {
             "fqsen": "\\App\\Controller\\ApiController\u003A\u003AapiLibrary\u0028\u0029",
             "name": "apiLibrary",
@@ -825,6 +810,51 @@ Search.appendIndex(
             "name": "remove",
             "summary": "",
             "url": "classes/App-Repository-BookRepository.html#method_remove"
+        },                {
+            "fqsen": "\\App\\Controller\\ApiCardController",
+            "name": "ApiCardController",
+            "summary": "Api\u0020controller",
+            "url": "classes/App-Controller-ApiCardController.html"
+        },                {
+            "fqsen": "\\App\\Controller\\ApiCardController\u003A\u003AcontrolDeckSession\u0028\u0029",
+            "name": "controlDeckSession",
+            "summary": "Helper\u0020function\u0020to\u0020initiate\u0020and\u0020inject\u0020cards\u0020into\u0020carddeck\u0020if\u0020no\u0020deck\u0020in\u0020session\nHelps\u0020to\u0020stop\u0020site\u0020from\u0020crashing\u0020if\u0020accessing\u0020some\u0020routes\u0020before\u0020others",
+            "url": "classes/App-Controller-ApiCardController.html#method_controlDeckSession"
+        },                {
+            "fqsen": "\\App\\Controller\\ApiCardController\u003A\u003AcardDeck\u0028\u0029",
+            "name": "cardDeck",
+            "summary": "",
+            "url": "classes/App-Controller-ApiCardController.html#method_cardDeck"
+        },                {
+            "fqsen": "\\App\\Controller\\ApiCardController\u003A\u003AcardDeckShuffle\u0028\u0029",
+            "name": "cardDeckShuffle",
+            "summary": "",
+            "url": "classes/App-Controller-ApiCardController.html#method_cardDeckShuffle"
+        },                {
+            "fqsen": "\\App\\Controller\\ApiCardController\u003A\u003AcardDeckDraw\u0028\u0029",
+            "name": "cardDeckDraw",
+            "summary": "",
+            "url": "classes/App-Controller-ApiCardController.html#method_cardDeckDraw"
+        },                {
+            "fqsen": "\\App\\Controller\\ApiCardController\u003A\u003AcardDeckDrawMulti\u0028\u0029",
+            "name": "cardDeckDrawMulti",
+            "summary": "",
+            "url": "classes/App-Controller-ApiCardController.html#method_cardDeckDrawMulti"
+        },                {
+            "fqsen": "\\App\\Controller\\ApiCardController\u003A\u003AcardDeal\u0028\u0029",
+            "name": "cardDeal",
+            "summary": "",
+            "url": "classes/App-Controller-ApiCardController.html#method_cardDeal"
+        },                {
+            "fqsen": "\\App\\Controller\\MetricsController",
+            "name": "MetricsController",
+            "summary": "",
+            "url": "classes/App-Controller-MetricsController.html"
+        },                {
+            "fqsen": "\\App\\Controller\\MetricsController\u003A\u003Ahome\u0028\u0029",
+            "name": "home",
+            "summary": "",
+            "url": "classes/App-Controller-MetricsController.html#method_home"
         },                {
             "fqsen": "\\",
             "name": "\\",

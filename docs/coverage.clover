@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1683988986">
-  <project timestamp="1683988986">
+<coverage generated="1683994975">
+  <project timestamp="1683994975">
     <file name="/home/p0ntan/dbwebb-kurser/mvc/me/report/src/Blackjack/GameBlackjack.php">
       <class name="App\Blackjack\GameBlackjack" namespace="global">
         <metrics complexity="33" methods="14" coveredmethods="14" conditionals="0" coveredconditionals="0" statements="106" coveredstatements="106" elements="120" coveredelements="120"/>
@@ -231,10 +231,10 @@
       <line num="160" type="stmt" count="29"/>
       <line num="161" type="stmt" count="26"/>
       <line num="162" type="stmt" count="26"/>
-      <line num="163" type="stmt" count="7"/>
-      <line num="164" type="stmt" count="7"/>
-      <line num="165" type="stmt" count="7"/>
-      <line num="166" type="stmt" count="7"/>
+      <line num="163" type="stmt" count="8"/>
+      <line num="164" type="stmt" count="8"/>
+      <line num="165" type="stmt" count="8"/>
+      <line num="166" type="stmt" count="8"/>
       <line num="168" type="stmt" count="25"/>
       <line num="169" type="stmt" count="25"/>
       <line num="172" type="stmt" count="29"/>
@@ -255,7 +255,7 @@
       <line num="213" type="stmt" count="29"/>
       <line num="214" type="stmt" count="29"/>
       <line num="215" type="stmt" count="29"/>
-      <line num="216" type="stmt" count="6"/>
+      <line num="216" type="stmt" count="7"/>
       <line num="218" type="stmt" count="29"/>
       <line num="227" type="method" name="findWinner" visibility="public" complexity="2" crap="2" count="8"/>
       <line num="229" type="stmt" count="8"/>
@@ -289,8 +289,8 @@
       <line num="37" type="stmt" count="13"/>
       <line num="40" type="method" name="getAsString" visibility="public" complexity="2" crap="2" count="9"/>
       <line num="42" type="stmt" count="9"/>
-      <line num="43" type="stmt" count="6"/>
-      <line num="44" type="stmt" count="8"/>
+      <line num="43" type="stmt" count="7"/>
+      <line num="44" type="stmt" count="7"/>
       <line num="45" type="stmt" count="9"/>
       <line num="52" type="method" name="getAsJson" visibility="public" complexity="1" crap="1" count="8"/>
       <line num="54" type="stmt" count="8"/>
