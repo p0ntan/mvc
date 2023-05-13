@@ -15,7 +15,7 @@ class ApiCardControllerTest extends WebTestCase
         $client->request('GET', '/api/deck');
         $this->assertResponseIsSuccessful();
 
-        $response = $client->getResponse()->getContent();
+        $response = strval($client->getResponse()->getContent());
         $this->assertJson($response);
 
         $response = json_decode($response);
@@ -30,7 +30,7 @@ class ApiCardControllerTest extends WebTestCase
         $client->request('POST', '/api/deck/shuffle');
         $this->assertResponseIsSuccessful();
 
-        $response = $client->getResponse()->getContent();
+        $response = strval($client->getResponse()->getContent());
         $this->assertJson($response);
 
         $response = json_decode($response);
