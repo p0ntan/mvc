@@ -7,11 +7,11 @@
 {% block main %}
     <h3>Introduktion</h3>
     <p><strong>Codestyle</strong> - handlar om att koden följer en viss kodstil. Om man t ex är flera som jobbar med ett projekt, ger det en mer lättläst och enhetlig kod för alla om man följer samma kodstil. För detta kan man använda verktyg som csfixer som automatiskt skriver om koden för att uppfylla en standard.</p>
-    <p><strong>Coverage</strong> - kodtäckning, hur stor del av koden som täcks utav enhetstest. Mäts i procent där man eftersträvar ett högt mätvärde som innebär hur stor del av koden som har testats, vilket i sig kan innebära mindre risk för buggar. Min egen kod har vid en första mätning en total kodtäckning på 54 %, där vissa delar tillhör mitt kortspel har en 100% kodtäckning.</p>
+    <p><strong>Coverage</strong> - kodtäckning, hur stor del av koden som täcks utav enhetstest. Mäts i procent där man eftersträvar ett högt mätvärde som innebär hur stor del av koden som har testats, vilket i sig kan innebära mindre risk för buggar. Min egen kod har vid en första mätning en total kodtäckning på 54 %, där vissa delar som tillhör mitt kortspel har en 100% kodtäckning.</p>
     <p><strong>Complexity</strong> - kodkomplexitet, hur många vägval det finns i koden i form av t ex if- eller switch-satser. Man önskar en lågt mätvärde på kodens komplexitet, där man kan ha ett riktvärde på under 10 som bl a kan ge en mer lättläst och lättunderhållen kod. Min egen kod har ett snittvärde på 5,7 (cyklomatisk komplexitet) när det gäller klasserna i min kod. </p>
     <p><strong>Cohesion</strong> - hur stort ansvarsområde/funktionalitet t ex en klass har, där målet är att en klass endast har ett ansvarsområde. Man vill här sträva efter ett högt mätvärde som indikerar att koden har sin specifika uppgift/ansvarsområde.</p>
     <p><strong>Coupling</strong> - ett mått på hur beroende klasser är av varandra. Vid mätning önskar man ett lågt mätvärde då detta indikerar att olika klasser inte är allt för beroende av varandra. En kod med mycket beroenden kan vara svårare att underhålla. I min egen kod så får många av mina controllers högre mätvärden för "efferent coupling", som innebär att mina controllers är beroende av flera klasser. </p>
-    <p><strong>CRAP</strong> - är ett kombinerat mätvärde av bl a kodtäckning (coverage) och komplexitet (complexity). Ett lågt mätvärde är önskvärt när det kommer till CRAP. Ett lågt mätvärde är önskat, där ett högt värde bl a kan innebära kod som är svårare att underhålla eller utveckla.</p>
+    <p><strong>CRAP</strong> - är ett kombinerat mätvärde av bl a kodtäckning (coverage) och komplexitet (complexity). Ett lågt mätvärde är önskvärt när det kommer till CRAP, där ett högt värde bl a kan innebära kod som är svårare att underhålla eller utveckla.</p>
 
     <h3>PhpMetrics</h3>
     <p>Koden har 7 violations, där 6 är varningar och 1 är ett error. Det error som ges är på min ApiController är ett "Blob/God object" error, 4 av varningarna är av typen "probably bugged" och de sista 2 varningarna är båda "stable abstractions principle".</p>
@@ -34,7 +34,7 @@
     </div>
         <p><i>Badgesen ovan uppdateras automatiskt, och visar endast de senaste värdena från scrutinizer.</i></p>
 
-    <p>Scrutinizer ger vid första mätningen ett helhetsbetygt på 9.95, där alla badges är gröna förutom coverage som är gul. Koden har 7 issues. Alla klasser får betyget A, vilket även gäller alla metoder förutom två stycker som har fått betyget B. Rapporten kan ses i sin helhet <a href="https://scrutinizer-ci.com/g/p0ntan/mvc/">här</a>.</p>
+    <p>Scrutinizer ger vid första mätningen ett helhetsbetygt på 9.95, där alla badges är gröna förutom coverage som är gul. Koden har 7 issues. Alla klasser får betyget A, vilket även gäller alla metoder förutom två stycken som har fått betyget B. Rapporten kan ses i sin helhet <a href="https://scrutinizer-ci.com/g/p0ntan/mvc/">här</a>.</p>
     <p><strong>Codestyle</strong> - som ovan, inte mycket att säga om kodstilen då csfixer används.</p>
     <p><strong>Coverage</strong> - den totala kodtäckningen är 54 %, där alla klasser som har skapats för Blackjack-spelet har däremot 100 % kodtäckning.</p>
     <p><strong>Complexity</strong> - mätningarna ger högre värden på komplexitet jämfört med PhpMetrics. PhpMetrics mäter komplexiteten på fler sätt, där scrutinizers mätvärden delvis stämmer överens med metrics WMC-värden. Här hamnar totalt tolv klasser över riktvärdet 10 med scrutinizers mätvärden, men endast sex om man tittar på PhpMetrics WMC-värde. Det högst uppmätta värdet har en komplixtet på 39. Kollar man istället på komplexitet på metod-nivå är mätvärdena liknande de från PhpMetrics, där det högsta uppmätta värdet på en enskild metod är 8. En stor marjoritet av alla metoder har en komplexitet på 3 eller lägre.</p> 
@@ -68,6 +68,11 @@
                 <td>5</td>
             </tr>
             <tr>
+                <td>LCOM (snitt)</td>
+                <td>1.15</td>
+                <td>1.1</td>
+            </tr>
+            <tr>
                 <td>Complexity</td>
                 <td>5.7</td>
                 <td>5.48</td>
@@ -82,6 +87,11 @@
                 <td>Issues</td>
                 <td>7</td>
                 <td>3</td>
+            </tr>
+            <tr>
+                <td>CRAP (högsta värde)</td>
+                <td>12</td>
+                <td>7</td>
             </tr>
             <tr>
                 <td>Scrutinizer</td>
@@ -99,5 +109,5 @@
     <h3>Diskussion</h3>
     <p>Att jobba med och förbättra sin kod upplever jag som något tydligare/enklare när man använder sig av verktyg som phpmetrics och scrutinizer, då det kan bli lite enklare när man får lite mer hårda mätvärden på koden. Jag ser det som ett bra sätt att kunna jobba med sin kodkvalitet och ger möjligheten för mer “clean code”, men att det är bra om man har med sig dessa verktyg tidigare i utvecklingen av sin applikation.</p>
     <p>En av fördelarna med att ta med det tidigare under utvecklingen är, som jag ser på det, att man tidigare kan fånga upp eventuella brister och ställen i sin kod där man börjar göra koden mer komplex än nödvändigt. Det skulle leda till att man just inte “målar in sig” i ett hörn med sin kod om man tidigt får några mätvärden på att så kan vara fallet. En stor fördel med scrutinizer är att den ju är just automatisk, vilket jag tycker underlättar och även kan fungera som en påminnelse att faktiskt kontrollera sin kod under utveckling. En nackdel som jag kan se på det sättet jag har jobbat mot min applikation i detta kursmomentet, är att även om man förstår att koden kan och ev bör skrivas om för ev underhåll och utveckling, så är motivationen inte så hög för att göra stora förändringar när man har något som fungerar samt och som inte ska utvecklas mer. Det har egentligen ingenting med hur verktygen fungerar eller vad de föreslår utan helt och hållet när man börjar använda dem, vilket jag anser att man bör börja med tidigare under utvecklingen för att kunna utnyttja verktygen ännu mer. En annan nackdel med verktygen är ju att de ju har många mätvärden, och att man som oerfaren har svårare att tyda de olika värdena man får och hur man borde förhålla sig till dem.</p>
-    <p>Min egen kod har efter förändringarna bättre mätvärden än innan, även om jag skulle säga de är rätt så marginella. Den slutsats jag drar av den rapport jag gjort, är att koden var helt ok från början, och att de mindre ändringar man kunde göra skapade en bättre rapport men att det inte nödvändigtvis förändrade kodkvalitén speciellt mycket. Det som jag hade tänkt att skriva mer tester på vissa metoder var lite svårare än jag trodde för mitt kortspel, och nöjde mig därmed med att skriva lite fler tester till flera controllers. Det i sin tur har ju dragit upp kodtäckningen, men att det egentligen inte säger så mycket för den koden är bland annat på statiska sidor som t ex startsidan.</p>
+    <p>Min egen kod har efter förändringarna bättre mätvärden än innan, även om jag skulle säga de är rätt så marginella. Den slutsats jag drar av den rapport jag gjort, är att koden var helt ok från början, och att de mindre ändringar man kunde göra skapade en bättre rapport men att det inte nödvändigtvis förändrade kodkvalitén speciellt mycket. Det som jag hade tänkt att skriva mer tester på vissa metoder var lite svårare än jag trodde för mitt kortspel, och nöjde mig därmed med att skriva lite fler tester till flera controllers. Det i sin tur har ju dragit upp kodtäckningen, men att det egentligen inte säger så mycket för den koden är bland annat på statiska sidor som t ex startsidan. Den största förändringen hade förmodligen blivit om man valde att skriva om de mer komplexa metoderna och klasserna, men det anser jag blir ett för stor uppgift för nu och låter det alltså vara.</p>
 {% endblock %}
