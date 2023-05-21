@@ -1,0 +1,28 @@
+.game-container {
+    position: relative;
+    max-width: 1080px;
+    height: auto;
+    border: 2px solid black;
+    overflow: hidden;
+}
+
+.escape-room {
+    width: 100%;
+    height: auto;
+    border-bottom: 2px solid black;
+}
+
+.game-info {
+    min-height: 120px;
+}
+
+.game-button {
+    background-color: transparent;
+    border: none;
+    cursor: default !important;
+}
+
+.tl-50 {
+    position: absolute;
+    transform: translate(-50%, -50%);
+}

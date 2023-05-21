@@ -2,6 +2,7 @@
 @import "lucky.css";
 @import "cardgame.css";
 @import "library.css";
+@import "escape.css";
 
 main {
     flex: 1;

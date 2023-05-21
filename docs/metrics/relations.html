@@ -49,7 +49,7 @@
 <div class="page">
     <div class="content content-first">
         <div class="report-details">
-            Created at 2023-05-14 07:06:02        , with PHPMetrics v2.8.2 (<a href="https://twitter.com/Halleck45">Jean-François Lépine</a>).
+            Created at 2023-05-21 16:27:04        , with PHPMetrics v2.8.2 (<a href="https://twitter.com/Halleck45">Jean-François Lépine</a>).
         </div>
 
         
@@ -350,6 +350,46 @@
         ]
     },
     {
+        "name": "\\App\\Controller\\ProjectController",
+        "size": 3000,
+        "relations": [
+            "\\Symfony\\Bundle\\FrameworkBundle\\Controller\\AbstractController",
+            "\\Symfony\\Component\\HttpFoundation\\Response",
+            "\\Symfony\\Component\\HttpFoundation\\Session\\SessionInterface",
+            "\\App\\Repository\\EscapeRoomRepository",
+            "\\App\\Repository\\EscapeObjectRepository",
+            "\\App\\EscapeGame\\EscapeGame",
+            "\\App\\EscapeGame\\EscapeGameInitalizer",
+            "\\Symfony\\Component\\HttpFoundation\\Request"
+        ]
+    },
+    {
+        "name": "\\App\\Repository\\EscapeRoomRepository",
+        "size": 3000,
+        "relations": []
+    },
+    {
+        "name": "\\App\\Repository\\EscapeObjectRepository",
+        "size": 3000,
+        "relations": []
+    },
+    {
+        "name": "\\App\\EscapeGame\\EscapeGame",
+        "size": 3000,
+        "relations": []
+    },
+    {
+        "name": "\\App\\EscapeGame\\EscapeGameInitalizer",
+        "size": 3000,
+        "relations": [
+            "\\App\\EscapeGame\\EscapeGame",
+            "\\App\\Repository\\EscapeRoomRepository",
+            "\\App\\Repository\\EscapeObjectRepository",
+            "\\App\\EscapeGame\\EscapeObject",
+            "\\App\\EscapeGame\\EscapeRoom"
+        ]
+    },
+    {
         "name": "\\App\\Controller\\ApiCardController",
         "size": 3000,
         "relations": [
@@ -455,7 +495,45 @@
         "relations": []
     },
     {
+        "name": "\\App\\Repository\\EscapeActionRepository",
+        "size": 3000,
+        "relations": [
+            "\\Doctrine\\Bundle\\DoctrineBundle\\Repository\\ServiceEntityRepository",
+            "\\Doctrine\\Persistence\\ManagerRegistry",
+            "\\App\\Entity\\EscapeAction"
+        ]
+    },
+    {
         "name": "\\Doctrine\\Bundle\\DoctrineBundle\\Repository\\ServiceEntityRepository",
+        "size": 3000,
+        "relations": []
+    },
+    {
+        "name": "\\App\\Entity\\EscapeAction",
+        "size": 3000,
+        "relations": []
+    },
+    {
+        "name": "\\App\\Entity\\EscapeRoom",
+        "size": 3000,
+        "relations": []
+    },
+    {
+        "name": "\\App\\Repository\\ActionToObjectRepository",
+        "size": 3000,
+        "relations": [
+            "\\Doctrine\\Bundle\\DoctrineBundle\\Repository\\ServiceEntityRepository",
+            "\\Doctrine\\Persistence\\ManagerRegistry",
+            "\\App\\Entity\\ActionToObject"
+        ]
+    },
+    {
+        "name": "\\App\\Entity\\ActionToObject",
+        "size": 3000,
+        "relations": []
+    },
+    {
+        "name": "\\App\\Entity\\EscapeObject",
         "size": 3000,
         "relations": []
     },
@@ -469,6 +547,39 @@
         "size": 3000,
         "relations": [
             "\\App\\Card\\Card"
+        ]
+    },
+    {
+        "name": "\\App\\EscapeGame\\ActionPickUp",
+        "size": 3000,
+        "relations": [
+            "\\App\\EscapeGame\\ActionTwoInterface",
+            "\\App\\EscapeGame\\EscapeObject",
+            "\\App\\EscapeGame\\Inventory"
+        ]
+    },
+    {
+        "name": "\\App\\EscapeGame\\ActionTwoInterface",
+        "size": 3000,
+        "relations": []
+    },
+    {
+        "name": "\\App\\EscapeGame\\EscapeObject",
+        "size": 3000,
+        "relations": []
+    },
+    {
+        "name": "\\App\\EscapeGame\\Inventory",
+        "size": 3000,
+        "relations": [
+            "\\App\\EscapeGame\\EscapeObject"
+        ]
+    },
+    {
+        "name": "\\App\\EscapeGame\\EscapeRoom",
+        "size": 3000,
+        "relations": [
+            "\\App\\EscapeGame\\EscapeObject"
         ]
     },
     {

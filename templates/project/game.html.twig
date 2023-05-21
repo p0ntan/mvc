@@ -1,0 +1,24 @@
+{% extends "project/base.html.twig" %}
+
+{% block main %}
+
+<div class="game-container" id="game-container">
+    <img src="{{ asset('image/escapegame/rooms/' ~ img ) }}" alt="Ett av rum med olika saker och dörrar." class="escape-room">
+
+    {% for object in objects %}
+        {% set pos = object.getPosition %}
+        <form action="" class="tl-50" style="left: {{ pos[0] }}%; top: {{ pos[1] }}%; width: 12%;">
+            <button class="game-button">
+                <img src="{{ asset('image/escapegame/objects/' ~ object.img )}}" class="w-100">
+            </button>
+        </form>
+    {% endfor %}
+
+    <div class="game-info p-2">
+        <p>
+            {{ info }}
+        </p>
+    </div>
+</div>
+
+{% endblock %}
