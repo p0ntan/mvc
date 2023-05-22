@@ -49,7 +49,7 @@
 <div class="page">
     <div class="content content-first">
         <div class="report-details">
-            Created at 2023-05-21 16:27:04        , with PHPMetrics v2.8.2 (<a href="https://twitter.com/Halleck45">Jean-François Lépine</a>).
+            Created at 2023-05-22 16:05:34        , with PHPMetrics v2.8.2 (<a href="https://twitter.com/Halleck45">Jean-François Lépine</a>).
         </div>
 
         
@@ -358,6 +358,8 @@
             "\\Symfony\\Component\\HttpFoundation\\Session\\SessionInterface",
             "\\App\\Repository\\EscapeRoomRepository",
             "\\App\\Repository\\EscapeObjectRepository",
+            "\\App\\Repository\\EscapeActionRepository",
+            "\\App\\Repository\\ActionToObjectRepository",
             "\\App\\EscapeGame\\EscapeGame",
             "\\App\\EscapeGame\\EscapeGameInitalizer",
             "\\Symfony\\Component\\HttpFoundation\\Request"
@@ -374,6 +376,16 @@
         "relations": []
     },
     {
+        "name": "\\App\\Repository\\EscapeActionRepository",
+        "size": 3000,
+        "relations": []
+    },
+    {
+        "name": "\\App\\Repository\\ActionToObjectRepository",
+        "size": 3000,
+        "relations": []
+    },
+    {
         "name": "\\App\\EscapeGame\\EscapeGame",
         "size": 3000,
         "relations": []
@@ -385,7 +397,12 @@
             "\\App\\EscapeGame\\EscapeGame",
             "\\App\\Repository\\EscapeRoomRepository",
             "\\App\\Repository\\EscapeObjectRepository",
+            "\\App\\Repository\\EscapeActionRepository",
+            "\\App\\Repository\\ActionToObjectRepository",
+            "\\App\\EscapeGame\\Inventory",
             "\\App\\EscapeGame\\EscapeObject",
+            "\\App\\EscapeGame\\ActionLookCloser",
+            "\\App\\EscapeGame\\ActionPickUp",
             "\\App\\EscapeGame\\EscapeRoom"
         ]
     },
@@ -495,15 +512,6 @@
         "relations": []
     },
     {
-        "name": "\\App\\Repository\\EscapeActionRepository",
-        "size": 3000,
-        "relations": [
-            "\\Doctrine\\Bundle\\DoctrineBundle\\Repository\\ServiceEntityRepository",
-            "\\Doctrine\\Persistence\\ManagerRegistry",
-            "\\App\\Entity\\EscapeAction"
-        ]
-    },
-    {
         "name": "\\Doctrine\\Bundle\\DoctrineBundle\\Repository\\ServiceEntityRepository",
         "size": 3000,
         "relations": []
@@ -517,15 +525,6 @@
         "name": "\\App\\Entity\\EscapeRoom",
         "size": 3000,
         "relations": []
-    },
-    {
-        "name": "\\App\\Repository\\ActionToObjectRepository",
-        "size": 3000,
-        "relations": [
-            "\\Doctrine\\Bundle\\DoctrineBundle\\Repository\\ServiceEntityRepository",
-            "\\Doctrine\\Persistence\\ManagerRegistry",
-            "\\App\\Entity\\ActionToObject"
-        ]
     },
     {
         "name": "\\App\\Entity\\ActionToObject",
@@ -552,11 +551,7 @@
     {
         "name": "\\App\\EscapeGame\\ActionPickUp",
         "size": 3000,
-        "relations": [
-            "\\App\\EscapeGame\\ActionTwoInterface",
-            "\\App\\EscapeGame\\EscapeObject",
-            "\\App\\EscapeGame\\Inventory"
-        ]
+        "relations": []
     },
     {
         "name": "\\App\\EscapeGame\\ActionTwoInterface",
@@ -571,15 +566,44 @@
     {
         "name": "\\App\\EscapeGame\\Inventory",
         "size": 3000,
-        "relations": [
-            "\\App\\EscapeGame\\EscapeObject"
-        ]
+        "relations": []
+    },
+    {
+        "name": "\\App\\EscapeGame\\NoCurrentRoomException",
+        "size": 3000,
+        "relations": []
     },
     {
         "name": "\\App\\EscapeGame\\EscapeRoom",
         "size": 3000,
         "relations": [
+            "\\App\\EscapeGame\\EscapeObject",
+            "\\App\\EscapeGame\\ObjectNotInRoomException"
+        ]
+    },
+    {
+        "name": "\\App\\EscapeGame\\ActionLookCloser",
+        "size": 3000,
+        "relations": [
+            "\\App\\EscapeGame\\ActionOneInterface",
             "\\App\\EscapeGame\\EscapeObject"
+        ]
+    },
+    {
+        "name": "\\App\\EscapeGame\\ActionOneInterface",
+        "size": 3000,
+        "relations": []
+    },
+    {
+        "name": "\\App\\EscapeGame\\ActionInterface",
+        "size": 3000,
+        "relations": []
+    },
+    {
+        "name": "\\App\\EscapeGame\\ObjectNotInRoomException",
+        "size": 3000,
+        "relations": [
+            "\\Exception"
         ]
     },
     {

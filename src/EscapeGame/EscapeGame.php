@@ -72,12 +72,17 @@ class EscapeGame
 
     public function getCurrentRoom(): EscapeRoom
     {
-        $firstRoom = $this->rooms[0];
         foreach ($this->rooms as $room) {
             if ($room->isCurrentRoom()) {
                 return $room;
             }
         }
-        return $firstRoom;
+        throw new NoCurrentRoomException();
+    }
+
+    public function getObjectInCurrentRoom(int $idNum): EscapeObject
+    {
+        $currentRoom = $this->getCurrentRoom();
+        return $currentRoom->getObjectInRoom($idNum);
     }
 }

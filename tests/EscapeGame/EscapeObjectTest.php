@@ -3,6 +3,7 @@
 namespace App\EscapeGame;
 
 use PHPUnit\Framework\TestCase;
+use Error;
 
 /**
  * Test cases for class EscapeObject
@@ -19,18 +20,16 @@ class EscapeObjectTest extends TestCase
     {
         parent::setUp();
 
-        $mockActionOff = $this->createMock(ActionInterface::class);
-        $mockActionOn = $this->createMock(ActionInterface::class);
         $data = [
             'id' => 1,
             'name' => 'test',
             'info' => 'Infotest',
+            'innerInfo' => 'Infotest active',
             'position' => [2, 5],
-            'actionsOff' => [$mockActionOff],
-            'actionsOn' => [$mockActionOn],
+            'size' => [12, 12],
             'img' => 'image.png',
-            'imgActive' => 'active.png',
-            'inRoom' => 1
+            'inRoom' => 1,
+            'inObject' => -1
         ];
 
         $this->escapeObject = new EscapeObject($data);
@@ -54,8 +53,7 @@ class EscapeObjectTest extends TestCase
         $escapeObject = $this->escapeObject;
 
         $this->assertInstanceOf("\App\EscapeGame\EscapeObject", $escapeObject);
-        $this->assertFalse($this->escapeObject->isOn());
-        $this->assertFalse($this->escapeObject->isActive());
+        $this->assertFalse($this->escapeObject->isPicked());
         $this->assertNull($this->escapeObject->getInnerObject());
     }
 
@@ -83,38 +81,36 @@ class EscapeObjectTest extends TestCase
     }
 
     /**
-     * Test to get actions, both on and off by changing isOn property
+     * Test to get actions
      */
-    public function testGetActionAndIsOn(): void
+    public function testGetAction(): void
     {
-        $mockActionOff = $this->createMock(ActionInterface::class);
-        $mockActionOn = $this->createMock(ActionInterface::class);
+        $mockAction = $this->createMock(ActionInterface::class);
         $data = [
             'id' => 1,
             'name' => 'test',
             'info' => '',
+            'innerInfo' => 'Infotest active',
             'position' => [2, 5],
-            'actionsOff' => [$mockActionOff],
-            'actionsOn' => [$mockActionOn],
+            'size' => [12, 12],
             'img' => '',
-            'imgActive' => '',
-            'inRoom' => 1
+            'inRoom' => 1,
+            'inObject' => -1
         ];
 
         $escapeObject = new EscapeObject($data);
 
-        // Test to get actions when isOn is false
+        $this->expectException(Error::class);
+        $res = $escapeObject->getActions();
+
+        // Add actions
+        $escapeObject->addAction($mockAction, "action");
+        $escapeObject->addAction($mockAction, "pick");
+        // Test to get actions
         $res = $escapeObject->getActions();
         $this->assertIsArray($res);
-        $this->assertSame($mockActionOff, $res[0]);
-
-        // Changing state of isOn property
-        $escapeObject->setIsOn(true);
-
-        // Test to get actions when isOn is true
-        $res = $escapeObject->getActions();
-        $this->assertIsArray($res);
-        $this->assertSame($mockActionOn, $res[0]);
+        $this->assertCount(2, $res);
+        $this->assertSame($mockAction, $res[0]);
     }
 
     /**
@@ -131,34 +127,42 @@ class EscapeObjectTest extends TestCase
     }
 
     /**
+     * Test to get psize
+     */
+    public function testGetSize(): void
+    {
+        $escapeObject = $this->escapeObject;
+
+        $size = $escapeObject->getSize();
+        $exp = [12, 12];
+        $this->assertIsArray($size);
+        $this->assertSame($exp, $size);
+    }
+
+    /**
      * Test to get img and getImgActive
      */
     public function testGetUrl(): void
     {
         $escapeObject = $this->escapeObject;
 
-        // Test to get img when isActive is false
+        // Test to get img
         $img = $escapeObject->getImg();
         $exp = 'image.png';
-        $this->assertEquals($exp, $img);
-
-        // Test to get img when isActive is true
-        $img = $escapeObject->getImgActive();
-        $exp = 'active.png';
         $this->assertEquals($exp, $img);
     }
 
     /**
-     * Test to set and get isActive
+     * Test to get inRoom
+     *
      */
-    public function testSetAndGetIsActive(): void
+    public function testGetInRoom(): void
     {
         $escapeObject = $this->escapeObject;
 
-        $this->assertFalse($escapeObject->isActive());
-
-        $escapeObject->setIsActive(true);
-        $this->assertTrue($escapeObject->isActive());
+        $res = $escapeObject->getInRoom();
+        $exp = 1;
+        $this->assertEquals($exp, $res);
     }
 
     /**

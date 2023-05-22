@@ -32,11 +32,20 @@ class EscapeObject
     #[ORM\Column(length: 55, nullable: true)]
     private ?string $img = null;
 
-    #[ORM\Column(length: 55, nullable: true)]
-    private ?string $img_active = null;
-
     #[ORM\Column(nullable: true)]
     private ?int $in_room = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?int $size_x = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?int $size_y = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?int $in_object = null;
+
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $info_inner = null;
 
     public function getId(): ?int
     {
@@ -103,18 +112,6 @@ class EscapeObject
         return $this;
     }
 
-    public function getImgActive(): ?string
-    {
-        return $this->img_active;
-    }
-
-    public function setImgActive(?string $img_active): self
-    {
-        $this->img_active = $img_active;
-
-        return $this;
-    }
-
     public function getInRoom(): ?int
     {
         return $this->in_room;
@@ -123,6 +120,54 @@ class EscapeObject
     public function setInRoom(?int $in_room): self
     {
         $this->in_room = $in_room;
+
+        return $this;
+    }
+
+    public function getSizeX(): ?int
+    {
+        return $this->size_x;
+    }
+
+    public function setSizeX(?int $size_x): self
+    {
+        $this->size_x = $size_x;
+
+        return $this;
+    }
+
+    public function getSizeY(): ?int
+    {
+        return $this->size_y;
+    }
+
+    public function setSizeY(?int $size_y): self
+    {
+        $this->size_y = $size_y;
+
+        return $this;
+    }
+
+    public function getInObject(): ?int
+    {
+        return $this->in_object;
+    }
+
+    public function setInObject(?int $in_object): self
+    {
+        $this->in_object = $in_object;
+
+        return $this;
+    }
+
+    public function getInfoInner(): ?string
+    {
+        return $this->info_inner;
+    }
+
+    public function setInfoInner(?string $info_inner): self
+    {
+        $this->info_inner = $info_inner;
 
         return $this;
     }

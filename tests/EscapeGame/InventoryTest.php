@@ -3,7 +3,6 @@
 namespace App\EscapeGame;
 
 use PHPUnit\Framework\TestCase;
-use TypeError;
 
 /**
  * Test cases for class Inventory

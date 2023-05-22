@@ -129,4 +129,45 @@ class EscapeRoomTest extends TestCase
         $this->assertCount(1, $res);
         $this->assertSame($exp, $res);
     }
+
+    /**
+     * Test to get object by id
+     */
+    public function testGetObjectById(): void
+    {
+        $escapeRoom = $this->escapeRoom;
+
+        $mockObject = $this->createMock(EscapeObject::class);
+        $mockObject->method('getId')->willReturn(10);
+        $mockObjectTwo = $this->createMock(EscapeObject::class);
+        $mockObjectThree = $this->createMock(EscapeObject::class);
+        $mockObjectThree->method('getId')->willReturn(3);
+        $objects = [$mockObject, $mockObjectTwo, $mockObjectThree];
+        $escapeRoom->addObjects($objects);
+
+        $res = $escapeRoom->getObjectInRoom(3);
+        $this->assertSame($mockObjectThree, $res);
+
+        $res = $escapeRoom->getObjectInRoom(10);
+        $this->assertSame($mockObject, $res);
+    }
+
+    /**
+     * Test to get object that doesn't exist in room
+     */
+    public function testGetObjectByIdFail(): void
+    {
+        $escapeRoom = $this->escapeRoom;
+
+        $mockObject = $this->createMock(EscapeObject::class);
+        $mockObject->method('getId')->willReturn(10);
+        $mockObjectTwo = $this->createMock(EscapeObject::class);
+        $mockObjectThree = $this->createMock(EscapeObject::class);
+        $mockObjectThree->method('getId')->willReturn(3);
+        $objects = [$mockObject, $mockObjectTwo, $mockObjectThree];
+        $escapeRoom->addObjects($objects);
+
+        $this->expectException(ObjectNotInRoomException::class);
+        $escapeRoom->getObjectInRoom(5);
+    }
 }

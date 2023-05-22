@@ -119,4 +119,59 @@ class EscapeGameTest extends TestCase
         $exp = [$object];
         $this->assertSame($exp, $res);
     }
+
+    /**
+     * Test to get current room
+     */
+    public function testGetCurrentRoom(): void
+    {
+        $escapeGame = $this->escapeGame;
+        $mockRoom = $this->createMock(EscapeRoom::class);
+        $mockRoomCurrent = $this->createMock(EscapeRoom::class);
+        $mockRoomCurrent->method('isCurrentRoom')->willReturn(true);
+
+        $rooms = [
+            $mockRoom,
+            $mockRoomCurrent,
+        ];
+        $escapeGame->addRooms($rooms);
+        $res = $escapeGame->getCurrentRoom();
+        $this->assertInstanceOf("\App\EscapeGame\EscapeRoom", $res);
+        $this->assertSame($mockRoomCurrent, $res);
+    }
+
+    /**
+     * Test when no room is set to current room
+     */
+    public function testGetCurrentRoomFail(): void
+    {
+        $escapeGame = $this->escapeGame;
+        $mockRoomOne = $this->createMock(EscapeRoom::class);
+        $mockRoomTwo= $this->createMock(EscapeRoom::class);
+
+        $rooms = [
+            $mockRoomOne,
+            $mockRoomTwo,
+        ];
+        $escapeGame->addRooms($rooms);
+        $this->expectException(NoCurrentRoomException::class);
+        $escapeGame->getCurrentRoom();
+    }
+
+    /**
+     * Test to get object in current room
+     */
+    public function testCurrentGetRoomObject(): void
+    {
+        $escapeGame = $this->escapeGame;
+        $mockObject = $this->createMock(EscapeObject::class);
+        $mockRoom = $this->createMock(EscapeRoom::class);
+        $mockRoom->method('isCurrentRoom')->willReturn(true);
+        $mockRoom->method('getObjectInRoom')->willReturn($mockObject);
+        $escapeGame->addRoom($mockRoom);
+
+        $res = $escapeGame->getObjectInCurrentRoom(4);
+        $this->assertInstanceOf("\App\EscapeGame\EscapeObject", $res);
+        $this->assertSame($mockObject, $res);
+    }
 }

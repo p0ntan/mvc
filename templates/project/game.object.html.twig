@@ -1,0 +1,40 @@
+{% extends "project/base.html.twig" %}
+
+{% block main %}
+
+<div class="game-container" id="game-container">
+    <div class="game-image">
+        <img src="{{ asset('image/escapegame/rooms/' ~ img ) }}" alt="Ett av rum med olika saker och dörrar." class="escape-room blur-pic">
+        <img src="{{ asset('image/escapegame/objects/' ~ objectImg )}}" alt="Närbild på ett av spelets objekt" class="object-closeup tl-50 ab-center">
+        {% for object in innerObject %}
+            {% if not object.isPicked() %}
+                {% set pos = object.getPosition %}
+                {% set size = object.getSize %}
+                <form method="GET" action="{{ path('proj_game_object', {objectId: id} )}}" class="tl-50 object-form" style="left: {{ pos[0] }}%; top: {{ pos[1] }}%; width: {{ size[0] }}%; height: {{ size[1] }}%;">
+                    <img src="{{asset('image/escapegame/objects/' ~ object.getImg() )}}" class="tl-50">
+                    <input type="submit" class="game-button z-top" name="object" value="{{ object.getId }}">
+                </form>
+            {% endif %}
+        {% endfor %}
+        <a href="{{ path('proj_game')}}">Tillbaka</a>
+    </div>
+
+    <div class="game-info p-2">
+        <p>
+            {{ info }}
+        </p>
+        {% if object %}
+            <p>
+                {{ object.getInfo() }}
+            </p>
+            <form method="POST" action="{{ path('proj_object_action', {objectId: id } )}}">
+                {% for key, action in object.getActions() %}
+                    <input type="hidden" name="inner-object" value="{{ object.getId() }}">
+                    <button type="submit" formmethod="post" name="action" value="{{ key }}">{{ action.getName() }}</button>
+                {% endfor %}
+            </form> 
+        {% endif %}
+    </div>
+</div>
+
+{% endblock %}

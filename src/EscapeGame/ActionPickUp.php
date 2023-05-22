@@ -10,5 +10,11 @@ class ActionPickUp implements ActionTwoInterface
     public function execute(EscapeObject $object, Inventory $inventory): void
     {
         $inventory->addItem($object);
+        $object->setIsPicked(true);
+    }
+
+    public function getName(): string
+    {
+        return 'Plocka upp';
     }
 }

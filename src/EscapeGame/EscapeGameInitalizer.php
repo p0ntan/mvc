@@ -2,8 +2,11 @@
 
 namespace App\EscapeGame;
 
+use App\Entity\EscapeAction as EscapeActionEntity;
 use App\Repository\EscapeRoomRepository;
 use App\Repository\EscapeObjectRepository;
+use App\Repository\EscapeActionRepository;
+use App\Repository\ActionToObjectRepository;
 
 /**
  * EscapeGameInitalizer class initialization of the escape game.
@@ -14,15 +17,21 @@ class EscapeGameInitalizer
     public function initGame(
         EscapeGame $escapeGame,
         EscapeRoomRepository $roomRepository,
-        EscapeObjectRepository $objectRepository
+        EscapeObjectRepository $objectRepository,
+        EscapeActionRepository $actionRepository,
+        ActionToObjectRepository $actionToObjectRepo
     ): EscapeGame {
         $allObjects = $this->initObjects($objectRepository);
         $allRooms = $this->initRooms($roomRepository);
+        $inventory = new Inventory();
+        $this->addActionsToObjects($actionRepository, $actionToObjectRepo, $allObjects);
         $this->addObjectsToRoom($allObjects, $allRooms);
+        $this->addObjectsToObject($allObjects);
 
         foreach ($allRooms as $room) {
             $escapeGame->addRoom($room);
         }
+        $escapeGame->setInventory($inventory);
 
         return $escapeGame;
     }
@@ -42,17 +51,51 @@ class EscapeGameInitalizer
                 'id' => $object->getId(),
                 'name' => $object->getName(),
                 'info' => $object->getInfo(),
+                'innerInfo' => $object->getInfoInner(),
                 'position' => [$object->getPositionX(), $object->getPositionY()],
-                'actionsOff' => [],
-                'actionsOn' => [],
+                'size' => [$object->getSizeX(), $object->getSizeY()],
                 'img' => $object->getImg(),
-                'imgActive' => $object->getImgActive(),
-                'inRoom' => $object->getInRoom()
+                'inRoom' => $object->getInRoom(),
+                'inObject' => $object->getInObject()
             ];
             $newObject = new EscapeObject($data);
             $resObjects[] = $newObject;
         }
         return $resObjects;
+    }
+
+    /**
+     * Function to add actions to objects
+     * @param EscapeActionRepository $actionRepository
+     * @param ActionToObjectRepository $actionToObjectRepo
+     * @param array<EscapeObject> $objects
+     */
+    private function addActionsToObjects(
+        EscapeActionRepository $actionRepository,
+        ActionToObjectRepository $actionToObjectRepo,
+        array $objects
+    ): void {
+        foreach ($objects as $object) {
+            $objectId = $object->getId();
+            $actionToObject = $actionToObjectRepo->findBy(['object_id' => $objectId]);
+            foreach ($actionToObject as $row) {
+                $actionId = $row->getActionId();
+                /** @var EscapeActionEntity $action */
+                $action = $actionRepository->find($actionId);
+                /** @var string $actionName */
+                $actionName = $action->getName();
+                switch ($actionName) {
+                    case 'lookCloser':
+                        $newAction = new ActionLookCloser();
+                        $object->addAction($newAction, $actionName);
+                        break;
+                    case 'pickUp':
+                        $newAction = new ActionPickUp();
+                        $object->addAction($newAction, $actionName);
+                        break;
+                }
+            }
+        }
     }
 
     /**
@@ -93,6 +136,23 @@ class EscapeGameInitalizer
             foreach ($objects as $object) {
                 if ($object->getInRoom() == $room->getId()) {
                     $room->addObject($object);
+                }
+            }
+        }
+    }
+
+    /**
+     * Function to add objects to objects
+     *
+     * @param array<EscapeObject> $objects
+     */
+    private function addObjectsToObject(
+        array $objects
+    ): void {
+        foreach ($objects as $object) {
+            foreach ($objects as $obj) {
+                if ($obj->getInObject() == $object->getId()) {
+                    $object->setInnerObject($obj);
                 }
             }
         }

@@ -3,21 +3,41 @@
 {% block main %}
 
 <div class="game-container" id="game-container">
-    <img src="{{ asset('image/escapegame/rooms/' ~ img ) }}" alt="Ett av rum med olika saker och dörrar." class="escape-room">
+    <div class="game-image">
+        <img src="{{ asset('image/escapegame/rooms/' ~ img ) }}" alt="Ett av rum med olika saker och dörrar." class="escape-room">
 
-    {% for object in objects %}
-        {% set pos = object.getPosition %}
-        <form action="" class="tl-50" style="left: {{ pos[0] }}%; top: {{ pos[1] }}%; width: 12%;">
-            <button class="game-button">
-                <img src="{{ asset('image/escapegame/objects/' ~ object.img )}}" class="w-100">
-            </button>
-        </form>
-    {% endfor %}
+        {% for object in objects %}
+            {% if object.getInObject() == -1 %}
+                {% set pos = object.getPosition %}
+                {% set size = object.getSize %}
+                <form action="{{ path('proj_game')}}" class="tl-50 object-form" style="left: {{ pos[0] }}%; top: {{ pos[1] }}%; width: {{ size[0] }}%; height: {{ size[1] }}%;">
+                    <input type="submit" class="game-button" name="object" value="{{ object.getId }}">
+                </form>
+            {% endif %}
+        {% endfor %}
+    </div>
 
-    <div class="game-info p-2">
-        <p>
-            {{ info }}
-        </p>
+    <div class="game-info d-flex justify-content-between">
+        <div class="p-2">
+            <p>
+                {{ info }}
+            </p>
+            {% if object %}
+                <p>
+                    {{ object.getInfo() }}
+                </p>
+                <form method="GET" action="{{ path('proj_game_object', {objectId: object.getId()} )}}">
+                    {% for key, action in object.getActions() %}
+                        <button value="{{ key }}">{{ action.getName() }}</button>
+                    {% endfor %}
+                </form> 
+            {% endif %}
+        </div>
+        <div class="game-inventory">
+            {% for item in inventory.getItems() %}
+                <p>{{ item.getName() }}</p>
+            {% endfor %}
+        </div>
     </div>
 </div>
 

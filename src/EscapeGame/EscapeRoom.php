@@ -108,4 +108,20 @@ class EscapeRoom
     {
         return $this->currentRoom;
     }
+
+    /**
+     * Get an object by id
+     *
+     * @return EscapeObject
+     * @throws ObjectNotInRoomException if object is not in room
+     */
+    public function getObjectInRoom(int $idNum): EscapeObject
+    {
+        foreach ($this->objects as $object) {
+            if ($object->getId() === $idNum) {
+                return $object;
+            }
+        }
+        throw new ObjectNotInRoomException();
+    }
 }

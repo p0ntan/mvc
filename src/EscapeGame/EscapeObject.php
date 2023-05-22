@@ -10,24 +10,17 @@ class EscapeObject
     protected int $idNum;
     protected string $name;
     protected string $info;
+    protected string $innerInfo;
     /** @var array<int> $position */
     protected array $position;
-    /**
-     * Actions for object when object is "off"
-     * @var array<ActionInterface> $actionsOff
-     */
-    protected array $actionsOff;
-
-    /**
-     * Actions for object when object is "on"
-     * @var array<ActionInterface> $actionsOn
-     */
-    protected array $actionsOn;
-    protected bool $isOn = false;
-    protected bool $isActive = false;
+    /** @var array<int> $size */
+    protected array $size;
+    /** @var array<ActionInterface> $actions */
+    protected array $actions;
+    protected bool $isPicked = false;
     protected string $img;
-    protected string $imgActive;
     protected int $inRoom;
+    protected int $inObject;
     protected ?EscapeObject $innerObject = null;
 
     /**
@@ -40,12 +33,12 @@ class EscapeObject
         $this->idNum = $data['id'];
         $this->name = $data['name'];
         $this->info = $data['info'];
+        $this->innerInfo = $data['innerInfo'];
         $this->position = $data['position'];
-        $this->actionsOff = $data['actionsOff'];
-        $this->actionsOn = $data['actionsOn'];
+        $this->size = $data['size'];
         $this->img = $data['img'];
-        $this->imgActive = $data['imgActive'];
         $this->inRoom = $data['inRoom'];
+        $this->inObject = $data['inObject'];
     }
 
     /**
@@ -79,13 +72,33 @@ class EscapeObject
     }
 
     /**
+     * Get inner info, used when looking closer at an object
+     *
+     * @return string
+     */
+    public function getInnerInfo(): string
+    {
+        return $this->innerInfo;
+    }
+
+    /**
      * Get position
      *
-     * @return array<mixed>
+     * @return array<int>
      */
     public function getPosition(): array
     {
         return $this->position;
+    }
+
+    /**
+     * Get size
+     *
+     * @return array<int>
+     */
+    public function getSize(): array
+    {
+        return $this->size;
     }
 
     /**
@@ -95,50 +108,35 @@ class EscapeObject
      */
     public function getActions(): array
     {
-        if ($this->isOn) {
-            return $this->actionsOn;
-        }
-        return $this->actionsOff;
+        return $this->actions;
     }
 
     /**
-     * Get isOn
+     * Add a new action
+     */
+    public function addAction(ActionInterface $action, string $name): void
+    {
+        $this->actions[$name] = $action;
+    }
+
+    /**
+     * Get isPicked
      *
      * @return bool
      */
-    public function isOn(): bool
+    public function isPicked(): bool
     {
-        return $this->isOn;
+        return $this->isPicked;
     }
 
     /**
-     * Set isOn
+     * Set isPicked
      *
      * @param bool $boolean
      */
-    public function setIsOn(bool $boolean): void
+    public function setIsPicked(bool $boolean): void
     {
-        $this->isOn = $boolean;
-    }
-
-    /**
-     * Get isActive
-     *
-     * @return bool
-     */
-    public function isActive(): bool
-    {
-        return $this->isActive;
-    }
-
-    /**
-     * Set isActive
-     *
-     * @param bool $boolean
-     */
-    public function setIsActive(bool $boolean): void
-    {
-        $this->isActive = $boolean;
+        $this->isPicked = $boolean;
     }
 
     /**
@@ -152,16 +150,6 @@ class EscapeObject
     }
 
     /**
-     * Get imgActive
-     *
-     * @return string
-     */
-    public function getImgActive(): string
-    {
-        return $this->imgActive;
-    }
-
-    /**
      * Get inRoom
      *
      * @return int
@@ -169,6 +157,16 @@ class EscapeObject
     public function getInRoom(): int
     {
         return $this->inRoom;
+    }
+
+    /**
+     * Get inObject
+     *
+     * @return int
+     */
+    public function getInObject(): int
+    {
+        return $this->inObject;
     }
 
     /**
