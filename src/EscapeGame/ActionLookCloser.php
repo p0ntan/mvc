@@ -14,6 +14,6 @@ class ActionLookCloser implements ActionOneInterface
 
     public function getName(): string
     {
-        return 'Undersök';
+        return 'Titta närmare';
     }
 }

@@ -13,6 +13,8 @@ class EscapeRoom
     protected bool $currentRoom = false;
     /** @var array<EscapeObject> $objects */
     protected array $objects = [];
+    /** @var array<EscapeDirection> $directions */
+    protected array $directions = [];
 
     /**
      * Constructor for EscapeRoom
@@ -123,5 +125,25 @@ class EscapeRoom
             }
         }
         throw new ObjectNotInRoomException();
+    }
+
+    /**
+     * Get directions
+     *
+     * @return array<EscapeDirection>
+     */
+    public function getDirections(): array
+    {
+        return $this->directions;
+    }
+
+    /**
+     * Add direction
+     *
+     * @param EscapeDirection $direction
+     */
+    public function addDirection(EscapeDirection $direction): void
+    {
+        $this->directions[] = $direction;
     }
 }

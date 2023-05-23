@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1684771404">
-  <project timestamp="1684771404">
+<coverage generated="1684849809">
+  <project timestamp="1684849809">
     <file name="/home/p0ntan/dbwebb-kurser/mvc/me/report/src/Blackjack/GameBlackjack.php">
       <class name="App\Blackjack\GameBlackjack" namespace="global">
         <metrics complexity="33" methods="14" coveredmethods="14" conditionals="0" coveredconditionals="0" statements="106" coveredstatements="106" elements="120" coveredelements="120"/>
@@ -820,12 +820,11 @@
     </file>
     <file name="/home/p0ntan/dbwebb-kurser/mvc/me/report/src/Controller/ProjectController.php">
       <class name="App\Controller\ProjectController" namespace="global">
-        <metrics complexity="7" methods="5" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="49" coveredstatements="0" elements="54" coveredelements="0"/>
+        <metrics complexity="9" methods="6" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="65" coveredstatements="0" elements="71" coveredelements="0"/>
       </class>
       <line num="22" type="method" name="home" visibility="public" complexity="1" crap="2" count="0"/>
       <line num="25" type="stmt" count="0"/>
       <line num="28" type="method" name="initGame" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="36" type="stmt" count="0"/>
       <line num="37" type="stmt" count="0"/>
       <line num="38" type="stmt" count="0"/>
       <line num="39" type="stmt" count="0"/>
@@ -836,15 +835,15 @@
       <line num="44" type="stmt" count="0"/>
       <line num="45" type="stmt" count="0"/>
       <line num="46" type="stmt" count="0"/>
-      <line num="49" type="method" name="game" visibility="public" complexity="2" crap="6" count="0"/>
-      <line num="54" type="stmt" count="0"/>
-      <line num="55" type="stmt" count="0"/>
+      <line num="47" type="stmt" count="0"/>
+      <line num="48" type="stmt" count="0"/>
+      <line num="51" type="method" name="game" visibility="public" complexity="2" crap="6" count="0"/>
       <line num="56" type="stmt" count="0"/>
       <line num="57" type="stmt" count="0"/>
+      <line num="58" type="stmt" count="0"/>
       <line num="59" type="stmt" count="0"/>
-      <line num="60" type="stmt" count="0"/>
-      <line num="63" type="stmt" count="0"/>
-      <line num="64" type="stmt" count="0"/>
+      <line num="61" type="stmt" count="0"/>
+      <line num="62" type="stmt" count="0"/>
       <line num="65" type="stmt" count="0"/>
       <line num="66" type="stmt" count="0"/>
       <line num="67" type="stmt" count="0"/>
@@ -852,15 +851,15 @@
       <line num="69" type="stmt" count="0"/>
       <line num="70" type="stmt" count="0"/>
       <line num="71" type="stmt" count="0"/>
-      <line num="74" type="method" name="objectCloseUp" visibility="public" complexity="2" crap="6" count="0"/>
-      <line num="80" type="stmt" count="0"/>
+      <line num="72" type="stmt" count="0"/>
+      <line num="73" type="stmt" count="0"/>
+      <line num="76" type="method" name="inventory" visibility="public" complexity="2" crap="6" count="0"/>
       <line num="81" type="stmt" count="0"/>
       <line num="82" type="stmt" count="0"/>
       <line num="83" type="stmt" count="0"/>
       <line num="84" type="stmt" count="0"/>
       <line num="86" type="stmt" count="0"/>
       <line num="87" type="stmt" count="0"/>
-      <line num="89" type="stmt" count="0"/>
       <line num="90" type="stmt" count="0"/>
       <line num="91" type="stmt" count="0"/>
       <line num="92" type="stmt" count="0"/>
@@ -869,14 +868,32 @@
       <line num="95" type="stmt" count="0"/>
       <line num="96" type="stmt" count="0"/>
       <line num="97" type="stmt" count="0"/>
-      <line num="100" type="method" name="objectCloseUpAction" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="106" type="stmt" count="0"/>
+      <line num="98" type="stmt" count="0"/>
+      <line num="101" type="method" name="objectCloseUp" visibility="public" complexity="2" crap="6" count="0"/>
       <line num="107" type="stmt" count="0"/>
       <line num="108" type="stmt" count="0"/>
       <line num="109" type="stmt" count="0"/>
       <line num="110" type="stmt" count="0"/>
-      <line num="112" type="stmt" count="0"/>
-      <metrics loc="115" ncloc="115" classes="1" methods="5" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="49" coveredstatements="0" elements="54" coveredelements="0"/>
+      <line num="111" type="stmt" count="0"/>
+      <line num="113" type="stmt" count="0"/>
+      <line num="114" type="stmt" count="0"/>
+      <line num="116" type="stmt" count="0"/>
+      <line num="117" type="stmt" count="0"/>
+      <line num="118" type="stmt" count="0"/>
+      <line num="119" type="stmt" count="0"/>
+      <line num="120" type="stmt" count="0"/>
+      <line num="121" type="stmt" count="0"/>
+      <line num="122" type="stmt" count="0"/>
+      <line num="123" type="stmt" count="0"/>
+      <line num="124" type="stmt" count="0"/>
+      <line num="127" type="method" name="objectCloseUpAction" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="133" type="stmt" count="0"/>
+      <line num="134" type="stmt" count="0"/>
+      <line num="135" type="stmt" count="0"/>
+      <line num="136" type="stmt" count="0"/>
+      <line num="137" type="stmt" count="0"/>
+      <line num="139" type="stmt" count="0"/>
+      <metrics loc="142" ncloc="142" classes="1" methods="6" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="65" coveredstatements="0" elements="71" coveredelements="0"/>
     </file>
     <file name="/home/p0ntan/dbwebb-kurser/mvc/me/report/src/Entity/ActionToObject.php">
       <class name="App\Entity\ActionToObject" namespace="global">
@@ -941,6 +958,39 @@
       <line num="49" type="stmt" count="0"/>
       <line num="51" type="stmt" count="0"/>
       <metrics loc="54" ncloc="51" classes="1" methods="5" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="7" coveredstatements="0" elements="12" coveredelements="0"/>
+    </file>
+    <file name="/home/p0ntan/dbwebb-kurser/mvc/me/report/src/Entity/EscapeMovement.php">
+      <class name="App\Entity\EscapeMovement" namespace="global">
+        <metrics complexity="11" methods="11" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="16" coveredstatements="0" elements="27" coveredelements="0"/>
+      </class>
+      <line num="34" type="method" name="getId" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="36" type="stmt" count="0"/>
+      <line num="39" type="method" name="getRoomId" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="41" type="stmt" count="0"/>
+      <line num="44" type="method" name="setRoomId" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="46" type="stmt" count="0"/>
+      <line num="48" type="stmt" count="0"/>
+      <line num="51" type="method" name="getToRoom" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="53" type="stmt" count="0"/>
+      <line num="56" type="method" name="setToRoom" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="58" type="stmt" count="0"/>
+      <line num="60" type="stmt" count="0"/>
+      <line num="63" type="method" name="getPositionX" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="65" type="stmt" count="0"/>
+      <line num="68" type="method" name="setPositionX" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="70" type="stmt" count="0"/>
+      <line num="72" type="stmt" count="0"/>
+      <line num="75" type="method" name="getPositionY" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="77" type="stmt" count="0"/>
+      <line num="80" type="method" name="setPositionY" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="82" type="stmt" count="0"/>
+      <line num="84" type="stmt" count="0"/>
+      <line num="87" type="method" name="getDirection" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="89" type="stmt" count="0"/>
+      <line num="92" type="method" name="setDirection" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="94" type="stmt" count="0"/>
+      <line num="96" type="stmt" count="0"/>
+      <metrics loc="99" ncloc="96" classes="1" methods="11" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="16" coveredstatements="0" elements="27" coveredelements="0"/>
     </file>
     <file name="/home/p0ntan/dbwebb-kurser/mvc/me/report/src/Entity/EscapeObject.php">
       <class name="App\Entity\EscapeObject" namespace="global">
@@ -1036,6 +1086,16 @@
       <line num="17" type="stmt" count="0"/>
       <metrics loc="20" ncloc="16" classes="1" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="2" coveredstatements="0" elements="4" coveredelements="0"/>
     </file>
+    <file name="/home/p0ntan/dbwebb-kurser/mvc/me/report/src/EscapeGame/ActionMoveDown.php">
+      <class name="App\EscapeGame\ActionMoveDown" namespace="global">
+        <metrics complexity="2" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="2" coveredstatements="0" elements="4" coveredelements="0"/>
+      </class>
+      <line num="10" type="method" name="execute" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="12" type="stmt" count="0"/>
+      <line num="15" type="method" name="getName" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="17" type="stmt" count="0"/>
+      <metrics loc="20" ncloc="17" classes="1" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="2" coveredstatements="0" elements="4" coveredelements="0"/>
+    </file>
     <file name="/home/p0ntan/dbwebb-kurser/mvc/me/report/src/EscapeGame/ActionOneInterface.php">
       <metrics loc="12" ncloc="9" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
     </file>
@@ -1052,6 +1112,28 @@
     </file>
     <file name="/home/p0ntan/dbwebb-kurser/mvc/me/report/src/EscapeGame/ActionTwoInterface.php">
       <metrics loc="13" ncloc="9" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+    </file>
+    <file name="/home/p0ntan/dbwebb-kurser/mvc/me/report/src/EscapeGame/EscapeDirection.php">
+      <class name="App\EscapeGame\EscapeDirection" namespace="global">
+        <metrics complexity="6" methods="6" coveredmethods="6" conditionals="0" coveredconditionals="0" statements="10" coveredstatements="10" elements="16" coveredelements="16"/>
+      </class>
+      <line num="16" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="5"/>
+      <line num="18" type="stmt" count="5"/>
+      <line num="19" type="stmt" count="5"/>
+      <line num="20" type="stmt" count="5"/>
+      <line num="21" type="stmt" count="5"/>
+      <line num="22" type="stmt" count="5"/>
+      <line num="30" type="method" name="getFromRoom" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="32" type="stmt" count="1"/>
+      <line num="40" type="method" name="getToRoom" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="42" type="stmt" count="1"/>
+      <line num="50" type="method" name="getPosX" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="52" type="stmt" count="1"/>
+      <line num="60" type="method" name="getPosY" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="62" type="stmt" count="1"/>
+      <line num="70" type="method" name="getDirection" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="72" type="stmt" count="1"/>
+      <metrics loc="75" ncloc="47" classes="1" methods="6" coveredmethods="6" conditionals="0" coveredconditionals="0" statements="10" coveredstatements="10" elements="16" coveredelements="16"/>
     </file>
     <file name="/home/p0ntan/dbwebb-kurser/mvc/me/report/src/EscapeGame/EscapeGame.php">
       <class name="App\EscapeGame\EscapeGame" namespace="global">
@@ -1091,24 +1173,22 @@
     </file>
     <file name="/home/p0ntan/dbwebb-kurser/mvc/me/report/src/EscapeGame/EscapeGameInitalizer.php">
       <class name="App\EscapeGame\EscapeGameInitalizer" namespace="global">
-        <metrics complexity="19" methods="6" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="62" coveredstatements="0" elements="68" coveredelements="0"/>
+        <metrics complexity="26" methods="8" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="85" coveredstatements="0" elements="93" coveredelements="0"/>
       </class>
-      <line num="17" type="method" name="initGame" visibility="public" complexity="2" crap="6" count="0"/>
-      <line num="24" type="stmt" count="0"/>
-      <line num="25" type="stmt" count="0"/>
+      <line num="18" type="method" name="initGame" visibility="public" complexity="2" crap="6" count="0"/>
       <line num="26" type="stmt" count="0"/>
       <line num="27" type="stmt" count="0"/>
       <line num="28" type="stmt" count="0"/>
       <line num="29" type="stmt" count="0"/>
+      <line num="30" type="stmt" count="0"/>
       <line num="31" type="stmt" count="0"/>
       <line num="32" type="stmt" count="0"/>
-      <line num="34" type="stmt" count="0"/>
+      <line num="33" type="stmt" count="0"/>
+      <line num="35" type="stmt" count="0"/>
       <line num="36" type="stmt" count="0"/>
-      <line num="44" type="method" name="initObjects" visibility="private" complexity="2" crap="6" count="0"/>
-      <line num="47" type="stmt" count="0"/>
-      <line num="48" type="stmt" count="0"/>
-      <line num="49" type="stmt" count="0"/>
-      <line num="50" type="stmt" count="0"/>
+      <line num="38" type="stmt" count="0"/>
+      <line num="40" type="stmt" count="0"/>
+      <line num="48" type="method" name="initObjects" visibility="private" complexity="2" crap="6" count="0"/>
       <line num="51" type="stmt" count="0"/>
       <line num="52" type="stmt" count="0"/>
       <line num="53" type="stmt" count="0"/>
@@ -1121,54 +1201,80 @@
       <line num="60" type="stmt" count="0"/>
       <line num="61" type="stmt" count="0"/>
       <line num="62" type="stmt" count="0"/>
+      <line num="63" type="stmt" count="0"/>
       <line num="64" type="stmt" count="0"/>
-      <line num="73" type="method" name="addActionsToObjects" visibility="private" complexity="5" crap="30" count="0"/>
-      <line num="78" type="stmt" count="0"/>
-      <line num="79" type="stmt" count="0"/>
-      <line num="80" type="stmt" count="0"/>
-      <line num="81" type="stmt" count="0"/>
+      <line num="65" type="stmt" count="0"/>
+      <line num="66" type="stmt" count="0"/>
+      <line num="68" type="stmt" count="0"/>
+      <line num="77" type="method" name="addActionsToObjects" visibility="private" complexity="6" crap="42" count="0"/>
       <line num="82" type="stmt" count="0"/>
+      <line num="83" type="stmt" count="0"/>
       <line num="84" type="stmt" count="0"/>
+      <line num="85" type="stmt" count="0"/>
       <line num="86" type="stmt" count="0"/>
       <line num="88" type="stmt" count="0"/>
-      <line num="89" type="stmt" count="0"/>
       <line num="90" type="stmt" count="0"/>
-      <line num="91" type="stmt" count="0"/>
       <line num="92" type="stmt" count="0"/>
       <line num="93" type="stmt" count="0"/>
       <line num="94" type="stmt" count="0"/>
       <line num="95" type="stmt" count="0"/>
-      <line num="106" type="method" name="initRooms" visibility="private" complexity="2" crap="6" count="0"/>
-      <line num="109" type="stmt" count="0"/>
-      <line num="110" type="stmt" count="0"/>
-      <line num="112" type="stmt" count="0"/>
-      <line num="113" type="stmt" count="0"/>
-      <line num="114" type="stmt" count="0"/>
-      <line num="115" type="stmt" count="0"/>
-      <line num="116" type="stmt" count="0"/>
+      <line num="96" type="stmt" count="0"/>
+      <line num="97" type="stmt" count="0"/>
+      <line num="98" type="stmt" count="0"/>
+      <line num="99" type="stmt" count="0"/>
+      <line num="100" type="stmt" count="0"/>
+      <line num="101" type="stmt" count="0"/>
+      <line num="102" type="stmt" count="0"/>
+      <line num="103" type="stmt" count="0"/>
+      <line num="114" type="method" name="initRooms" visibility="private" complexity="2" crap="6" count="0"/>
       <line num="117" type="stmt" count="0"/>
       <line num="118" type="stmt" count="0"/>
-      <line num="119" type="stmt" count="0"/>
       <line num="120" type="stmt" count="0"/>
+      <line num="121" type="stmt" count="0"/>
       <line num="122" type="stmt" count="0"/>
-      <line num="131" type="method" name="addObjectsToRoom" visibility="private" complexity="4" crap="20" count="0"/>
-      <line num="135" type="stmt" count="0"/>
-      <line num="136" type="stmt" count="0"/>
-      <line num="137" type="stmt" count="0"/>
-      <line num="138" type="stmt" count="0"/>
-      <line num="149" type="method" name="addObjectsToObject" visibility="private" complexity="4" crap="20" count="0"/>
+      <line num="123" type="stmt" count="0"/>
+      <line num="124" type="stmt" count="0"/>
+      <line num="125" type="stmt" count="0"/>
+      <line num="126" type="stmt" count="0"/>
+      <line num="127" type="stmt" count="0"/>
+      <line num="128" type="stmt" count="0"/>
+      <line num="130" type="stmt" count="0"/>
+      <line num="138" type="method" name="initDirections" visibility="private" complexity="2" crap="6" count="0"/>
+      <line num="141" type="stmt" count="0"/>
+      <line num="142" type="stmt" count="0"/>
+      <line num="144" type="stmt" count="0"/>
+      <line num="145" type="stmt" count="0"/>
+      <line num="146" type="stmt" count="0"/>
+      <line num="147" type="stmt" count="0"/>
+      <line num="148" type="stmt" count="0"/>
+      <line num="149" type="stmt" count="0"/>
+      <line num="150" type="stmt" count="0"/>
+      <line num="151" type="stmt" count="0"/>
       <line num="152" type="stmt" count="0"/>
       <line num="153" type="stmt" count="0"/>
-      <line num="154" type="stmt" count="0"/>
       <line num="155" type="stmt" count="0"/>
-      <metrics loc="161" ncloc="128" classes="1" methods="6" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="62" coveredstatements="0" elements="68" coveredelements="0"/>
+      <line num="164" type="method" name="addObjectsToRoom" visibility="private" complexity="4" crap="20" count="0"/>
+      <line num="168" type="stmt" count="0"/>
+      <line num="169" type="stmt" count="0"/>
+      <line num="170" type="stmt" count="0"/>
+      <line num="171" type="stmt" count="0"/>
+      <line num="183" type="method" name="addDirectionsToRoom" visibility="private" complexity="4" crap="20" count="0"/>
+      <line num="187" type="stmt" count="0"/>
+      <line num="188" type="stmt" count="0"/>
+      <line num="189" type="stmt" count="0"/>
+      <line num="190" type="stmt" count="0"/>
+      <line num="201" type="method" name="addObjectsToObject" visibility="private" complexity="4" crap="20" count="0"/>
+      <line num="204" type="stmt" count="0"/>
+      <line num="205" type="stmt" count="0"/>
+      <line num="206" type="stmt" count="0"/>
+      <line num="207" type="stmt" count="0"/>
+      <metrics loc="213" ncloc="169" classes="1" methods="8" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="85" coveredstatements="0" elements="93" coveredelements="0"/>
     </file>
     <file name="/home/p0ntan/dbwebb-kurser/mvc/me/report/src/EscapeGame/EscapeObject.php">
       <class name="App\EscapeGame\EscapeObject" namespace="global">
-        <metrics complexity="17" methods="17" coveredmethods="13" conditionals="0" coveredconditionals="0" statements="25" coveredstatements="21" elements="42" coveredelements="34"/>
+        <metrics complexity="21" methods="19" coveredmethods="14" conditionals="0" coveredconditionals="0" statements="32" coveredstatements="24" elements="51" coveredelements="38"/>
       </class>
-      <line num="31" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="9"/>
-      <line num="33" type="stmt" count="9"/>
+      <line num="32" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="9"/>
       <line num="34" type="stmt" count="9"/>
       <line num="35" type="stmt" count="9"/>
       <line num="36" type="stmt" count="9"/>
@@ -1177,72 +1283,86 @@
       <line num="39" type="stmt" count="9"/>
       <line num="40" type="stmt" count="9"/>
       <line num="41" type="stmt" count="9"/>
-      <line num="49" type="method" name="getId" visibility="public" complexity="1" crap="1" count="1"/>
-      <line num="51" type="stmt" count="1"/>
-      <line num="59" type="method" name="getName" visibility="public" complexity="1" crap="1" count="1"/>
-      <line num="61" type="stmt" count="1"/>
-      <line num="69" type="method" name="getInfo" visibility="public" complexity="1" crap="1" count="1"/>
-      <line num="71" type="stmt" count="1"/>
-      <line num="79" type="method" name="getInnerInfo" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="81" type="stmt" count="0"/>
-      <line num="89" type="method" name="getPosition" visibility="public" complexity="1" crap="1" count="1"/>
-      <line num="91" type="stmt" count="1"/>
-      <line num="99" type="method" name="getSize" visibility="public" complexity="1" crap="1" count="1"/>
-      <line num="101" type="stmt" count="1"/>
-      <line num="109" type="method" name="getActions" visibility="public" complexity="1" crap="1" count="1"/>
-      <line num="111" type="stmt" count="1"/>
-      <line num="117" type="method" name="addAction" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="119" type="stmt" count="0"/>
-      <line num="127" type="method" name="isPicked" visibility="public" complexity="1" crap="1" count="1"/>
-      <line num="129" type="stmt" count="1"/>
-      <line num="137" type="method" name="setIsPicked" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="139" type="stmt" count="0"/>
-      <line num="147" type="method" name="getImg" visibility="public" complexity="1" crap="1" count="1"/>
-      <line num="149" type="stmt" count="1"/>
-      <line num="157" type="method" name="getInRoom" visibility="public" complexity="1" crap="1" count="1"/>
-      <line num="159" type="stmt" count="1"/>
-      <line num="167" type="method" name="getInObject" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="169" type="stmt" count="0"/>
-      <line num="177" type="method" name="getInnerObject" visibility="public" complexity="1" crap="1" count="2"/>
-      <line num="179" type="stmt" count="2"/>
-      <line num="187" type="method" name="setInnerObject" visibility="public" complexity="1" crap="1" count="1"/>
-      <line num="189" type="stmt" count="1"/>
-      <line num="197" type="method" name="asJson" visibility="public" complexity="1" crap="1" count="1"/>
-      <line num="199" type="stmt" count="1"/>
-      <metrics loc="202" ncloc="113" classes="1" methods="17" coveredmethods="13" conditionals="0" coveredconditionals="0" statements="25" coveredstatements="21" elements="42" coveredelements="34"/>
+      <line num="42" type="stmt" count="9"/>
+      <line num="43" type="stmt" count="9"/>
+      <line num="44" type="stmt" count="9"/>
+      <line num="52" type="method" name="getId" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="54" type="stmt" count="1"/>
+      <line num="62" type="method" name="getName" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="64" type="stmt" count="1"/>
+      <line num="72" type="method" name="getInfo" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="74" type="stmt" count="1"/>
+      <line num="82" type="method" name="getInnerInfo" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="84" type="stmt" count="0"/>
+      <line num="91" type="method" name="setPosition" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="93" type="stmt" count="0"/>
+      <line num="102" type="method" name="getPosition" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="104" type="stmt" count="1"/>
+      <line num="112" type="method" name="getSize" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="114" type="stmt" count="1"/>
+      <line num="122" type="method" name="getActions" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="124" type="stmt" count="1"/>
+      <line num="130" type="method" name="addAction" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="132" type="stmt" count="1"/>
+      <line num="140" type="method" name="isPicked" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="142" type="stmt" count="1"/>
+      <line num="150" type="method" name="setIsPicked" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="152" type="stmt" count="0"/>
+      <line num="160" type="method" name="getImg" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="162" type="stmt" count="1"/>
+      <line num="170" type="method" name="getInRoom" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="172" type="stmt" count="1"/>
+      <line num="180" type="method" name="getInObject" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="182" type="stmt" count="0"/>
+      <line num="190" type="method" name="getInnerObjects" visibility="public" complexity="1" crap="1" count="2"/>
+      <line num="192" type="stmt" count="2"/>
+      <line num="201" type="method" name="getOneInnerObject" visibility="public" complexity="3" crap="12" count="0"/>
+      <line num="203" type="stmt" count="0"/>
+      <line num="204" type="stmt" count="0"/>
+      <line num="205" type="stmt" count="0"/>
+      <line num="208" type="stmt" count="0"/>
+      <line num="216" type="method" name="addInnerObject" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="218" type="stmt" count="1"/>
+      <line num="226" type="method" name="asJson" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="228" type="stmt" count="1"/>
+      <metrics loc="231" ncloc="131" classes="1" methods="19" coveredmethods="14" conditionals="0" coveredconditionals="0" statements="32" coveredstatements="24" elements="51" coveredelements="38"/>
     </file>
     <file name="/home/p0ntan/dbwebb-kurser/mvc/me/report/src/EscapeGame/EscapeRoom.php">
       <class name="App\EscapeGame\EscapeRoom" namespace="global">
-        <metrics complexity="13" methods="10" coveredmethods="10" conditionals="0" coveredconditionals="0" statements="17" coveredstatements="17" elements="27" coveredelements="27"/>
+        <metrics complexity="15" methods="12" coveredmethods="10" conditionals="0" coveredconditionals="0" statements="19" coveredstatements="17" elements="31" coveredelements="27"/>
       </class>
-      <line num="22" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="8"/>
-      <line num="24" type="stmt" count="8"/>
-      <line num="25" type="stmt" count="8"/>
+      <line num="24" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="8"/>
       <line num="26" type="stmt" count="8"/>
       <line num="27" type="stmt" count="8"/>
-      <line num="35" type="method" name="getId" visibility="public" complexity="1" crap="1" count="1"/>
-      <line num="37" type="stmt" count="1"/>
-      <line num="45" type="method" name="getInfo" visibility="public" complexity="1" crap="1" count="1"/>
-      <line num="47" type="stmt" count="1"/>
-      <line num="55" type="method" name="getImg" visibility="public" complexity="1" crap="1" count="1"/>
-      <line num="57" type="stmt" count="1"/>
-      <line num="65" type="method" name="addObjects" visibility="public" complexity="2" crap="2" count="3"/>
-      <line num="67" type="stmt" count="3"/>
-      <line num="68" type="stmt" count="3"/>
-      <line num="77" type="method" name="addObject" visibility="public" complexity="1" crap="1" count="1"/>
-      <line num="79" type="stmt" count="1"/>
-      <line num="87" type="method" name="getObjects" visibility="public" complexity="1" crap="1" count="2"/>
-      <line num="89" type="stmt" count="2"/>
-      <line num="97" type="method" name="setCurrentRoom" visibility="public" complexity="1" crap="1" count="1"/>
-      <line num="99" type="stmt" count="1"/>
-      <line num="107" type="method" name="isCurrentRoom" visibility="public" complexity="1" crap="1" count="2"/>
-      <line num="109" type="stmt" count="2"/>
-      <line num="118" type="method" name="getObjectInRoom" visibility="public" complexity="3" crap="3" count="2"/>
-      <line num="120" type="stmt" count="2"/>
-      <line num="121" type="stmt" count="2"/>
-      <line num="122" type="stmt" count="1"/>
-      <line num="125" type="stmt" count="1"/>
-      <metrics loc="128" ncloc="73" classes="1" methods="10" coveredmethods="10" conditionals="0" coveredconditionals="0" statements="17" coveredstatements="17" elements="27" coveredelements="27"/>
+      <line num="28" type="stmt" count="8"/>
+      <line num="29" type="stmt" count="8"/>
+      <line num="37" type="method" name="getId" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="39" type="stmt" count="1"/>
+      <line num="47" type="method" name="getInfo" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="49" type="stmt" count="1"/>
+      <line num="57" type="method" name="getImg" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="59" type="stmt" count="1"/>
+      <line num="67" type="method" name="addObjects" visibility="public" complexity="2" crap="2" count="3"/>
+      <line num="69" type="stmt" count="3"/>
+      <line num="70" type="stmt" count="3"/>
+      <line num="79" type="method" name="addObject" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="81" type="stmt" count="1"/>
+      <line num="89" type="method" name="getObjects" visibility="public" complexity="1" crap="1" count="2"/>
+      <line num="91" type="stmt" count="2"/>
+      <line num="99" type="method" name="setCurrentRoom" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="101" type="stmt" count="1"/>
+      <line num="109" type="method" name="isCurrentRoom" visibility="public" complexity="1" crap="1" count="2"/>
+      <line num="111" type="stmt" count="2"/>
+      <line num="120" type="method" name="getObjectInRoom" visibility="public" complexity="3" crap="3" count="2"/>
+      <line num="122" type="stmt" count="2"/>
+      <line num="123" type="stmt" count="2"/>
+      <line num="124" type="stmt" count="1"/>
+      <line num="127" type="stmt" count="1"/>
+      <line num="135" type="method" name="getDirections" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="137" type="stmt" count="0"/>
+      <line num="145" type="method" name="addDirection" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="147" type="stmt" count="0"/>
+      <metrics loc="150" ncloc="84" classes="1" methods="12" coveredmethods="10" conditionals="0" coveredconditionals="0" statements="19" coveredstatements="17" elements="31" coveredelements="27"/>
     </file>
     <file name="/home/p0ntan/dbwebb-kurser/mvc/me/report/src/EscapeGame/Inventory.php">
       <class name="App\EscapeGame\Inventory" namespace="global">
@@ -1320,6 +1440,22 @@
       <line num="39" type="stmt" count="0"/>
       <metrics loc="68" ncloc="36" classes="1" methods="3" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="7" coveredstatements="0" elements="10" coveredelements="0"/>
     </file>
+    <file name="/home/p0ntan/dbwebb-kurser/mvc/me/report/src/Repository/EscapeMovementRepository.php">
+      <class name="App\Repository\EscapeMovementRepository" namespace="global">
+        <metrics complexity="5" methods="3" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="7" coveredstatements="0" elements="10" coveredelements="0"/>
+      </class>
+      <line num="20" type="method" name="__construct" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="22" type="stmt" count="0"/>
+      <line num="25" type="method" name="save" visibility="public" complexity="2" crap="6" count="0"/>
+      <line num="27" type="stmt" count="0"/>
+      <line num="29" type="stmt" count="0"/>
+      <line num="30" type="stmt" count="0"/>
+      <line num="34" type="method" name="remove" visibility="public" complexity="2" crap="6" count="0"/>
+      <line num="36" type="stmt" count="0"/>
+      <line num="38" type="stmt" count="0"/>
+      <line num="39" type="stmt" count="0"/>
+      <metrics loc="68" ncloc="36" classes="1" methods="3" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="7" coveredstatements="0" elements="10" coveredelements="0"/>
+    </file>
     <file name="/home/p0ntan/dbwebb-kurser/mvc/me/report/src/Repository/EscapeObjectRepository.php">
       <class name="App\Repository\EscapeObjectRepository" namespace="global">
         <metrics complexity="5" methods="3" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="7" coveredstatements="0" elements="10" coveredelements="0"/>
@@ -1352,6 +1488,6 @@
       <line num="39" type="stmt" count="0"/>
       <metrics loc="68" ncloc="36" classes="1" methods="3" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="7" coveredstatements="0" elements="10" coveredelements="0"/>
     </file>
-    <metrics files="42" loc="3549" ncloc="2719" classes="34" methods="226" coveredmethods="129" conditionals="0" coveredconditionals="0" statements="882" coveredstatements="569" elements="1108" coveredelements="698"/>
+    <metrics files="46" loc="3941" ncloc="3012" classes="38" methods="255" coveredmethods="136" conditionals="0" coveredconditionals="0" statements="965" coveredstatements="582" elements="1220" coveredelements="718"/>
   </project>
 </coverage>

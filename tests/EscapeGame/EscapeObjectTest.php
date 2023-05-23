@@ -3,7 +3,6 @@
 namespace App\EscapeGame;
 
 use PHPUnit\Framework\TestCase;
-use Error;
 
 /**
  * Test cases for class EscapeObject
@@ -54,7 +53,7 @@ class EscapeObjectTest extends TestCase
 
         $this->assertInstanceOf("\App\EscapeGame\EscapeObject", $escapeObject);
         $this->assertFalse($this->escapeObject->isPicked());
-        $this->assertNull($this->escapeObject->getInnerObject());
+        $this->assertIsArray($this->escapeObject->getInnerObjects());
     }
 
     /**
@@ -85,7 +84,6 @@ class EscapeObjectTest extends TestCase
      */
     public function testGetAction(): void
     {
-        $mockAction = $this->createMock(ActionInterface::class);
         $data = [
             'id' => 1,
             'name' => 'test',
@@ -100,17 +98,17 @@ class EscapeObjectTest extends TestCase
 
         $escapeObject = new EscapeObject($data);
 
-        $this->expectException(Error::class);
-        $res = $escapeObject->getActions();
-
         // Add actions
+        $mockAction = $this->createMock(ActionInterface::class);
+        $mockPick = $this->createMock(ActionInterface::class);
         $escapeObject->addAction($mockAction, "action");
-        $escapeObject->addAction($mockAction, "pick");
+        $escapeObject->addAction($mockPick, "pick");
         // Test to get actions
         $res = $escapeObject->getActions();
         $this->assertIsArray($res);
         $this->assertCount(2, $res);
-        $this->assertSame($mockAction, $res[0]);
+        $this->assertSame($mockAction, $res["action"]);
+        $this->assertSame($mockPick, $res["pick"]);
     }
 
     /**
@@ -173,11 +171,13 @@ class EscapeObjectTest extends TestCase
         $escapeObject = $this->escapeObject;
         $mockObject = $this->createMock(EscapeObject::class);
 
-        $this->assertNull($escapeObject->getInnerObject());
+        $res = $escapeObject->getInnerObjects();
+        $this->assertIsArray($res);
+        $this->assertCount(0, $res);
 
-        $escapeObject->setInnerObject($mockObject);
-        $res = $escapeObject->getInnerObject();
-        $this->assertSame($mockObject, $res);
+        $escapeObject->addInnerObject($mockObject);
+        $res = $escapeObject->getInnerObjects();
+        $this->assertSame($mockObject, $res[0]);
     }
 
     /**

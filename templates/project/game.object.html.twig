@@ -6,34 +6,48 @@
     <div class="game-image">
         <img src="{{ asset('image/escapegame/rooms/' ~ img ) }}" alt="Ett av rum med olika saker och dörrar." class="escape-room blur-pic">
         <img src="{{ asset('image/escapegame/objects/' ~ objectImg )}}" alt="Närbild på ett av spelets objekt" class="object-closeup tl-50 ab-center">
-        {% for object in innerObject %}
+        {% for object in innerObjects %}
             {% if not object.isPicked() %}
                 {% set pos = object.getPosition %}
                 {% set size = object.getSize %}
-                <form method="GET" action="{{ path('proj_game_object', {objectId: id} )}}" class="tl-50 object-form" style="left: {{ pos[0] }}%; top: {{ pos[1] }}%; width: {{ size[0] }}%; height: {{ size[1] }}%;">
-                    <img src="{{asset('image/escapegame/objects/' ~ object.getImg() )}}" class="tl-50">
+                <form
+                    method="GET"
+                    action="{{ path('proj_game_object', {objectId: id} )}}"
+                    class="tl-50 object-form"
+                    style="left: {{ pos[0] }}%; top: {{ pos[1] }}%; width: {{ size[0] }}%; height: {{ size[1] }}%;"
+                >
+                    <img src="{{asset('image/escapegame/objects/' ~ object.getImg() )}}" class="tl-50 h-100 w-auto object-inner">
                     <input type="submit" class="game-button z-top" name="object" value="{{ object.getId }}">
                 </form>
             {% endif %}
         {% endfor %}
-        <a href="{{ path('proj_game')}}">Tillbaka</a>
+        <a href="{{ path('proj_game') }}">
+            <img src="{{ asset('image/escapegame/down.png')}}" class="tl-50 dir-down">
+        </a>
     </div>
 
-    <div class="game-info p-2">
-        <p>
-            {{ info }}
-        </p>
-        {% if object %}
+    <div class="game-info d-flex justify-content-between">
+        <div class="p-2">
             <p>
-                {{ object.getInfo() }}
+                {{ info }}
             </p>
-            <form method="POST" action="{{ path('proj_object_action', {objectId: id } )}}">
-                {% for key, action in object.getActions() %}
-                    <input type="hidden" name="inner-object" value="{{ object.getId() }}">
-                    <button type="submit" formmethod="post" name="action" value="{{ key }}">{{ action.getName() }}</button>
-                {% endfor %}
-            </form> 
-        {% endif %}
+            {% if object %}
+                <p>
+                    {{ object.getInfo() }}
+                </p>
+                <form method="POST" action="{{ path('proj_object_action', {objectId: id } )}}">
+                    {% for key, action in object.getActions() %}
+                        <input type="hidden" name="inner-object" value="{{ object.getId() }}">
+                        <button type="submit" formmethod="post" name="action" value="{{ key }}">{{ action.getName() }}</button>
+                    {% endfor %}
+                </form> 
+            {% endif %}
+        </div>
+        <div class="game-inventory-link p-2 align-self-center">
+            <a href="{{ path('proj_game_inv') }}" class="w-100 h-100">
+                <img src="{{ asset('image/escapegame/backpack.png')}}" alt="Bild på ryggsäck." class="w-100 h-100">
+            </a>
+        </div>
     </div>
 </div>
 

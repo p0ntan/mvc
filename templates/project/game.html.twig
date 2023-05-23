@@ -4,8 +4,6 @@
 
 <div class="game-container" id="game-container">
     <div class="game-image">
-        <img src="{{ asset('image/escapegame/rooms/' ~ img ) }}" alt="Ett av rum med olika saker och dörrar." class="escape-room">
-
         {% for object in objects %}
             {% if object.getInObject() == -1 %}
                 {% set pos = object.getPosition %}
@@ -14,6 +12,16 @@
                     <input type="submit" class="game-button" name="object" value="{{ object.getId }}">
                 </form>
             {% endif %}
+        {% endfor %}
+        <img src="{{ asset('image/escapegame/rooms/' ~ img ) }}" alt="Ett av rum med olika saker och dörrar." class="escape-room">
+        {% for dir in directions %}
+            <form action="{{ path('proj_game_change_room') }}" action="POST" class="tl-50 dir-{{dir.direction}}">
+                <input type="hidden" name="from-room" value="{{ dir.fromRoom }}">
+                <input type="hidden" name="to-room" value="{{ dir.toRoom }}">
+                <button type="submit" formmethod="post" name="submit" value="send-it" class="h-100 w-auto game-button">
+                    <img src="{{ asset('image/escapegame/' ~ dir.direction ) }}.png" class="w-auto h-100">
+                </button>
+            </form>
         {% endfor %}
     </div>
 
@@ -33,10 +41,10 @@
                 </form> 
             {% endif %}
         </div>
-        <div class="game-inventory">
-            {% for item in inventory.getItems() %}
-                <p>{{ item.getName() }}</p>
-            {% endfor %}
+        <div class="game-inventory-link p-2 align-self-center">
+            <a href="{{ path('proj_game_inv') }}" class="w-100 h-100">
+                <img src="{{ asset('image/escapegame/backpack.png')}}" alt="Bild på ryggsäck." class="w-100 h-100">
+            </a>
         </div>
     </div>
 </div>

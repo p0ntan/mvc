@@ -15,6 +15,6 @@ class ActionPickUp implements ActionTwoInterface
 
     public function getName(): string
     {
-        return 'Plocka upp';
+        return 'Lägg i ryggsäck';
     }
 }

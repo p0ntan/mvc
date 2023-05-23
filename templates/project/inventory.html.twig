@@ -1,0 +1,52 @@
+{% extends "project/base.html.twig" %}
+
+{% block main %}
+
+<div class="game-container" id="game-container">
+    <div class="game-image">
+        <img src="{{ asset('image/escapegame/rooms/' ~ img ) }}" alt="Ett av rum med olika saker och dörrar." class="escape-room blur-pic">
+        <div class="m-auto game-inventory tl-50 d-flex flex-wrap">
+            {% if object %}
+                <img src="{{ asset('image/escapegame/objects/' ~ object.getImg() ) }}" alt="Bild på {{ object.getName() }}." class="w-75 h-75 tl-50 p2 inventory-object-pic">
+                <a href="{{ path('proj_game_inv') }}">
+                    <img src="{{ asset('image/escapegame/left.png')}}" class="tl-50 dir-left-backpack">
+                </a>
+            {% else %}
+                {% if inventory | length == 0 %}
+                    <p class="text-center m-auto">Ryggsäcken är tom.</p>
+                {% else %}
+                    {% for object in inventory %}
+                    <form action="{{ path('proj_game_inv')}}" method="get" class="inventory-object-form p-1">
+                        <button class="w-100 h-100 game-button" name="object" value="{{ object.getId() }}">
+                            <img src="{{ asset('image/escapegame/objects/' ~ object.getImg() ) }}" alt="Bild på {{ object.getName() }}." class="w-100 h-100">
+                        </button>
+                    </form>
+                    {% endfor %}
+                {% endif %}
+            {% endif %}
+        </div>
+        <a href="{{ path('proj_game') }}">
+            <img src="{{ asset('image/escapegame/down.png')}}" class="tl-50 dir-down">
+        </a>
+    </div>
+
+    <div class="game-info d-flex justify-content-between">
+        <div class="p-2">
+            <p>
+                Du tittar i din ryggsäck, här kan du hitta saker som du samlat på dig.
+            </p>
+            {% if object %}
+                <p>
+                    {{ object.getInfo() }}
+                </p>
+            {% endif %}
+        </div>
+        <div class="game-inventory-link p-2 align-self-center">
+            <a href="{{ path('proj_game_inv') }}" class="w-100 h-100">
+                <img src="{{ asset('image/escapegame/backpack.png')}}" alt="Bild på ryggsäck." class="w-100 h-100">
+            </a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

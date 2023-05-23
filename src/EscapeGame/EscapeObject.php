@@ -21,7 +21,8 @@ class EscapeObject
     protected string $img;
     protected int $inRoom;
     protected int $inObject;
-    protected ?EscapeObject $innerObject = null;
+    /** @var array<EscapeObject> $innerObjects */
+    protected array $innerObjects;
 
     /**
      * Constructor for EscapeObject
@@ -39,6 +40,8 @@ class EscapeObject
         $this->img = $data['img'];
         $this->inRoom = $data['inRoom'];
         $this->inObject = $data['inObject'];
+        $this->actions = [];
+        $this->innerObjects = [];
     }
 
     /**
@@ -79,6 +82,16 @@ class EscapeObject
     public function getInnerInfo(): string
     {
         return $this->innerInfo;
+    }
+
+    /**
+     * Set position
+     * @param array<int> $position
+     */
+    public function setPosition(array $position): void
+    {
+        $this->position = $position;
+
     }
 
     /**
@@ -170,13 +183,29 @@ class EscapeObject
     }
 
     /**
+     * Get innerObjects
+     *
+     * @return array<EscapeObject>
+     */
+    public function getInnerObjects(): array
+    {
+        return $this->innerObjects;
+    }
+
+    /**
      * Get innerObject
+     * @param int $idNum
      *
      * @return EscapeObject
      */
-    public function getInnerObject(): ?EscapeObject
+    public function getOneInnerObject(int $idNum): EscapeObject
     {
-        return $this->innerObject;
+        foreach ($this->innerObjects as $object) {
+            if ($object->getId() === $idNum) {
+                return $object;
+            }
+        }
+        throw new ObjectNotInRoomException();
     }
 
     /**
@@ -184,9 +213,9 @@ class EscapeObject
      *
      * @param EscapeObject $innerObject
      */
-    public function setInnerObject(EscapeObject $innerObject): void
+    public function addInnerObject(EscapeObject $innerObject): void
     {
-        $this->innerObject = $innerObject;
+        $this->innerObjects[] = $innerObject;
     }
 
     /**

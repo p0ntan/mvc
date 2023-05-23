@@ -7,6 +7,7 @@ use App\Repository\EscapeRoomRepository;
 use App\Repository\EscapeObjectRepository;
 use App\Repository\EscapeActionRepository;
 use App\Repository\ActionToObjectRepository;
+use App\Repository\EscapeMovementRepository;
 
 /**
  * EscapeGameInitalizer class initialization of the escape game.
@@ -19,13 +20,16 @@ class EscapeGameInitalizer
         EscapeRoomRepository $roomRepository,
         EscapeObjectRepository $objectRepository,
         EscapeActionRepository $actionRepository,
-        ActionToObjectRepository $actionToObjectRepo
+        ActionToObjectRepository $actionToObjectRepo,
+        EscapeMovementRepository $escapeMovementRepo
     ): EscapeGame {
         $allObjects = $this->initObjects($objectRepository);
         $allRooms = $this->initRooms($roomRepository);
+        $allDirections = $this->initDirections($escapeMovementRepo);
         $inventory = new Inventory();
         $this->addActionsToObjects($actionRepository, $actionToObjectRepo, $allObjects);
         $this->addObjectsToRoom($allObjects, $allRooms);
+        $this->addDirectionsToRoom($allDirections, $allRooms);
         $this->addObjectsToObject($allObjects);
 
         foreach ($allRooms as $room) {
@@ -93,6 +97,10 @@ class EscapeGameInitalizer
                         $newAction = new ActionPickUp();
                         $object->addAction($newAction, $actionName);
                         break;
+                    case 'moveDown':
+                        $newAction = new ActionMoveDown();
+                        $object->addAction($newAction, $actionName);
+                        break;
                 }
             }
         }
@@ -123,6 +131,31 @@ class EscapeGameInitalizer
     }
 
     /**
+     * Function to create all directions from database
+     *
+     * @return array<EscapeDirection>
+     */
+    private function initDirections(
+        EscapeMovementRepository $escapeMovementRepo
+    ): array {
+        $resDirection = [];
+        $directions = $escapeMovementRepo->findAll();
+
+        foreach ($directions as $dir) {
+            $data = [
+                'from_room' => $dir->getRoomId(),
+                'to_room' => $dir->getToRoom(),
+                'pos_x' => $dir->getPositionX(),
+                'pos_y' => $dir->getPositionY(),
+                'direction' => $dir->getDirection()
+            ];
+            $newdir = new EscapeDirection($data);
+            $resDirection[] = $newdir;
+        }
+        return $resDirection;
+    }
+
+    /**
      * Function to add objects to room
      *
      * @param array<EscapeObject> $objects
@@ -142,6 +175,25 @@ class EscapeGameInitalizer
     }
 
     /**
+     * Function to add directions to rooms
+     *
+     * @param array<EscapeDirection> $directions
+     * @param array<EscapeRoom> $rooms
+     */
+    private function addDirectionsToRoom(
+        array $directions,
+        array $rooms
+    ): void {
+        foreach ($rooms as $room) {
+            foreach ($directions as $dir) {
+                if ($dir->getFromRoom() == $room->getId()) {
+                    $room->addDirection($dir);
+                }
+            }
+        }
+    }
+
+    /**
      * Function to add objects to objects
      *
      * @param array<EscapeObject> $objects
@@ -152,7 +204,7 @@ class EscapeGameInitalizer
         foreach ($objects as $object) {
             foreach ($objects as $obj) {
                 if ($obj->getInObject() == $object->getId()) {
-                    $object->setInnerObject($obj);
+                    $object->addInnerObject($obj);
                 }
             }
         }
