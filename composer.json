@@ -105,7 +105,8 @@
         "phpdoc": "tools/phpdoc/phpdoc",
         "phpunit": "XDEBUG_MODE=coverage vendor/bin/phpunit",
         "post-install-cmd": [
-            "@auto-scripts"
+            "@auto-scripts",
+            "cp data.db var/"
         ],
         "post-update-cmd": [
             "@auto-scripts"
