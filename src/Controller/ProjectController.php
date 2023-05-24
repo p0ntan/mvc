@@ -75,6 +75,13 @@ class ProjectController extends AbstractController
         return $this->render('project/game.html.twig', $data);
     }
 
+    #[Route('/proj/game/over', name: 'proj_game_over')]
+    public function gameOver(
+    ): Response {
+        return $this->render('project/gameover.html.twig');
+    }
+
+
     #[Route('/proj/game/inventory', name: 'proj_game_inv', methods: ["GET"])]
     public function inventory(
         SessionInterface $session,
@@ -124,7 +131,6 @@ class ProjectController extends AbstractController
         $queryParam = $request->get('object');
         $object = $escapeGame->getObjectInCurrentRoom($objectId);
         $clickedObject = null;
-
         if ($queryParam) {
             $clickedObject = $object->getOneInnerObject($queryParam);
         }
@@ -139,6 +145,27 @@ class ProjectController extends AbstractController
         return $this->render('project/game.object.html.twig', $data);
     }
 
+    #[Route('/proj/game/inner/{outerObj<\d+>}', name: 'proj_game_object_inner')]
+    public function objectCloseUpInner(
+        SessionInterface $session,
+        int $outerObj
+    ): Response {
+        $escapeGame = $session->get('proj_game');
+        $currentRoom = $escapeGame->getCurrentRoom();
+        $innerObj = 24; // Hardcoded id for lock, for bigger game this needs to be changed.
+        $outerObject = $escapeGame->getObjectInCurrentRoom($outerObj);
+        $innerObject = $escapeGame->getObjectInCurrentRoom($innerObj);
+
+        $data = [
+            "id" => $outerObj,
+            "img" => $currentRoom->getImg(),
+            "outerImg" => $outerObject->getImg(),
+            "innerImg" => $innerObject->getImg(),
+            "info" => $innerObject->getInnerInfo(),
+        ];
+        return $this->render('project/game.inner.html.twig', $data);
+    }
+
     #[Route('/proj/game/action/{objectId<\d+>}', name: 'proj_object_action', methods: ["POST"])]
     public function objectCloseUpAction(
         SessionInterface $session,
@@ -151,6 +178,26 @@ class ProjectController extends AbstractController
         $object = $escapeGame->getObjectInCurrentRoom($innerId);
         $escapeGame->actionOnObject($object, $action);
 
+        if ($escapeGame->isGameOver()) {
+            return $this->redirectToRoute('proj_game_over');
+        }
+
         return $this->redirectToRoute('proj_game_object', ['objectId' => $objectId]);
+    }
+
+    #[Route('/proj/game/lock/', name: 'proj_open_lock', methods: ["POST"])]
+    public function openLock(
+        SessionInterface $session,
+        Request $request
+    ): Response {
+        $escapeGame = $session->get('proj_game');
+        $first = $request->get('first');
+        $second = $request->get('second');
+        $third = $request->get('third');
+        $res = $escapeGame->tryCombination($first, $second, $third);
+        if ($res) {
+            return $this->redirectToRoute('proj_game_object', ['objectId' => 25]);
+        }
+        return $this->redirectToRoute('proj_game_object_inner', ['outerObj' => 23]);
     }
 }

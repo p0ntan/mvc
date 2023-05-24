@@ -1,0 +1,9 @@
+<form
+method="GET"
+action="{{ path('proj_game_object', {objectId: id} )}}"
+class="tl-50 object-form"
+style="left: {{ pos[0] }}%; top: {{ pos[1] }}%; width: {{ size[0] }}%; height: {{ size[1] }}%;"
+>
+    <img src="{{ asset('image/escapegame/objects/' ~ object.getImg() )}}" class="tl-50 h-100 w-auto object-inner">
+    <input type="submit" class="game-button z-top" name="object" value="{{ object.getId }}">
+</form>

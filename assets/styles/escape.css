@@ -96,7 +96,9 @@
     border: 1px solid black;
 } */
 
-.object-inner {
+.ab-center,
+.object-inner,
+.lock-form {
     top: 50%;
     left: 50%;
 }
@@ -104,11 +106,6 @@
 .tl-50 {
     position: absolute;
     transform: translate(-50%, -50%);
-}
-
-.ab-center {
-    left: 50%;
-    top: 50%;
 }
 
 .z-top {

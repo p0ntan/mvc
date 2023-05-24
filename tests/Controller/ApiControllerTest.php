@@ -40,24 +40,24 @@ class ApiControllerTest extends WebTestCase
         $this->assertStringContainsString('no game', $response);
     }
 
-    public function testApiLibrary()
+    public function testApiLibrary(): void
     {
         $client = static::createClient();
         $client->request('GET', '/api/library/books');
         $this->assertResponseIsSuccessful();
 
-        $response = $client->getResponse()->getContent();
+        $response = strval($client->getResponse()->getContent());
         $this->assertJson($response);
         $this->assertStringContainsString('isbn', $response);
     }
 
-    public function testApiLibrarySingleBookNoMatch()
+    public function testApiLibrarySingleBookNoMatch(): void
     {
         $client = static::createClient();
         $client->request('GET', '/api/library/book/wrong-isbn');
         $this->assertResponseIsSuccessful();
 
-        $response = $client->getResponse()->getContent();
+        $response = strval($client->getResponse()->getContent());
         $this->assertJson($response);
         $this->assertEquals("null", $response);
     }

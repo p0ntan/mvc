@@ -28,7 +28,8 @@ class EscapeObjectTest extends TestCase
             'size' => [12, 12],
             'img' => 'image.png',
             'inRoom' => 1,
-            'inObject' => -1
+            'inObject' => -1,
+            'isHidden' => false
         ];
 
         $this->escapeObject = new EscapeObject($data);
@@ -52,7 +53,7 @@ class EscapeObjectTest extends TestCase
         $escapeObject = $this->escapeObject;
 
         $this->assertInstanceOf("\App\EscapeGame\EscapeObject", $escapeObject);
-        $this->assertFalse($this->escapeObject->isPicked());
+        $this->assertFalse($this->escapeObject->isHidden());
         $this->assertIsArray($this->escapeObject->getInnerObjects());
     }
 
@@ -93,7 +94,8 @@ class EscapeObjectTest extends TestCase
             'size' => [12, 12],
             'img' => '',
             'inRoom' => 1,
-            'inObject' => -1
+            'inObject' => -1,
+            'isHidden' => false
         ];
 
         $escapeObject = new EscapeObject($data);

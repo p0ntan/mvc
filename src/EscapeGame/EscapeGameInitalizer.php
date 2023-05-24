@@ -60,7 +60,8 @@ class EscapeGameInitalizer
                 'size' => [$object->getSizeX(), $object->getSizeY()],
                 'img' => $object->getImg(),
                 'inRoom' => $object->getInRoom(),
-                'inObject' => $object->getInObject()
+                'inObject' => $object->getInObject(),
+                'isHidden' => $object->isHidden()
             ];
             $newObject = new EscapeObject($data);
             $resObjects[] = $newObject;
@@ -99,6 +100,10 @@ class EscapeGameInitalizer
                         break;
                     case 'moveDown':
                         $newAction = new ActionMoveDown();
+                        $object->addAction($newAction, $actionName);
+                        break;
+                    case 'takeKey':
+                        $newAction = new ActionTakeKey();
                         $object->addAction($newAction, $actionName);
                         break;
                 }

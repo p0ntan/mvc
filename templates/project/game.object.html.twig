@@ -7,18 +7,14 @@
         <img src="{{ asset('image/escapegame/rooms/' ~ img ) }}" alt="Ett av rum med olika saker och dörrar." class="escape-room blur-pic">
         <img src="{{ asset('image/escapegame/objects/' ~ objectImg )}}" alt="Närbild på ett av spelets objekt" class="object-closeup tl-50 ab-center">
         {% for object in innerObjects %}
-            {% if not object.isPicked() %}
+            {% if not object.isHidden %}
                 {% set pos = object.getPosition %}
                 {% set size = object.getSize %}
-                <form
-                    method="GET"
-                    action="{{ path('proj_game_object', {objectId: id} )}}"
-                    class="tl-50 object-form"
-                    style="left: {{ pos[0] }}%; top: {{ pos[1] }}%; width: {{ size[0] }}%; height: {{ size[1] }}%;"
-                >
-                    <img src="{{asset('image/escapegame/objects/' ~ object.getImg() )}}" class="tl-50 h-100 w-auto object-inner">
-                    <input type="submit" class="game-button z-top" name="object" value="{{ object.getId }}">
-                </form>
+                {% if object.getId != 24 %}
+                    {% include '/project/forms/objectform.html.twig' %}
+                {% else %}
+                    {% include '/project/forms/innerform.html.twig' %}
+                {% endif %}
             {% endif %}
         {% endfor %}
         <a href="{{ path('proj_game') }}">
@@ -33,7 +29,7 @@
             </p>
             {% if object %}
                 <p>
-                    {{ object.getInfo() }}
+                    {{ object.getInfo }}
                 </p>
                 <form method="POST" action="{{ path('proj_object_action', {objectId: id } )}}">
                     {% for key, action in object.getActions() %}

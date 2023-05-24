@@ -10,6 +10,8 @@ class EscapeGame
     /** @var array<EscapeRoom> */
     protected array $rooms;
     protected Inventory $inventory;
+    /** @var array<int> $combination */
+    protected array $combination = [9, 7, 4];
     protected bool $gameOver = false;
 
     /**
@@ -49,6 +51,35 @@ class EscapeGame
         return $this->inventory;
     }
 
+    public function tryCombination(
+        int $first,
+        int $second,
+        int $third
+    ): bool {
+        $userCombo = [$first, $second, $third];
+        $actualCombo = $this->combination;
+        if ($userCombo == $actualCombo) {
+            $lockedChestId = 23;
+            $openChestId = 25;
+            $lockId = 24;
+            $keyId = 26;
+
+            // Hide locked chest and lock
+            $lock = $this->getAnyObject($lockId);
+            $lockedChest = $this->getAnyObject($lockedChestId);
+            $lock->setIsHidden(true);
+            $lockedChest->setIsHidden(true);
+            // Show key and open chest
+            $key = $this->getAnyObject($keyId);
+            $openChest = $this->getAnyObject($openChestId);
+            $key->setIsHidden(false);
+            $openChest->setIsHidden(false);
+
+            return true;
+        }
+        return false;
+    }
+
     public function isGameOver(): bool
     {
         return $this->gameOver;
@@ -63,10 +94,16 @@ class EscapeGame
     {
         $allActions = $object->getActions();
         $action = $allActions[$actionKey];
-        if ($action instanceof ActionTwoInterface) {
+        if ($action instanceof ActionInventory) {
             $action->execute($object, $this->inventory);
         } elseif ($action instanceof ActionOneInterface) {
             $action->execute($object);
+        } elseif ($action instanceof ActionTwoInventory) {
+            $doorLockId = 27;
+            $doorLock = $this->getAnyObject($doorLockId);
+            $action->execute($object, $doorLock, $this->inventory);
+        } elseif ($action instanceof ActionGame) {
+            $action->execute($object, $this);
         }
     }
 

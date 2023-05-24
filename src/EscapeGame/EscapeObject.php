@@ -17,7 +17,7 @@ class EscapeObject
     protected array $size;
     /** @var array<ActionInterface> $actions */
     protected array $actions;
-    protected bool $isPicked = false;
+    protected bool $isHidden;
     protected string $img;
     protected int $inRoom;
     protected int $inObject;
@@ -40,6 +40,7 @@ class EscapeObject
         $this->img = $data['img'];
         $this->inRoom = $data['inRoom'];
         $this->inObject = $data['inObject'];
+        $this->isHidden = $data['isHidden'];
         $this->actions = [];
         $this->innerObjects = [];
     }
@@ -133,23 +134,23 @@ class EscapeObject
     }
 
     /**
-     * Get isPicked
+     * Get isHidden
      *
      * @return bool
      */
-    public function isPicked(): bool
+    public function isHidden(): bool
     {
-        return $this->isPicked;
+        return $this->isHidden;
     }
 
     /**
-     * Set isPicked
+     * Set isHidden
      *
      * @param bool $boolean
      */
-    public function setIsPicked(bool $boolean): void
+    public function setIsHidden(bool $boolean): void
     {
-        $this->isPicked = $boolean;
+        $this->isHidden = $boolean;
     }
 
     /**

@@ -1,0 +1,34 @@
+{% extends "project/base.html.twig" %}
+
+{% block main %}
+
+<div class="game-container" id="game-container">
+    <div class="game-image">
+        <img src="{{ asset('image/escapegame/rooms/' ~ img ) }}" alt="Ett av rum med olika saker och dörrar." class="escape-room blur-pic">
+        <img src="{{ asset('image/escapegame/objects/' ~ outerImg )}}" alt="Närbild på ett av spelets objekt" class="object-closeup tl-50 ab-center">
+        <form action="{{ path('proj_open_lock') }}" method="post" class="tl-50 lock-form">
+            <input type="number" name="first">
+            <input type="number" name="second">
+            <input type="number" name="third">
+            <input type="submit" value="Öppna lås" class="btn btn-primary">
+        </form>
+        <a href="{{ path('proj_game_object', {objectId: id}) }}">
+            <img src="{{ asset('image/escapegame/down.png')}}" class="tl-50 dir-down">
+        </a>
+    </div>
+
+    <div class="game-info d-flex justify-content-between">
+        <div class="p-2">
+            <p>
+                {{ info }}
+            </p>
+        </div>
+        <div class="game-inventory-link p-2 align-self-center">
+            <a href="{{ path('proj_game_inv') }}" class="w-100 h-100">
+                <img src="{{ asset('image/escapegame/backpack.png')}}" alt="Bild på ryggsäck." class="w-100 h-100">
+            </a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

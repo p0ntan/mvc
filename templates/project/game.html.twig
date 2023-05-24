@@ -5,7 +5,7 @@
 <div class="game-container" id="game-container">
     <div class="game-image">
         {% for object in objects %}
-            {% if object.getInObject() == -1 %}
+            {% if object.getInObject() == -1 and not object.hidden %}
                 {% set pos = object.getPosition %}
                 {% set size = object.getSize %}
                 <form action="{{ path('proj_game')}}" class="tl-50 object-form" style="left: {{ pos[0] }}%; top: {{ pos[1] }}%; width: {{ size[0] }}%; height: {{ size[1] }}%;">

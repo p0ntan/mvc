@@ -47,6 +47,9 @@ class EscapeObject
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $info_inner = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?bool $hidden = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -168,6 +171,18 @@ class EscapeObject
     public function setInfoInner(?string $info_inner): self
     {
         $this->info_inner = $info_inner;
+
+        return $this;
+    }
+
+    public function isHidden(): ?bool
+    {
+        return $this->hidden;
+    }
+
+    public function setHidden(?bool $hidden): self
+    {
+        $this->hidden = $hidden;
 
         return $this;
     }
