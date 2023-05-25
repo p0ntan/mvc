@@ -13,7 +13,7 @@
                 </a>
             {% else %}
                 {% if inventory | length == 0 %}
-                    <p class="text-center m-auto">Ryggsäcken är tom.</p>
+                    <p class="text-center m-auto game-dark-font">Ryggsäcken är tom.</p>
                 {% else %}
                     {% for object in inventory %}
                     <form action="{{ path('proj_game_inv')}}" method="get" class="inventory-object-form p-1">
@@ -36,7 +36,7 @@
                 Du tittar i din ryggsäck, här kan du hitta saker som du samlat på dig.
             </p>
             {% if object %}
-                <p>
+                <p id="game-new-text">
                     {{ object.getInfo() }}
                 </p>
             {% endif %}

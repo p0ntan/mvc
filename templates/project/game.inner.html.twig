@@ -6,11 +6,25 @@
     <div class="game-image">
         <img src="{{ asset('image/escapegame/rooms/' ~ img ) }}" alt="Ett av rum med olika saker och dörrar." class="escape-room blur-pic">
         <img src="{{ asset('image/escapegame/objects/' ~ outerImg )}}" alt="Närbild på ett av spelets objekt" class="object-closeup tl-50 ab-center">
-        <form action="{{ path('proj_open_lock') }}" method="post" class="tl-50 lock-form">
-            <input type="number" name="first">
-            <input type="number" name="second">
-            <input type="number" name="third">
-            <input type="submit" value="Öppna lås" class="btn btn-primary">
+        <form action="{{ path('proj_open_lock') }}" method="post" class="tl-50 lock-form d-flex flex-column">
+            <div class="d-flex">
+                <div class="d-flex flex-column p-2">
+                    <button class="lock-up" id="first-up">&#708;</button>
+                    <input type="number" id="input-first" name="first" value="0" class="text-center" readonly>
+                    <button class="lock-down" id="first-down">&#709;</button>
+                </div>
+                <div class="d-flex flex-column p-2">
+                    <button class="lock-up" id="second-up">&#708;</button>
+                    <input type="number" id="input-second" name="second" value="0" class="text-center" readonly>
+                    <button class="lock-down" id="second-down">&#709;</button>
+                </div>
+                <div class="d-flex flex-column p-2">
+                    <button class="lock-up" id="third-up">&#708;</button>
+                    <input type="number" id="input-third" name="third" value="0" class="text-center" readonly>
+                    <button class="lock-down" id="third-down">&#709;</button>
+                </div>
+            </div>
+            <input type="submit" value="Öppna lås" class="btn mb-2">
         </form>
         <a href="{{ path('proj_game_object', {objectId: id}) }}">
             <img src="{{ asset('image/escapegame/down.png')}}" class="tl-50 dir-down">
@@ -19,7 +33,7 @@
 
     <div class="game-info d-flex justify-content-between">
         <div class="p-2">
-            <p>
+            <p id="game-new-text">
                 {{ info }}
             </p>
         </div>
@@ -30,5 +44,53 @@
         </div>
     </div>
 </div>
+<script>
+    // Function to handle increment and decrement for each input
+    function handleUpDownButtonClick(inputId, increment) {
+        const inputElement = document.getElementById(inputId);
+        let value = parseInt(inputElement.value, 10);
+        // Stops adding if value is 9
+        if (increment == 1 && value == 9) {
+            return;
+        }
+        value += increment;
+        inputElement.value = value < 0 ? 0 : value; // Stops negative values
+    }
+  
+    // Add event listeners to handle button clicks
+    document.addEventListener('DOMContentLoaded', function () {
+        const buttons = document.querySelectorAll('.lock-up, .lock-down');
+        buttons.forEach(function (button) {
+                button.addEventListener('click', function (event) {
+                    event.preventDefault();
+                    const inputId = 'input-' + button.id.split('-')[0];
+                    const increment = button.id.includes('up') ? 1 : -1;
+                    handleUpDownButtonClick(inputId, increment);
+                });
+        });
+    });
+    // Code to make text appear nicer so it's more obvious what happens
+    const container = document.getElementById("game-new-text");
+    const text = container.innerText;
+    let textArray;
+    let counter = 0;
+    let writingInterval;
+
+    container.innerText = "";
+    textArray = text.split(" ");
+
+    document.addEventListener('DOMContentLoaded', () => {
+        writingInterval = setInterval(() => {
+            container.innerText += ' ' + textArray[counter];
+            counter++;
+
+            if (counter === textArray.length) {
+                clearInterval(writingInterval);
+            }
+        }, 100);
+    });
+</script>
+  
+
 
 {% endblock %}

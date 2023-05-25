@@ -31,10 +31,10 @@
                 {{ info }}
             </p>
             {% if object %}
-                <p>
+                <p id="game-new-text">
                     {{ object.getInfo() }}
                 </p>
-                <form method="GET" action="{{ path('proj_game_object', {objectId: object.getId()} )}}">
+                <form method="GET" action="{{ path('proj_game_object', {objectId: object.getId()} )}}" id="game-action-form">
                     {% for key, action in object.getActions() %}
                         <button value="{{ key }}">{{ action.getName() }}</button>
                     {% endfor %}
@@ -48,5 +48,30 @@
         </div>
     </div>
 </div>
+
+<script>
+    const container = document.getElementById("game-new-text");
+    const actionForm = document.getElementById("game-action-form");
+    const text = container.innerText;
+    let textArray;
+    let counter = 0;
+    let writingInterval;
+
+    container.innerText = "";
+    actionForm.style.visibility = "hidden";
+    textArray = text.split(" ");
+
+    document.addEventListener('DOMContentLoaded', () => {
+        writingInterval = setInterval(() => {
+            container.innerText += ' ' + textArray[counter];
+            counter++;
+
+            if (counter === textArray.length) {
+                clearInterval(writingInterval);
+                actionForm.style.visibility = "visible";
+            }
+        }, 100);
+    });
+</script>
 
 {% endblock %}

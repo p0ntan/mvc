@@ -1,15 +1,119 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Mono&family=Lilita+One&family=Patua+One&family=Press+Start+2P&display=swap');
+
+/*
+font-family: 'Fira Mono', monospace;
+font-family: 'Lilita One', cursive;
+font-family: 'Patua One', cursive;
+font-family: 'Press Start 2P', cursive;
+*/
+
+:root {
+    --font-header: 'Lilita One', cursive;
+    --font-text: 'Patua One', cursive;
+
+    --black: #1f1f1f;
+    --white: #ddd;
+}
+
+/* Body, header and footer */
+.game-body {
+    background-color: var(--black);
+    color: var(--white);
+}
+
+.game-header {
+    border-bottom: 2px solid var(--white);
+}
+
+.game-header nav {
+    margin: auto;
+    padding: 0 1.5rem;
+    max-width: 1080px;
+}
+
+.game-link {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding-top: 0.5rem !important;
+    padding-bottom: 0.5rem!important;
+}
+
+.proj-pac-copy,
+.proj-home-icon {
+    max-height: 1.5rem;
+    width: auto;
+}
+
+.getout-img {
+    max-height: 4rem;
+    width: auto;
+}
+
+.proj-links {
+    display: flex;
+    gap: 2rem;
+    margin-top: 1.5rem !important;
+    margin-bottom: 1.5rem!important;
+}
+
+.proj-links a {
+    font-family: var(--font-header);
+    color: var(--white);
+    text-decoration: none;
+}
+
+.proj-links a:hover {
+    color: #fff;
+}
+
+.game-footer {
+    font-family: var(--font-header);
+}
+
+
+@media (max-width: 768px) {
+    .getout-img {
+        max-height: 1.5rem !important;
+        width: auto;
+    }
+
+    .game-link {
+        padding-top: 1.5rem !important;
+        padding-bottom: 1.5rem!important;
+    }
+}
+
+@media (max-width: 500px) {
+    .proj-links {
+        height: fit-content;
+        flex-direction: column;
+        gap: 0;
+        margin-top: auto !important;
+        margin-bottom: auto !important;
+        text-align: end;
+    }
+}
+
+/* Main content */
+
 .game-container {
     position: relative;
     max-width: 800px;
     height: auto;
-    border: 2px solid black;
+    border: 2px solid var(--white);
     margin: auto;
+    font-family: var(--font-text);
+}
+
+.game-dark-font {
+    color: var(--black);
 }
 
 .escape-room {
     width: 100%;
     height: auto;
-    border-bottom: 2px solid black;
 }
 
 .blur-pic {
@@ -97,8 +201,7 @@
 } */
 
 .ab-center,
-.object-inner,
-.lock-form {
+.object-inner {
     top: 50%;
     left: 50%;
 }
@@ -111,4 +214,50 @@
 .z-top {
     position: relative;
     z-index: 10;
+}
+
+/* Style for lock */
+
+.lock-form {
+    background-color: #ffe347;
+    width: 60%;
+    height: 80%;
+    padding: 0 10%;
+    top: 45%;
+    left: 50%;
+}
+
+.lock-form input[type=number] {
+    flex: 1;
+    width: 100% !important;
+    font-size: 5vw; /* Adjust the font size as desired */
+    text-align: center; /* Center align the text */
+}
+
+.lock-form > div {
+    flex: 1;
+}
+
+.lock-form input[type=submit] {
+    background-color: #f0f0f0;
+    border: 1px solid black;
+}
+
+.lock-form input[type=submit]:hover {
+    color: #000;
+}
+
+.lock-form input[type=submit]:active,
+.lock-form button:active {
+    background-color: #bebebe;
+}
+
+.lock-form input[type="number"]::-webkit-inner-spin-button,
+.lock-form input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.lock-form input[type="number"] {
+    -moz-appearance: textfield;
 }

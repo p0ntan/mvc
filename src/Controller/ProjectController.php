@@ -20,12 +20,6 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class ProjectController extends AbstractController
 {
-    #[Route('/proj', name: 'proj')]
-    public function home(): Response
-    {
-        return $this->render('project/index.html.twig');
-    }
-
     #[Route('/proj/init', name: 'proj_init_game', methods: ["POST"])]
     public function initGame(
         SessionInterface $session,
@@ -161,8 +155,9 @@ class ProjectController extends AbstractController
             "img" => $currentRoom->getImg(),
             "outerImg" => $outerObject->getImg(),
             "innerImg" => $innerObject->getImg(),
-            "info" => $innerObject->getInnerInfo(),
+            "info" => $session->get('flash_message')
         ];
+        $session->set('flash_message', "");
         return $this->render('project/game.inner.html.twig', $data);
     }
 
@@ -198,6 +193,7 @@ class ProjectController extends AbstractController
         if ($res) {
             return $this->redirectToRoute('proj_game_object', ['objectId' => 25]);
         }
+        $session->set('flash_message', "Fel kombination.");
         return $this->redirectToRoute('proj_game_object_inner', ['outerObj' => 23]);
     }
 }

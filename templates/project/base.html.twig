@@ -3,8 +3,8 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
-        <title>{% block title %}Välkommen!{% endblock %}</title>
-        <link rel="icon" href="{{ asset('image/favicon.png ')}}">
+        <title>{% block title %}Get out!{% endblock %}</title>
+        <link rel="icon" href="{{ asset('image/escapegame/objects/nyckel.png ')}}">
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
@@ -14,51 +14,34 @@
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
     </head>
-    <body>
-        <nav class="navbar navbar-expand-lg bg-body-tertiary">
-            <div class="container">
-                <a class="navbar-brand" href="{{ path('home') }}">
-                    Hem
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{{ path('about') }}">Om</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ path('lucky') }}">Lucky</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ path('card_start') }}">Kort</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ path('blackjack_start') }}">Blackjack</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ path('library') }}">Bibliotek</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ path('metrics') }}">Metrics</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ path('api_start') }}">Api</a>
-                    </li>
-                </ul>
+    <body class="game-body">
+        <header class="game-header mb-2">
+            <nav class="position-relative">
+                <div class="d-flex justify-content-between">
+                    <a href="{{ path('home') }}" class="my-4">
+                        <img src="{{ asset('image/escapegame/home-icon.png') }}" alt="Bild på en husikon!" class="proj-home-icon">
+                    </a>
+                    <span class="proj-links">
+                        <a href="{{ path('proj_about') }}">About</a>
+                        <a href="{{ path('proj_api') }}">Api</a>
+                    </span>
                 </div>
-            </div>
-        </nav>
+
+                <a href="{{ path('proj') }}" class="game-link">
+                    <img src="{{ asset('image/escapegame/getout-header.png') }}" alt="Bild med texten get out!" class="getout-img">
+                </a>
+
+            </nav>
+        </header>
         <main>
             <div class="container-sm d-flex flex-column flex-grow-1 o-mw-1080">
                 {% block main %}{% endblock %}
             </div>
         </main>
-
         <div class="container-fluid">
             <footer class="d-flex flex-wrap justify-content-center align-items-center py-3 mt-4 border-top">
-                <p class="col-md-4 mb-0 text-body-secondary text-center">&copy; 2023 Pontus Åkerberg</p>
+                <img src="{{ asset('image/escapegame/pacman-copy.png') }}" alt="Bild på pacman som en copyright symbol." class="proj-pac-copy">
+                <p class="col-md-4 mb-0 text-center game-footer">2023 Pontus Åkerberg</p>
             </footer>
         </div>
     </body>
