@@ -49,7 +49,7 @@
 <div class="page">
     <div class="content content-first">
         <div class="report-details">
-            Created at 2023-05-24 14:57:30        , with PHPMetrics v2.8.2 (<a href="https://twitter.com/Halleck45">Jean-François Lépine</a>).
+            Created at 2023-05-25 17:32:22        , with PHPMetrics v2.8.2 (<a href="https://twitter.com/Halleck45">Jean-François Lépine</a>).
         </div>
 
         
@@ -272,9 +272,9 @@
             "App\\Repository",
             "Doctrine\\Persistence",
             "App\\Entity",
-            "App\\EscapeGame",
             "global",
-            "App\\Blackjack"
+            "App\\Blackjack",
+            "App\\EscapeGame"
         ]
     },
     {
@@ -319,14 +319,6 @@
         "relations": []
     },
     {
-        "name": "App\\EscapeGame",
-        "size": 3000,
-        "relations": [
-            "global",
-            "App\\Repository"
-        ]
-    },
-    {
         "name": "global",
         "size": 3000,
         "relations": []
@@ -337,6 +329,14 @@
         "relations": [
             "App\\Card",
             "global"
+        ]
+    },
+    {
+        "name": "App\\EscapeGame",
+        "size": 3000,
+        "relations": [
+            "global",
+            "App\\Repository"
         ]
     },
     {

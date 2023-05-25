@@ -18,7 +18,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
-class ProjectController extends AbstractController
+class ProjectGameController extends AbstractController
 {
     #[Route('/proj/init', name: 'proj_init_game', methods: ["POST"])]
     public function initGame(

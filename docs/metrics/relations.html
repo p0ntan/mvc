@@ -49,7 +49,7 @@
 <div class="page">
     <div class="content content-first">
         <div class="report-details">
-            Created at 2023-05-24 14:57:30        , with PHPMetrics v2.8.2 (<a href="https://twitter.com/Halleck45">Jean-François Lépine</a>).
+            Created at 2023-05-25 17:32:22        , with PHPMetrics v2.8.2 (<a href="https://twitter.com/Halleck45">Jean-François Lépine</a>).
         </div>
 
         
@@ -350,7 +350,72 @@
         ]
     },
     {
-        "name": "\\App\\Controller\\ProjectController",
+        "name": "\\App\\Controller\\ProjectMainController",
+        "size": 3000,
+        "relations": [
+            "\\Symfony\\Bundle\\FrameworkBundle\\Controller\\AbstractController",
+            "\\Symfony\\Component\\HttpFoundation\\Response"
+        ]
+    },
+    {
+        "name": "\\App\\Controller\\ApiCardController",
+        "size": 3000,
+        "relations": [
+            "\\Symfony\\Bundle\\FrameworkBundle\\Controller\\AbstractController",
+            "\\Symfony\\Component\\HttpFoundation\\Session\\SessionInterface",
+            "\\App\\Card\\DeckOfCards",
+            "\\App\\Card\\DeckFactory",
+            "\\Symfony\\Component\\HttpFoundation\\Response",
+            "\\Symfony\\Component\\HttpFoundation\\JsonResponse"
+        ]
+    },
+    {
+        "name": "\\Symfony\\Component\\HttpFoundation\\JsonResponse",
+        "size": 3000,
+        "relations": []
+    },
+    {
+        "name": "\\App\\Controller\\ApiController",
+        "size": 3000,
+        "relations": [
+            "\\Symfony\\Bundle\\FrameworkBundle\\Controller\\AbstractController",
+            "\\Symfony\\Component\\HttpFoundation\\Response",
+            "\\DateTime",
+            "\\Symfony\\Component\\HttpFoundation\\JsonResponse",
+            "\\Symfony\\Component\\HttpFoundation\\Session\\SessionInterface",
+            "\\App\\Repository\\BookRepository"
+        ]
+    },
+    {
+        "name": "\\DateTime",
+        "size": 3000,
+        "relations": []
+    },
+    {
+        "name": "\\App\\Controller\\BlackjackController",
+        "size": 3000,
+        "relations": [
+            "\\Symfony\\Bundle\\FrameworkBundle\\Controller\\AbstractController",
+            "\\Symfony\\Component\\HttpFoundation\\Response",
+            "\\Symfony\\Component\\HttpFoundation\\Session\\SessionInterface",
+            "\\Symfony\\Component\\HttpFoundation\\Request",
+            "\\App\\Blackjack\\GameBlackjack",
+            "\\App\\Card\\DeckOfCards",
+            "\\App\\Card\\DeckFactory"
+        ]
+    },
+    {
+        "name": "\\App\\Blackjack\\GameBlackjack",
+        "size": 3000,
+        "relations": [
+            "\\App\\Card\\DeckOfCards",
+            "\\App\\Blackjack\\PlayerBlackjack",
+            "\\App\\Blackjack\\RulesBlackjack",
+            "\\App\\Card\\CardHand"
+        ]
+    },
+    {
+        "name": "\\App\\Controller\\ProjectGameController",
         "size": 3000,
         "relations": [
             "\\Symfony\\Bundle\\FrameworkBundle\\Controller\\AbstractController",
@@ -414,63 +479,6 @@
             "\\App\\EscapeGame\\ActionTakeKey",
             "\\App\\EscapeGame\\EscapeRoom",
             "\\App\\EscapeGame\\EscapeDirection"
-        ]
-    },
-    {
-        "name": "\\App\\Controller\\ApiCardController",
-        "size": 3000,
-        "relations": [
-            "\\Symfony\\Bundle\\FrameworkBundle\\Controller\\AbstractController",
-            "\\Symfony\\Component\\HttpFoundation\\Session\\SessionInterface",
-            "\\App\\Card\\DeckOfCards",
-            "\\App\\Card\\DeckFactory",
-            "\\Symfony\\Component\\HttpFoundation\\Response",
-            "\\Symfony\\Component\\HttpFoundation\\JsonResponse"
-        ]
-    },
-    {
-        "name": "\\Symfony\\Component\\HttpFoundation\\JsonResponse",
-        "size": 3000,
-        "relations": []
-    },
-    {
-        "name": "\\App\\Controller\\ApiController",
-        "size": 3000,
-        "relations": [
-            "\\Symfony\\Bundle\\FrameworkBundle\\Controller\\AbstractController",
-            "\\Symfony\\Component\\HttpFoundation\\Response",
-            "\\DateTime",
-            "\\Symfony\\Component\\HttpFoundation\\JsonResponse",
-            "\\Symfony\\Component\\HttpFoundation\\Session\\SessionInterface",
-            "\\App\\Repository\\BookRepository"
-        ]
-    },
-    {
-        "name": "\\DateTime",
-        "size": 3000,
-        "relations": []
-    },
-    {
-        "name": "\\App\\Controller\\BlackjackController",
-        "size": 3000,
-        "relations": [
-            "\\Symfony\\Bundle\\FrameworkBundle\\Controller\\AbstractController",
-            "\\Symfony\\Component\\HttpFoundation\\Response",
-            "\\Symfony\\Component\\HttpFoundation\\Session\\SessionInterface",
-            "\\Symfony\\Component\\HttpFoundation\\Request",
-            "\\App\\Blackjack\\GameBlackjack",
-            "\\App\\Card\\DeckOfCards",
-            "\\App\\Card\\DeckFactory"
-        ]
-    },
-    {
-        "name": "\\App\\Blackjack\\GameBlackjack",
-        "size": 3000,
-        "relations": [
-            "\\App\\Card\\DeckOfCards",
-            "\\App\\Blackjack\\PlayerBlackjack",
-            "\\App\\Blackjack\\RulesBlackjack",
-            "\\App\\Card\\CardHand"
         ]
     },
     {

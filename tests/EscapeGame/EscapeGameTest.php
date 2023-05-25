@@ -174,4 +174,45 @@ class EscapeGameTest extends TestCase
         $this->assertInstanceOf("\App\EscapeGame\EscapeObject", $res);
         $this->assertSame($mockObject, $res);
     }
+
+    /**
+     * Test with right combination
+     */
+    public function testWithRightCombination(): void
+    {
+        $escapeGame = $this->escapeGame;
+
+        $lockedChest = $this->createMock(EscapeObject::class);
+        $lockedChest->method('getId')->willReturn(23);
+        $openChest = $this->createMock(EscapeObject::class);
+        $openChest->method('getId')->willReturn(25);
+        $key = $this->createMock(EscapeObject::class);
+        $key->method('getId')->willReturn(26);
+        $lock = $this->createMock(EscapeObject::class);
+        $lock->method('getId')->willReturn(24);
+
+        $data = [
+            'id' => 10,
+            'info' => 'Infotest',
+            'img' => 'image.png',
+            'firstRoom' => true
+        ];
+        $room = new EscapeRoom($data);
+        $room->addObjects([$lockedChest, $openChest, $key, $lock]);
+        $escapeGame->addRoom($room);
+
+        $res = $escapeGame->tryCombination(9, 7, 4);
+        $this->assertTrue($res);
+    }
+
+    /**
+     * Test with wrong combination
+     */
+    public function testWithWrongCombination(): void
+    {
+        $escapeGame = $this->escapeGame;
+
+        $res = $escapeGame->tryCombination(1, 7, 4);
+        $this->assertFalse($res);
+    }
 }

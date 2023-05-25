@@ -170,4 +170,23 @@ class EscapeRoomTest extends TestCase
         $this->expectException(ObjectNotInRoomException::class);
         $escapeRoom->getObjectInRoom(5);
     }
+
+    /**
+     * Test add and get directions
+     */
+    public function testAddAndGetDirections(): void
+    {
+        $escapeRoom = $this->escapeRoom;
+
+        $res = $escapeRoom->getDirections();
+        $this->assertIsArray($res);
+        $this->assertCount(0, $res);
+
+        $mockDirection = $this->createMock(EscapeDirection::class);
+        $escapeRoom->addDirection($mockDirection);
+        $res = $escapeRoom->getDirections();
+        $this->assertCount(1, $res);
+        $this->assertSame($mockDirection, $res[0]);
+
+    }
 }

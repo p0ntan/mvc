@@ -114,16 +114,33 @@ class EscapeObjectTest extends TestCase
     }
 
     /**
-     * Test to get positions
+     * Test to get innerInfo
+     *
      */
-    public function testGetPosition(): void
+    public function testGetInnerInfo(): void
+    {
+        $res = $this->escapeObject->getInnerInfo();
+        $exp = "Infotest active";
+        $this->assertEquals($exp, $res);
+    }
+
+    /**
+     * Test to set and get positions
+     */
+    public function testSetAndGetPosition(): void
     {
         $escapeObject = $this->escapeObject;
 
-        $position = $escapeObject->getPosition();
+        $res = $escapeObject->getPosition();
         $exp = [2, 5];
-        $this->assertIsArray($position);
-        $this->assertSame($exp, $position);
+        $this->assertIsArray($res);
+        $this->assertSame($exp, $res);
+
+        $exp = [6, 8];
+        $escapeObject->setPosition($exp);
+        $res = $escapeObject->getPosition();
+        $this->assertIsArray($res);
+        $this->assertSame($exp, $res);
     }
 
     /**
@@ -173,6 +190,7 @@ class EscapeObjectTest extends TestCase
         $escapeObject = $this->escapeObject;
         $mockObject = $this->createMock(EscapeObject::class);
 
+        // First without any objects
         $res = $escapeObject->getInnerObjects();
         $this->assertIsArray($res);
         $this->assertCount(0, $res);
@@ -180,6 +198,8 @@ class EscapeObjectTest extends TestCase
         $escapeObject->addInnerObject($mockObject);
         $res = $escapeObject->getInnerObjects();
         $this->assertSame($mockObject, $res[0]);
+
+
     }
 
     /**

@@ -23,6 +23,8 @@
             <file>tests/Card/DeckOfCardsTest2.php</file>
             <file>tests/Blackjack/GameBlackjackTest2.php</file>
             <file>tests/Blackjack/RulesBlackjackTest2.php</file>
+            <file>tests/EscapeGame/EscapeObjectTestTwo.php</file>
+            <file>tests/EscapeGame/EscapeGameTestTwo.php</file>
         </testsuite>
     </testsuites>
 
