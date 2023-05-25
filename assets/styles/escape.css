@@ -15,6 +15,11 @@ font-family: 'Press Start 2P', cursive;
     --white: #ddd;
 }
 
+html {
+    overflow: -moz-scrollbars-vertical; 
+    overflow-y: scroll;
+}
+
 /* Body, header and footer */
 .game-body {
     background-color: var(--black);
@@ -154,6 +159,10 @@ font-family: 'Press Start 2P', cursive;
 .game-inventory-link {
     aspect-ratio: 1 / 1;
     max-width: 120px;
+}
+
+.game-v-hidden {
+    visibility: hidden;
 }
 
 .inventory-object-pic {

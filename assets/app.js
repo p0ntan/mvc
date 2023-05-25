@@ -16,4 +16,3 @@ import './js/bootstrap.bundle';
 
 // import own js
 import './js/blackjack';
-import './js/escapegame';
