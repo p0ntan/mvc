@@ -2,11 +2,9 @@
 
 namespace App\EscapeGame;
 
-use App\Entity\EscapeAction as EscapeActionEntity;
 use App\Repository\EscapeRoomRepository;
 use App\Repository\EscapeObjectRepository;
 use App\Repository\EscapeActionRepository;
-use App\Repository\ActionToObjectRepository;
 use App\Repository\EscapeMovementRepository;
 
 /**
@@ -20,22 +18,19 @@ class EscapeGameInitalizer
         EscapeRoomRepository $roomRepository,
         EscapeObjectRepository $objectRepository,
         EscapeActionRepository $actionRepository,
-        ActionToObjectRepository $actionToObjectRepo,
         EscapeMovementRepository $escapeMovementRepo
     ): EscapeGame {
         $allObjects = $this->initObjects($objectRepository);
         $allRooms = $this->initRooms($roomRepository);
         $allDirections = $this->initDirections($escapeMovementRepo);
-        $inventory = new Inventory();
-        $this->addActionsToObjects($actionRepository, $actionToObjectRepo, $allObjects);
+        $this->addActionsToObjects($actionRepository, $objectRepository, $allObjects);
+        $this->addObjectsToObject($allObjects);
         $this->addObjectsToRoom($allObjects, $allRooms);
         $this->addDirectionsToRoom($allDirections, $allRooms);
-        $this->addObjectsToObject($allObjects);
 
         foreach ($allRooms as $room) {
             $escapeGame->addRoom($room);
         }
-        $escapeGame->setInventory($inventory);
 
         return $escapeGame;
     }
@@ -72,41 +67,28 @@ class EscapeGameInitalizer
     /**
      * Function to add actions to objects
      * @param EscapeActionRepository $actionRepository
-     * @param ActionToObjectRepository $actionToObjectRepo
      * @param array<EscapeObject> $objects
      */
     private function addActionsToObjects(
         EscapeActionRepository $actionRepository,
-        ActionToObjectRepository $actionToObjectRepo,
+        EscapeObjectRepository $objectRepository,
         array $objects
     ): void {
+        $actionInstances = [
+            'lookCloser' => new ActionLookCloser(),
+            'pickUp' => new ActionPickUp(),
+            'moveDown' => new ActionMoveDown(),
+            'takeKey' => new ActionTakeKey()
+        ];
         foreach ($objects as $object) {
             $objectId = $object->getId();
-            $actionToObject = $actionToObjectRepo->findBy(['object_id' => $objectId]);
-            foreach ($actionToObject as $row) {
-                $actionId = $row->getActionId();
-                /** @var EscapeActionEntity $action */
-                $action = $actionRepository->find($actionId);
-                /** @var string $actionName */
-                $actionName = $action->getName();
-                switch ($actionName) {
-                    case 'lookCloser':
-                        $newAction = new ActionLookCloser();
-                        $object->addAction($newAction, $actionName);
-                        break;
-                    case 'pickUp':
-                        $newAction = new ActionPickUp();
-                        $object->addAction($newAction, $actionName);
-                        break;
-                    case 'moveDown':
-                        $newAction = new ActionMoveDown();
-                        $object->addAction($newAction, $actionName);
-                        break;
-                    case 'takeKey':
-                        $newAction = new ActionTakeKey();
-                        $object->addAction($newAction, $actionName);
-                        break;
-                }
+            /**  @var mixed $objectData */
+            $objectData = $objectRepository->findOneBy(['id' => $objectId]);
+            $actionId = $objectData->getActionId();
+            $action = $actionRepository->findOneBy(['id' => $actionId]);
+            if ($action) {
+                $actionName = strval($action->getName());
+                $object->addAction($actionInstances[$actionName], $actionName);
             }
         }
     }

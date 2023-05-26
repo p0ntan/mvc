@@ -50,6 +50,9 @@ class EscapeObject
     #[ORM\Column(nullable: true)]
     private ?bool $hidden = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?int $action_id = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -183,6 +186,18 @@ class EscapeObject
     public function setHidden(?bool $hidden): self
     {
         $this->hidden = $hidden;
+
+        return $this;
+    }
+
+    public function getActionId(): ?int
+    {
+        return $this->action_id;
+    }
+
+    public function setActionId(?int $action_id): self
+    {
+        $this->action_id = $action_id;
 
         return $this;
     }

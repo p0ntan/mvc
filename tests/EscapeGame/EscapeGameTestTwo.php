@@ -88,14 +88,14 @@ class EscapeGameTestTwo extends TestCase
     public function testActionOpenDoor(): void
     {
         $escapeGame = $this->escapeGame;
-        
+
         $arrayKey = "openDoor";
         $action = new ActionOpenDoor();
         $mockObject = $this->createMock(EscapeObject::class);
         $mockObject->method('getActions')->willReturn([
             $arrayKey => $action
         ]);
-        
+
         $escapeGame->actionOnObject($mockObject, $arrayKey);
         $res = $escapeGame->isGameOver();
         $this->assertTrue($res);
@@ -107,7 +107,7 @@ class EscapeGameTestTwo extends TestCase
     public function testActionMoveDown(): void
     {
         $escapeGame = $this->escapeGame;
-        
+
         $arrayKey = "moveDown";
         $action = new ActionMoveDown();
         $object = new EscapeObject([
@@ -123,7 +123,7 @@ class EscapeGameTestTwo extends TestCase
             'isHidden' => false
         ]);
         $object->addAction($action, $arrayKey);
-        
+
         $escapeGame->actionOnObject($object, $arrayKey);
         $res = $object->getPosition();
         $exp = [31, 63];
@@ -136,7 +136,7 @@ class EscapeGameTestTwo extends TestCase
     public function testActionTakeKey(): void
     {
         $escapeGame = $this->escapeGame;
-        
+
         $arrayKey = "takeKey";
         $action = new ActionTakeKey();
         $object = new EscapeObject([

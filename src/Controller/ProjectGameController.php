@@ -6,11 +6,11 @@ use App\Entity\EscapeRoom;
 use App\Repository\EscapeRoomRepository;
 use App\Repository\EscapeObjectRepository;
 use App\Repository\EscapeActionRepository;
-use App\Repository\ActionToObjectRepository;
 use App\Repository\EscapeMovementRepository;
 
 use App\EscapeGame\EscapeGame;
 use App\EscapeGame\EscapeGameInitalizer;
+use App\EscapeGame\Inventory;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -26,19 +26,20 @@ class ProjectGameController extends AbstractController
         EscapeRoomRepository $roomRepo,
         EscapeObjectRepository $objectRepo,
         EscapeActionRepository $actionRepo,
-        ActionToObjectRepository $actionToObjectRepo,
         EscapeMovementRepository $escapeMovementRepo
     ): Response {
         $escapeGame = new EscapeGame();
+        $inventory = new Inventory();
         $initializer = new EscapeGameInitalizer();
         $escapeGame = $initializer->initGame(
             $escapeGame,
             $roomRepo,
             $objectRepo,
             $actionRepo,
-            $actionToObjectRepo,
             $escapeMovementRepo
         );
+        $escapeGame->setInventory($inventory);
+
         $session->set('proj_game', $escapeGame);
         return $this->redirectToRoute('proj_game');
     }
