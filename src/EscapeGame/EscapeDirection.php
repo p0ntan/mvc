@@ -74,4 +74,18 @@ class EscapeDirection
     {
         return $this->direction;
     }
+
+    /**
+     * Get as JSON
+     *
+     * @return array<string,mixed>
+     */
+    public function asJson(): array
+    {
+        return [
+            'fromRoom' => $this->getFromRoom(),
+            'toRoom' => $this->getToRoom(),
+            'direction' => $this->getDirection(),
+        ];
+    }
 }

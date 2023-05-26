@@ -49,7 +49,7 @@
 <div class="page">
     <div class="content content-first">
         <div class="report-details">
-            Created at 2023-05-26 11:13:05        , with PHPMetrics v2.8.2 (<a href="https://twitter.com/Halleck45">Jean-François Lépine</a>).
+            Created at 2023-05-26 11:43:25        , with PHPMetrics v2.8.2 (<a href="https://twitter.com/Halleck45">Jean-François Lépine</a>).
         </div>
 
         
@@ -348,9 +348,12 @@
             "\\Symfony\\Bundle\\FrameworkBundle\\Controller\\AbstractController",
             "\\Symfony\\Component\\HttpFoundation\\Response",
             "\\App\\Repository\\EscapeRoomRepository",
+            "\\Symfony\\Component\\HttpFoundation\\Request",
             "\\App\\EscapeGame\\RoomInitializer",
             "\\App\\Repository\\EscapeObjectRepository",
-            "\\App\\EscapeGame\\ObjectInitializer"
+            "\\App\\EscapeGame\\ObjectInitializer",
+            "\\App\\Repository\\EscapeMovementRepository",
+            "\\App\\EscapeGame\\DirectionInitializer"
         ]
     },
     {
@@ -372,6 +375,19 @@
         "name": "\\App\\EscapeGame\\ObjectInitializer",
         "size": 3000,
         "relations": []
+    },
+    {
+        "name": "\\App\\Repository\\EscapeMovementRepository",
+        "size": 3000,
+        "relations": []
+    },
+    {
+        "name": "\\App\\EscapeGame\\DirectionInitializer",
+        "size": 3000,
+        "relations": [
+            "\\App\\Repository\\EscapeMovementRepository",
+            "\\App\\EscapeGame\\EscapeDirection"
+        ]
     },
     {
         "name": "\\App\\Controller\\MainControllerTwig",
@@ -465,11 +481,6 @@
     },
     {
         "name": "\\App\\Repository\\EscapeActionRepository",
-        "size": 3000,
-        "relations": []
-    },
-    {
-        "name": "\\App\\Repository\\EscapeMovementRepository",
         "size": 3000,
         "relations": []
     },
@@ -653,14 +664,6 @@
             "\\App\\EscapeGame\\EscapeObject",
             "\\App\\EscapeGame\\Inventory",
             "\\App\\EscapeGame\\ActionOpenDoor"
-        ]
-    },
-    {
-        "name": "\\App\\EscapeGame\\DirectionInitializer",
-        "size": 3000,
-        "relations": [
-            "\\App\\Repository\\EscapeMovementRepository",
-            "\\App\\EscapeGame\\EscapeDirection"
         ]
     },
     {

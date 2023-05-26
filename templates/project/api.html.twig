@@ -7,4 +7,22 @@
     Här hittar du några api:er som är kopplade till spelet Get Out!
 </p>
 
+<a href="{{ path('proj_api_all_objects') }}">Alla objekt i spelet.</a>
+<a href="{{ path('proj_api_directions') }}">Alla förflytttningar i spelet.</a>
+
+
+<form action="{{ path('proj_api_room') }}" method="GET">
+    <input type="number" name="id-room">
+    <input type="submit" value="Hämta data">
+</form>
+
+<form action="{{ path('proj_api_object') }}" method="GET">
+    <input type="number" name="id-object">
+    <input type="submit" value="Hämta data">
+</form>
+
+<form action="{{ path('proj_api_room_objects') }}" method="POST">
+    <input type="number" name="id-room" value="1" required>
+    <input type="submit" value="Hämta data">
+</form>
 {% endblock %}

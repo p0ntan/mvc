@@ -2,14 +2,19 @@
 
 namespace App\Controller;
 
+use App\Repository\EscapeMovementRepository;
+use App\EscapeGame\DirectionInitializer;
 use App\EscapeGame\ObjectInitializer;
+use App\EscapeGame\ObjectNotFoundException;
 use App\EscapeGame\RoomInitializer;
+use App\EscapeGame\RoomNotFoundException;
 use App\Repository\EscapeRoomRepository;
 use App\Repository\EscapeObjectRepository;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
@@ -24,39 +29,50 @@ class ProjectApiController extends AbstractController
     /**
      * Route to get one room as json
      */
-    #[Route('/proj/api/room/{idRoom}', name: 'proj_api_room')]
+    #[Route('/proj/api/room', name: 'proj_api_room')]
     public function projApiRoom(
         EscapeRoomRepository $repo,
-        int $idRoom
+        Request $request
     ): Response {
-        $roomInit = new RoomInitializer();
-        $room = $roomInit->initOneRoom($repo, $idRoom);
-        $data = $room->asJson();
+        $idRoom = $request->get('id-room');
+        try {
+            $roomInit = new RoomInitializer();
+            $room = $roomInit->initOneRoom($repo, $idRoom);
+            $data = $room->asJson();
 
-        $response = $this->json($data);
-        $response->setEncodingOptions(
-            $response->getEncodingOptions() | JSON_PRETTY_PRINT
-        );
-        return $response;
+            $response = $this->json($data);
+            $response->setEncodingOptions(
+                $response->getEncodingOptions() | JSON_PRETTY_PRINT
+            );
+            return $response;
+        } catch (RoomNotFoundException) {
+            return $this->json(["message" => "No room found with id $idRoom"]);
+        }
+
     }
 
     /**
      * Route to get one object as json
      */
-    #[Route('/proj/api/object/{idObject}', name: 'proj_api_object')]
+    #[Route('/proj/api/object', name: 'proj_api_object')]
     public function projApiObject(
         EscapeObjectRepository $repo,
-        int $idObject
+        Request $request
     ): Response {
-        $objectInit = new ObjectInitializer();
-        $object = $objectInit->initOneObject($repo, $idObject);
-        $data = $object->asJson();
+        $idObject = $request->get('id-object');
+        try {
+            $objectInit = new ObjectInitializer();
+            $object = $objectInit->initOneObject($repo, $idObject);
+            $data = $object->asJson();
 
-        $response = $this->json($data);
-        $response->setEncodingOptions(
-            $response->getEncodingOptions() | JSON_PRETTY_PRINT
-        );
-        return $response;
+            $response = $this->json($data);
+            $response->setEncodingOptions(
+                $response->getEncodingOptions() | JSON_PRETTY_PRINT
+            );
+            return $response;
+        } catch (ObjectNotFoundException) {
+            return $this->json(["message" => "No object found with id $idObject"]);
+        }
     }
 
     /**
@@ -67,10 +83,10 @@ class ProjectApiController extends AbstractController
         EscapeObjectRepository $repo
     ): Response {
         $objectInit = new ObjectInitializer();
-        $object = $objectInit->initObjects($repo);
+        $objects = $objectInit->initObjects($repo);
         $data = [];
-        foreach ($object as $object) {
-            $data[$object->getId()] = $object->asJson();
+        foreach ($objects as $object) {
+            $data[] = $object->asJson();
         }
 
         $response = $this->json($data);
@@ -85,13 +101,13 @@ class ProjectApiController extends AbstractController
      */
     #[Route('/proj/api/directions', name: 'proj_api_directions')]
     public function projApiDirections(
-        EscapeObjectRepository $repo
+        EscapeMovementRepository $repo
     ): Response {
-        $objectInit = new ObjectInitializer();
-        $object = $objectInit->initObjects($repo);
+        $dirInit = new DirectionInitializer();
+        $directions = $dirInit->initDirections($repo);
         $data = [];
-        foreach ($object as $object) {
-            $data[$object->getId()] = $object->asJson();
+        foreach ($directions as $dir) {
+            $data[] = $dir->asJson();
         }
 
         $response = $this->json($data);
@@ -104,25 +120,38 @@ class ProjectApiController extends AbstractController
     /**
      * Route to get all objects as json
      */
-    #[Route('/proj/api/objects/{idRoom}', name: 'proj_api_room_objects', methods: ["POST"])]
+    #[Route('/proj/api/objects/room', name: 'proj_api_room_objects', methods: ["POST"])]
     public function projApiAllObjectInRoom(
         EscapeObjectRepository $repo,
-        int $idRoom
+        EscapeRoomRepository $repoRoom,
+        Request $request
     ): Response {
         $objectInit = new ObjectInitializer();
-        $object = $objectInit->initObjects($repo);
-        $data = [];
+        $roomInit = new RoomInitializer();
+        $idRoom = $request->get('id-room');
 
-        foreach ($object as $object) {
-            if ($object->getInRoom() == $idRoom) {
-                $data[$object->getId()] = $object->asJson();
+        try {
+            $room = $roomInit->initOneRoom($repoRoom, $idRoom);
+            $object = $objectInit->initObjects($repo);
+
+            $data = [
+                "room" => $room->asJson(),
+                "objects" => []
+            ];
+
+            foreach ($object as $object) {
+                if ($object->getInRoom() == $idRoom) {
+                    $data["objects"][] = $object->asJson();
+                }
             }
-        }
 
-        $response = $this->json($data);
-        $response->setEncodingOptions(
-            $response->getEncodingOptions() | JSON_PRETTY_PRINT
-        );
-        return $response;
+            $response = $this->json($data);
+            $response->setEncodingOptions(
+                $response->getEncodingOptions() | JSON_PRETTY_PRINT
+            );
+            return $response;
+        } catch (RoomNotFoundException) {
+            return $this->json(["message" => "No room found with id $idRoom"]);
+        }
     }
 }
