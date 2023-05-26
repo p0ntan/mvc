@@ -206,7 +206,7 @@ class EscapeObject
                 return $object;
             }
         }
-        throw new ObjectNotInRoomException();
+        throw new ObjectNotFoundException();
     }
 
     /**
@@ -226,6 +226,13 @@ class EscapeObject
      */
     public function asJson(): array
     {
-        return get_object_vars($this);
+        return [
+            'id' => $this->getId(),
+            'info' => $this->getInfo(),
+            'img' => $this->getImg(),
+            'position' => $this->getPosition(),
+            'size' => $this->getSize(),
+            'hidden' => $this->isHidden()
+        ];
     }
 }

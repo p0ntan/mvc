@@ -154,7 +154,7 @@ class EscapeGameTest extends TestCase
             $mockRoomTwo,
         ];
         $escapeGame->addRooms($rooms);
-        $this->expectException(NoCurrentRoomException::class);
+        $this->expectException(RoomNotFoundException::class);
         $escapeGame->getCurrentRoom();
     }
 

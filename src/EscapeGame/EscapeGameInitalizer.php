@@ -36,32 +36,16 @@ class EscapeGameInitalizer
     }
 
     /**
-     * Function to create all objects from database
+     * Function to get all objects from database
      *
      * @return array<EscapeObject>
      */
     private function initObjects(
         EscapeObjectRepository $objectRepository
     ): array {
-        $objects = $objectRepository->findAll();
-        $resObjects = [];
-        foreach ($objects as $object) {
-            $data = [
-                'id' => $object->getId(),
-                'name' => $object->getName(),
-                'info' => $object->getInfo(),
-                'innerInfo' => $object->getInfoInner(),
-                'position' => [$object->getPositionX(), $object->getPositionY()],
-                'size' => [$object->getSizeX(), $object->getSizeY()],
-                'img' => $object->getImg(),
-                'inRoom' => $object->getInRoom(),
-                'inObject' => $object->getInObject(),
-                'isHidden' => $object->isHidden()
-            ];
-            $newObject = new EscapeObject($data);
-            $resObjects[] = $newObject;
-        }
-        return $resObjects;
+        $objectInit = new ObjectInitializer();
+        $objects = $objectInit->initObjects($objectRepository);
+        return $objects;
     }
 
     /**
@@ -101,20 +85,9 @@ class EscapeGameInitalizer
     private function initRooms(
         EscapeRoomRepository $roomRepository
     ): array {
-        $resRooms = [];
-        $rooms = $roomRepository->findAll();
-
-        foreach ($rooms as $room) {
-            $data = [
-                'id' => $room->getId(),
-                'info' => $room->getInfo(),
-                'img' => $room->getImg(),
-                'firstRoom' => $room->isFirstRoom()
-            ];
-            $newRoom = new EscapeRoom($data);
-            $resRooms[] = $newRoom;
-        }
-        return $resRooms;
+        $roomInit = new RoomInitializer();
+        $rooms = $roomInit->initRooms($roomRepository);
+        return $rooms;
     }
 
     /**
@@ -125,21 +98,9 @@ class EscapeGameInitalizer
     private function initDirections(
         EscapeMovementRepository $escapeMovementRepo
     ): array {
-        $resDirection = [];
-        $directions = $escapeMovementRepo->findAll();
-
-        foreach ($directions as $dir) {
-            $data = [
-                'from_room' => $dir->getRoomId(),
-                'to_room' => $dir->getToRoom(),
-                'pos_x' => $dir->getPositionX(),
-                'pos_y' => $dir->getPositionY(),
-                'direction' => $dir->getDirection()
-            ];
-            $newdir = new EscapeDirection($data);
-            $resDirection[] = $newdir;
-        }
-        return $resDirection;
+        $dirInit = new DirectionInitializer();
+        $directions = $dirInit->initDirections($escapeMovementRepo);
+        return $directions;
     }
 
     /**

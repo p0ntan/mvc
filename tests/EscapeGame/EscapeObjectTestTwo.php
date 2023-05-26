@@ -62,7 +62,7 @@ class EscapeObjectTestTwo extends TestCase
 
         // Wrong id
         $idNum = 2;
-        $this->expectException(ObjectNotInRoomException::class);
+        $this->expectException(ObjectNotFoundException::class);
         $escapeObject->getOneInnerObject($idNum);
     }
 
@@ -80,7 +80,7 @@ class EscapeObjectTestTwo extends TestCase
         $res = $escapeObject->getInnerObjects();
         $this->assertIsArray($res);
         $this->assertCount(0, $res);
-        $this->expectException(ObjectNotInRoomException::class);
+        $this->expectException(ObjectNotFoundException::class);
         $escapeObject->getOneInnerObject($idNum);
     }
 

@@ -167,7 +167,7 @@ class EscapeRoomTest extends TestCase
         $objects = [$mockObject, $mockObjectTwo, $mockObjectThree];
         $escapeRoom->addObjects($objects);
 
-        $this->expectException(ObjectNotInRoomException::class);
+        $this->expectException(ObjectNotFoundException::class);
         $escapeRoom->getObjectInRoom(5);
     }
 

@@ -78,7 +78,7 @@ class EscapeGameTestTwo extends TestCase
         $room = $this->createMock(EscapeRoom::class);
         $room->method('getObjects')->willReturn([$objectOne, $objectTwo, $objectThree]);
         $escapeGame->addRoom($room);
-        $this->expectException(ObjectNotInRoomException::class);
+        $this->expectException(ObjectNotFoundException::class);
         $escapeGame->getAnyObject(5);
     }
 

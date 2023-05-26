@@ -115,7 +115,7 @@ class EscapeRoom
      * Get an object by id
      *
      * @return EscapeObject
-     * @throws ObjectNotInRoomException if object is not in room
+     * @throws ObjectNotFoundException if object is not in room
      */
     public function getObjectInRoom(int $idNum): EscapeObject
     {
@@ -124,7 +124,7 @@ class EscapeRoom
                 return $object;
             }
         }
-        throw new ObjectNotInRoomException();
+        throw new ObjectNotFoundException();
     }
 
     /**
@@ -145,5 +145,20 @@ class EscapeRoom
     public function addDirection(EscapeDirection $direction): void
     {
         $this->directions[] = $direction;
+    }
+
+    /**
+     * Get room as json
+     *
+     * @return array<mixed>
+     */
+    public function asJson(): array
+    {
+        return [
+            'id' => $this->idNum,
+            'info' => $this->info,
+            'img' => $this->img,
+            'firstRoom' => $this->currentRoom
+        ];
     }
 }

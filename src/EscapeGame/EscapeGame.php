@@ -125,7 +125,7 @@ class EscapeGame
                 return $room;
             }
         }
-        throw new NoCurrentRoomException();
+        throw new RoomNotFoundException();
     }
 
     public function getAnyObject(int $idNum): EscapeObject
@@ -137,7 +137,7 @@ class EscapeGame
                 }
             }
         }
-        throw new ObjectNotInRoomException();
+        throw new ObjectNotFoundException();
     }
 
 
