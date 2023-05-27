@@ -57,8 +57,23 @@ class EscapeGameInitalizerTest extends TestCase
         $mockObject->method('getInRoom')->willReturn(1);
         $mockObject->method('getInObject')->willReturn(-1);
         $mockObject->method('isHidden')->willReturn(false);
+
+        $mockObjectTwo = $this->createMock(ObjectEntity::class);
+        $mockObjectTwo->method('getId')->willReturn(10);
+        $mockObjectTwo->method('getName')->willReturn('testobject');
+        $mockObjectTwo->method('getInfo')->willReturn('Info om objektet');
+        $mockObjectTwo->method('getInfoInner')->willReturn('Mer info');
+        $mockObjectTwo->method('getPositionX')->willReturn(20);
+        $mockObjectTwo->method('getPositionY')->willReturn(10);
+        $mockObjectTwo->method('getSizeX')->willReturn(15);
+        $mockObjectTwo->method('getSizeY')->willReturn(25);
+        $mockObjectTwo->method('getImg')->willReturn('testobject.png');
+        $mockObjectTwo->method('getInRoom')->willReturn(1);
+        $mockObjectTwo->method('getInObject')->willReturn(3);
+        $mockObjectTwo->method('isHidden')->willReturn(false);
+
         $mockObjectRepo = $this->createMock(EscapeObjectRepository::class);
-        $mockObjectRepo->method('findAll')->willReturn([$mockObject]);
+        $mockObjectRepo->method('findAll')->willReturn([$mockObject, $mockObjectTwo]);
         $mockObjectRepo->method('findOneBy')->willReturn($mockObject);
 
         // Mock action entity and repo
