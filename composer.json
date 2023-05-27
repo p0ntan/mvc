@@ -90,7 +90,8 @@
     "scripts": {
         "auto-scripts": {
             "cache:clear": "symfony-cmd",
-            "assets:install %PUBLIC_DIR%": "symfony-cmd"
+            "assets:install %PUBLIC_DIR%": "symfony-cmd",
+            "copydb": "cp db/data.db var/"
         },
         "csfix": "tools/php-cs-fixer/vendor/bin/php-cs-fixer --config=.php-cs-fixer.dist.php fix src tests",
         "csfix:dry": "tools/php-cs-fixer/vendor/bin/php-cs-fixer --config=.php-cs-fixer.dist.php fix src tests --dry-run -v",
@@ -105,8 +106,7 @@
         "phpdoc": "tools/phpdoc/phpdoc",
         "phpunit": "XDEBUG_MODE=coverage vendor/bin/phpunit",
         "post-install-cmd": [
-            "@auto-scripts",
-            "cp data.db var/"
+            "@auto-scripts"
         ],
         "post-update-cmd": [
             "@auto-scripts"

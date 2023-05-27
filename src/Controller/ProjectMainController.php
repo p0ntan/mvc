@@ -25,10 +25,4 @@ class ProjectMainController extends AbstractController
     {
         return $this->render('project/database.html.twig');
     }
-
-    #[Route('/proj/api', name: 'proj_api')]
-    public function apiProject(): Response
-    {
-        return $this->render('project/api.html.twig');
-    }
 }

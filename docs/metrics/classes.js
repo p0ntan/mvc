@@ -467,7 +467,7 @@ var classes = [
                 "_type": "Hal\\Metric\\FunctionMetric"
             },
             {
-                "name": "apiProject",
+                "name": "aboutProjectDatabase",
                 "role": null,
                 "public": true,
                 "private": false,
@@ -2668,24 +2668,14 @@ var classes = [
                 "name": "setName",
                 "role": "setter",
                 "_type": "Hal\\Metric\\FunctionMetric"
-            },
-            {
-                "name": "isIsOn",
-                "role": "getter",
-                "_type": "Hal\\Metric\\FunctionMetric"
-            },
-            {
-                "name": "setIsOn",
-                "role": "setter",
-                "_type": "Hal\\Metric\\FunctionMetric"
             }
         ],
-        "nbMethodsIncludingGettersSetters": 5,
+        "nbMethodsIncludingGettersSetters": 3,
         "nbMethods": 0,
         "nbMethodsPrivate": 0,
         "nbMethodsPublic": 0,
-        "nbMethodsGetter": 3,
-        "nbMethodsSetters": 2,
+        "nbMethodsGetter": 2,
+        "nbMethodsSetters": 1,
         "wmc": 0,
         "ccn": 1,
         "ccnMethodMax": 0,
@@ -2693,32 +2683,32 @@ var classes = [
         "parents": [],
         "implements": [],
         "lcom": 0,
-        "length": 19,
-        "vocabulary": 6,
-        "volume": 49.11,
-        "difficulty": 3,
-        "effort": 147.34,
-        "level": 0.33,
-        "bugs": 0.02,
-        "time": 8,
-        "intelligentContent": 16.37,
-        "number_operators": 7,
-        "number_operands": 12,
+        "length": 11,
+        "vocabulary": 5,
+        "volume": 25.54,
+        "difficulty": 2.33,
+        "effort": 59.6,
+        "level": 0.43,
+        "bugs": 0.01,
+        "time": 3,
+        "intelligentContent": 10.95,
+        "number_operators": 4,
+        "number_operands": 7,
         "number_operators_unique": 2,
-        "number_operands_unique": 4,
-        "cloc": 9,
-        "loc": 38,
-        "lloc": 29,
-        "mi": 90.35,
-        "mIwoC": 56.12,
-        "commentWeight": 34.23,
+        "number_operands_unique": 3,
+        "cloc": 8,
+        "loc": 27,
+        "lloc": 19,
+        "mi": 99.46,
+        "mIwoC": 62.12,
+        "commentWeight": 37.34,
         "kanDefect": 0.15,
         "relativeStructuralComplexity": 0,
-        "relativeDataComplexity": 5.4,
-        "relativeSystemComplexity": 5.4,
+        "relativeDataComplexity": 3.33,
+        "relativeSystemComplexity": 3.33,
         "totalStructuralComplexity": 0,
-        "totalDataComplexity": 27,
-        "totalSystemComplexity": 27,
+        "totalDataComplexity": 10,
+        "totalSystemComplexity": 10,
         "package": "App\\Entity\\",
         "pageRank": 0.01,
         "afferentCoupling": 1,
@@ -2898,16 +2888,6 @@ var classes = [
                 "_type": "Hal\\Metric\\FunctionMetric"
             },
             {
-                "name": "getInRoom",
-                "role": "getter",
-                "_type": "Hal\\Metric\\FunctionMetric"
-            },
-            {
-                "name": "setInRoom",
-                "role": "setter",
-                "_type": "Hal\\Metric\\FunctionMetric"
-            },
-            {
                 "name": "getSizeX",
                 "role": "getter",
                 "_type": "Hal\\Metric\\FunctionMetric"
@@ -2954,6 +2934,16 @@ var classes = [
             },
             {
                 "name": "setHidden",
+                "role": "setter",
+                "_type": "Hal\\Metric\\FunctionMetric"
+            },
+            {
+                "name": "getInRoom",
+                "role": "getter",
+                "_type": "Hal\\Metric\\FunctionMetric"
+            },
+            {
+                "name": "setInRoom",
                 "role": "setter",
                 "_type": "Hal\\Metric\\FunctionMetric"
             },
