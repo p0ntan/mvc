@@ -105,11 +105,11 @@
         "phpdoc": "tools/phpdoc/phpdoc",
         "phpunit": "XDEBUG_MODE=coverage vendor/bin/phpunit",
         "post-install-cmd": [
-            "@auto-scripts"
-        ],
-        "post-update-cmd": [
             "@auto-scripts",
             "cp db/data.db var/"
+        ],
+        "post-update-cmd": [
+            "@auto-scripts"
         ],
         "makeentity": "php bin/console make:entity",
         "makemigration": "php bin/console make:migration",
