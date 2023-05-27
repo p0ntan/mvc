@@ -1,0 +1,49 @@
+{% extends "project/base.html.twig" %}
+
+{% block main %}
+
+<h2>Om databasen för Get out!</h2>
+<img src="{{ asset('image/escapegame/er-diagram.png') }}" alt="Bild på ett ER-diagram över projektets databas">
+<p>
+    Databasen som används för Get out består av totalt fyra olika tabeller.
+</p>
+<ul>
+    <li>
+        escape_room: Innehåller informationen och bild för varje rum samt om rummet är det första rummet i spelet.
+    </li>
+    <li>
+        escape_movement: Innehåller data om vart man kan röra sig i spelet mellan olika rum. Datan som finns i tabellen används sedan för att skapa klickbara länkar som placeras på sin position.
+    </li>
+    <li>
+        escape_object: Innehåller data om de olika objekt man kan klicka på i de olika rummen. Datan i tabellen används för att kunna placera ut objekten där de önskas, storlek, om de är dolda från start, vilka handlingar (actions) man kan göra, information samt namn och bild.
+    </li>
+    <li>
+        escape_action: Innehåller namn på de olika actions som finns.
+    </li>
+</ul>
+
+<p>
+    Relationerna mellan tabellerna kan man läsa ut ifrån diagrammet ovan, där alla relationer som finns är av typ en-till-många förhållanden. I databasen så är kopplingen mellan escape_object och escape_action en främmande nyckel, och detta gäller även mellan escape_object och escape_room.
+    För att få till denna koppling i databasen så lades detta till via migrations, men då denna kopplingen inte lades med från start så var detta något som var lite omständigt att få till. Ovanan att jobba med Doctrine och förstå hur dess migrations fungerar gjorde detta rätt så omständigt, vilket slutade med att jag i en migration ändrade SQL-koden som skulle exekveras och manuellt lade till den främmande nyckel som skulle skapas.
+    P.g.a detta så ligger det inte inne någon främmande nyckel i databasen mellan escape_movement och escape_room, även om själva förhållandet finns där som också är av typen en-till-många förhållande.
+</p>
+<p>
+    Databasen som används är en SQLite-databas, vilket kan ha varit det som bl a gjord det lite omständigare med att lägga till en främmande nyckel efter att tabellerna hade skapats. Men även om det ställde till det något för mig så tycker jag ändå att det är väldigt smidigt att jobba med SQLite då det är enkelt att jobba mot en fil.
+</p>
+<p>
+    I några en av mina klasser där enhetstester används har jag mockat svar från databasen för att isolera de klasser jag önskat testa. Men jag har även lagt några enhetstester på mina api-controllers där jag även testar att jag får önskat svar från databasen. Detta har jag även fått att fungera på Scrutinizer genom att i mitt repo ha en kopia av databasen jag önskar använda. När sedan repot installeras med composer install så har jag lagt till ett kommando som körs efter installtionen som kopierar den önskade databasen till rätt plats (/var).
+</p>
+
+<h3>
+    Reflektioner om ORM
+</h3>
+<p>
+    Fördelar jag ser med att jobba mot databasen i form av ORM är främst att få ett smidigt gränssnitt mot databasen där man enklare kan både hämta och skriva till sin databas. Att man kan jobba mot flera typer av databaser men samtidigt behålla samma gränssnitt ser jag för mig kan spara mycket tid i större applikationer där man jobbar med mycket data. Det i sin tur gör att man skulle relativt smidigt nyttja olika databasernas potential till vad man önskar göra i sin applikation. Det vi själva gjorde i databaskursen med t ex lagrade procedurer påminner lite om enkelheten i det gränssnitt man själv skapade, och att man där kunde hämta ut viss data på ett enkelt sätt förutsatt att man själv hade skapat funktionaliteten. I databaskursen skapade jag många funktioner som sedan kallade på de procedurer man skapat, och i ORM så använder man ju objekt och dess metoder för att hämta ut data. Så även om det inte är helt likt i strukturen så blir det ändå förhållandevis lätt att hämta ut den data man önskar.
+</p>
+<p>
+    Nackdelar som jag upplevt med ORM under projektet är hur man jobbar mot den databas man redan har satt upp, och att om man ville ändra något i sin struktur i databasen var det inte lika enkelt att få till de ändringar man ville. I databaskursen var det förhållandevis enkelt att ändra på sin struktur då man enkelt kunde ändra i koden och “starta om” databasen med den nya koden. Detta är nog främst en fråga om min egen kunskap och att man inte har använt sig av ORM förut och inte har helt koll på hur det är tänkt att användas. Att ORM använder sig av migrations för att kunna återgå till en viss tidpunkt i sin databas är nog i grunden ett bra upplägg, men som nämnt gjorde min egen brist på kunskap att det snarare blev något tidskrävande när något problem uppstod.</p>
+<p>
+    Jag tycker det är skönt att ha full kontroll på hur det man använder fungerar, och även jag känner att ORM har stor potential med ett enkelt gränssnitt så behöver man ändå sätta in sig i hur man kan använda det för att nyttja det till fullo. Och att man har förståelse för hur man kopplar ihop tabeller via t ex Doctrine, på vilket sätt dessa kopplingar görs och hur man då kan jobba med den struktur som Doctrine har.
+</p>
+
+{% endblock %}

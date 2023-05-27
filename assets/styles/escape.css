@@ -21,6 +21,24 @@ html {
     overflow-y: scroll;
 }
 
+/* Typography */
+
+.proj-container h1,
+.proj-container h2,
+.proj-container h3,
+.proj-container h4 {
+    font-family: var(--font-header);
+}
+
+.proj-container p,
+.proj-container li {
+    font-family: var(--font-text);
+    line-height: 1.5;
+    letter-spacing: 0.02rem;
+    word-spacing: 0.1rem;
+}
+
+
 /* Body, header and footer */
 .game-body {
     background-color: var(--black);
@@ -103,6 +121,10 @@ html {
 }
 
 /* Main content */
+
+.proj-div-center {
+    margin: auto;
+}
 
 .game-container {
     position: relative;
@@ -279,4 +301,80 @@ html {
 
 .lock-form input[type="number"] {
     -moz-appearance: textfield;
+}
+
+/* Api page */
+
+.proj-api {
+    font-family: var(--font-header);
+}
+
+.proj-fieldset {
+    border: 2px solid var(--link-hover);
+    border-radius: 4px;
+}
+
+.proj-fieldset:hover {
+    box-shadow: 0 0 10px 1px var(--link-hover);
+    transition: all 0.2s;
+}
+
+
+.proj-legend {
+    font-family: var(--font-header);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: var(--black);
+    float: unset;
+    width: unset;
+    margin-bottom: unset;
+    font-size: 1rem;
+    padding: 0.25rem;
+    line-height: inherit;
+    text-align: center;
+}
+
+.proj-form-text {
+    font-size: 0.8rem;
+    font-style: italic;
+    color: var(--white);
+}
+
+.proj-form-number {
+    background-color: transparent;
+    color: var(--white);
+}
+
+.proj-form-number:valid {
+    box-shadow: 0 0 5px 1px var(--link-hover);
+}
+
+.proj-form-number:enabled {
+    background-color: transparent;
+    border: 1px solid var(--white);
+    color: var(--white);
+    text-align: center;
+}
+
+.proj-form-number:active {
+    background-color: transparent;
+    border: 1px solid var(--white);
+}
+
+.proj-form-submit {
+    margin: auto;
+    display: block;
+    padding: 0.25rem 1.5rem;
+    border: 1px solid var(--link-hover);
+    background-color: transparent;
+    color: var(--white);
+    border-radius: 4px;
+}
+
+.proj-form-submit:hover {
+    background-color: var(--link-hover);
+    color: var(--black);
+    transition: all 0.2s;
+    box-shadow: 0 0 10px 1px var(--link-hover);
 }

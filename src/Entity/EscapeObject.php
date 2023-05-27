@@ -33,9 +33,6 @@ class EscapeObject
     private ?string $img = null;
 
     #[ORM\Column(nullable: true)]
-    private ?int $in_room = null;
-
-    #[ORM\Column(nullable: true)]
     private ?int $size_x = null;
 
     #[ORM\Column(nullable: true)]
@@ -49,6 +46,9 @@ class EscapeObject
 
     #[ORM\Column(nullable: true)]
     private ?bool $hidden = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?int $in_room = null;
 
     #[ORM\Column(nullable: true)]
     private ?int $action_id = null;
@@ -118,18 +118,6 @@ class EscapeObject
         return $this;
     }
 
-    public function getInRoom(): ?int
-    {
-        return $this->in_room;
-    }
-
-    public function setInRoom(?int $in_room): self
-    {
-        $this->in_room = $in_room;
-
-        return $this;
-    }
-
     public function getSizeX(): ?int
     {
         return $this->size_x;
@@ -186,6 +174,18 @@ class EscapeObject
     public function setHidden(?bool $hidden): self
     {
         $this->hidden = $hidden;
+
+        return $this;
+    }
+
+    public function getInRoom(): ?int
+    {
+        return $this->in_room;
+    }
+
+    public function setInRoom(?int $in_room): self
+    {
+        $this->in_room = $in_room;
 
         return $this;
     }

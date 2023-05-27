@@ -5,6 +5,7 @@
 @import "escape.css";
 
 main {
+    display: flex;
     flex: 1;
 }
 

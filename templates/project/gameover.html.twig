@@ -1,7 +1,16 @@
 {% extends "project/base.html.twig" %}
 
 {% block main %}
-
-<h1>JÄVLAR DU KLARA DET!</h1>
-
+<div class="proj-div-center">
+    <h1 class="text-center">Grattis!</h1>
+    <p class="text-center">
+        Bra jobbat! Du hittade vägen ut, hoppas du tyckte om spelet och att det var lagomt svårt att hitta nyckeln som kunde hjälpa dig ut.
+    </p>
+    <p class="text-center">
+        <a href="{{ path('proj_about') }}" class="proj-about-link">Här</a> kan du läsa mer om spelet om du önskar. Även några api:er finns kopplade till spelet och dess databas, och de kan du hitta <a href="{{ path('proj_api') }}" class="proj-about-link">här.</a>
+    </p>
+    <p class="text-center">
+        Om du vill spela igen kan du klicka på texten Get Out! här ovan eller på husikonen för att ta dig tillbaka till huvudsidan.
+    </p>
+</div>
 {% endblock %}

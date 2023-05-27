@@ -2,8 +2,18 @@
 
 {% block main %}
 
-<form action="{{ path('proj_init_game')}}" method="POST">
-    <input type="submit" value="Spela">
-</form>
+<div class="proj-div-center">
+    <h1 class="text-center">Välkommen!</h1>
+    <p class="text-center">
+        Har du någonsin varit i ett escape-room? Då kommer du känna igen Get out!
+    </p>
+    <p class="text-center">
+        Get out är ett spel där du hittar dig själv inlåst i ett hus utan att veta vägen ut. Klicka dig runt för att hitta ledtrådar eller annat som kan hjälpa dig för att hitta ut till friheten igen.
+    </p>
+    
+    <form action="{{ path('proj_init_game')}}" method="POST">
+        <input type="submit" class="proj-form-submit" value="Spela">
+    </form>
+</div>
 
 {% endblock %}

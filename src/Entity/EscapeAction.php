@@ -19,9 +19,6 @@ class EscapeAction
     #[ORM\Column(length: 25, nullable: true)]
     private ?string $name = null;
 
-    #[ORM\Column(nullable: true)]
-    private ?bool $is_on = null;
-
     public function getId(): ?int
     {
         return $this->id;
@@ -35,18 +32,6 @@ class EscapeAction
     public function setName(?string $name): self
     {
         $this->name = $name;
-
-        return $this;
-    }
-
-    public function isIsOn(): ?bool
-    {
-        return $this->is_on;
-    }
-
-    public function setIsOn(?bool $is_on): self
-    {
-        $this->is_on = $is_on;
 
         return $this;
     }

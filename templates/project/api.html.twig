@@ -6,23 +6,53 @@
 <p>
     Här hittar du några api:er som är kopplade till spelet Get Out!
 </p>
-
-<a href="{{ path('proj_api_all_objects') }}">Alla objekt i spelet.</a>
-<a href="{{ path('proj_api_directions') }}">Alla förflytttningar i spelet.</a>
-
-
-<form action="{{ path('proj_api_room') }}" method="GET">
-    <input type="number" name="id-room">
-    <input type="submit" value="Hämta data">
-</form>
-
-<form action="{{ path('proj_api_object') }}" method="GET">
-    <input type="number" name="id-object">
-    <input type="submit" value="Hämta data">
-</form>
-
-<form action="{{ path('proj_api_room_objects') }}" method="POST">
-    <input type="number" name="id-room" value="1" required>
-    <input type="submit" value="Hämta data">
-</form>
+<p>
+    <a href="{{ path('proj_api_all_objects') }}" class="proj-about-link">Alla objekt i spelet</a> (GET)
+</p>
+<p>
+    <a href="{{ path('proj_api_directions') }}" class="proj-about-link">Alla förflytttningar i spelet</a> (GET)
+</p>
+<div class="container proj-api">
+    <div class="row">
+        <div class="col">
+            <form action="{{ path('proj_api_room') }}" method="GET">
+                <fieldset class="proj-fieldset py-2 px-4">
+                    <legend class="proj-legend">Få data om ett rum baserat på id.</legend>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Id:</label>
+                    <input type="number" class="form-control proj-form-number mb-1" name="id-room" value="1" required>
+                    <div class="proj-form-text">I databasen finns rum med id 1, 2 och 3. (GET)</div>
+                </div>
+                <input class="proj-form-submit" type="submit" value="Hämta data">
+                </fieldset>
+            </form>
+        </div>
+        <div class="col">
+            <form action="{{ path('proj_api_object') }}" method="GET">
+                <fieldset class="proj-fieldset py-2 px-4">
+                    <legend class="proj-legend">Få data om ett objekt baserat på id.</legend>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Id:</label>
+                    <input type="number" class="form-control proj-form-number mb-1" name="id-object" value="1" required>
+                    <div class="proj-form-text">I databasen finns objekt från 1 - 27. (GET)</div>
+                </div>
+                <input class="proj-form-submit" type="submit" value="Hämta data">
+                </fieldset>
+            </form>
+        </div>
+        <div class="col">
+            <form action="{{ path('proj_api_room_objects') }}" method="POST">
+                <fieldset class="proj-fieldset py-2 px-4">
+                    <legend class="proj-legend">Få data från ett rum med dess objekt.</legend>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Id:</label>
+                    <input type="number" class="form-control proj-form-number mb-1" name="id-room" value="1" required>
+                    <div class="proj-form-text">I databasen finns rum med id 1, 2 och 3. (POST)</div>
+                </div>
+                <input class="proj-form-submit" type="submit" value="Hämta data">
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div>
 {% endblock %}

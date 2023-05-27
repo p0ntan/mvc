@@ -189,4 +189,20 @@ class EscapeRoomTest extends TestCase
         $this->assertSame($mockDirection, $res[0]);
 
     }
+
+    /**
+     * Test to check json-response
+     */
+    public function testJson(): void
+    {
+        $escapeRoom = $this->escapeRoom;
+        $exp = [
+            'id' => 10,
+            'info' => "Infotest",
+            'img' => "image.png",
+            'firstRoom' => true
+        ];
+        $res = $escapeRoom->asJson();
+        $this->assertEquals($exp, $res);
+    }
 }

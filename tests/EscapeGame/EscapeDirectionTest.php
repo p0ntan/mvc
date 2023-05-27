@@ -79,4 +79,16 @@ class EscapeDirectionTest extends TestCase
         $res = $escapeDirection->getDirection();
         $this->assertSame($exp, $res);
     }
+
+    public function testJson(): void
+    {
+        $escapeDirection = $this->escapeDirection;
+        $exp = [
+            'fromRoom' => 1,
+            'toRoom' => 2,
+            'direction' => 'north'
+        ];
+        $res = $escapeDirection->asJson();
+        $this->assertSame($exp, $res);
+    }
 }
