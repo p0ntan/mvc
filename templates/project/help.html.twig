@@ -1,0 +1,71 @@
+{% extends "project/base.html.twig" %}
+
+{% block main %}
+
+<div class="proj-div-center">
+    <h1 class="text-center">Walkthrough</h1>
+    <p>
+        Här hittar du lite hjälp om du inte hittar ut ur huset. Du kan totalt hitta 5 stycken lappar med en symbol och en siffra på. Lapparna kan man lägga i sin ryggsäck genom att klicka på dem. De finns på följande platser:
+    </p>
+    <ul>
+        <ul>
+            Första rummet:
+            <li>
+                Under mattan (klicka på mattan).
+            </li>
+        </ul>
+        <ul>
+            Östra rummet (bibliotek):
+            <li>
+                Bakom gardinen (klicka på fönstret)
+            </li>
+            <li>
+                Högra bokhyllan, andra hyllan nedifrån och bok 9 från vänster.
+            </li>
+        </ul>
+        <ul>
+            Västra rummet (arbetsrum)
+            <li>
+                I en av byrålådorna (den vänstra i mitten)
+            </li>
+            <li>
+                Bakom de vänstra polaroidbilderna på anslagstavlan (klicka och flytta bilderna)
+            </li>
+        </ul>
+    </ul>
+    <p>
+        Man ska sedan öppna lådan som finns i på skrivbordet det västra rummet (arbetsrummet). Låset består av tre siffror, och man hittar vilka siffror som man ska använda i rätt ordning i lampskärmen i första rummet. När man låst upp lådan så plockar man upp nyckeln och lägger den i ryggsäcken. Utgången är sedan dörren i det första rummet som går att öppna när man har nyckeln i ryggsäcken.
+    </p>
+    <p>
+        Om man vill komma ut så fort som möjligt räcker det med att hämta nyckeln i lådan på skrivbordet. Klicka på knappen under för att se kombinationen.
+        <button type="button" class="btn proj-form-submit" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+            Visa kombination
+        </button>
+    </p>
+    
+    <p>
+        <a href="{{ path('proj') }}" class="proj-about-link">Tillbaka till startsidan.</a>
+    </p>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h1 class="modal-title fs-5" id="staticBackdropLabel">Kombination</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <p class="mb-0">
+                Kombinationen är: 9 7 4
+            </p>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn proj-form-submit" data-bs-dismiss="modal">Stäng</button>
+        </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

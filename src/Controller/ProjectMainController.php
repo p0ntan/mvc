@@ -14,6 +14,12 @@ class ProjectMainController extends AbstractController
         return $this->render('project/index.html.twig');
     }
 
+    #[Route('/proj/help', name: 'proj_help')]
+    public function help(): Response
+    {
+        return $this->render('project/help.html.twig');
+    }
+
     #[Route('/proj/about', name: 'proj_about')]
     public function aboutProject(): Response
     {
