@@ -90,8 +90,7 @@
     "scripts": {
         "auto-scripts": {
             "cache:clear": "symfony-cmd",
-            "assets:install %PUBLIC_DIR%": "symfony-cmd",
-            "copydb": "cp db/data.db var/"
+            "assets:install %PUBLIC_DIR%": "symfony-cmd"
         },
         "csfix": "tools/php-cs-fixer/vendor/bin/php-cs-fixer --config=.php-cs-fixer.dist.php fix src tests",
         "csfix:dry": "tools/php-cs-fixer/vendor/bin/php-cs-fixer --config=.php-cs-fixer.dist.php fix src tests --dry-run -v",
@@ -109,7 +108,8 @@
             "@auto-scripts"
         ],
         "post-update-cmd": [
-            "@auto-scripts"
+            "@auto-scripts",
+            "cp db/data.db var/"
         ],
         "makeentity": "php bin/console make:entity",
         "makemigration": "php bin/console make:migration",
