@@ -17,9 +17,9 @@ Webbplatsen kan man se [här](https://www.student.bth.se/~poak22/dbwebb-kurser/m
 Om man vill klona detta repo och köra det lokalt kan man göra följande i en bash-terminal där man har git och php installerat.
 
 - Ställ dig i den mapp du önskar klona repot
-- Klona repot med kommandot: git clone https://github.com/p0ntan/mvc
-- Gå in i mappen med kommandot: cd mvc/
-- Initera repot och installera nödvändiga paket med kommandot: composer install.
+- Klona repot med kommandot: *git clone https://github.com/p0ntan/mvc*
+- Gå in i mappen med kommandot: *cd mvc/*
+- Initera repot och installera nödvändiga paket med kommandot: *composer install*
 - Kommandot ovan kommer även att kopiera in databasen så den kan användas på webbplatsen.
-- Starta sedan en php-server, förslagsvis med kommandot: php -S localhost:8888 -t public.
+- Starta sedan en php-server, förslagsvis med kommandot: *php -S localhost:8888 -t public*
 - I en webbläsare gå sedan in på localhost:8888, webbplatsen är nu igång lokalt.php
