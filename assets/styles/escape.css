@@ -155,7 +155,7 @@ html {
 }
 
 .game-info {
-    min-height: 150px;
+    min-height: 154px;
 }
 
 .game-button {
@@ -246,6 +246,18 @@ html {
 .z-top {
     position: relative;
     z-index: 10;
+}
+
+@media (max-width: 800px) {
+    .game-container {
+        height: 100%;
+        display: flex !important;
+        flex-direction: column;
+    }
+
+    .game-info {
+        height: 100%;
+    }
 }
 
 /* About */

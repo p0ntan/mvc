@@ -36,7 +36,7 @@
                 </p>
                 <form method="GET" action="{{ path('proj_game_object', {objectId: object.getId()} )}}" id="game-action-form">
                     {% for key, action in object.getActions() %}
-                        <button value="{{ key }}">{{ action.getName() }}</button>
+                        <button class="proj-form-submit m-0" value="{{ key }}">{{ action.getName() }}</button>
                     {% endfor %}
                 </form> 
             {% endif %}

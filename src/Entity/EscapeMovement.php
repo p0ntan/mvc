@@ -17,9 +17,6 @@ class EscapeMovement
     private ?int $id = null;
 
     #[ORM\Column]
-    private ?int $room_id = null;
-
-    #[ORM\Column]
     private ?int $to_room = null;
 
     #[ORM\Column(nullable: true)]
@@ -30,6 +27,9 @@ class EscapeMovement
 
     #[ORM\Column(length: 10, nullable: true)]
     private ?string $direction = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?int $room_id = null;
 
     public function getId(): ?int
     {
