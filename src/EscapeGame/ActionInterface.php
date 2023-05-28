@@ -8,6 +8,8 @@ namespace App\EscapeGame;
 interface ActionInterface
 {
     /**
+     * Returns name of action
+     *
      * @return string
      */
     public function getName();

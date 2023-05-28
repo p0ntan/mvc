@@ -26,6 +26,11 @@ class EscapeGame
         }
     }
 
+    /**
+     * Add room to the game
+     *
+     * @param EscapeRoom $room
+     */
     public function addRoom(EscapeRoom $room): void
     {
         $this->rooms[] = $room;
@@ -41,16 +46,33 @@ class EscapeGame
         return $this->rooms;
     }
 
+    /**
+     * Method to set the inventory
+     *
+     * @param Inventory $inventory
+     */
     public function setInventory(Inventory $inventory): void
     {
         $this->inventory = $inventory;
     }
 
+    /**
+     * Method to get the inventory
+     *
+     * @return Inventory
+     */
     public function getInventory(): Inventory
     {
         return $this->inventory;
     }
 
+    /**
+     * Method to try game (lock) combination
+     *
+     * @param int $first
+     * @param int $second
+     * @param int $third
+     */
     public function tryCombination(
         int $first,
         int $second,
@@ -80,16 +102,32 @@ class EscapeGame
         return false;
     }
 
+    /**
+     * Method to check if the game is over
+     *
+     * @return bool
+     */
     public function isGameOver(): bool
     {
         return $this->gameOver;
     }
 
+    /**
+     * Method to set game over
+     *
+     * @param bool $gameOver
+     */
     public function setGameOver(bool $gameOver): void
     {
         $this->gameOver = $gameOver;
     }
 
+    /**
+     * Method execute action on an object
+     *
+     * @param EscapeObject $object
+     * @param string $actionKey
+     */
     public function actionOnObject(EscapeObject $object, string $actionKey): void
     {
         $allActions = $object->getActions();
@@ -107,6 +145,12 @@ class EscapeGame
         }
     }
 
+    /**
+     * Method to change current roomr
+     *
+     * @param int $fromRoom
+     * @param int $toRoom
+     */
     public function changeCurrentRoom(int $fromRoom, int $toRoom): void
     {
         foreach ($this->rooms as $room) {
@@ -118,6 +162,12 @@ class EscapeGame
         }
     }
 
+    /**
+     * Method to get the current room.
+     *
+     * @throws RoomNotFoundException
+     * @return EscapeRoom
+     */
     public function getCurrentRoom(): EscapeRoom
     {
         foreach ($this->rooms as $room) {
@@ -128,6 +178,15 @@ class EscapeGame
         throw new RoomNotFoundException();
     }
 
+    /**
+     * Method to get any object in game
+     *
+     * @param int $idNum
+     *
+     * @throws ObjectNotFoundException
+     * @return EscapeObject
+     *
+     */
     public function getAnyObject(int $idNum): EscapeObject
     {
         foreach ($this->rooms as $room) {
@@ -140,7 +199,13 @@ class EscapeGame
         throw new ObjectNotFoundException();
     }
 
-
+    /**
+     * Method to get an object in the current room
+     *
+     * @param int $idNum
+     *
+     * @return EscapeObject
+     */
     public function getObjectInCurrentRoom(int $idNum): EscapeObject
     {
         $currentRoom = $this->getCurrentRoom();

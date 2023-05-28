@@ -13,6 +13,11 @@ use App\Repository\EscapeMovementRepository;
  */
 class EscapeGameInitalizer
 {
+    /**
+     * Method to init the game
+     * 
+     * @return EscapeGame
+     */
     public function initGame(
         EscapeGame $escapeGame,
         EscapeRoomRepository $roomRepository,

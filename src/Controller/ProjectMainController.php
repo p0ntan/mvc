@@ -2,6 +2,9 @@
 
 namespace App\Controller;
 
+use App\Database\DatabaseReset;
+
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -30,5 +33,18 @@ class ProjectMainController extends AbstractController
     public function aboutProjectDatabase(): Response
     {
         return $this->render('project/database.html.twig');
+    }
+
+    #[Route('/proj/database/reset', name: 'proj_about_database_reset', methods: ['POST'])]
+    public function projectResetDatabase(
+        ManagerRegistry $doctrine,
+    ): Response
+    {
+        $connection = $doctrine->getConnection();
+        $filename = 'sql/backup.sql';
+        $sqlFile = file_get_contents($filename);
+        $connection->executeStatement($sqlFile);
+
+        return $this->redirectToRoute('proj_about_database');
     }
 }

@@ -7,11 +7,19 @@ namespace App\EscapeGame;
  */
 class ActionMoveDown implements ActionOneInterface
 {
+    /**
+     * Execute the action, changes position of the object.
+     */
     public function execute(EscapeObject $object): void
     {
         $object->setPosition([31, 63]);
     }
 
+    /**
+     * Returns name of action
+     *
+     * @return string
+     */
     public function getName(): string
     {
         return 'Flytta';

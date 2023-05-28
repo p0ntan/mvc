@@ -8,5 +8,8 @@ namespace App\EscapeGame;
  */
 interface ActionTwoInventory extends ActionInterface
 {
+    /**
+     * Execute the action.
+     */
     public function execute(EscapeObject $object, EscapeObject $secondObject, Inventory $inventory): void;
 }

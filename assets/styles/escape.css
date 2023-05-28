@@ -129,6 +129,7 @@ html {
 .game-container {
     position: relative;
     max-width: 800px;
+    width: 100%;
     height: auto;
     border: 2px solid var(--white);
     margin: auto;
@@ -150,7 +151,9 @@ html {
 
 .game-image {
     position: relative;
+    aspect-ratio: 16 / 9;
     max-width: 800px;
+    width: 100%;
     height: auto;
 }
 

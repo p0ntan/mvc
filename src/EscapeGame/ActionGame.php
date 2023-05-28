@@ -8,5 +8,8 @@ namespace App\EscapeGame;
  */
 interface ActionGame extends ActionInterface
 {
+    /**
+     * Execute the action.
+     */
     public function execute(EscapeObject $object, EscapeGame $game): void;
 }

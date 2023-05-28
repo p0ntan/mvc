@@ -8,6 +8,9 @@ namespace App\EscapeGame;
  */
 class ActionTakeKey implements ActionTwoInventory
 {
+    /**
+     * Execute the action, takes key and puts it into inventory and adds ActionOpenDoor to the second object
+     */
     public function execute(EscapeObject $object, EscapeObject $secondObject, Inventory $inventory): void
     {
         $inventory->addItem($object);
@@ -15,6 +18,11 @@ class ActionTakeKey implements ActionTwoInventory
         $secondObject->addAction(new ActionOpenDoor(), "openDoor");
     }
 
+    /**
+     * Returns name of action
+     *
+     * @return string
+     */
     public function getName(): string
     {
         return 'Plocka upp nyckel';

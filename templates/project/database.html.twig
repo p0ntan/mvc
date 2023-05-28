@@ -46,4 +46,11 @@
     Att ha förståelse för hur man kopplar ihop tabeller via t ex Doctrine, och på vilket sätt dessa kopplingar görs och hur man då kan jobba med den struktur som Doctrine erbjuder tycker jag är viktigt för att få det att fungera som man vill. Men har man bara sin tabell-struktur helt klar när man sätter upp entiteterna, så hade det förenklat mycket.
 </p>
 
+<p class="text-center">
+    Vid behov kan man återställa databasen här, där en backup-fil läses in och databasen återställs:
+    <form action="{{ path('proj_about_database_reset') }}" method="POST">
+        <input type="submit" value="Återställ databas" class="proj-form-submit">
+    </form>
+</p>
+
 {% endblock %}
