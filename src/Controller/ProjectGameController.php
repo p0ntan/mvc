@@ -49,6 +49,10 @@ class ProjectGameController extends AbstractController
         SessionInterface $session,
         Request $request
     ): Response {
+        if (!$session->has('proj_game')) {
+            return $this->redirectToRoute('proj');
+        }
+
         $escapeGame = $session->get('proj_game');
         $currentRoom = $escapeGame->getCurrentRoom();
         $queryParam = $request->get('object');
@@ -82,6 +86,10 @@ class ProjectGameController extends AbstractController
         SessionInterface $session,
         Request $request
     ): Response {
+        if (!$session->has('proj_game')) {
+            return $this->redirectToRoute('proj');
+        }
+
         $escapeGame = $session->get('proj_game');
         $currentRoom = $escapeGame->getCurrentRoom();
         $queryParam = $request->get('object');
@@ -121,6 +129,10 @@ class ProjectGameController extends AbstractController
         Request $request,
         int $objectId
     ): Response {
+        if (!$session->has('proj_game')) {
+            return $this->redirectToRoute('proj');
+        }
+
         $escapeGame = $session->get('proj_game');
         $currentRoom = $escapeGame->getCurrentRoom();
         $queryParam = $request->get('object');
@@ -145,6 +157,10 @@ class ProjectGameController extends AbstractController
         SessionInterface $session,
         int $outerObj
     ): Response {
+        if (!$session->has('proj_game')) {
+            return $this->redirectToRoute('proj');
+        }
+
         $escapeGame = $session->get('proj_game');
         $currentRoom = $escapeGame->getCurrentRoom();
         $innerObj = 24; // Hardcoded id for lock, for bigger game this needs to be changed.

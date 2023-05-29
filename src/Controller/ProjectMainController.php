@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use Doctrine\DBAL\Connection;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -13,8 +14,7 @@ class ProjectMainController extends AbstractController
     #[Route('/proj', name: 'proj')]
     public function home(
         SessionInterface $session
-    ): Response
-    {
+    ): Response {
         $data = [
             'isPlaying' => false
         ];
@@ -47,10 +47,11 @@ class ProjectMainController extends AbstractController
     public function projectResetDatabase(
         ManagerRegistry $doctrine,
     ): Response {
+        /** @var Connection $connection */
         $connection = $doctrine->getConnection();
         $filename = 'sql/backup.sql';
-        $sqlFile = file_get_contents($filename);
-        $connection->executeStatement($sqlFile);
+        $sqlFile = strval(file_get_contents($filename));
+        $connection->exec($sqlFile);
 
         return $this->redirectToRoute('proj_about_database');
     }
