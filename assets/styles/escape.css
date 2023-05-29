@@ -96,7 +96,6 @@ html {
     font-family: var(--font-header);
 }
 
-
 @media (max-width: 768px) {
     .getout-img {
         max-height: 1.5rem !important;
@@ -132,7 +131,7 @@ html {
     width: 100%;
     height: auto;
     border: 2px solid var(--white);
-    margin: auto;
+    align-self: center;
     font-family: var(--font-text);
 }
 
@@ -250,6 +249,13 @@ html {
     position: relative;
     z-index: 10;
 }
+
+@media (min-width: 820px) {
+    .game-container {
+        min-height: 630px;
+    }
+}
+
 
 @media (max-width: 800px) {
     .game-container {
