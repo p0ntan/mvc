@@ -14,9 +14,13 @@
         Om du skulle fastna i spelet då hittar du hjälp <a href="{{ path('proj_help') }}" class="proj-about-link">här</a>.
     </p>
     
-    <form action="{{ path('proj_init_game')}}" method="POST">
-        <input type="submit" class="proj-form-submit" value="Spela">
+    <form action="{{ path('proj_init_game')}}" method="POST" class="mb-3">
+        <input type="submit" class="proj-form-submit" value="Starta nytt spel">
     </form>
+
+    {% if isPlaying %}
+        <a href="{{ path('proj_game') }}" class="proj-form-submit o-mw-250 text-center">Fortsätt där du var</a>
+    {% endif %}
     
 </div>
 

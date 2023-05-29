@@ -2,14 +2,16 @@
 
 namespace App\Controller;
 
-use App\Repository\EscapeMovementRepository;
+use App\Entity\EscapeObject;
+
 use App\EscapeGame\DirectionInitializer;
 use App\EscapeGame\ObjectInitializer;
 use App\EscapeGame\ObjectNotFoundException;
 use App\EscapeGame\RoomInitializer;
 use App\EscapeGame\RoomNotFoundException;
-use App\Repository\EscapeRoomRepository;
+use App\Repository\EscapeMovementRepository;
 use App\Repository\EscapeObjectRepository;
+use App\Repository\EscapeRoomRepository;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;

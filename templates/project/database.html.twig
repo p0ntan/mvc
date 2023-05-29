@@ -23,7 +23,7 @@
 </ul>
 
 <p>
-    Relationerna mellan tabellerna kan man läsa ut ifrån diagrammet ovan, där alla relationer som finns är av typ en-till-många förhållanden. I databasen så är kopplingen mellan escape_object och escape_action en främmande nyckel, och detta gäller även mellan escape_object och escape_room.
+    Relationerna mellan tabellerna kan man läsa ut ifrån diagrammet ovan, där alla relationer som finns är av typ en-till-många förhållanden. Kopplingarna som finns är med främmande nycklas, och markerade med en brädgård (#) i bilden.
     För att få till denna koppling i databasen så lades detta till via migrations, men då denna kopplingen inte lades med från start så var detta något som var lite omständigt att få till. Ovanan att jobba med Doctrine och förstå hur dess migrations fungerar gjorde detta rätt så omständigt, vilket slutade med att jag i flera migrations ändrade SQL-koden som skulle exekveras och manuellt lade till den främmande nyckel som skulle skapas.
 </p>
 <p>
@@ -42,7 +42,7 @@
 <p>
     Nackdelar som jag upplevt med ORM och Doctrine under projektet är hur man jobbar mot den databas man redan har satt upp, och att om man ville ändra något i sin struktur i databasen var det inte lika enkelt att få till de ändringar man ville. I databaskursen var det förhållandevis enkelt att ändra på sin struktur då man enkelt kunde ändra i koden och “starta om” databasen med den nya koden. Detta är nog främst en fråga om min egen kunskap och att man inte har använt sig av Doctrine förut och inte har helt koll på hur det är tänkt att användas. Att Doctrine använder sig av migrations för att kunna återgå till en viss tidpunkt i sin databas är nog i grunden ett bra upplägg, men som nämnt gjorde min egen brist på kunskap att det snarare blev något tidskrävande när något problem uppstod.</p>
 <p>
-    Jag tycker det är skönt att ha full kontroll på hur det man använder fungerar, och även jag känner att ORM har stor potential med ett enkelt gränssnitt så behöver man ändå sätta in sig i hur man kan använda det för att nyttja det till fullo. Vid ändring av tabellerna så fick jag problem som när migrations skulle köras och dess SQL-kod (som var autogenererad), vilket har lett till onödigt mycket felsökning.
+    Jag tycker det är skönt att ha full kontroll på hur det man använder fungerar, och även om jag känner att ORM har stor potential med ett enkelt gränssnitt så behöver man ändå sätta in sig i hur man kan använda det för att nyttja det till fullo. Vid ändring av tabellerna så fick jag problem som när migrations skulle köras och dess SQL-kod (som var autogenererad), vilket har lett till onödigt mycket felsökning.
     Att ha förståelse för hur man kopplar ihop tabeller via t ex Doctrine, och på vilket sätt dessa kopplingar görs och hur man då kan jobba med den struktur som Doctrine erbjuder tycker jag är viktigt för att få det att fungera som man vill. Men har man bara sin tabell-struktur helt klar när man sätter upp entiteterna, så hade det förenklat mycket.
 </p>
 

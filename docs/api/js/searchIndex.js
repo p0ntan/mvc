@@ -966,6 +966,11 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/App-Controller-ProjectMainController.html#method_aboutProjectDatabase"
         },                {
+            "fqsen": "\\App\\Controller\\ProjectMainController\u003A\u003AprojectResetDatabase\u0028\u0029",
+            "name": "projectResetDatabase",
+            "summary": "",
+            "url": "classes/App-Controller-ProjectMainController.html#method_projectResetDatabase"
+        },                {
             "fqsen": "\\App\\Entity\\EscapeAction",
             "name": "EscapeAction",
             "summary": "",

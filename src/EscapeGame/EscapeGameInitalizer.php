@@ -15,7 +15,7 @@ class EscapeGameInitalizer
 {
     /**
      * Method to init the game
-     * 
+     *
      * @return EscapeGame
      */
     public function initGame(

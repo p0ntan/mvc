@@ -2,19 +2,27 @@
 
 namespace App\Controller;
 
-use App\Database\DatabaseReset;
-
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class ProjectMainController extends AbstractController
 {
     #[Route('/proj', name: 'proj')]
-    public function home(): Response
+    public function home(
+        SessionInterface $session
+    ): Response
     {
-        return $this->render('project/index.html.twig');
+        $data = [
+            'isPlaying' => false
+        ];
+        if ($session->has('proj_game')) {
+            $escapeGame = $session->get('proj_game');
+            $data['isPlaying'] = !$escapeGame->isGameOver();
+        }
+        return $this->render('project/index.html.twig', $data);
     }
 
     #[Route('/proj/help', name: 'proj_help')]
@@ -38,8 +46,7 @@ class ProjectMainController extends AbstractController
     #[Route('/proj/database/reset', name: 'proj_about_database_reset', methods: ['POST'])]
     public function projectResetDatabase(
         ManagerRegistry $doctrine,
-    ): Response
-    {
+    ): Response {
         $connection = $doctrine->getConnection();
         $filename = 'sql/backup.sql';
         $sqlFile = file_get_contents($filename);
